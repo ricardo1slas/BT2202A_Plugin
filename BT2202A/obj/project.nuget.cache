@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "0V6bw9fdEWW0OUfoGgMp2QO7sLD5XCciZjb/7CnAFjGbDwPsOQ3yfmuB2dMD/Lb+7oa4XavmUYX+Snc9t0SvCg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\pabernal\\OneDrive - Keysight Technologies\\Share with customers\\TEC Education Partner\\BT2200A project\\BT2202A\\BT2202A\\BT2202A.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\pabernal\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\pabernal\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
+    "C:\\Users\\pabernal\\.nuget\\packages\\opentap\\9.17.4\\opentap.9.17.4.nupkg.sha512"
+  ],
+  "logs": []
+}

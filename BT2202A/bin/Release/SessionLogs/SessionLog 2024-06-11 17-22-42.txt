@@ -1,0 +1,918 @@
+﻿2024-06-11 17:22:42.024324 ; Session        ; Debug       ; Session log loaded as 'C:\Users\yuxia\source\repos\BT2202A\bin\Release\SessionLogs\editor 2024-06-11 17-22-41.txt'. [3.92 ms]
+2024-06-11 17:22:42.033112 ; Session        ; Debug       ; Running '"C:\Users\yuxia\source\repos\BT2202A\bin\Release\editor.exe" ' in 'C:\Users\yuxia\source\repos\BT2202A\bin\Release'.
+2024-06-11 17:22:42.055205 ; Session        ; Debug       ; Microsoft Windows 10.0.22631 X64
+2024-06-11 17:22:42.055205 ; Session        ; Debug       ; .NET Framework 4.8.9241.0
+2024-06-11 17:22:42.068295 ; Session        ; Debug       ; OpenTAP Engine 9.17.4+ea67c63a X64
+2024-06-11 17:22:42.072296 ; AssemblyFinder ; Debug       ; Found 26/81 assembly files. [12.5 ms]
+2024-06-11 17:22:42.095291 ; Resolver       ; Debug       ; Found match for System.Reflection.Metadata, Version=1.4.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a in C:\Users\yuxia\source\repos\BT2202A\bin\Release\Dependencies\System.Reflection.Metadata.1.4.3.0\System.Reflection.Metadata.dll
+2024-06-11 17:22:42.100200 ; Resolver       ; Debug       ; Found match for Keysight.OpenTap.Wpf, Version=9.5.0.0, Culture=neutral, PublicKeyToken=null in C:\Users\yuxia\source\repos\BT2202A\bin\Release\Packages\WPF Controls\Keysight.OpenTap.Wpf.dll
+2024-06-11 17:22:42.107210 ; Resolver       ; Debug       ; Found match for System.Collections.Immutable, Version=1.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a in C:\Users\yuxia\source\repos\BT2202A\bin\Release\Dependencies\System.Collections.Immutable.1.2.3.0\System.Collections.Immutable.dll
+2024-06-11 17:22:42.172795 ; Searcher       ; Debug       ; Ordered 23 assemblies according to references. [97.7 ms]
+2024-06-11 17:22:42.245698 ; PluginManager  ; Debug       ; Found 18 plugin assemblies containing 267 plugin types. [171 ms]
+2024-06-11 17:22:42.245698 ; PluginManager  ; Debug       ; Found version 9.17.4+ea67c63a  of OpenTap.dll
+2024-06-11 17:22:42.245698 ; PluginManager  ; Debug       ; Found version 0.1.0-Development of BT2202A.dll
+2024-06-11 17:22:42.245698 ; PluginManager  ; Debug       ; Found version 9.17.4+ea67c63a  of OpenTap.Package.dll
+2024-06-11 17:22:42.245698 ; PluginManager  ; Debug       ; Found version 1.1.1.0          of Keysight.OpenTap.Licensing.dll
+2024-06-11 17:22:42.245698 ; PluginManager  ; Debug       ; Found version 9.17.4+ea67c63a  of OpenTap.Plugins.BasicSteps.dll
+2024-06-11 17:22:42.245698 ; PluginManager  ; Debug       ; Found version 9.17.4+5e508f08  of Keysight.OpenTap.Wpf.dll
+2024-06-11 17:22:42.245698 ; PluginManager  ; Debug       ; Found version 9.17.4+5e508f08  of PackageManager.exe
+2024-06-11 17:22:42.245698 ; PluginManager  ; Debug       ; Found version 9.17.4+5e508f08  of Editor.exe
+2024-06-11 17:22:42.245698 ; PluginManager  ; Debug       ; Found version 9.11.0+98498e58  of Csv.dll
+2024-06-11 17:22:42.245698 ; PluginManager  ; Debug       ; Found version 9.17.4+5e508f08  of ResultsViewer.exe
+2024-06-11 17:22:42.245698 ; PluginManager  ; Debug       ; Found version 9.17.4+5e508f08  of RunExplorer.exe
+2024-06-11 17:22:42.245698 ; PluginManager  ; Debug       ; Found version 9.17.4+5e508f08  of Keysight.OpenTap.CommunityEditionPopup.exe
+2024-06-11 17:22:42.245698 ; PluginManager  ; Debug       ; Found version 1.0.0            of OpenTap.OSIntegration.Windows.dll
+2024-06-11 17:22:42.245698 ; PluginManager  ; Debug       ; Found version 9.17.4+ea67c63a  of OpenTap.Sdk.New.dll
+2024-06-11 17:22:42.245698 ; PluginManager  ; Debug       ; Found version 9.4.2+3009aace   of Keysight.OpenTap.Plugins.ResultListener.SqlDatabase.dll
+2024-06-11 17:22:42.245698 ; PluginManager  ; Debug       ; Found version 9.4.2+3009aace   of Keysight.OpenTap.Plugins.ResultListener.PostgreSQL.dll
+2024-06-11 17:22:42.245698 ; PluginManager  ; Debug       ; Found version 9.4.2+3009aace   of Keysight.OpenTap.Plugins.ResultListener.SQLite.dll
+2024-06-11 17:22:42.245698 ; PluginManager  ; Debug       ; Found version 1.2.6+ef0ad804   of OpenTap.VSSdk.Installer.dll
+2024-06-11 17:22:42.245698 ; PluginManager  ; Debug       ; Searched 26 Assemblies. [171 ms]
+2024-06-11 17:22:42.252764 ; PluginManager  ; Debug       ; Loaded OpenTap. [336 us]
+2024-06-11 17:22:42.258367 ; PluginManager  ; Debug       ; Loaded OpenTap.Plugins.BasicSteps. [3.52 ms]
+2024-06-11 17:22:42.258367 ; PluginManager  ; Debug       ; Loaded OpenTap.Package. [3.74 ms]
+2024-06-11 17:22:42.258915 ; PluginManager  ; Debug       ; Loaded Keysight.OpenTap.Wpf. [287 us]
+2024-06-11 17:22:42.271953 ; PluginManager  ; Debug       ; Loaded OpenTap.OSIntegration.Windows. [4.04 ms]
+2024-06-11 17:22:42.342618 ; PluginManager  ; Debug       ; Loaded mscorlib. [800 ns]
+2024-06-11 17:22:42.457552 ; Settings       ; Debug       ; EditorSettings loaded from C:\Users\yuxia\source\repos\BT2202A\bin\Release\Settings\Editor.xml [312 ms]
+2024-06-11 17:22:42.458547 ; Resolver       ; Debug       ; Found match for Keysight.Ccl.Wsl, Version=4.0.1.9, Culture=neutral, PublicKeyToken=55333af07c70062e in C:\Users\yuxia\source\repos\BT2202A\bin\Release\Dependencies\Keysight.Ccl.Wsl.4.0.1.9\Keysight.Ccl.Wsl.dll
+2024-06-11 17:22:42.462563 ; Resolver       ; Debug       ; Found match for MahApps.Metro, Version=1.3.0.0, Culture=neutral, PublicKeyToken=f4fb5a3c4d1e5b4f in C:\Users\yuxia\source\repos\BT2202A\bin\Release\Dependencies\MahApps.Metro.1.3.0.0\MahApps.Metro.dll
+2024-06-11 17:22:42.555822 ; GUI            ; Debug       ; Loaded Light Theme. [10.3 ms]
+2024-06-11 17:22:42.623916 ; Resolver       ; Debug       ; Found match for AvalonDock, Version=4.60.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4 in C:\Users\yuxia\source\repos\BT2202A\bin\Release\Dependencies\AvalonDock.4.60.0.0\AvalonDock.dll
+2024-06-11 17:22:42.770312 ; Settings       ; Debug       ; GuiControlsSettings loaded from C:\Users\yuxia\source\repos\BT2202A\bin\Release\Settings\GUI Controls.xml [81.3 ms]
+2024-06-11 17:22:42.770312 ; Main           ; Debug       ; Window initial dimensions: 1549px, 829px.
+2024-06-11 17:22:42.786225 ; Settings       ; Debug       ; EngineSettings loaded from C:\Users\yuxia\source\repos\BT2202A\bin\Release\Settings\Engine.xml [15.0 ms]
+2024-06-11 17:22:42.788308 ; Settings       ; Debug       ; No settings file exists for PackageManagerSettings. A new instance with default values has been created. [723 us]
+2024-06-11 17:22:42.791228 ; Resolver       ; Debug       ; Found match for Keysight.OpenTap.Licensing, Version=1.1.1.0, Culture=neutral, PublicKeyToken=null in C:\Users\yuxia\source\repos\BT2202A\bin\Release\Packages\Keysight Licensing\Keysight.OpenTap.Licensing.dll
+2024-06-11 17:22:42.818543 ; Session        ; Debug       ; Session log loaded as 'SessionLogs\SessionLog 2024-06-11 17-22-42.txt'. [13.1 ms]
+2024-06-11 17:22:43.047887 ; Main           ; Debug       ; GUI initialized. [276 ms]
+2024-06-11 17:22:43.047887 ; Main           ; Debug       ; Docking manager initialized. [46.0 us]
+2024-06-11 17:22:43.048788 ; OpenTAP        ; Information ; OpenTAP version '9.17.4+ea67c63a' 64-bit initialized 06/11/2024 [1.21 s]
+2024-06-11 17:22:43.067781 ; PluginManager  ; Debug       ; Loaded PackageManager. [204 us]
+2024-06-11 17:22:43.067781 ; PluginManager  ; Debug       ; Loaded Editor. [22.8 us]
+2024-06-11 17:22:43.071188 ; PluginManager  ; Debug       ; Loaded ResultsViewer. [2.94 ms]
+2024-06-11 17:22:43.073391 ; PluginManager  ; Debug       ; Loaded RunExplorer. [2.18 ms]
+2024-06-11 17:22:43.075531 ; Settings       ; Debug       ; ConnectionSettings loaded from C:\Users\yuxia\source\repos\BT2202A\bin\Release\Settings\Bench\Default\Connections.xml [1.20 ms]
+2024-06-11 17:22:43.076398 ; Settings       ; Debug       ; DutSettings loaded from C:\Users\yuxia\source\repos\BT2202A\bin\Release\Settings\Bench\Default\DUTs.xml [614 us]
+2024-06-11 17:22:43.081508 ; PluginManager  ; Debug       ; Loaded BT2202A. [2.31 ms]
+2024-06-11 17:22:43.114136 ; Settings       ; Debug       ; InstrumentSettings loaded from C:\Users\yuxia\source\repos\BT2202A\bin\Release\Settings\Bench\Default\Instruments.xml [38.4 ms]
+2024-06-11 17:22:43.115135 ; Settings       ; Debug       ; ResultSettings loaded from C:\Users\yuxia\source\repos\BT2202A\bin\Release\Settings\Results.xml [767 us]
+2024-06-11 17:22:43.191772 ; Main           ; Warning     ; Recovery test plan detected.
+2024-06-11 17:22:43.706728 ; Settings       ; Debug       ; PanelSettings loaded from C:\Users\yuxia\source\repos\BT2202A\bin\Release\Settings\GUI Panels.xml [2.19 ms]
+2024-06-11 17:22:43.834782 ; Main           ; Debug       ; Application startup finished. [1.99 s]
+2024-06-11 17:22:44.089788 ; Resolver       ; Debug       ; Found match for Keysight.Kal.Licensing.Api, Version=4.0.0.0, Culture=neutral, PublicKeyToken=55333af07c70062e in C:\Users\yuxia\source\repos\BT2202A\bin\Release\Dependencies\Keysight.Kal.Licensing.Api.4.0.0\Keysight.Kal.Licensing.Api.dll
+2024-06-11 17:22:44.114972 ; KAL            ; Debug       ; KAL signature verified. [20.0 ms]
+2024-06-11 17:22:44.140789 ; KAL            ; Debug       ; Initialized [43.7 ms]
+2024-06-11 17:22:44.143786 ; KAL Process    ; Debug       ; Initialized [50.7 ms]
+2024-06-11 17:22:44.160248 ; Resolver       ; Debug       ; Found match for Keysight.Ccl.Licensing.Api, Version=5.3.2.19, Culture=neutral, PublicKeyToken=55333af07c70062e in C:\Users\yuxia\source\repos\BT2202A\bin\Release\Dependencies\Keysight.Ccl.Licensing.Api.5.3.2.19\Keysight.Ccl.Licensing.Api.dll
+2024-06-11 17:22:44.289499 ; CCL            ; Debug       ; Initialized [204 ms]
+2024-06-11 17:22:44.505977 ; Main           ; Debug       ; Update check complete. [1.45 s]
+2024-06-11 17:22:58.954481 ; TestPlan       ; Information ; -----------------------------------------------------------------
+2024-06-11 17:22:58.969481 ; TestPlan       ; Information ; Starting TestPlan 'Untitled' on 06/11/2024 17:22:58, 5 of 5 TestSteps enabled.
+2024-06-11 17:22:59.005455 ; TestPlan       ; Debug       ; Saved Test Plan XML [1.67 ms]
+2024-06-11 17:22:59.012344 ; Settings       ; Debug       ; No settings file exists for TestPlanRunPackageParameterMonitor. A new instance with default values has been created. [102 us]
+2024-06-11 17:22:59.062322 ; BT2202A        ; Debug       ; Connecting to 'USB0::0x008D::0x3602::MY59002216::0::INSTR'
+2024-06-11 17:22:59.151067 ; BT2202A        ; Debug       ; SCPI >> *IDN? [8.15 ms]
+2024-06-11 17:22:59.151067 ; BT2202A        ; Debug       ; SCPI << Keysight Technologies,BT2202A,MY59002216,06.17(2880)-02.35(1829)-00.24-08-02-02-1652039-23
+2024-06-11 17:22:59.151067 ; BT2202A        ; Information ; Now connected to: Keysight Technologies,BT2202A,MY59002216,06.17(2880)-02.35(1829)-00.24-08-02-02-1652039-23
+2024-06-11 17:22:59.153067 ; BT2202A        ; Debug       ; SCPI >> *CLS [295 us]
+2024-06-11 17:23:00.687418 ; BT2202A        ; Debug       ; SCPI >> *IDN? [4.69 ms]
+2024-06-11 17:23:00.687418 ; BT2202A        ; Debug       ; SCPI << Keysight Technologies,BT2202A,MY59002216,06.17(2880)-02.35(1829)-00.24-08-02-02-1652039-23
+2024-06-11 17:23:00.687418 ; BT2202A        ; Information ; Keysight Technologies,BT2202A,MY59002216,06.17(2880)-02.35(1829)-00.24-08-02-02-1652039-23
+2024-06-11 17:23:00.688419 ; DAQ970A        ; Debug       ; Connecting to 'TCPIP0::10.10.10.10::inst0::INSTR'
+2024-06-11 17:23:00.881566 ; DAQ970A        ; Debug       ; SCPI >> *IDN? [132 ms]
+2024-06-11 17:23:00.881566 ; DAQ970A        ; Debug       ; SCPI << Keysight Technologies,DAQ970A,MY58000190,A.02.03-01.00-02.01-00.02-02.00-03-02
+2024-06-11 17:23:00.881566 ; DAQ970A        ; Information ; Now connected to: Keysight Technologies,DAQ970A,MY58000190,A.02.03-01.00-02.01-00.02-02.00-03-02
+2024-06-11 17:23:00.883550 ; DAQ970A        ; Debug       ; SCPI >> *CLS [2.15 ms]
+2024-06-11 17:23:01.012079 ; DAQ970A        ; Debug       ; SCPI >> *IDN? [125 ms]
+2024-06-11 17:23:01.012079 ; DAQ970A        ; Debug       ; SCPI << Keysight Technologies,DAQ970A,MY58000190,A.02.03-01.00-02.01-00.02-02.00-03-02
+2024-06-11 17:23:01.012079 ; DAQ970A        ; Information ; Keysight Technologies,DAQ970A,MY58000190,A.02.03-01.00-02.01-00.02-02.00-03-02
+2024-06-11 17:23:01.013125 ; BT2202A        ; Information ; Generated: CELL:DEFINE 1001,(@101:104)
+2024-06-11 17:23:01.013125 ; BT2202A        ; Information ; Generated: CELL:DEFINE 1002,(@105:108)
+2024-06-11 17:23:01.013125 ; BT2202A        ; Information ; Generated: CELL:DEFINE 1003,(@109:112)
+2024-06-11 17:23:01.013125 ; BT2202A        ; Information ; Generated: CELL:DEFINE 2001,(@201:204)
+2024-06-11 17:23:01.013125 ; BT2202A        ; Information ; Generated: CELL:DEFINE 2002,(@205:208)
+2024-06-11 17:23:01.013125 ; BT2202A        ; Information ; Generated: CELL:DEFINE 2003,(@209:212)
+2024-06-11 17:23:01.013125 ; BT2202A        ; Information ; Generated: SEQ:STEP:DEF 1,1,CHARGE,15,0.1,4.2
+2024-06-11 17:23:01.013125 ; BT2202A        ; Information ; Generated: SEQ:STEP:DEF 1,1,DISCHARGE,15,0.4,3
+2024-06-11 17:23:01.013125 ; BT2202A        ; Information ; Generated: SEQ:STEP:DEF 1,1,CHARGE,15,0.3,4.2
+2024-06-11 17:23:01.013125 ; BT2202A        ; Information ; Generated: SEQ:STEP:DEF 1,1,DISCHARGE,15,0.4,3
+2024-06-11 17:23:01.013125 ; BT2202A        ; Information ; Generated: SEQ:STEP:DEF 1,1,CHARGE,15,0.2,4.2
+2024-06-11 17:23:01.014264 ; BT2202A        ; Information ; Resource "BT2202A (USB0::0x008D::0x3602::MY59002216::0::INSTR)" opened. [1.95 s]
+2024-06-11 17:23:01.024607 ; TestPlan       ; Debug       ; PrePlanRun Methods completed [2.09 ms]
+2024-06-11 17:23:01.032111 ; TestPlan       ; Information ; "Carga" started.
+2024-06-11 17:23:01.038118 ; BT2202A        ; Debug       ; SCPI >> *IDN? [164 us]
+2024-06-11 17:23:01.039118 ; BT2202A        ; Debug       ; SCPI >> *RST [224 us]
+2024-06-11 17:23:01.039118 ; BT2202A        ; Debug       ; SCPI >> SYST:PROB:LIM 1,0 [254 us]
+2024-06-11 17:23:01.040118 ; BT2202A        ; Debug       ; SCPI >> CELL:DEFINE 1001,(@101:104) [521 us]
+2024-06-11 17:23:01.040118 ; BT2202A        ; Information ; Executed: CELL:DEFINE 1001,(@101:104)
+2024-06-11 17:23:01.040118 ; BT2202A        ; Debug       ; SCPI >> CELL:DEFINE 1002,(@105:108) [745 us]
+2024-06-11 17:23:01.040118 ; BT2202A        ; Information ; Executed: CELL:DEFINE 1002,(@105:108)
+2024-06-11 17:23:01.041119 ; BT2202A        ; Debug       ; SCPI >> CELL:DEFINE 1003,(@109:112) [1.10 ms]
+2024-06-11 17:23:01.041119 ; BT2202A        ; Information ; Executed: CELL:DEFINE 1003,(@109:112)
+2024-06-11 17:23:01.042118 ; BT2202A        ; Debug       ; SCPI >> CELL:DEFINE 2001,(@201:204) [294 us]
+2024-06-11 17:23:01.042118 ; BT2202A        ; Information ; Executed: CELL:DEFINE 2001,(@201:204)
+2024-06-11 17:23:01.042118 ; BT2202A        ; Debug       ; SCPI >> CELL:DEFINE 2002,(@205:208) [715 us]
+2024-06-11 17:23:01.042118 ; BT2202A        ; Information ; Executed: CELL:DEFINE 2002,(@205:208)
+2024-06-11 17:23:01.043445 ; BT2202A        ; Debug       ; SCPI >> CELL:DEFINE 2003,(@209:212) [1.16 ms]
+2024-06-11 17:23:01.043445 ; BT2202A        ; Information ; Executed: CELL:DEFINE 2003,(@209:212)
+2024-06-11 17:23:01.044478 ; BT2202A        ; Debug       ; SCPI >> SEQ:STEP:DEF 1,1,CHARGE,15,0.1,4.2 [406 us]
+2024-06-11 17:23:01.044478 ; BT2202A        ; Information ; Executed Charge Command: SEQ:STEP:DEF 1,1,CHARGE,15,0.1,4.2
+2024-06-11 17:23:01.044478 ; BT2202A        ; Debug       ; SCPI >> CELL:ENABLE (@1001),1 [772 us]
+2024-06-11 17:23:01.045698 ; BT2202A        ; Debug       ; SCPI >> CELL:INIT (@1001) [566 us]
+2024-06-11 17:23:01.045698 ; BT2202A        ; Information ; Initializing Charge
+2024-06-11 17:23:16.046020 ; BT2202A        ; Information ; Charge Process Started
+2024-06-11 17:23:17.048494 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [1.88 ms]
+2024-06-11 17:23:17.049493 ; BT2202A        ; Debug       ; SCPI << 3.8360
+2024-06-11 17:23:17.049493 ; BT2202A        ; Information ; Voltage at second 1: 3.8360
+2024-06-11 17:23:17.051514 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [1.90 ms]
+2024-06-11 17:23:17.051514 ; BT2202A        ; Debug       ; SCPI << 0.0035
+2024-06-11 17:23:17.051514 ; BT2202A        ; Information ; Current at second 1: 0.0035
+2024-06-11 17:23:17.101721 ; DAQ970A        ; Debug       ; SCPI >> MEAS:TEMP? TC,J,(@102) [50.1 ms]
+2024-06-11 17:23:17.101721 ; DAQ970A        ; Debug       ; SCPI << +2.52377973E+01
+2024-06-11 17:23:17.101721 ; BT2202A        ; Information ; Temperature at second 1: +2.52377973E+01
+2024-06-11 17:23:18.103859 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [1.77 ms]
+2024-06-11 17:23:18.104859 ; BT2202A        ; Debug       ; SCPI << 3.8546
+2024-06-11 17:23:18.104859 ; BT2202A        ; Information ; Voltage at second 2: 3.8546
+2024-06-11 17:23:18.106860 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [2.02 ms]
+2024-06-11 17:23:18.106860 ; BT2202A        ; Debug       ; SCPI << 0.1017
+2024-06-11 17:23:18.106860 ; BT2202A        ; Information ; Current at second 2: 0.1017
+2024-06-11 17:23:18.190310 ; DAQ970A        ; Debug       ; SCPI >> MEAS:TEMP? TC,J,(@102) [83.6 ms]
+2024-06-11 17:23:18.190310 ; DAQ970A        ; Debug       ; SCPI << +2.51396297E+01
+2024-06-11 17:23:18.190310 ; BT2202A        ; Information ; Temperature at second 2: +2.51396297E+01
+2024-06-11 17:23:19.194009 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [2.24 ms]
+2024-06-11 17:23:19.194009 ; BT2202A        ; Debug       ; SCPI << 3.8573
+2024-06-11 17:23:19.194009 ; BT2202A        ; Information ; Voltage at second 3: 3.8573
+2024-06-11 17:23:19.195852 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [2.00 ms]
+2024-06-11 17:23:19.195852 ; BT2202A        ; Debug       ; SCPI << 0.1017
+2024-06-11 17:23:19.195852 ; BT2202A        ; Information ; Current at second 3: 0.1017
+2024-06-11 17:23:19.270142 ; DAQ970A        ; Debug       ; SCPI >> MEAS:TEMP? TC,J,(@102) [74.0 ms]
+2024-06-11 17:23:19.270142 ; DAQ970A        ; Debug       ; SCPI << +2.51908747E+01
+2024-06-11 17:23:19.270142 ; BT2202A        ; Information ; Temperature at second 3: +2.51908747E+01
+2024-06-11 17:23:20.271618 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [1.91 ms]
+2024-06-11 17:23:20.271618 ; BT2202A        ; Debug       ; SCPI << 3.8577
+2024-06-11 17:23:20.271618 ; BT2202A        ; Information ; Voltage at second 4: 3.8577
+2024-06-11 17:23:20.274533 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [2.72 ms]
+2024-06-11 17:23:20.274533 ; BT2202A        ; Debug       ; SCPI << 0.1017
+2024-06-11 17:23:20.274533 ; BT2202A        ; Information ; Current at second 4: 0.1017
+2024-06-11 17:23:20.378514 ; DAQ970A        ; Debug       ; SCPI >> MEAS:TEMP? TC,J,(@102) [103 ms]
+2024-06-11 17:23:20.378514 ; DAQ970A        ; Debug       ; SCPI << +2.51082415E+01
+2024-06-11 17:23:20.378514 ; BT2202A        ; Information ; Temperature at second 4: +2.51082415E+01
+2024-06-11 17:23:21.381088 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [1.85 ms]
+2024-06-11 17:23:21.381088 ; BT2202A        ; Debug       ; SCPI << 3.8579
+2024-06-11 17:23:21.381088 ; BT2202A        ; Information ; Voltage at second 5: 3.8579
+2024-06-11 17:23:21.383111 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [1.91 ms]
+2024-06-11 17:23:21.383111 ; BT2202A        ; Debug       ; SCPI << 0.1017
+2024-06-11 17:23:21.383111 ; BT2202A        ; Information ; Current at second 5: 0.1017
+2024-06-11 17:23:21.430274 ; DAQ970A        ; Debug       ; SCPI >> MEAS:TEMP? TC,J,(@102) [47.0 ms]
+2024-06-11 17:23:21.430274 ; DAQ970A        ; Debug       ; SCPI << +2.50594258E+01
+2024-06-11 17:23:21.430274 ; BT2202A        ; Information ; Temperature at second 5: +2.50594258E+01
+2024-06-11 17:23:22.432776 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [1.78 ms]
+2024-06-11 17:23:22.432776 ; BT2202A        ; Debug       ; SCPI << 3.8579
+2024-06-11 17:23:22.432776 ; BT2202A        ; Information ; Voltage at second 6: 3.8579
+2024-06-11 17:23:22.434680 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [1.83 ms]
+2024-06-11 17:23:22.434680 ; BT2202A        ; Debug       ; SCPI << 0.1001
+2024-06-11 17:23:22.434680 ; BT2202A        ; Information ; Current at second 6: 0.1001
+2024-06-11 17:23:22.480259 ; DAQ970A        ; Debug       ; SCPI >> MEAS:TEMP? TC,J,(@102) [46.0 ms]
+2024-06-11 17:23:22.480259 ; DAQ970A        ; Debug       ; SCPI << +2.51223410E+01
+2024-06-11 17:23:22.480259 ; BT2202A        ; Information ; Temperature at second 6: +2.51223410E+01
+2024-06-11 17:23:23.483746 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [2.86 ms]
+2024-06-11 17:23:23.483746 ; BT2202A        ; Debug       ; SCPI << 3.8579
+2024-06-11 17:23:23.483746 ; BT2202A        ; Information ; Voltage at second 7: 3.8579
+2024-06-11 17:23:23.485315 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [1.83 ms]
+2024-06-11 17:23:23.486536 ; BT2202A        ; Debug       ; SCPI << 0.0997
+2024-06-11 17:23:23.486536 ; BT2202A        ; Information ; Current at second 7: 0.0997
+2024-06-11 17:23:23.568769 ; DAQ970A        ; Debug       ; SCPI >> MEAS:TEMP? TC,J,(@102) [82.8 ms]
+2024-06-11 17:23:23.568769 ; DAQ970A        ; Debug       ; SCPI << +2.50596209E+01
+2024-06-11 17:23:23.568769 ; BT2202A        ; Information ; Temperature at second 7: +2.50596209E+01
+2024-06-11 17:23:24.570603 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [1.80 ms]
+2024-06-11 17:23:24.570603 ; BT2202A        ; Debug       ; SCPI << 3.8581
+2024-06-11 17:23:24.570603 ; BT2202A        ; Information ; Voltage at second 8: 3.8581
+2024-06-11 17:23:24.572604 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [1.99 ms]
+2024-06-11 17:23:24.572604 ; BT2202A        ; Debug       ; SCPI << 0.0999
+2024-06-11 17:23:24.572604 ; BT2202A        ; Information ; Current at second 8: 0.0999
+2024-06-11 17:23:24.667382 ; DAQ970A        ; Debug       ; SCPI >> MEAS:TEMP? TC,J,(@102) [94.5 ms]
+2024-06-11 17:23:24.667382 ; DAQ970A        ; Debug       ; SCPI << +2.51848194E+01
+2024-06-11 17:23:24.667382 ; BT2202A        ; Information ; Temperature at second 8: +2.51848194E+01
+2024-06-11 17:23:25.670158 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [1.75 ms]
+2024-06-11 17:23:25.670158 ; BT2202A        ; Debug       ; SCPI << 3.8583
+2024-06-11 17:23:25.670158 ; BT2202A        ; Information ; Voltage at second 9: 3.8583
+2024-06-11 17:23:25.672159 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [1.84 ms]
+2024-06-11 17:23:25.672159 ; BT2202A        ; Debug       ; SCPI << 0.0999
+2024-06-11 17:23:25.672159 ; BT2202A        ; Information ; Current at second 9: 0.0999
+2024-06-11 17:23:25.755406 ; DAQ970A        ; Debug       ; SCPI >> MEAS:TEMP? TC,J,(@102) [83.7 ms]
+2024-06-11 17:23:25.755406 ; DAQ970A        ; Debug       ; SCPI << +2.52699583E+01
+2024-06-11 17:23:25.755406 ; BT2202A        ; Information ; Temperature at second 9: +2.52699583E+01
+2024-06-11 17:23:26.759411 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [1.88 ms]
+2024-06-11 17:23:26.759411 ; BT2202A        ; Debug       ; SCPI << 3.8369
+2024-06-11 17:23:26.759411 ; BT2202A        ; Information ; Voltage at second 10: 3.8369
+2024-06-11 17:23:26.761928 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [2.00 ms]
+2024-06-11 17:23:26.761928 ; BT2202A        ; Debug       ; SCPI << -0.0003
+2024-06-11 17:23:26.761928 ; BT2202A        ; Information ; Current at second 10: -0.0003
+2024-06-11 17:23:26.918039 ; DAQ970A        ; Debug       ; SCPI >> MEAS:TEMP? TC,J,(@102) [156 ms]
+2024-06-11 17:23:26.918039 ; DAQ970A        ; Debug       ; SCPI << +2.51711589E+01
+2024-06-11 17:23:26.918039 ; BT2202A        ; Information ; Temperature at second 10: +2.51711589E+01
+2024-06-11 17:23:27.921500 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [2.66 ms]
+2024-06-11 17:23:27.921500 ; BT2202A        ; Debug       ; SCPI << 3.8367
+2024-06-11 17:23:27.921500 ; BT2202A        ; Information ; Voltage at second 11: 3.8367
+2024-06-11 17:23:27.923033 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [1.95 ms]
+2024-06-11 17:23:27.923033 ; BT2202A        ; Debug       ; SCPI << -0.0011
+2024-06-11 17:23:27.923033 ; BT2202A        ; Information ; Current at second 11: -0.0011
+2024-06-11 17:23:27.982212 ; DAQ970A        ; Debug       ; SCPI >> MEAS:TEMP? TC,J,(@102) [59.1 ms]
+2024-06-11 17:23:27.982212 ; DAQ970A        ; Debug       ; SCPI << +2.51883361E+01
+2024-06-11 17:23:27.982212 ; BT2202A        ; Information ; Temperature at second 11: +2.51883361E+01
+2024-06-11 17:23:28.987732 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [4.83 ms]
+2024-06-11 17:23:28.987732 ; BT2202A        ; Debug       ; SCPI << 3.8367
+2024-06-11 17:23:28.987732 ; BT2202A        ; Information ; Voltage at second 12: 3.8367
+2024-06-11 17:23:28.989756 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [1.96 ms]
+2024-06-11 17:23:28.989756 ; BT2202A        ; Debug       ; SCPI << -0.0011
+2024-06-11 17:23:28.989756 ; BT2202A        ; Information ; Current at second 12: -0.0011
+2024-06-11 17:23:29.056774 ; DAQ970A        ; Debug       ; SCPI >> MEAS:TEMP? TC,J,(@102) [66.7 ms]
+2024-06-11 17:23:29.056774 ; DAQ970A        ; Debug       ; SCPI << +2.53604377E+01
+2024-06-11 17:23:29.056774 ; BT2202A        ; Information ; Temperature at second 12: +2.53604377E+01
+2024-06-11 17:23:30.060371 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [1.95 ms]
+2024-06-11 17:23:30.060371 ; BT2202A        ; Debug       ; SCPI << 3.8366
+2024-06-11 17:23:30.060371 ; BT2202A        ; Information ; Voltage at second 13: 3.8366
+2024-06-11 17:23:30.062388 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [2.02 ms]
+2024-06-11 17:23:30.062388 ; BT2202A        ; Debug       ; SCPI << -0.0011
+2024-06-11 17:23:30.062388 ; BT2202A        ; Information ; Current at second 13: -0.0011
+2024-06-11 17:23:30.139961 ; DAQ970A        ; Debug       ; SCPI >> MEAS:TEMP? TC,J,(@102) [77.4 ms]
+2024-06-11 17:23:30.139961 ; DAQ970A        ; Debug       ; SCPI << +2.54279746E+01
+2024-06-11 17:23:30.139961 ; BT2202A        ; Information ; Temperature at second 13: +2.54279746E+01
+2024-06-11 17:23:31.142511 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [1.77 ms]
+2024-06-11 17:23:31.142511 ; BT2202A        ; Debug       ; SCPI << 3.8366
+2024-06-11 17:23:31.142511 ; BT2202A        ; Information ; Voltage at second 14: 3.8366
+2024-06-11 17:23:31.144516 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [1.87 ms]
+2024-06-11 17:23:31.144516 ; BT2202A        ; Debug       ; SCPI << -0.0011
+2024-06-11 17:23:31.144516 ; BT2202A        ; Information ; Current at second 14: -0.0011
+2024-06-11 17:23:31.276237 ; DAQ970A        ; Debug       ; SCPI >> MEAS:TEMP? TC,J,(@102) [131 ms]
+2024-06-11 17:23:31.276237 ; DAQ970A        ; Debug       ; SCPI << +2.54780718E+01
+2024-06-11 17:23:31.276237 ; BT2202A        ; Information ; Temperature at second 14: +2.54780718E+01
+2024-06-11 17:23:32.279094 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [2.06 ms]
+2024-06-11 17:23:32.279094 ; BT2202A        ; Debug       ; SCPI << 3.8364
+2024-06-11 17:23:32.279094 ; BT2202A        ; Information ; Voltage at second 15: 3.8364
+2024-06-11 17:23:32.281392 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [2.20 ms]
+2024-06-11 17:23:32.281392 ; BT2202A        ; Debug       ; SCPI << -0.0011
+2024-06-11 17:23:32.281392 ; BT2202A        ; Information ; Current at second 15: -0.0011
+2024-06-11 17:23:32.382936 ; DAQ970A        ; Debug       ; SCPI >> MEAS:TEMP? TC,J,(@102) [101 ms]
+2024-06-11 17:23:32.382936 ; DAQ970A        ; Debug       ; SCPI << +2.54777031E+01
+2024-06-11 17:23:32.382936 ; BT2202A        ; Information ; Temperature at second 15: +2.54777031E+01
+2024-06-11 17:23:32.382936 ; BT2202A        ; Debug       ; SCPI >> SEQ:ABORT [130 us]
+2024-06-11 17:23:32.382936 ; BT2202A        ; Information ; SEQ:ABORT
+2024-06-11 17:23:32.382936 ; TestStep       ; Information ; 0
+2024-06-11 17:23:32.382936 ; TestStep       ; Information ; 3
+2024-06-11 17:23:32.388740 ; TestPlan       ; Information ; "Carga" completed. [31.3 s]
+2024-06-11 17:23:32.389752 ; TestPlan       ; Information ; "Descarga" started.
+2024-06-11 17:23:32.391748 ; BT2202A        ; Debug       ; SCPI >> *IDN? [198 us]
+2024-06-11 17:23:32.391748 ; BT2202A        ; Debug       ; SCPI >> *RST [212 us]
+2024-06-11 17:23:32.391748 ; BT2202A        ; Debug       ; SCPI >> SYST:PROB:LIM 1,0 [219 us]
+2024-06-11 17:23:32.393111 ; BT2202A        ; Debug       ; SCPI >> CELL:DEFINE 1001,(@101:104) [543 us]
+2024-06-11 17:23:32.393111 ; BT2202A        ; Information ; Executed: CELL:DEFINE 1001,(@101:104)
+2024-06-11 17:23:32.394178 ; BT2202A        ; Debug       ; SCPI >> CELL:DEFINE 1002,(@105:108) [726 us]
+2024-06-11 17:23:32.394178 ; BT2202A        ; Information ; Executed: CELL:DEFINE 1002,(@105:108)
+2024-06-11 17:23:32.394178 ; BT2202A        ; Debug       ; SCPI >> CELL:DEFINE 1003,(@109:112) [748 us]
+2024-06-11 17:23:32.394178 ; BT2202A        ; Information ; Executed: CELL:DEFINE 1003,(@109:112)
+2024-06-11 17:23:32.395226 ; BT2202A        ; Debug       ; SCPI >> CELL:DEFINE 2001,(@201:204) [757 us]
+2024-06-11 17:23:32.395226 ; BT2202A        ; Information ; Executed: CELL:DEFINE 2001,(@201:204)
+2024-06-11 17:23:32.396372 ; BT2202A        ; Debug       ; SCPI >> CELL:DEFINE 2002,(@205:208) [634 us]
+2024-06-11 17:23:32.396372 ; BT2202A        ; Information ; Executed: CELL:DEFINE 2002,(@205:208)
+2024-06-11 17:23:32.396372 ; BT2202A        ; Debug       ; SCPI >> CELL:DEFINE 2003,(@209:212) [669 us]
+2024-06-11 17:23:32.396372 ; BT2202A        ; Information ; Executed: CELL:DEFINE 2003,(@209:212)
+2024-06-11 17:23:32.397378 ; BT2202A        ; Debug       ; SCPI >> SEQ:STEP:DEF 1,1,DISCHARGE,15,0.4,3 [789 us]
+2024-06-11 17:23:32.397378 ; BT2202A        ; Information ; Executed Discharge Command: SEQ:STEP:DEF 1,1,DISCHARGE,15,0.4,3
+2024-06-11 17:23:32.398852 ; BT2202A        ; Debug       ; SCPI >> CELL:ENABLE (@1001),1 [834 us]
+2024-06-11 17:23:32.398852 ; BT2202A        ; Debug       ; SCPI >> CELL:INIT (@1001) [543 us]
+2024-06-11 17:23:32.398852 ; BT2202A        ; Information ; Initializing Discharge
+2024-06-11 17:23:47.400248 ; BT2202A        ; Information ; Discharge Process Started
+2024-06-11 17:23:48.418499 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [1.89 ms]
+2024-06-11 17:23:48.418499 ; BT2202A        ; Debug       ; SCPI << 3.8279
+2024-06-11 17:23:48.418499 ; BT2202A        ; Information ; Voltage at second 1: 3.8279
+2024-06-11 17:23:48.420655 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [1.87 ms]
+2024-06-11 17:23:48.420655 ; BT2202A        ; Debug       ; SCPI << -0.0413
+2024-06-11 17:23:48.420655 ; BT2202A        ; Information ; Current at second 1: -0.0413
+2024-06-11 17:23:48.519482 ; DAQ970A        ; Debug       ; SCPI >> MEAS:TEMP? TC,J,(@102) [99.0 ms]
+2024-06-11 17:23:48.519482 ; DAQ970A        ; Debug       ; SCPI << +2.62412904E+01
+2024-06-11 17:23:48.519482 ; BT2202A        ; Information ; Temperature at second 1: +2.62412904E+01
+2024-06-11 17:23:49.522861 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [1.88 ms]
+2024-06-11 17:23:49.522861 ; BT2202A        ; Debug       ; SCPI << 3.8279
+2024-06-11 17:23:49.522861 ; BT2202A        ; Information ; Voltage at second 2: 3.8279
+2024-06-11 17:23:49.524860 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [2.02 ms]
+2024-06-11 17:23:49.524860 ; BT2202A        ; Debug       ; SCPI << -0.0381
+2024-06-11 17:23:49.524860 ; BT2202A        ; Information ; Current at second 2: -0.0381
+2024-06-11 17:23:49.662593 ; DAQ970A        ; Debug       ; SCPI >> MEAS:TEMP? TC,J,(@102) [138 ms]
+2024-06-11 17:23:49.662593 ; DAQ970A        ; Debug       ; SCPI << +2.60569961E+01
+2024-06-11 17:23:49.662593 ; BT2202A        ; Information ; Temperature at second 2: +2.60569961E+01
+2024-06-11 17:23:50.665618 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [1.83 ms]
+2024-06-11 17:23:50.665618 ; BT2202A        ; Debug       ; SCPI << 3.7560
+2024-06-11 17:23:50.665618 ; BT2202A        ; Information ; Voltage at second 3: 3.7560
+2024-06-11 17:23:50.667916 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [2.03 ms]
+2024-06-11 17:23:50.667916 ; BT2202A        ; Debug       ; SCPI << -0.4174
+2024-06-11 17:23:50.667916 ; BT2202A        ; Information ; Current at second 3: -0.4174
+2024-06-11 17:23:50.763306 ; DAQ970A        ; Debug       ; SCPI >> MEAS:TEMP? TC,J,(@102) [95.3 ms]
+2024-06-11 17:23:50.763306 ; DAQ970A        ; Debug       ; SCPI << +2.60398929E+01
+2024-06-11 17:23:50.763306 ; BT2202A        ; Information ; Temperature at second 3: +2.60398929E+01
+2024-06-11 17:23:51.765252 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [1.93 ms]
+2024-06-11 17:23:51.765252 ; BT2202A        ; Debug       ; SCPI << 3.7437
+2024-06-11 17:23:51.765252 ; BT2202A        ; Information ; Voltage at second 4: 3.7437
+2024-06-11 17:23:51.767488 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [1.94 ms]
+2024-06-11 17:23:51.767488 ; BT2202A        ; Debug       ; SCPI << -0.4192
+2024-06-11 17:23:51.767488 ; BT2202A        ; Information ; Current at second 4: -0.4192
+2024-06-11 17:23:51.868406 ; DAQ970A        ; Debug       ; SCPI >> MEAS:TEMP? TC,J,(@102) [100 ms]
+2024-06-11 17:23:51.868406 ; DAQ970A        ; Debug       ; SCPI << +2.61736324E+01
+2024-06-11 17:23:51.868406 ; BT2202A        ; Information ; Temperature at second 4: +2.61736324E+01
+2024-06-11 17:23:52.871374 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [2.08 ms]
+2024-06-11 17:23:52.871374 ; BT2202A        ; Debug       ; SCPI << 3.7426
+2024-06-11 17:23:52.871374 ; BT2202A        ; Information ; Voltage at second 5: 3.7426
+2024-06-11 17:23:52.873536 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [2.11 ms]
+2024-06-11 17:23:52.873536 ; BT2202A        ; Debug       ; SCPI << -0.4200
+2024-06-11 17:23:52.873536 ; BT2202A        ; Information ; Current at second 5: -0.4200
+2024-06-11 17:23:52.972401 ; DAQ970A        ; Debug       ; SCPI >> MEAS:TEMP? TC,J,(@102) [99.1 ms]
+2024-06-11 17:23:52.972401 ; DAQ970A        ; Debug       ; SCPI << +2.61368004E+01
+2024-06-11 17:23:52.972401 ; BT2202A        ; Information ; Temperature at second 5: +2.61368004E+01
+2024-06-11 17:23:53.974723 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [1.82 ms]
+2024-06-11 17:23:53.974723 ; BT2202A        ; Debug       ; SCPI << 3.7459
+2024-06-11 17:23:53.974723 ; BT2202A        ; Information ; Voltage at second 6: 3.7459
+2024-06-11 17:23:53.977355 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [2.07 ms]
+2024-06-11 17:23:53.977355 ; BT2202A        ; Debug       ; SCPI << -0.3973
+2024-06-11 17:23:53.977355 ; BT2202A        ; Information ; Current at second 6: -0.3973
+2024-06-11 17:23:54.025398 ; DAQ970A        ; Debug       ; SCPI >> MEAS:TEMP? TC,J,(@102) [48.2 ms]
+2024-06-11 17:23:54.025398 ; DAQ970A        ; Debug       ; SCPI << +2.61326689E+01
+2024-06-11 17:23:54.025398 ; BT2202A        ; Information ; Temperature at second 6: +2.61326689E+01
+2024-06-11 17:23:55.029788 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [3.27 ms]
+2024-06-11 17:23:55.029788 ; BT2202A        ; Debug       ; SCPI << 3.7451
+2024-06-11 17:23:55.029788 ; BT2202A        ; Information ; Voltage at second 7: 3.7451
+2024-06-11 17:23:55.031928 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [2.08 ms]
+2024-06-11 17:23:55.031928 ; BT2202A        ; Debug       ; SCPI << -0.3991
+2024-06-11 17:23:55.031928 ; BT2202A        ; Information ; Current at second 7: -0.3991
+2024-06-11 17:23:55.119284 ; DAQ970A        ; Debug       ; SCPI >> MEAS:TEMP? TC,J,(@102) [87.5 ms]
+2024-06-11 17:23:55.119284 ; DAQ970A        ; Debug       ; SCPI << +2.60811719E+01
+2024-06-11 17:23:55.119284 ; BT2202A        ; Information ; Temperature at second 7: +2.60811719E+01
+2024-06-11 17:23:56.121826 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [1.96 ms]
+2024-06-11 17:23:56.121826 ; BT2202A        ; Debug       ; SCPI << 3.7443
+2024-06-11 17:23:56.121826 ; BT2202A        ; Information ; Voltage at second 8: 3.7443
+2024-06-11 17:23:56.123817 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [1.91 ms]
+2024-06-11 17:23:56.123817 ; BT2202A        ; Debug       ; SCPI << -0.3999
+2024-06-11 17:23:56.123817 ; BT2202A        ; Information ; Current at second 8: -0.3999
+2024-06-11 17:23:56.255808 ; DAQ970A        ; Debug       ; SCPI >> MEAS:TEMP? TC,J,(@102) [132 ms]
+2024-06-11 17:23:56.255808 ; DAQ970A        ; Debug       ; SCPI << +2.61202645E+01
+2024-06-11 17:23:56.255808 ; BT2202A        ; Information ; Temperature at second 8: +2.61202645E+01
+2024-06-11 17:23:57.258551 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [1.82 ms]
+2024-06-11 17:23:57.258551 ; BT2202A        ; Debug       ; SCPI << 3.7434
+2024-06-11 17:23:57.258551 ; BT2202A        ; Information ; Voltage at second 9: 3.7434
+2024-06-11 17:23:57.260551 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [1.95 ms]
+2024-06-11 17:23:57.260551 ; BT2202A        ; Debug       ; SCPI << -0.4003
+2024-06-11 17:23:57.260551 ; BT2202A        ; Information ; Current at second 9: -0.4003
+2024-06-11 17:23:57.344462 ; DAQ970A        ; Debug       ; SCPI >> MEAS:TEMP? TC,J,(@102) [83.4 ms]
+2024-06-11 17:23:57.344462 ; DAQ970A        ; Debug       ; SCPI << +2.61109679E+01
+2024-06-11 17:23:57.344462 ; BT2202A        ; Information ; Temperature at second 9: +2.61109679E+01
+2024-06-11 17:23:58.346921 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [1.87 ms]
+2024-06-11 17:23:58.346921 ; BT2202A        ; Debug       ; SCPI << 3.8181
+2024-06-11 17:23:58.346921 ; BT2202A        ; Information ; Voltage at second 10: 3.8181
+2024-06-11 17:23:58.349340 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [2.25 ms]
+2024-06-11 17:23:58.349340 ; BT2202A        ; Debug       ; SCPI << -0.0007
+2024-06-11 17:23:58.349340 ; BT2202A        ; Information ; Current at second 10: -0.0007
+2024-06-11 17:23:58.450510 ; DAQ970A        ; Debug       ; SCPI >> MEAS:TEMP? TC,J,(@102) [101 ms]
+2024-06-11 17:23:58.450510 ; DAQ970A        ; Debug       ; SCPI << +2.60337687E+01
+2024-06-11 17:23:58.450510 ; BT2202A        ; Information ; Temperature at second 10: +2.60337687E+01
+2024-06-11 17:23:59.454277 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [1.94 ms]
+2024-06-11 17:23:59.454277 ; BT2202A        ; Debug       ; SCPI << 3.8285
+2024-06-11 17:23:59.454277 ; BT2202A        ; Information ; Voltage at second 11: 3.8285
+2024-06-11 17:23:59.456419 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [1.96 ms]
+2024-06-11 17:23:59.456419 ; BT2202A        ; Debug       ; SCPI << -0.0009
+2024-06-11 17:23:59.456419 ; BT2202A        ; Information ; Current at second 11: -0.0009
+2024-06-11 17:23:59.540664 ; DAQ970A        ; Debug       ; SCPI >> MEAS:TEMP? TC,J,(@102) [84.2 ms]
+2024-06-11 17:23:59.540664 ; DAQ970A        ; Debug       ; SCPI << +2.60737197E+01
+2024-06-11 17:23:59.540664 ; BT2202A        ; Information ; Temperature at second 11: +2.60737197E+01
+2024-06-11 17:24:00.543216 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [2.90 ms]
+2024-06-11 17:24:00.543216 ; BT2202A        ; Debug       ; SCPI << 3.8292
+2024-06-11 17:24:00.543216 ; BT2202A        ; Information ; Voltage at second 12: 3.8292
+2024-06-11 17:24:00.545230 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [1.98 ms]
+2024-06-11 17:24:00.545230 ; BT2202A        ; Debug       ; SCPI << -0.0011
+2024-06-11 17:24:00.545230 ; BT2202A        ; Information ; Current at second 12: -0.0011
+2024-06-11 17:24:00.641660 ; DAQ970A        ; Debug       ; SCPI >> MEAS:TEMP? TC,J,(@102) [96.3 ms]
+2024-06-11 17:24:00.641660 ; DAQ970A        ; Debug       ; SCPI << +2.60562187E+01
+2024-06-11 17:24:00.641660 ; BT2202A        ; Information ; Temperature at second 12: +2.60562187E+01
+2024-06-11 17:24:01.643371 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [1.77 ms]
+2024-06-11 17:24:01.643371 ; BT2202A        ; Debug       ; SCPI << 3.8296
+2024-06-11 17:24:01.643371 ; BT2202A        ; Information ; Voltage at second 13: 3.8296
+2024-06-11 17:24:01.646481 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [3.01 ms]
+2024-06-11 17:24:01.646481 ; BT2202A        ; Debug       ; SCPI << -0.0011
+2024-06-11 17:24:01.646481 ; BT2202A        ; Information ; Current at second 13: -0.0011
+2024-06-11 17:24:01.742270 ; DAQ970A        ; Debug       ; SCPI >> MEAS:TEMP? TC,J,(@102) [95.4 ms]
+2024-06-11 17:24:01.742270 ; DAQ970A        ; Debug       ; SCPI << +2.60990831E+01
+2024-06-11 17:24:01.742270 ; BT2202A        ; Information ; Temperature at second 13: +2.60990831E+01
+2024-06-11 17:24:02.744963 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [1.96 ms]
+2024-06-11 17:24:02.744963 ; BT2202A        ; Debug       ; SCPI << 3.8300
+2024-06-11 17:24:02.744963 ; BT2202A        ; Information ; Voltage at second 14: 3.8300
+2024-06-11 17:24:02.746986 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [2.11 ms]
+2024-06-11 17:24:02.746986 ; BT2202A        ; Debug       ; SCPI << -0.0011
+2024-06-11 17:24:02.746986 ; BT2202A        ; Information ; Current at second 14: -0.0011
+2024-06-11 17:24:02.835615 ; DAQ970A        ; Debug       ; SCPI >> MEAS:TEMP? TC,J,(@102) [88.8 ms]
+2024-06-11 17:24:02.835615 ; DAQ970A        ; Debug       ; SCPI << +2.60904395E+01
+2024-06-11 17:24:02.835615 ; BT2202A        ; Information ; Temperature at second 14: +2.60904395E+01
+2024-06-11 17:24:03.838909 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [2.29 ms]
+2024-06-11 17:24:03.838909 ; BT2202A        ; Debug       ; SCPI << 3.8304
+2024-06-11 17:24:03.838909 ; BT2202A        ; Information ; Voltage at second 15: 3.8304
+2024-06-11 17:24:03.840890 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [1.88 ms]
+2024-06-11 17:24:03.840890 ; BT2202A        ; Debug       ; SCPI << -0.0011
+2024-06-11 17:24:03.840890 ; BT2202A        ; Information ; Current at second 15: -0.0011
+2024-06-11 17:24:03.930966 ; DAQ970A        ; Debug       ; SCPI >> MEAS:TEMP? TC,J,(@102) [89.7 ms]
+2024-06-11 17:24:03.930966 ; DAQ970A        ; Debug       ; SCPI << +2.60346591E+01
+2024-06-11 17:24:03.930966 ; BT2202A        ; Information ; Temperature at second 15: +2.60346591E+01
+2024-06-11 17:24:03.930966 ; BT2202A        ; Debug       ; SCPI >> SEQ:ABORT [233 us]
+2024-06-11 17:24:03.930966 ; BT2202A        ; Information ; SEQ:ABORT
+2024-06-11 17:24:03.930966 ; TestPlan       ; Information ; "Descarga" completed. [31.5 s]
+2024-06-11 17:24:03.930966 ; TestPlan       ; Information ; "Carga (1)" started.
+2024-06-11 17:24:03.931978 ; BT2202A        ; Debug       ; SCPI >> *IDN? [213 us]
+2024-06-11 17:24:03.931978 ; BT2202A        ; Debug       ; SCPI >> *RST [150 us]
+2024-06-11 17:24:03.931978 ; BT2202A        ; Debug       ; SCPI >> SYST:PROB:LIM 1,0 [298 us]
+2024-06-11 17:24:03.931978 ; BT2202A        ; Debug       ; SCPI >> CELL:DEFINE 1001,(@101:104) [515 us]
+2024-06-11 17:24:03.933062 ; BT2202A        ; Information ; Executed: CELL:DEFINE 1001,(@101:104)
+2024-06-11 17:24:03.933062 ; BT2202A        ; Debug       ; SCPI >> CELL:DEFINE 1002,(@105:108) [764 us]
+2024-06-11 17:24:03.933062 ; BT2202A        ; Information ; Executed: CELL:DEFINE 1002,(@105:108)
+2024-06-11 17:24:03.934367 ; BT2202A        ; Debug       ; SCPI >> CELL:DEFINE 1003,(@109:112) [662 us]
+2024-06-11 17:24:03.934367 ; BT2202A        ; Information ; Executed: CELL:DEFINE 1003,(@109:112)
+2024-06-11 17:24:03.934367 ; BT2202A        ; Debug       ; SCPI >> CELL:DEFINE 2001,(@201:204) [693 us]
+2024-06-11 17:24:03.934367 ; BT2202A        ; Information ; Executed: CELL:DEFINE 2001,(@201:204)
+2024-06-11 17:24:03.935374 ; BT2202A        ; Debug       ; SCPI >> CELL:DEFINE 2002,(@205:208) [761 us]
+2024-06-11 17:24:03.935374 ; BT2202A        ; Information ; Executed: CELL:DEFINE 2002,(@205:208)
+2024-06-11 17:24:03.937375 ; BT2202A        ; Debug       ; SCPI >> CELL:DEFINE 2003,(@209:212) [1.65 ms]
+2024-06-11 17:24:03.937375 ; BT2202A        ; Information ; Executed: CELL:DEFINE 2003,(@209:212)
+2024-06-11 17:24:03.937375 ; BT2202A        ; Debug       ; SCPI >> SEQ:STEP:DEF 1,1,CHARGE,15,0.3,4.2 [249 us]
+2024-06-11 17:24:03.937375 ; BT2202A        ; Information ; Executed Charge Command: SEQ:STEP:DEF 1,1,CHARGE,15,0.3,4.2
+2024-06-11 17:24:03.938373 ; BT2202A        ; Debug       ; SCPI >> CELL:ENABLE (@1001),1 [811 us]
+2024-06-11 17:24:03.939383 ; BT2202A        ; Debug       ; SCPI >> CELL:INIT (@1001) [646 us]
+2024-06-11 17:24:03.939383 ; BT2202A        ; Information ; Initializing Charge
+2024-06-11 17:24:18.940373 ; BT2202A        ; Information ; Charge Process Started
+2024-06-11 17:24:19.942847 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [1.80 ms]
+2024-06-11 17:24:19.942847 ; BT2202A        ; Debug       ; SCPI << 3.8327
+2024-06-11 17:24:19.942847 ; BT2202A        ; Information ; Voltage at second 1: 3.8327
+2024-06-11 17:24:19.944847 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [1.87 ms]
+2024-06-11 17:24:19.944847 ; BT2202A        ; Debug       ; SCPI << 0.0031
+2024-06-11 17:24:19.944847 ; BT2202A        ; Information ; Current at second 1: 0.0031
+2024-06-11 17:24:20.055504 ; DAQ970A        ; Debug       ; SCPI >> MEAS:TEMP? TC,J,(@102) [110 ms]
+2024-06-11 17:24:20.055504 ; DAQ970A        ; Debug       ; SCPI << +2.53474948E+01
+2024-06-11 17:24:20.055504 ; BT2202A        ; Information ; Temperature at second 1: +2.53474948E+01
+2024-06-11 17:24:21.058763 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [2.02 ms]
+2024-06-11 17:24:21.058763 ; BT2202A        ; Debug       ; SCPI << 3.8894
+2024-06-11 17:24:21.058763 ; BT2202A        ; Information ; Voltage at second 2: 3.8894
+2024-06-11 17:24:21.060856 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [2.08 ms]
+2024-06-11 17:24:21.060856 ; BT2202A        ; Debug       ; SCPI << 0.3022
+2024-06-11 17:24:21.060856 ; BT2202A        ; Information ; Current at second 2: 0.3022
+2024-06-11 17:24:21.137419 ; DAQ970A        ; Debug       ; SCPI >> MEAS:TEMP? TC,J,(@102) [76.9 ms]
+2024-06-11 17:24:21.137419 ; DAQ970A        ; Debug       ; SCPI << +2.53270497E+01
+2024-06-11 17:24:21.137419 ; BT2202A        ; Information ; Temperature at second 2: +2.53270497E+01
+2024-06-11 17:24:22.140543 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [1.91 ms]
+2024-06-11 17:24:22.140543 ; BT2202A        ; Debug       ; SCPI << 3.8973
+2024-06-11 17:24:22.140543 ; BT2202A        ; Information ; Voltage at second 3: 3.8973
+2024-06-11 17:24:22.142785 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [2.00 ms]
+2024-06-11 17:24:22.142785 ; BT2202A        ; Debug       ; SCPI << 0.3022
+2024-06-11 17:24:22.142785 ; BT2202A        ; Information ; Current at second 3: 0.3022
+2024-06-11 17:24:22.214720 ; DAQ970A        ; Debug       ; SCPI >> MEAS:TEMP? TC,J,(@102) [72.1 ms]
+2024-06-11 17:24:22.214720 ; DAQ970A        ; Debug       ; SCPI << +2.52933939E+01
+2024-06-11 17:24:22.214720 ; BT2202A        ; Information ; Temperature at second 3: +2.52933939E+01
+2024-06-11 17:24:23.217173 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [1.83 ms]
+2024-06-11 17:24:23.217173 ; BT2202A        ; Debug       ; SCPI << 3.8982
+2024-06-11 17:24:23.217173 ; BT2202A        ; Information ; Voltage at second 4: 3.8982
+2024-06-11 17:24:23.219174 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [1.88 ms]
+2024-06-11 17:24:23.219174 ; BT2202A        ; Debug       ; SCPI << 0.3022
+2024-06-11 17:24:23.219174 ; BT2202A        ; Information ; Current at second 4: 0.3022
+2024-06-11 17:24:23.365261 ; DAQ970A        ; Debug       ; SCPI >> MEAS:TEMP? TC,J,(@102) [146 ms]
+2024-06-11 17:24:23.365261 ; DAQ970A        ; Debug       ; SCPI << +2.53263182E+01
+2024-06-11 17:24:23.365261 ; BT2202A        ; Information ; Temperature at second 4: +2.53263182E+01
+2024-06-11 17:24:24.368310 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [1.83 ms]
+2024-06-11 17:24:24.368310 ; BT2202A        ; Debug       ; SCPI << 3.8992
+2024-06-11 17:24:24.368310 ; BT2202A        ; Information ; Voltage at second 5: 3.8992
+2024-06-11 17:24:24.370462 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [1.92 ms]
+2024-06-11 17:24:24.370462 ; BT2202A        ; Debug       ; SCPI << 0.3022
+2024-06-11 17:24:24.370462 ; BT2202A        ; Information ; Current at second 5: 0.3022
+2024-06-11 17:24:24.440710 ; DAQ970A        ; Debug       ; SCPI >> MEAS:TEMP? TC,J,(@102) [70.3 ms]
+2024-06-11 17:24:24.440710 ; DAQ970A        ; Debug       ; SCPI << +2.54035908E+01
+2024-06-11 17:24:24.440710 ; BT2202A        ; Information ; Temperature at second 5: +2.54035908E+01
+2024-06-11 17:24:25.443617 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [1.82 ms]
+2024-06-11 17:24:25.443617 ; BT2202A        ; Debug       ; SCPI << 3.8996
+2024-06-11 17:24:25.443617 ; BT2202A        ; Information ; Voltage at second 6: 3.8996
+2024-06-11 17:24:25.445616 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [1.98 ms]
+2024-06-11 17:24:25.445616 ; BT2202A        ; Debug       ; SCPI << 0.3002
+2024-06-11 17:24:25.445616 ; BT2202A        ; Information ; Current at second 6: 0.3002
+2024-06-11 17:24:25.600877 ; DAQ970A        ; Debug       ; SCPI >> MEAS:TEMP? TC,J,(@102) [155 ms]
+2024-06-11 17:24:25.600877 ; DAQ970A        ; Debug       ; SCPI << +2.54574681E+01
+2024-06-11 17:24:25.600877 ; BT2202A        ; Information ; Temperature at second 6: +2.54574681E+01
+2024-06-11 17:24:26.602429 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [1.95 ms]
+2024-06-11 17:24:26.603431 ; BT2202A        ; Debug       ; SCPI << 3.9002
+2024-06-11 17:24:26.603431 ; BT2202A        ; Information ; Voltage at second 7: 3.9002
+2024-06-11 17:24:26.604426 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [1.92 ms]
+2024-06-11 17:24:26.604426 ; BT2202A        ; Debug       ; SCPI << 0.3000
+2024-06-11 17:24:26.604426 ; BT2202A        ; Information ; Current at second 7: 0.3000
+2024-06-11 17:24:26.689302 ; DAQ970A        ; Debug       ; SCPI >> MEAS:TEMP? TC,J,(@102) [83.9 ms]
+2024-06-11 17:24:26.689302 ; DAQ970A        ; Debug       ; SCPI << +2.54131769E+01
+2024-06-11 17:24:26.689302 ; BT2202A        ; Information ; Temperature at second 7: +2.54131769E+01
+2024-06-11 17:24:27.691556 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [1.91 ms]
+2024-06-11 17:24:27.691556 ; BT2202A        ; Debug       ; SCPI << 3.9005
+2024-06-11 17:24:27.691556 ; BT2202A        ; Information ; Voltage at second 8: 3.9005
+2024-06-11 17:24:27.694026 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [1.93 ms]
+2024-06-11 17:24:27.694026 ; BT2202A        ; Debug       ; SCPI << 0.2998
+2024-06-11 17:24:27.694026 ; BT2202A        ; Information ; Current at second 8: 0.2998
+2024-06-11 17:24:27.767708 ; DAQ970A        ; Debug       ; SCPI >> MEAS:TEMP? TC,J,(@102) [73.6 ms]
+2024-06-11 17:24:27.767708 ; DAQ970A        ; Debug       ; SCPI << +2.53722778E+01
+2024-06-11 17:24:27.767708 ; BT2202A        ; Information ; Temperature at second 8: +2.53722778E+01
+2024-06-11 17:24:28.770920 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [1.77 ms]
+2024-06-11 17:24:28.770920 ; BT2202A        ; Debug       ; SCPI << 3.8452
+2024-06-11 17:24:28.770920 ; BT2202A        ; Information ; Voltage at second 9: 3.8452
+2024-06-11 17:24:28.773149 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [1.95 ms]
+2024-06-11 17:24:28.773149 ; BT2202A        ; Debug       ; SCPI << -0.0007
+2024-06-11 17:24:28.773149 ; BT2202A        ; Information ; Current at second 9: -0.0007
+2024-06-11 17:24:28.886274 ; DAQ970A        ; Debug       ; SCPI >> MEAS:TEMP? TC,J,(@102) [113 ms]
+2024-06-11 17:24:28.886274 ; DAQ970A        ; Debug       ; SCPI << +2.53723366E+01
+2024-06-11 17:24:28.886274 ; BT2202A        ; Information ; Temperature at second 9: +2.53723366E+01
+2024-06-11 17:24:29.889132 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [1.83 ms]
+2024-06-11 17:24:29.889132 ; BT2202A        ; Debug       ; SCPI << 3.8377
+2024-06-11 17:24:29.889132 ; BT2202A        ; Information ; Voltage at second 10: 3.8377
+2024-06-11 17:24:29.891223 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [2.09 ms]
+2024-06-11 17:24:29.891223 ; BT2202A        ; Debug       ; SCPI << -0.0005
+2024-06-11 17:24:29.891223 ; BT2202A        ; Information ; Current at second 10: -0.0005
+2024-06-11 17:24:29.960830 ; DAQ970A        ; Debug       ; SCPI >> MEAS:TEMP? TC,J,(@102) [69.7 ms]
+2024-06-11 17:24:29.960830 ; DAQ970A        ; Debug       ; SCPI << +2.54221705E+01
+2024-06-11 17:24:29.960830 ; BT2202A        ; Information ; Temperature at second 10: +2.54221705E+01
+2024-06-11 17:24:30.963811 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [1.88 ms]
+2024-06-11 17:24:30.963811 ; BT2202A        ; Debug       ; SCPI << 3.8371
+2024-06-11 17:24:30.963811 ; BT2202A        ; Information ; Voltage at second 11: 3.8371
+2024-06-11 17:24:30.965919 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [2.16 ms]
+2024-06-11 17:24:30.965919 ; BT2202A        ; Debug       ; SCPI << -0.0011
+2024-06-11 17:24:30.965919 ; BT2202A        ; Information ; Current at second 11: -0.0011
+2024-06-11 17:24:31.071145 ; DAQ970A        ; Debug       ; SCPI >> MEAS:TEMP? TC,J,(@102) [105 ms]
+2024-06-11 17:24:31.071145 ; DAQ970A        ; Debug       ; SCPI << +2.53879191E+01
+2024-06-11 17:24:31.071145 ; BT2202A        ; Information ; Temperature at second 11: +2.53879191E+01
+2024-06-11 17:24:32.074446 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [2.25 ms]
+2024-06-11 17:24:32.075460 ; BT2202A        ; Debug       ; SCPI << 3.8369
+2024-06-11 17:24:32.075460 ; BT2202A        ; Information ; Voltage at second 12: 3.8369
+2024-06-11 17:24:32.078147 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [2.07 ms]
+2024-06-11 17:24:32.078147 ; BT2202A        ; Debug       ; SCPI << -0.0011
+2024-06-11 17:24:32.078147 ; BT2202A        ; Information ; Current at second 12: -0.0011
+2024-06-11 17:24:32.158221 ; DAQ970A        ; Debug       ; SCPI >> MEAS:TEMP? TC,J,(@102) [80.5 ms]
+2024-06-11 17:24:32.158221 ; DAQ970A        ; Debug       ; SCPI << +2.53455039E+01
+2024-06-11 17:24:32.158221 ; BT2202A        ; Information ; Temperature at second 12: +2.53455039E+01
+2024-06-11 17:24:33.160310 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [1.78 ms]
+2024-06-11 17:24:33.160310 ; BT2202A        ; Debug       ; SCPI << 3.8367
+2024-06-11 17:24:33.160310 ; BT2202A        ; Information ; Voltage at second 13: 3.8367
+2024-06-11 17:24:33.162309 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [1.91 ms]
+2024-06-11 17:24:33.162309 ; BT2202A        ; Debug       ; SCPI << -0.0011
+2024-06-11 17:24:33.162309 ; BT2202A        ; Information ; Current at second 13: -0.0011
+2024-06-11 17:24:33.254671 ; DAQ970A        ; Debug       ; SCPI >> MEAS:TEMP? TC,J,(@102) [92.0 ms]
+2024-06-11 17:24:33.254671 ; DAQ970A        ; Debug       ; SCPI << +2.52508583E+01
+2024-06-11 17:24:33.254671 ; BT2202A        ; Information ; Temperature at second 13: +2.52508583E+01
+2024-06-11 17:24:34.258547 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [2.06 ms]
+2024-06-11 17:24:34.258547 ; BT2202A        ; Debug       ; SCPI << 3.8366
+2024-06-11 17:24:34.258547 ; BT2202A        ; Information ; Voltage at second 14: 3.8366
+2024-06-11 17:24:34.260769 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [2.17 ms]
+2024-06-11 17:24:34.260769 ; BT2202A        ; Debug       ; SCPI << -0.0011
+2024-06-11 17:24:34.260769 ; BT2202A        ; Information ; Current at second 14: -0.0011
+2024-06-11 17:24:34.345001 ; DAQ970A        ; Debug       ; SCPI >> MEAS:TEMP? TC,J,(@102) [84.9 ms]
+2024-06-11 17:24:34.345001 ; DAQ970A        ; Debug       ; SCPI << +2.51642890E+01
+2024-06-11 17:24:34.345001 ; BT2202A        ; Information ; Temperature at second 14: +2.51642890E+01
+2024-06-11 17:24:35.347561 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [1.96 ms]
+2024-06-11 17:24:35.347561 ; BT2202A        ; Debug       ; SCPI << 3.8364
+2024-06-11 17:24:35.347561 ; BT2202A        ; Information ; Voltage at second 15: 3.8364
+2024-06-11 17:24:35.349571 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [1.96 ms]
+2024-06-11 17:24:35.349571 ; BT2202A        ; Debug       ; SCPI << -0.0011
+2024-06-11 17:24:35.349571 ; BT2202A        ; Information ; Current at second 15: -0.0011
+2024-06-11 17:24:35.448080 ; DAQ970A        ; Debug       ; SCPI >> MEAS:TEMP? TC,J,(@102) [98.0 ms]
+2024-06-11 17:24:35.448080 ; DAQ970A        ; Debug       ; SCPI << +2.50702958E+01
+2024-06-11 17:24:35.448080 ; BT2202A        ; Information ; Temperature at second 15: +2.50702958E+01
+2024-06-11 17:24:35.448080 ; BT2202A        ; Debug       ; SCPI >> SEQ:ABORT [126 us]
+2024-06-11 17:24:35.448080 ; BT2202A        ; Information ; SEQ:ABORT
+2024-06-11 17:24:35.448080 ; TestStep       ; Information ; 3
+2024-06-11 17:24:35.448080 ; TestStep       ; Information ; 6
+2024-06-11 17:24:35.448080 ; TestPlan       ; Information ; "Carga (1)" completed. [31.5 s]
+2024-06-11 17:24:35.448080 ; TestPlan       ; Information ; "Descarga (1)" started.
+2024-06-11 17:24:35.448080 ; BT2202A        ; Debug       ; SCPI >> *IDN? [173 us]
+2024-06-11 17:24:35.449465 ; BT2202A        ; Debug       ; SCPI >> *RST [415 us]
+2024-06-11 17:24:35.449465 ; BT2202A        ; Debug       ; SCPI >> SYST:PROB:LIM 1,0 [134 us]
+2024-06-11 17:24:35.449465 ; BT2202A        ; Debug       ; SCPI >> CELL:DEFINE 1001,(@101:104) [507 us]
+2024-06-11 17:24:35.449465 ; BT2202A        ; Information ; Executed: CELL:DEFINE 1001,(@101:104)
+2024-06-11 17:24:35.450721 ; BT2202A        ; Debug       ; SCPI >> CELL:DEFINE 1002,(@105:108) [788 us]
+2024-06-11 17:24:35.450721 ; BT2202A        ; Information ; Executed: CELL:DEFINE 1002,(@105:108)
+2024-06-11 17:24:35.451727 ; BT2202A        ; Debug       ; SCPI >> CELL:DEFINE 1003,(@109:112) [635 us]
+2024-06-11 17:24:35.451727 ; BT2202A        ; Information ; Executed: CELL:DEFINE 1003,(@109:112)
+2024-06-11 17:24:35.451727 ; BT2202A        ; Debug       ; SCPI >> CELL:DEFINE 2001,(@201:204) [791 us]
+2024-06-11 17:24:35.451727 ; BT2202A        ; Information ; Executed: CELL:DEFINE 2001,(@201:204)
+2024-06-11 17:24:35.452726 ; BT2202A        ; Debug       ; SCPI >> CELL:DEFINE 2002,(@205:208) [692 us]
+2024-06-11 17:24:35.452726 ; BT2202A        ; Information ; Executed: CELL:DEFINE 2002,(@205:208)
+2024-06-11 17:24:35.453727 ; BT2202A        ; Debug       ; SCPI >> CELL:DEFINE 2003,(@209:212) [679 us]
+2024-06-11 17:24:35.453727 ; BT2202A        ; Information ; Executed: CELL:DEFINE 2003,(@209:212)
+2024-06-11 17:24:35.454725 ; BT2202A        ; Debug       ; SCPI >> SEQ:STEP:DEF 1,1,DISCHARGE,15,0.4,3 [1.01 ms]
+2024-06-11 17:24:35.454725 ; BT2202A        ; Information ; Executed Discharge Command: SEQ:STEP:DEF 1,1,DISCHARGE,15,0.4,3
+2024-06-11 17:24:35.454725 ; BT2202A        ; Debug       ; SCPI >> CELL:ENABLE (@1001),1 [545 us]
+2024-06-11 17:24:35.455844 ; BT2202A        ; Debug       ; SCPI >> CELL:INIT (@1001) [638 us]
+2024-06-11 17:24:35.455844 ; BT2202A        ; Information ; Initializing Discharge
+2024-06-11 17:24:50.456483 ; BT2202A        ; Information ; Discharge Process Started
+2024-06-11 17:24:51.458842 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [1.97 ms]
+2024-06-11 17:24:51.458842 ; BT2202A        ; Debug       ; SCPI << 3.8275
+2024-06-11 17:24:51.458842 ; BT2202A        ; Information ; Voltage at second 1: 3.8275
+2024-06-11 17:24:51.461222 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [2.08 ms]
+2024-06-11 17:24:51.461222 ; BT2202A        ; Debug       ; SCPI << -0.0417
+2024-06-11 17:24:51.461222 ; BT2202A        ; Information ; Current at second 1: -0.0417
+2024-06-11 17:24:51.550157 ; DAQ970A        ; Debug       ; SCPI >> MEAS:TEMP? TC,J,(@102) [88.8 ms]
+2024-06-11 17:24:51.550157 ; DAQ970A        ; Debug       ; SCPI << +2.46855847E+01
+2024-06-11 17:24:51.550157 ; BT2202A        ; Information ; Temperature at second 1: +2.46855847E+01
+2024-06-11 17:24:52.552754 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [2.03 ms]
+2024-06-11 17:24:52.552754 ; BT2202A        ; Debug       ; SCPI << 3.8275
+2024-06-11 17:24:52.552754 ; BT2202A        ; Information ; Voltage at second 2: 3.8275
+2024-06-11 17:24:52.554747 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [2.02 ms]
+2024-06-11 17:24:52.554747 ; BT2202A        ; Debug       ; SCPI << -0.0382
+2024-06-11 17:24:52.554747 ; BT2202A        ; Information ; Current at second 2: -0.0382
+2024-06-11 17:24:52.647975 ; DAQ970A        ; Debug       ; SCPI >> MEAS:TEMP? TC,J,(@102) [93.2 ms]
+2024-06-11 17:24:52.647975 ; DAQ970A        ; Debug       ; SCPI << +2.45960563E+01
+2024-06-11 17:24:52.647975 ; BT2202A        ; Information ; Temperature at second 2: +2.45960563E+01
+2024-06-11 17:24:53.650476 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [1.90 ms]
+2024-06-11 17:24:53.650476 ; BT2202A        ; Debug       ; SCPI << 3.7545
+2024-06-11 17:24:53.650476 ; BT2202A        ; Information ; Voltage at second 3: 3.7545
+2024-06-11 17:24:53.652068 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [1.98 ms]
+2024-06-11 17:24:53.652068 ; BT2202A        ; Debug       ; SCPI << -0.4233
+2024-06-11 17:24:53.652068 ; BT2202A        ; Information ; Current at second 3: -0.4233
+2024-06-11 17:24:53.717747 ; DAQ970A        ; Debug       ; SCPI >> MEAS:TEMP? TC,J,(@102) [64.9 ms]
+2024-06-11 17:24:53.717747 ; DAQ970A        ; Debug       ; SCPI << +2.45632026E+01
+2024-06-11 17:24:53.717747 ; BT2202A        ; Information ; Temperature at second 3: +2.45632026E+01
+2024-06-11 17:24:54.723239 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [5.03 ms]
+2024-06-11 17:24:54.723239 ; BT2202A        ; Debug       ; SCPI << 3.7422
+2024-06-11 17:24:54.723239 ; BT2202A        ; Information ; Voltage at second 4: 3.7422
+2024-06-11 17:24:54.724544 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [1.92 ms]
+2024-06-11 17:24:54.724544 ; BT2202A        ; Debug       ; SCPI << -0.4255
+2024-06-11 17:24:54.724544 ; BT2202A        ; Information ; Current at second 4: -0.4255
+2024-06-11 17:24:54.808834 ; DAQ970A        ; Debug       ; SCPI >> MEAS:TEMP? TC,J,(@102) [83.0 ms]
+2024-06-11 17:24:54.808834 ; DAQ970A        ; Debug       ; SCPI << +2.45374548E+01
+2024-06-11 17:24:54.808834 ; BT2202A        ; Information ; Temperature at second 4: +2.45374548E+01
+2024-06-11 17:24:55.812340 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [4.03 ms]
+2024-06-11 17:24:55.812340 ; BT2202A        ; Debug       ; SCPI << 3.7409
+2024-06-11 17:24:55.813339 ; BT2202A        ; Information ; Voltage at second 5: 3.7409
+2024-06-11 17:24:55.815381 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [2.14 ms]
+2024-06-11 17:24:55.815381 ; BT2202A        ; Debug       ; SCPI << -0.4261
+2024-06-11 17:24:55.815381 ; BT2202A        ; Information ; Current at second 5: -0.4261
+2024-06-11 17:24:55.882368 ; DAQ970A        ; Debug       ; SCPI >> MEAS:TEMP? TC,J,(@102) [66.9 ms]
+2024-06-11 17:24:55.882368 ; DAQ970A        ; Debug       ; SCPI << +2.45270111E+01
+2024-06-11 17:24:55.882368 ; BT2202A        ; Information ; Temperature at second 5: +2.45270111E+01
+2024-06-11 17:24:56.883647 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [1.89 ms]
+2024-06-11 17:24:56.884650 ; BT2202A        ; Debug       ; SCPI << 3.7451
+2024-06-11 17:24:56.884650 ; BT2202A        ; Information ; Voltage at second 6: 3.7451
+2024-06-11 17:24:56.885651 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [1.94 ms]
+2024-06-11 17:24:56.886659 ; BT2202A        ; Debug       ; SCPI << -0.3985
+2024-06-11 17:24:56.886659 ; BT2202A        ; Information ; Current at second 6: -0.3985
+2024-06-11 17:24:56.962148 ; DAQ970A        ; Debug       ; SCPI >> MEAS:TEMP? TC,J,(@102) [76.0 ms]
+2024-06-11 17:24:56.962148 ; DAQ970A        ; Debug       ; SCPI << +2.45274924E+01
+2024-06-11 17:24:56.962148 ; BT2202A        ; Information ; Temperature at second 6: +2.45274924E+01
+2024-06-11 17:24:57.964775 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [1.91 ms]
+2024-06-11 17:24:57.964775 ; BT2202A        ; Debug       ; SCPI << 3.7447
+2024-06-11 17:24:57.964775 ; BT2202A        ; Information ; Voltage at second 7: 3.7447
+2024-06-11 17:24:57.966779 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [2.05 ms]
+2024-06-11 17:24:57.966779 ; BT2202A        ; Debug       ; SCPI << -0.3997
+2024-06-11 17:24:57.966779 ; BT2202A        ; Information ; Current at second 7: -0.3997
+2024-06-11 17:24:58.093296 ; DAQ970A        ; Debug       ; SCPI >> MEAS:TEMP? TC,J,(@102) [126 ms]
+2024-06-11 17:24:58.093296 ; DAQ970A        ; Debug       ; SCPI << +2.46129755E+01
+2024-06-11 17:24:58.093296 ; BT2202A        ; Information ; Temperature at second 7: +2.46129755E+01
+2024-06-11 17:24:59.095560 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [1.91 ms]
+2024-06-11 17:24:59.095560 ; BT2202A        ; Debug       ; SCPI << 3.7439
+2024-06-11 17:24:59.095560 ; BT2202A        ; Information ; Voltage at second 8: 3.7439
+2024-06-11 17:24:59.097730 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [2.29 ms]
+2024-06-11 17:24:59.098572 ; BT2202A        ; Debug       ; SCPI << -0.4001
+2024-06-11 17:24:59.098572 ; BT2202A        ; Information ; Current at second 8: -0.4001
+2024-06-11 17:24:59.155570 ; DAQ970A        ; Debug       ; SCPI >> MEAS:TEMP? TC,J,(@102) [57.5 ms]
+2024-06-11 17:24:59.155570 ; DAQ970A        ; Debug       ; SCPI << +2.47909543E+01
+2024-06-11 17:24:59.155570 ; BT2202A        ; Information ; Temperature at second 8: +2.47909543E+01
+2024-06-11 17:25:00.158588 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [2.12 ms]
+2024-06-11 17:25:00.158588 ; BT2202A        ; Debug       ; SCPI << 3.7430
+2024-06-11 17:25:00.158588 ; BT2202A        ; Information ; Voltage at second 9: 3.7430
+2024-06-11 17:25:00.160589 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [2.08 ms]
+2024-06-11 17:25:00.160589 ; BT2202A        ; Debug       ; SCPI << -0.4009
+2024-06-11 17:25:00.160589 ; BT2202A        ; Information ; Current at second 9: -0.4009
+2024-06-11 17:25:00.266247 ; DAQ970A        ; Debug       ; SCPI >> MEAS:TEMP? TC,J,(@102) [105 ms]
+2024-06-11 17:25:00.266247 ; DAQ970A        ; Debug       ; SCPI << +2.48045918E+01
+2024-06-11 17:25:00.266247 ; BT2202A        ; Information ; Temperature at second 9: +2.48045918E+01
+2024-06-11 17:25:01.268935 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [1.97 ms]
+2024-06-11 17:25:01.268935 ; BT2202A        ; Debug       ; SCPI << 3.8175
+2024-06-11 17:25:01.268935 ; BT2202A        ; Information ; Voltage at second 10: 3.8175
+2024-06-11 17:25:01.270932 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [2.12 ms]
+2024-06-11 17:25:01.270932 ; BT2202A        ; Debug       ; SCPI << -0.0007
+2024-06-11 17:25:01.270932 ; BT2202A        ; Information ; Current at second 10: -0.0007
+2024-06-11 17:25:01.355031 ; DAQ970A        ; Debug       ; SCPI >> MEAS:TEMP? TC,J,(@102) [84.1 ms]
+2024-06-11 17:25:01.355031 ; DAQ970A        ; Debug       ; SCPI << +2.48823455E+01
+2024-06-11 17:25:01.355031 ; BT2202A        ; Information ; Temperature at second 10: +2.48823455E+01
+2024-06-11 17:25:02.358143 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [1.93 ms]
+2024-06-11 17:25:02.358143 ; BT2202A        ; Debug       ; SCPI << 3.8281
+2024-06-11 17:25:02.358143 ; BT2202A        ; Information ; Voltage at second 11: 3.8281
+2024-06-11 17:25:02.360143 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [2.13 ms]
+2024-06-11 17:25:02.360143 ; BT2202A        ; Debug       ; SCPI << -0.0009
+2024-06-11 17:25:02.360143 ; BT2202A        ; Information ; Current at second 11: -0.0009
+2024-06-11 17:25:02.413907 ; DAQ970A        ; Debug       ; SCPI >> MEAS:TEMP? TC,J,(@102) [54.3 ms]
+2024-06-11 17:25:02.413907 ; DAQ970A        ; Debug       ; SCPI << +2.46803527E+01
+2024-06-11 17:25:02.413907 ; BT2202A        ; Information ; Temperature at second 11: +2.46803527E+01
+2024-06-11 17:25:03.418128 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [2.22 ms]
+2024-06-11 17:25:03.418128 ; BT2202A        ; Debug       ; SCPI << 3.8287
+2024-06-11 17:25:03.418128 ; BT2202A        ; Information ; Voltage at second 12: 3.8287
+2024-06-11 17:25:03.420675 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [2.31 ms]
+2024-06-11 17:25:03.420675 ; BT2202A        ; Debug       ; SCPI << -0.0011
+2024-06-11 17:25:03.420675 ; BT2202A        ; Information ; Current at second 12: -0.0011
+2024-06-11 17:25:03.523292 ; DAQ970A        ; Debug       ; SCPI >> MEAS:TEMP? TC,J,(@102) [102 ms]
+2024-06-11 17:25:03.523292 ; DAQ970A        ; Debug       ; SCPI << +2.47929127E+01
+2024-06-11 17:25:03.523292 ; BT2202A        ; Information ; Temperature at second 12: +2.47929127E+01
+2024-06-11 17:25:04.531470 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [2.00 ms]
+2024-06-11 17:25:04.531470 ; BT2202A        ; Debug       ; SCPI << 3.8292
+2024-06-11 17:25:04.531470 ; BT2202A        ; Information ; Voltage at second 13: 3.8292
+2024-06-11 17:25:04.533453 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [2.00 ms]
+2024-06-11 17:25:04.533453 ; BT2202A        ; Debug       ; SCPI << -0.0011
+2024-06-11 17:25:04.533453 ; BT2202A        ; Information ; Current at second 13: -0.0011
+2024-06-11 17:25:04.624739 ; DAQ970A        ; Debug       ; SCPI >> MEAS:TEMP? TC,J,(@102) [91.5 ms]
+2024-06-11 17:25:04.624739 ; DAQ970A        ; Debug       ; SCPI << +2.47510860E+01
+2024-06-11 17:25:04.624739 ; BT2202A        ; Information ; Temperature at second 13: +2.47510860E+01
+2024-06-11 17:25:05.631429 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [2.17 ms]
+2024-06-11 17:25:05.632434 ; BT2202A        ; Debug       ; SCPI << 3.8294
+2024-06-11 17:25:05.632434 ; BT2202A        ; Information ; Voltage at second 14: 3.8294
+2024-06-11 17:25:05.634428 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [2.89 ms]
+2024-06-11 17:25:05.635435 ; BT2202A        ; Debug       ; SCPI << -0.0011
+2024-06-11 17:25:05.635435 ; BT2202A        ; Information ; Current at second 14: -0.0011
+2024-06-11 17:25:05.723189 ; DAQ970A        ; Debug       ; SCPI >> MEAS:TEMP? TC,J,(@102) [88.8 ms]
+2024-06-11 17:25:05.723189 ; DAQ970A        ; Debug       ; SCPI << +2.47713596E+01
+2024-06-11 17:25:05.723189 ; BT2202A        ; Information ; Temperature at second 14: +2.47713596E+01
+2024-06-11 17:25:06.737356 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [1.92 ms]
+2024-06-11 17:25:06.742253 ; BT2202A        ; Debug       ; SCPI << 3.8300
+2024-06-11 17:25:06.743253 ; BT2202A        ; Information ; Voltage at second 15: 3.8300
+2024-06-11 17:25:06.744957 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [2.29 ms]
+2024-06-11 17:25:06.744957 ; BT2202A        ; Debug       ; SCPI << -0.0011
+2024-06-11 17:25:06.744957 ; BT2202A        ; Information ; Current at second 15: -0.0011
+2024-06-11 17:25:06.849434 ; DAQ970A        ; Debug       ; SCPI >> MEAS:TEMP? TC,J,(@102) [104 ms]
+2024-06-11 17:25:06.849434 ; DAQ970A        ; Debug       ; SCPI << +2.46567060E+01
+2024-06-11 17:25:06.849434 ; BT2202A        ; Information ; Temperature at second 15: +2.46567060E+01
+2024-06-11 17:25:06.864648 ; BT2202A        ; Debug       ; SCPI >> SEQ:ABORT [430 us]
+2024-06-11 17:25:06.864648 ; BT2202A        ; Information ; SEQ:ABORT
+2024-06-11 17:25:06.865771 ; TestPlan       ; Information ; "Descarga (1)" completed. [31.4 s]
+2024-06-11 17:25:06.865771 ; TestPlan       ; Information ; "Carga (2)" started.
+2024-06-11 17:25:06.865771 ; BT2202A        ; Debug       ; SCPI >> *IDN? [164 us]
+2024-06-11 17:25:06.865771 ; BT2202A        ; Debug       ; SCPI >> *RST [243 us]
+2024-06-11 17:25:06.866922 ; BT2202A        ; Debug       ; SCPI >> SYST:PROB:LIM 1,0 [259 us]
+2024-06-11 17:25:06.866922 ; BT2202A        ; Debug       ; SCPI >> CELL:DEFINE 1001,(@101:104) [625 us]
+2024-06-11 17:25:06.866922 ; BT2202A        ; Information ; Executed: CELL:DEFINE 1001,(@101:104)
+2024-06-11 17:25:06.868048 ; BT2202A        ; Debug       ; SCPI >> CELL:DEFINE 1002,(@105:108) [618 us]
+2024-06-11 17:25:06.868048 ; BT2202A        ; Information ; Executed: CELL:DEFINE 1002,(@105:108)
+2024-06-11 17:25:06.868931 ; BT2202A        ; Debug       ; SCPI >> CELL:DEFINE 1003,(@109:112) [795 us]
+2024-06-11 17:25:06.868931 ; BT2202A        ; Information ; Executed: CELL:DEFINE 1003,(@109:112)
+2024-06-11 17:25:06.868931 ; BT2202A        ; Debug       ; SCPI >> CELL:DEFINE 2001,(@201:204) [732 us]
+2024-06-11 17:25:06.868931 ; BT2202A        ; Information ; Executed: CELL:DEFINE 2001,(@201:204)
+2024-06-11 17:25:06.869989 ; BT2202A        ; Debug       ; SCPI >> CELL:DEFINE 2002,(@205:208) [659 us]
+2024-06-11 17:25:06.869989 ; BT2202A        ; Information ; Executed: CELL:DEFINE 2002,(@205:208)
+2024-06-11 17:25:06.871059 ; BT2202A        ; Debug       ; SCPI >> CELL:DEFINE 2003,(@209:212) [678 us]
+2024-06-11 17:25:06.871059 ; BT2202A        ; Information ; Executed: CELL:DEFINE 2003,(@209:212)
+2024-06-11 17:25:06.871059 ; BT2202A        ; Debug       ; SCPI >> SEQ:STEP:DEF 1,1,CHARGE,15,0.2,4.2 [697 us]
+2024-06-11 17:25:06.871059 ; BT2202A        ; Information ; Executed Charge Command: SEQ:STEP:DEF 1,1,CHARGE,15,0.2,4.2
+2024-06-11 17:25:06.871990 ; BT2202A        ; Debug       ; SCPI >> CELL:ENABLE (@1001),1 [692 us]
+2024-06-11 17:25:06.872935 ; BT2202A        ; Debug       ; SCPI >> CELL:INIT (@1001) [622 us]
+2024-06-11 17:25:06.872935 ; BT2202A        ; Information ; Initializing Charge
+2024-06-11 17:25:21.875317 ; BT2202A        ; Information ; Charge Process Started
+2024-06-11 17:25:22.888909 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [2.15 ms]
+2024-06-11 17:25:22.888909 ; BT2202A        ; Debug       ; SCPI << 3.8323
+2024-06-11 17:25:22.888909 ; BT2202A        ; Information ; Voltage at second 1: 3.8323
+2024-06-11 17:25:22.890721 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [2.13 ms]
+2024-06-11 17:25:22.890721 ; BT2202A        ; Debug       ; SCPI << 0.0043
+2024-06-11 17:25:22.890721 ; BT2202A        ; Information ; Current at second 1: 0.0043
+2024-06-11 17:25:23.025531 ; DAQ970A        ; Debug       ; SCPI >> MEAS:TEMP? TC,J,(@102) [134 ms]
+2024-06-11 17:25:23.025531 ; DAQ970A        ; Debug       ; SCPI << +2.39635215E+01
+2024-06-11 17:25:23.025531 ; BT2202A        ; Information ; Temperature at second 1: +2.39635215E+01
+2024-06-11 17:25:24.042829 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [1.86 ms]
+2024-06-11 17:25:24.042829 ; BT2202A        ; Debug       ; SCPI << 3.8323
+2024-06-11 17:25:24.042829 ; BT2202A        ; Information ; Voltage at second 2: 3.8323
+2024-06-11 17:25:24.044718 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [1.98 ms]
+2024-06-11 17:25:24.044718 ; BT2202A        ; Debug       ; SCPI << 0.0033
+2024-06-11 17:25:24.044718 ; BT2202A        ; Information ; Current at second 2: 0.0033
+2024-06-11 17:25:24.128906 ; DAQ970A        ; Debug       ; SCPI >> MEAS:TEMP? TC,J,(@102) [84.1 ms]
+2024-06-11 17:25:24.128906 ; DAQ970A        ; Debug       ; SCPI << +2.41259990E+01
+2024-06-11 17:25:24.128906 ; BT2202A        ; Information ; Temperature at second 2: +2.41259990E+01
+2024-06-11 17:25:25.134062 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [2.02 ms]
+2024-06-11 17:25:25.134062 ; BT2202A        ; Debug       ; SCPI << 3.8700
+2024-06-11 17:25:25.134062 ; BT2202A        ; Information ; Voltage at second 3: 3.8700
+2024-06-11 17:25:25.135987 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [2.02 ms]
+2024-06-11 17:25:25.135987 ; BT2202A        ; Debug       ; SCPI << 0.2026
+2024-06-11 17:25:25.135987 ; BT2202A        ; Information ; Current at second 3: 0.2026
+2024-06-11 17:25:25.278255 ; DAQ970A        ; Debug       ; SCPI >> MEAS:TEMP? TC,J,(@102) [142 ms]
+2024-06-11 17:25:25.278255 ; DAQ970A        ; Debug       ; SCPI << +2.40914199E+01
+2024-06-11 17:25:25.278255 ; BT2202A        ; Information ; Temperature at second 3: +2.40914199E+01
+2024-06-11 17:25:26.295174 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [2.09 ms]
+2024-06-11 17:25:26.295174 ; BT2202A        ; Debug       ; SCPI << 3.8754
+2024-06-11 17:25:26.295174 ; BT2202A        ; Information ; Voltage at second 4: 3.8754
+2024-06-11 17:25:26.297201 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [2.94 ms]
+2024-06-11 17:25:26.297201 ; BT2202A        ; Debug       ; SCPI << 0.2026
+2024-06-11 17:25:26.297201 ; BT2202A        ; Information ; Current at second 4: 0.2026
+2024-06-11 17:25:26.400044 ; DAQ970A        ; Debug       ; SCPI >> MEAS:TEMP? TC,J,(@102) [102 ms]
+2024-06-11 17:25:26.400044 ; DAQ970A        ; Debug       ; SCPI << +2.40586979E+01
+2024-06-11 17:25:26.400044 ; BT2202A        ; Information ; Temperature at second 4: +2.40586979E+01
+2024-06-11 17:25:27.414547 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [1.91 ms]
+2024-06-11 17:25:27.414547 ; BT2202A        ; Debug       ; SCPI << 3.8731
+2024-06-11 17:25:27.414547 ; BT2202A        ; Information ; Voltage at second 5: 3.8731
+2024-06-11 17:25:27.416610 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [2.17 ms]
+2024-06-11 17:25:27.416610 ; BT2202A        ; Debug       ; SCPI << 0.2026
+2024-06-11 17:25:27.416610 ; BT2202A        ; Information ; Current at second 5: 0.2026
+2024-06-11 17:25:27.515459 ; DAQ970A        ; Debug       ; SCPI >> MEAS:TEMP? TC,J,(@102) [98.2 ms]
+2024-06-11 17:25:27.515459 ; DAQ970A        ; Debug       ; SCPI << +2.40428091E+01
+2024-06-11 17:25:27.515459 ; BT2202A        ; Information ; Temperature at second 5: +2.40428091E+01
+2024-06-11 17:25:28.521417 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [1.98 ms]
+2024-06-11 17:25:28.521417 ; BT2202A        ; Debug       ; SCPI << 3.8708
+2024-06-11 17:25:28.521417 ; BT2202A        ; Information ; Voltage at second 6: 3.8708
+2024-06-11 17:25:28.523031 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [2.10 ms]
+2024-06-11 17:25:28.523031 ; BT2202A        ; Debug       ; SCPI << 0.2020
+2024-06-11 17:25:28.523031 ; BT2202A        ; Information ; Current at second 6: 0.2020
+2024-06-11 17:25:28.578445 ; DAQ970A        ; Debug       ; SCPI >> MEAS:TEMP? TC,J,(@102) [55.0 ms]
+2024-06-11 17:25:28.578445 ; DAQ970A        ; Debug       ; SCPI << +2.40105334E+01
+2024-06-11 17:25:28.578445 ; BT2202A        ; Information ; Temperature at second 6: +2.40105334E+01
+2024-06-11 17:25:29.594335 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [1.92 ms]
+2024-06-11 17:25:29.594335 ; BT2202A        ; Debug       ; SCPI << 3.8708
+2024-06-11 17:25:29.594335 ; BT2202A        ; Information ; Voltage at second 7: 3.8708
+2024-06-11 17:25:29.597337 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [2.36 ms]
+2024-06-11 17:25:29.597337 ; BT2202A        ; Debug       ; SCPI << 0.2002
+2024-06-11 17:25:29.597337 ; BT2202A        ; Information ; Current at second 7: 0.2002
+2024-06-11 17:25:29.674045 ; DAQ970A        ; Debug       ; SCPI >> MEAS:TEMP? TC,J,(@102) [77.1 ms]
+2024-06-11 17:25:29.674045 ; DAQ970A        ; Debug       ; SCPI << +2.40098334E+01
+2024-06-11 17:25:29.674045 ; BT2202A        ; Information ; Temperature at second 7: +2.40098334E+01
+2024-06-11 17:25:30.687750 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [2.50 ms]
+2024-06-11 17:25:30.687750 ; BT2202A        ; Debug       ; SCPI << 3.8711
+2024-06-11 17:25:30.687750 ; BT2202A        ; Information ; Voltage at second 8: 3.8711
+2024-06-11 17:25:30.690921 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [2.24 ms]
+2024-06-11 17:25:30.690921 ; BT2202A        ; Debug       ; SCPI << 0.2002
+2024-06-11 17:25:30.690921 ; BT2202A        ; Information ; Current at second 8: 0.2002
+2024-06-11 17:25:30.843665 ; DAQ970A        ; Debug       ; SCPI >> MEAS:TEMP? TC,J,(@102) [152 ms]
+2024-06-11 17:25:30.843665 ; DAQ970A        ; Debug       ; SCPI << +2.41146519E+01
+2024-06-11 17:25:30.843665 ; BT2202A        ; Information ; Temperature at second 8: +2.41146519E+01
+2024-06-11 17:25:31.854641 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [2.11 ms]
+2024-06-11 17:25:31.854641 ; BT2202A        ; Debug       ; SCPI << 3.8721
+2024-06-11 17:25:31.854641 ; BT2202A        ; Information ; Voltage at second 9: 3.8721
+2024-06-11 17:25:31.857354 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [2.18 ms]
+2024-06-11 17:25:31.857354 ; BT2202A        ; Debug       ; SCPI << 0.2002
+2024-06-11 17:25:31.857354 ; BT2202A        ; Information ; Current at second 9: 0.2002
+2024-06-11 17:25:31.942889 ; DAQ970A        ; Debug       ; SCPI >> MEAS:TEMP? TC,J,(@102) [85.6 ms]
+2024-06-11 17:25:31.942889 ; DAQ970A        ; Debug       ; SCPI << +2.41061177E+01
+2024-06-11 17:25:31.942889 ; BT2202A        ; Information ; Temperature at second 9: +2.41061177E+01
+2024-06-11 17:25:32.962966 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [1.95 ms]
+2024-06-11 17:25:32.962966 ; BT2202A        ; Debug       ; SCPI << 3.8406
+2024-06-11 17:25:32.962966 ; BT2202A        ; Information ; Voltage at second 10: 3.8406
+2024-06-11 17:25:32.964996 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [1.99 ms]
+2024-06-11 17:25:32.964996 ; BT2202A        ; Debug       ; SCPI << -0.0003
+2024-06-11 17:25:32.964996 ; BT2202A        ; Information ; Current at second 10: -0.0003
+2024-06-11 17:25:33.027683 ; DAQ970A        ; Debug       ; SCPI >> MEAS:TEMP? TC,J,(@102) [62.1 ms]
+2024-06-11 17:25:33.027683 ; DAQ970A        ; Debug       ; SCPI << +2.40993452E+01
+2024-06-11 17:25:33.027683 ; BT2202A        ; Information ; Temperature at second 10: +2.40993452E+01
+2024-06-11 17:25:34.036116 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [2.34 ms]
+2024-06-11 17:25:34.036116 ; BT2202A        ; Debug       ; SCPI << 3.8356
+2024-06-11 17:25:34.036116 ; BT2202A        ; Information ; Voltage at second 11: 3.8356
+2024-06-11 17:25:34.041146 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [4.51 ms]
+2024-06-11 17:25:34.041146 ; BT2202A        ; Debug       ; SCPI << -0.0005
+2024-06-11 17:25:34.041146 ; BT2202A        ; Information ; Current at second 11: -0.0005
+2024-06-11 17:25:34.121895 ; DAQ970A        ; Debug       ; SCPI >> MEAS:TEMP? TC,J,(@102) [80.9 ms]
+2024-06-11 17:25:34.121895 ; DAQ970A        ; Debug       ; SCPI << +2.40890134E+01
+2024-06-11 17:25:34.121895 ; BT2202A        ; Information ; Temperature at second 11: +2.40890134E+01
+2024-06-11 17:25:35.127795 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [1.88 ms]
+2024-06-11 17:25:35.127795 ; BT2202A        ; Debug       ; SCPI << 3.8352
+2024-06-11 17:25:35.127795 ; BT2202A        ; Information ; Voltage at second 12: 3.8352
+2024-06-11 17:25:35.130802 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [2.96 ms]
+2024-06-11 17:25:35.130802 ; BT2202A        ; Debug       ; SCPI << -0.0011
+2024-06-11 17:25:35.130802 ; BT2202A        ; Information ; Current at second 12: -0.0011
+2024-06-11 17:25:35.224373 ; DAQ970A        ; Debug       ; SCPI >> MEAS:TEMP? TC,J,(@102) [93.9 ms]
+2024-06-11 17:25:35.224373 ; DAQ970A        ; Debug       ; SCPI << +2.40258911E+01
+2024-06-11 17:25:35.224373 ; BT2202A        ; Information ; Temperature at second 12: +2.40258911E+01
+2024-06-11 17:25:36.233686 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [5.10 ms]
+2024-06-11 17:25:36.233686 ; BT2202A        ; Debug       ; SCPI << 3.8350
+2024-06-11 17:25:36.233686 ; BT2202A        ; Information ; Voltage at second 13: 3.8350
+2024-06-11 17:25:36.235757 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [1.85 ms]
+2024-06-11 17:25:36.235757 ; BT2202A        ; Debug       ; SCPI << -0.0011
+2024-06-11 17:25:36.235757 ; BT2202A        ; Information ; Current at second 13: -0.0011
+2024-06-11 17:25:36.331883 ; DAQ970A        ; Debug       ; SCPI >> MEAS:TEMP? TC,J,(@102) [95.7 ms]
+2024-06-11 17:25:36.331883 ; DAQ970A        ; Debug       ; SCPI << +2.40129399E+01
+2024-06-11 17:25:36.331883 ; BT2202A        ; Information ; Temperature at second 13: +2.40129399E+01
+2024-06-11 17:25:37.339148 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [1.78 ms]
+2024-06-11 17:25:37.339148 ; BT2202A        ; Debug       ; SCPI << 3.8348
+2024-06-11 17:25:37.339148 ; BT2202A        ; Information ; Voltage at second 14: 3.8348
+2024-06-11 17:25:37.340216 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [1.91 ms]
+2024-06-11 17:25:37.340216 ; BT2202A        ; Debug       ; SCPI << -0.0011
+2024-06-11 17:25:37.340216 ; BT2202A        ; Information ; Current at second 14: -0.0011
+2024-06-11 17:25:37.498387 ; DAQ970A        ; Debug       ; SCPI >> MEAS:TEMP? TC,J,(@102) [157 ms]
+2024-06-11 17:25:37.498387 ; DAQ970A        ; Debug       ; SCPI << +2.40087207E+01
+2024-06-11 17:25:37.498387 ; BT2202A        ; Information ; Temperature at second 14: +2.40087207E+01
+2024-06-11 17:25:38.512670 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [2.09 ms]
+2024-06-11 17:25:38.512670 ; BT2202A        ; Debug       ; SCPI << 3.8348
+2024-06-11 17:25:38.512670 ; BT2202A        ; Information ; Voltage at second 15: 3.8348
+2024-06-11 17:25:38.514708 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [1.96 ms]
+2024-06-11 17:25:38.514708 ; BT2202A        ; Debug       ; SCPI << -0.0011
+2024-06-11 17:25:38.514708 ; BT2202A        ; Information ; Current at second 15: -0.0011
+2024-06-11 17:25:38.668457 ; DAQ970A        ; Debug       ; SCPI >> MEAS:TEMP? TC,J,(@102) [153 ms]
+2024-06-11 17:25:38.668457 ; DAQ970A        ; Debug       ; SCPI << +2.39528373E+01
+2024-06-11 17:25:38.668457 ; BT2202A        ; Information ; Temperature at second 15: +2.39528373E+01
+2024-06-11 17:25:38.668457 ; BT2202A        ; Debug       ; SCPI >> SEQ:ABORT [168 us]
+2024-06-11 17:25:38.668457 ; BT2202A        ; Information ; SEQ:ABORT
+2024-06-11 17:25:38.668457 ; TestStep       ; Information ; 6
+2024-06-11 17:25:38.668457 ; TestStep       ; Information ; 9
+2024-06-11 17:25:38.668457 ; TestPlan       ; Information ; "Carga (2)" completed. [31.8 s]
+2024-06-11 17:25:38.669962 ; TestPlan       ; Debug       ; Test step runs finished. [157 s]
+2024-06-11 17:25:38.681994 ; Summary        ; Information ; ----- Summary of test plan started 06/11/2024 17:22:58 -----
+2024-06-11 17:25:38.684969 ; Summary        ; Information ;  Carga                                            31.3 s          
+2024-06-11 17:25:38.684969 ; Summary        ; Information ;  Descarga                                         31.5 s          
+2024-06-11 17:25:38.684969 ; Summary        ; Information ;  Carga (1)                                        31.5 s          
+2024-06-11 17:25:38.684969 ; Summary        ; Information ;  Descarga (1)                                     31.4 s          
+2024-06-11 17:25:38.684969 ; Summary        ; Information ;  Carga (2)                                        31.8 s          
+2024-06-11 17:25:38.684969 ; Summary        ; Information ; ------------------------------------------------------------
+2024-06-11 17:25:38.684969 ; Summary        ; Information ; -------- Test plan completed successfully in  159 s --------
+2024-06-11 17:25:38.706554 ; BT2202A        ; Information ; Resource "BT2202A (USB0::0x008D::0x3602::MY59002216::0::INSTR)" closed. [4.09 ms]

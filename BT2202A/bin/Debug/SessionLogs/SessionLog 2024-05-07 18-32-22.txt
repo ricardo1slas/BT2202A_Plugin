@@ -1,0 +1,30 @@
+﻿2024-05-07 18:32:22.541854 ; Session        ; Debug       ; Session log loaded as 'C:\Users\yuxia\source\repos\BT2202A\bin\Debug\SessionLogs\tap 2024-05-07 18-32-22.txt'. [2.88 ms]
+2024-05-07 18:32:22.549995 ; Session        ; Debug       ; Running '"bin\Debug\tap.exe" sdk vs-integration --install --verbose ' in 'C:\Users\yuxia\source\repos\BT2202A\bin\Debug'.
+2024-05-07 18:32:22.569005 ; Session        ; Debug       ; Microsoft Windows 10.0.22631 X64
+2024-05-07 18:32:22.569005 ; Session        ; Debug       ; .NET Framework 4.8.9232.0
+2024-05-07 18:32:22.575005 ; AssemblyFinder ; Debug       ; Found 18/58 assembly files. [7.53 ms]
+2024-05-07 18:32:22.579004 ; Session        ; Debug       ; OpenTAP Engine 9.17.4+ea67c63a X64
+2024-05-07 18:32:22.750795 ; Resolver       ; Debug       ; Found match for System.Reflection.Metadata, Version=1.4.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a in C:\Users\yuxia\source\repos\BT2202A\bin\Debug\Dependencies\System.Reflection.Metadata.1.4.3.0\System.Reflection.Metadata.dll
+2024-05-07 18:32:22.771848 ; Resolver       ; Debug       ; Found match for System.Collections.Immutable, Version=1.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a in C:\Users\yuxia\source\repos\BT2202A\bin\Debug\Dependencies\System.Collections.Immutable.1.2.3.0\System.Collections.Immutable.dll
+2024-05-07 18:32:23.182336 ; Searcher       ; Debug       ; Ordered 16 assemblies according to references. [603 ms]
+2024-05-07 18:32:23.246439 ; PluginManager  ; Debug       ; Found 11 plugin assemblies containing 195 plugin types. [668 ms]
+2024-05-07 18:32:23.246439 ; PluginManager  ; Debug       ; Found version 9.17.4+ea67c63a  of OpenTap.dll
+2024-05-07 18:32:23.246439 ; PluginManager  ; Debug       ; Found version 9.17.4+ea67c63a  of OpenTap.Package.dll
+2024-05-07 18:32:23.246439 ; PluginManager  ; Debug       ; Found version 9.17.4+ea67c63a  of OpenTap.Plugins.BasicSteps.dll
+2024-05-07 18:32:23.246439 ; PluginManager  ; Debug       ; Found version 9.11.0+98498e58  of Csv.dll
+2024-05-07 18:32:23.246439 ; PluginManager  ; Debug       ; Found version 1.1.1.0          of Keysight.OpenTap.Licensing.dll
+2024-05-07 18:32:23.246439 ; PluginManager  ; Debug       ; Found version 1.0.0            of OpenTap.OSIntegration.Windows.dll
+2024-05-07 18:32:23.246439 ; PluginManager  ; Debug       ; Found version 9.17.4+ea67c63a  of OpenTap.Sdk.New.dll
+2024-05-07 18:32:23.246439 ; PluginManager  ; Debug       ; Found version 9.4.2+3009aace   of Keysight.OpenTap.Plugins.ResultListener.SqlDatabase.dll
+2024-05-07 18:32:23.246439 ; PluginManager  ; Debug       ; Found version 9.4.2+3009aace   of Keysight.OpenTap.Plugins.ResultListener.PostgreSQL.dll
+2024-05-07 18:32:23.246439 ; PluginManager  ; Debug       ; Found version 9.4.2+3009aace   of Keysight.OpenTap.Plugins.ResultListener.SQLite.dll
+2024-05-07 18:32:23.246439 ; PluginManager  ; Debug       ; Found version 1.2.6+ef0ad804   of OpenTap.VSSdk.Installer.dll
+2024-05-07 18:32:23.246439 ; PluginManager  ; Debug       ; Searched 18 Assemblies. [668 ms]
+2024-05-07 18:32:23.265440 ; PluginManager  ; Debug       ; Loaded OpenTap. [276 us]
+2024-05-07 18:32:23.284425 ; Settings       ; Debug       ; No settings file exists for EngineSettings. A new instance with default values has been created. [5.05 ms]
+2024-05-07 18:32:23.321301 ; Session        ; Debug       ; Session log loaded as 'C:\Users\yuxia\source\repos\BT2202A\bin\Debug\SessionLogs\SessionLog 2024-05-07 18-32-22.txt'. [20.7 ms]
+2024-05-07 18:32:23.336592 ; PluginManager  ; Debug       ; Loaded OpenTap.VSSdk.Installer. [3.58 ms]
+2024-05-07 18:32:23.355116 ; PluginManager  ; Debug       ; Loaded OpenTap.Plugins.BasicSteps. [4.44 ms]
+2024-05-07 18:32:23.398034 ; PluginManager  ; Debug       ; Loaded mscorlib. [600 ns]
+2024-05-07 18:32:23.401036 ; CLI            ; Debug       ; Executing CLI action: sdk \ vs-integration
+2024-05-07 18:32:23.402034 ; CLI            ; Debug       ; CLI action returned exit code: 0 [1.15 ms]

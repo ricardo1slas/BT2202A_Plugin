@@ -1,0 +1,18 @@
+2024-06-04 19:33:12.931069 ; Session        ; Debug       ; Session log loaded as 'bin\Release\SessionLogs\MSBuild 2024-06-04 19-33-12.txt'. [6.81 ms]
+2024-06-04 19:33:12.936585 ; Session        ; Debug       ; Running 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\MSBuild.exe /nologo /nodemode:1 /nodeReuse:true /low:false' in 'C:\Users\yuxia\source\repos\BT2202A'.
+2024-06-04 19:33:12.948049 ; Session        ; Debug       ; Microsoft Windows 10.0.22631 X64
+2024-06-04 19:33:12.948049 ; Session        ; Debug       ; .NET Framework 4.8.9241.0
+2024-06-04 19:33:12.951560 ; Session        ; Debug       ; OpenTAP Engine 9.17.4+ea67c63a X86
+2024-06-04 19:33:12.955068 ; AssemblyFinder ; Debug       ; Found 5/21 assembly files. [3.86 ms]
+2024-06-04 19:33:12.967756 ; Resolver       ; Debug       ; Found match for System.Reflection.Metadata, Version=1.4.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a in C:\Users\yuxia\.nuget\packages\opentap\9.17.4\build\payload\Dependencies\System.Reflection.Metadata.1.4.3.0\System.Reflection.Metadata.dll
+2024-06-04 19:33:13.000200 ; Searcher       ; Debug       ; Ordered 5 assemblies according to references. [43.1 ms]
+2024-06-04 19:33:13.035342 ; PluginManager  ; Debug       ; Found 3 plugin assemblies containing 155 plugin types. [78.9 ms]
+2024-06-04 19:33:13.035342 ; PluginManager  ; Debug       ; Found version 9.17.4+ea67c63a  of OpenTap.dll from C:\Users\yuxia\.nuget\packages\opentap\9.17.4\build\payload\OpenTap.dll
+2024-06-04 19:33:13.035342 ; PluginManager  ; Debug       ; Found version 9.17.4+ea67c63a  of OpenTap.Package.dll from C:\Users\yuxia\.nuget\packages\opentap\9.17.4\build\payload\OpenTap.Package.dll
+2024-06-04 19:33:13.035342 ; PluginManager  ; Debug       ; Found version 9.17.4+ea67c63a  of OpenTap.Plugins.BasicSteps.dll from C:\Users\yuxia\.nuget\packages\opentap\9.17.4\build\payload\Packages\OpenTAP\OpenTap.Plugins.BasicSteps.dll
+2024-06-04 19:33:13.035342 ; PluginManager  ; Debug       ; Searched 5 Assemblies. [79.1 ms]
+2024-06-04 19:33:13.042984 ; PluginManager  ; Debug       ; Loaded OpenTap. [388 us]
+2024-06-04 19:33:13.042984 ; PluginManager  ; Debug       ; Loaded OpenTap.Package. [349 us]
+2024-06-04 19:33:13.050496 ; PluginManager  ; Debug       ; Loaded OpenTap.Plugins.BasicSteps. [3.03 ms]
+2024-06-04 19:33:13.093221 ; PluginManager  ; Debug       ; Loaded mscorlib. [300 ns]
+2024-06-04 19:33:13.676315 ; OpenTAP        ; Information ; Target installation is already up to date.

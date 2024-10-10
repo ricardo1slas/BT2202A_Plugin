@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfPackages>
+  <Package Date="06/15/2024 17:50:28" Name="BT2202A" Version="0.1.0-alpha" Architecture="AnyCPU" OS="Windows,Linux" xmlns="http://opentap.io/schemas/package">
+    <Hash>DA39A3EE5E6B4B0D3255BFEF95601890AFD80709</Hash>
+    <Description>This is my OpenTAP plugin package.</Description>
+    <Dependencies>
+      <PackageDependency Package="OpenTAP" Version="^9.17.4+ea67c63a" />
+    </Dependencies>
+    <Location>C:\Users\yuxia\source\repos\BT2202A\bin\Release\BT2202A.0.1.0-alpha.TapPackage</Location>
+    <PackageSource type="OpenTap.Package.FileRepositoryPackageDefSource">
+      <RepositoryUrl>C:\Users\yuxia\source\repos\BT2202A\bin\Release</RepositoryUrl>
+      <PackageFilePath>C:\Users\yuxia\source\repos\BT2202A\bin\Release\BT2202A.0.1.0-alpha.TapPackage</PackageFilePath>
+    </PackageSource>
+    <Files>
+      <File Path="Packages/BT2202A/BT2202A.dll">
+        <Plugins>
+          <Plugin Type="OpenTap.Plugins.Carga.DAQ970A" BaseType="Instrument">
+            <Name>DAQ970A</Name>
+            <Order>-10000</Order>
+            <Browsable>true</Browsable>
+            <Description>DAQ para sensar temperaturas</Description>
+            <Collapsed>false</Collapsed>
+            <Groups>
+              <String>OpenTap.Plugins.Carga</String>
+            </Groups>
+          </Plugin>
+          <Plugin Type="OpenTap.Plugins.Carga.BT2202A" BaseType="Instrument">
+            <Name>BT2202A</Name>
+            <Order>-10000</Order>
+            <Browsable>true</Browsable>
+            <Description>Equipo para carga y descarga</Description>
+            <Collapsed>false</Collapsed>
+            <Groups>
+              <String>OpenTap.Plugins.Carga</String>
+            </Groups>
+          </Plugin>
+          <Plugin Type="OpenTap.Plugins.Carga.Carga" BaseType="Test Step">
+            <Name>Carga</Name>
+            <Order>-10000</Order>
+            <Browsable>true</Browsable>
+            <Description>Carga de celda</Description>
+            <Collapsed>false</Collapsed>
+            <Groups>
+              <String>OpenTap.Plugins.Carga</String>
+            </Groups>
+          </Plugin>
+          <Plugin Type="OpenTap.Plugins.Carga.Descarga" BaseType="Test Step">
+            <Name>Descarga</Name>
+            <Order>-10000</Order>
+            <Browsable>true</Browsable>
+            <Description>Proceso descarga bateria</Description>
+            <Collapsed>false</Collapsed>
+            <Groups>
+              <String>OpenTap.Plugins.Carga</String>
+            </Groups>
+          </Plugin>
+        </Plugins>
+        <Hash>5FF81F7E995E91C15A952DB3D451F1F08AD4AF5F</Hash>
+      </File>
+    </Files>
+  </Package>
+</ArrayOfPackages>

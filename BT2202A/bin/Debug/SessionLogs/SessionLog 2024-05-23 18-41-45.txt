@@ -1,0 +1,286 @@
+﻿2024-05-23 18:41:44.768610 ; Session        ; Debug       ; Session log loaded as 'C:\Users\yuxia\source\repos\BT2202A\bin\Debug\SessionLogs\editor 2024-05-23 18-41-44.txt'. [3.84 ms]
+2024-05-23 18:41:44.809467 ; Session        ; Debug       ; Running '"C:\Users\yuxia\source\repos\BT2202A\bin\Debug\editor.exe" ' in 'C:\Users\yuxia\source\repos\BT2202A\bin\Debug'.
+2024-05-23 18:41:44.890354 ; Session        ; Debug       ; Microsoft Windows 10.0.22631 X64
+2024-05-23 18:41:44.890354 ; Session        ; Debug       ; .NET Framework 4.8.9241.0
+2024-05-23 18:41:44.914854 ; Session        ; Debug       ; OpenTAP Engine 9.17.4+ea67c63a X64
+2024-05-23 18:41:44.920545 ; AssemblyFinder ; Debug       ; Found 25/80 assembly files. [16.3 ms]
+2024-05-23 18:41:44.930581 ; Resolver       ; Debug       ; Found match for System.Reflection.Metadata, Version=1.4.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a in C:\Users\yuxia\source\repos\BT2202A\bin\Debug\Dependencies\System.Reflection.Metadata.1.4.3.0\System.Reflection.Metadata.dll
+2024-05-23 18:41:44.930581 ; Resolver       ; Debug       ; Found match for Keysight.OpenTap.Wpf, Version=9.5.0.0, Culture=neutral, PublicKeyToken=null in C:\Users\yuxia\source\repos\BT2202A\bin\Debug\Packages\WPF Controls\Keysight.OpenTap.Wpf.dll
+2024-05-23 18:41:44.950860 ; Resolver       ; Debug       ; Found match for System.Collections.Immutable, Version=1.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a in C:\Users\yuxia\source\repos\BT2202A\bin\Debug\Dependencies\System.Collections.Immutable.1.2.3.0\System.Collections.Immutable.dll
+2024-05-23 18:41:45.099590 ; Searcher       ; Debug       ; Ordered 23 assemblies according to references. [174 ms]
+2024-05-23 18:41:45.174593 ; PluginManager  ; Debug       ; Found 18 plugin assemblies containing 266 plugin types. [248 ms]
+2024-05-23 18:41:45.174593 ; PluginManager  ; Debug       ; Found version 9.17.4+ea67c63a  of OpenTap.dll
+2024-05-23 18:41:45.174593 ; PluginManager  ; Debug       ; Found version 0.1.0-Development of BT2202A.dll
+2024-05-23 18:41:45.174593 ; PluginManager  ; Debug       ; Found version 9.17.4+ea67c63a  of OpenTap.Package.dll
+2024-05-23 18:41:45.174593 ; PluginManager  ; Debug       ; Found version 1.1.1.0          of Keysight.OpenTap.Licensing.dll
+2024-05-23 18:41:45.174593 ; PluginManager  ; Debug       ; Found version 9.17.4+ea67c63a  of OpenTap.Plugins.BasicSteps.dll
+2024-05-23 18:41:45.174593 ; PluginManager  ; Debug       ; Found version 9.17.4+5e508f08  of Keysight.OpenTap.Wpf.dll
+2024-05-23 18:41:45.174593 ; PluginManager  ; Debug       ; Found version 9.17.4+5e508f08  of PackageManager.exe
+2024-05-23 18:41:45.174593 ; PluginManager  ; Debug       ; Found version 9.17.4+5e508f08  of Editor.exe
+2024-05-23 18:41:45.174593 ; PluginManager  ; Debug       ; Found version 9.11.0+98498e58  of Csv.dll
+2024-05-23 18:41:45.174593 ; PluginManager  ; Debug       ; Found version 9.17.4+5e508f08  of ResultsViewer.exe
+2024-05-23 18:41:45.174593 ; PluginManager  ; Debug       ; Found version 9.17.4+5e508f08  of RunExplorer.exe
+2024-05-23 18:41:45.174593 ; PluginManager  ; Debug       ; Found version 9.17.4+5e508f08  of Keysight.OpenTap.CommunityEditionPopup.exe
+2024-05-23 18:41:45.174593 ; PluginManager  ; Debug       ; Found version 1.0.0            of OpenTap.OSIntegration.Windows.dll
+2024-05-23 18:41:45.174593 ; PluginManager  ; Debug       ; Found version 9.17.4+ea67c63a  of OpenTap.Sdk.New.dll
+2024-05-23 18:41:45.174593 ; PluginManager  ; Debug       ; Found version 9.4.2+3009aace   of Keysight.OpenTap.Plugins.ResultListener.SqlDatabase.dll
+2024-05-23 18:41:45.174593 ; PluginManager  ; Debug       ; Found version 9.4.2+3009aace   of Keysight.OpenTap.Plugins.ResultListener.PostgreSQL.dll
+2024-05-23 18:41:45.174593 ; PluginManager  ; Debug       ; Found version 9.4.2+3009aace   of Keysight.OpenTap.Plugins.ResultListener.SQLite.dll
+2024-05-23 18:41:45.174593 ; PluginManager  ; Debug       ; Found version 1.2.6+ef0ad804   of OpenTap.VSSdk.Installer.dll
+2024-05-23 18:41:45.174593 ; PluginManager  ; Debug       ; Searched 25 Assemblies. [249 ms]
+2024-05-23 18:41:45.300753 ; PluginManager  ; Debug       ; Loaded OpenTap. [95.7 ms]
+2024-05-23 18:41:45.305996 ; PluginManager  ; Debug       ; Loaded OpenTap. [106 ms]
+2024-05-23 18:41:45.332798 ; PluginManager  ; Debug       ; Loaded OpenTap.Package. [130 ms]
+2024-05-23 18:41:45.339952 ; PluginManager  ; Debug       ; Loaded Keysight.OpenTap.Wpf. [119 us]
+2024-05-23 18:41:45.344208 ; PluginManager  ; Debug       ; Loaded OpenTap.Plugins.BasicSteps. [43.1 ms]
+2024-05-23 18:41:45.377125 ; PluginManager  ; Debug       ; Loaded OpenTap.OSIntegration.Windows. [29.8 ms]
+2024-05-23 18:41:45.437836 ; PluginManager  ; Debug       ; Loaded mscorlib. [700 ns]
+2024-05-23 18:41:45.560759 ; Settings       ; Debug       ; EditorSettings loaded from C:\Users\yuxia\source\repos\BT2202A\bin\Debug\Settings\Editor.xml [484 ms]
+2024-05-23 18:41:45.560759 ; Resolver       ; Debug       ; Found match for Keysight.Ccl.Wsl, Version=4.0.1.9, Culture=neutral, PublicKeyToken=55333af07c70062e in C:\Users\yuxia\source\repos\BT2202A\bin\Debug\Dependencies\Keysight.Ccl.Wsl.4.0.1.9\Keysight.Ccl.Wsl.dll
+2024-05-23 18:41:45.570290 ; Resolver       ; Debug       ; Found match for MahApps.Metro, Version=1.3.0.0, Culture=neutral, PublicKeyToken=f4fb5a3c4d1e5b4f in C:\Users\yuxia\source\repos\BT2202A\bin\Debug\Dependencies\MahApps.Metro.1.3.0.0\MahApps.Metro.dll
+2024-05-23 18:41:45.672378 ; GUI            ; Debug       ; Loaded Light Theme. [9.76 ms]
+2024-05-23 18:41:45.748500 ; Resolver       ; Debug       ; Found match for AvalonDock, Version=4.60.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4 in C:\Users\yuxia\source\repos\BT2202A\bin\Debug\Dependencies\AvalonDock.4.60.0.0\AvalonDock.dll
+2024-05-23 18:41:45.906743 ; Settings       ; Debug       ; GuiControlsSettings loaded from C:\Users\yuxia\source\repos\BT2202A\bin\Debug\Settings\GUI Controls.xml [85.1 ms]
+2024-05-23 18:41:45.906743 ; Main           ; Debug       ; Window initial dimensions: 1024px, 768px.
+2024-05-23 18:41:45.937070 ; Resolver       ; Debug       ; Found match for Keysight.OpenTap.Licensing, Version=1.1.1.0, Culture=neutral, PublicKeyToken=null in C:\Users\yuxia\source\repos\BT2202A\bin\Debug\Packages\Keysight Licensing\Keysight.OpenTap.Licensing.dll
+2024-05-23 18:41:45.937070 ; Settings       ; Debug       ; EngineSettings loaded from C:\Users\yuxia\source\repos\BT2202A\bin\Debug\Settings\Engine.xml [26.2 ms]
+2024-05-23 18:41:45.937070 ; Settings       ; Debug       ; No settings file exists for PackageManagerSettings. A new instance with default values has been created. [904 us]
+2024-05-23 18:41:45.985163 ; Session        ; Debug       ; Session log loaded as 'SessionLogs\SessionLog 2024-05-23 18-41-45.txt'. [23.8 ms]
+2024-05-23 18:41:46.221310 ; Main           ; Debug       ; GUI initialized. [308 ms]
+2024-05-23 18:41:46.221310 ; Main           ; Debug       ; Docking manager initialized. [47.6 us]
+2024-05-23 18:41:46.224415 ; OpenTAP        ; Information ; OpenTAP version '9.17.4+ea67c63a' 64-bit initialized 05/23/2024 [1.79 s]
+2024-05-23 18:41:46.281793 ; PluginManager  ; Debug       ; Loaded PackageManager. [218 us]
+2024-05-23 18:41:46.281793 ; PluginManager  ; Debug       ; Loaded Editor. [12.9 us]
+2024-05-23 18:41:46.291978 ; PluginManager  ; Debug       ; Loaded ResultsViewer. [10.2 ms]
+2024-05-23 18:41:46.300488 ; PluginManager  ; Debug       ; Loaded RunExplorer. [5.97 ms]
+2024-05-23 18:41:46.302029 ; Settings       ; Debug       ; ConnectionSettings loaded from C:\Users\yuxia\source\repos\BT2202A\bin\Debug\Settings\Bench\Default\Connections.xml [1.07 ms]
+2024-05-23 18:41:46.302029 ; Settings       ; Debug       ; DutSettings loaded from C:\Users\yuxia\source\repos\BT2202A\bin\Debug\Settings\Bench\Default\DUTs.xml [486 us]
+2024-05-23 18:41:46.314356 ; PluginManager  ; Debug       ; Loaded BT2202A. [11.0 ms]
+2024-05-23 18:41:46.350195 ; Settings       ; Debug       ; InstrumentSettings loaded from C:\Users\yuxia\source\repos\BT2202A\bin\Debug\Settings\Bench\Default\Instruments.xml [48.6 ms]
+2024-05-23 18:41:46.350195 ; Settings       ; Debug       ; ResultSettings loaded from C:\Users\yuxia\source\repos\BT2202A\bin\Debug\Settings\Results.xml [483 us]
+2024-05-23 18:41:47.299132 ; Resolver       ; Debug       ; Found match for Keysight.Kal.Licensing.Api, Version=4.0.0.0, Culture=neutral, PublicKeyToken=55333af07c70062e in C:\Users\yuxia\source\repos\BT2202A\bin\Debug\Dependencies\Keysight.Kal.Licensing.Api.4.0.0\Keysight.Kal.Licensing.Api.dll
+2024-05-23 18:41:47.335115 ; KAL            ; Debug       ; KAL signature verified. [21.8 ms]
+2024-05-23 18:41:47.337342 ; Resolver       ; Debug       ; Found match for Keysight.Ccl.Licensing.Api, Version=5.3.2.19, Culture=neutral, PublicKeyToken=55333af07c70062e in C:\Users\yuxia\source\repos\BT2202A\bin\Debug\Dependencies\Keysight.Ccl.Licensing.Api.5.3.2.19\Keysight.Ccl.Licensing.Api.dll
+2024-05-23 18:41:47.349834 ; KAL Process    ; Debug       ; Initialized [31.8 ms]
+2024-05-23 18:41:47.352837 ; KAL            ; Debug       ; Initialized [40.2 ms]
+2024-05-23 18:41:47.412117 ; Settings       ; Debug       ; PanelSettings loaded from C:\Users\yuxia\source\repos\BT2202A\bin\Debug\Settings\GUI Panels.xml [1.69 ms]
+2024-05-23 18:41:47.692274 ; CCL            ; Debug       ; Initialized [401 ms]
+2024-05-23 18:41:47.774678 ; Main           ; Debug       ; Application startup finished. [3.34 s]
+2024-05-23 18:41:47.840284 ; Main           ; Debug       ; Update check complete. [1.61 s]
+2024-05-23 18:42:05.083245 ; TestPlan       ; Information ; -----------------------------------------------------------------
+2024-05-23 18:42:05.095576 ; TestPlan       ; Information ; Starting TestPlan 'Untitled' on 05/23/2024 18:42:05, 1 of 1 TestSteps enabled.
+2024-05-23 18:42:05.130264 ; TestPlan       ; Debug       ; Saved Test Plan XML [1.09 ms]
+2024-05-23 18:42:05.135270 ; Settings       ; Debug       ; No settings file exists for TestPlanRunPackageParameterMonitor. A new instance with default values has been created. [110 us]
+2024-05-23 18:42:05.179248 ; BT2202A        ; Debug       ; Connecting to 'USB0::0x008D::0x3602::MY59002216::0::INSTR'
+2024-05-23 18:42:05.270317 ; BT2202A        ; Debug       ; SCPI >> *IDN? [6.95 ms]
+2024-05-23 18:42:05.270317 ; BT2202A        ; Debug       ; SCPI << Keysight Technologies,BT2202A,MY59002216,06.17(2880)-02.35(1829)-00.24-08-02-02-1652039-23
+2024-05-23 18:42:05.270317 ; BT2202A        ; Information ; Now connected to: Keysight Technologies,BT2202A,MY59002216,06.17(2880)-02.35(1829)-00.24-08-02-02-1652039-23
+2024-05-23 18:42:05.271319 ; BT2202A        ; Debug       ; SCPI >> *CLS [345 us]
+2024-05-23 18:42:06.804043 ; BT2202A        ; Debug       ; SCPI >> *IDN? [4.68 ms]
+2024-05-23 18:42:06.804043 ; BT2202A        ; Debug       ; SCPI << Keysight Technologies,BT2202A,MY59002216,06.17(2880)-02.35(1829)-00.24-08-02-02-1652039-23
+2024-05-23 18:42:06.804043 ; BT2202A        ; Information ; Keysight Technologies,BT2202A,MY59002216,06.17(2880)-02.35(1829)-00.24-08-02-02-1652039-23
+2024-05-23 18:42:06.804043 ; BT2202A        ; Information ; Resource "BT2202A (USB0::0x008D::0x3602::MY59002216::0::INSTR)" opened. [1.62 s]
+2024-05-23 18:42:06.820177 ; TestPlan       ; Debug       ; PrePlanRun Methods completed [2.65 ms]
+2024-05-23 18:42:06.827179 ; TestPlan       ; Information ; "Carga" started.
+2024-05-23 18:42:06.830682 ; BT2202A        ; Debug       ; SCPI >> *IDN? [151 us]
+2024-05-23 18:42:06.830682 ; BT2202A        ; Debug       ; SCPI >> *RST [233 us]
+2024-05-23 18:42:06.830682 ; BT2202A        ; Debug       ; SCPI >> SYST:PROB:LIM 1,0 [212 us]
+2024-05-23 18:42:06.831689 ; BT2202A        ; Debug       ; SCPI >> CELL:DEFINE 1001, (@101:104) [464 us]
+2024-05-23 18:42:06.832691 ; BT2202A        ; Debug       ; SCPI >> SEQ:STEP:DEF 1,1,CHARGE,30,0.4,3.8 [742 us]
+2024-05-23 18:42:06.834698 ; BT2202A        ; Debug       ; SCPI >> SEQ:TEST:DEF 1, 1, 1,VOLT_GE,4,BEFORE_START, 180, FAIL [2.13 ms]
+2024-05-23 18:42:06.835689 ; BT2202A        ; Debug       ; SCPI >> SEQ:TEST:DEF 1, 1, 2,CURR_GE,0.4,BEFORE,30*60 , FAIL [1.40 ms]
+2024-05-23 18:42:06.835689 ; BT2202A        ; Debug       ; SCPI >> CELL:ENABLE (@1001),1 [188 us]
+2024-05-23 18:42:06.836692 ; BT2202A        ; Debug       ; SCPI >> CELL:INIT (@1001) [574 us]
+2024-05-23 18:42:06.836692 ; BT2202A        ; Information ; Initializing Charge
+2024-05-23 18:42:23.837814 ; BT2202A        ; Information ; Charge Process Started
+2024-05-23 18:42:24.839660 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [1.79 ms]
+2024-05-23 18:42:24.840660 ; BT2202A        ; Debug       ; SCPI << 3.6438
+2024-05-23 18:42:24.842608 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [1.90 ms]
+2024-05-23 18:42:24.842608 ; BT2202A        ; Debug       ; SCPI << 0.0709
+2024-05-23 18:42:24.842608 ; BT2202A        ; Information ; Voltage at second 1: 3.6438
+2024-05-23 18:42:24.842608 ; BT2202A        ; Information ; Current at second 1: 0.0709
+2024-05-23 18:42:25.847792 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [2.10 ms]
+2024-05-23 18:42:25.847792 ; BT2202A        ; Debug       ; SCPI << 3.6836
+2024-05-23 18:42:25.849812 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [2.02 ms]
+2024-05-23 18:42:25.849812 ; BT2202A        ; Debug       ; SCPI << 0.1733
+2024-05-23 18:42:25.849812 ; BT2202A        ; Information ; Voltage at second 2: 3.6836
+2024-05-23 18:42:25.849812 ; BT2202A        ; Information ; Current at second 2: 0.1733
+2024-05-23 18:42:26.852755 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [2.27 ms]
+2024-05-23 18:42:26.852755 ; BT2202A        ; Debug       ; SCPI << 3.7145
+2024-05-23 18:42:26.857275 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [4.91 ms]
+2024-05-23 18:42:26.857275 ; BT2202A        ; Debug       ; SCPI << 0.2467
+2024-05-23 18:42:26.857275 ; BT2202A        ; Information ; Voltage at second 3: 3.7145
+2024-05-23 18:42:26.857275 ; BT2202A        ; Information ; Current at second 3: 0.2467
+2024-05-23 18:42:27.859112 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [1.91 ms]
+2024-05-23 18:42:27.860112 ; BT2202A        ; Debug       ; SCPI << 3.7255
+2024-05-23 18:42:27.861112 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [1.90 ms]
+2024-05-23 18:42:27.861112 ; BT2202A        ; Debug       ; SCPI << 0.2687
+2024-05-23 18:42:27.861112 ; BT2202A        ; Information ; Voltage at second 4: 3.7255
+2024-05-23 18:42:27.861112 ; BT2202A        ; Information ; Current at second 4: 0.2687
+2024-05-23 18:42:28.864239 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [1.83 ms]
+2024-05-23 18:42:28.864239 ; BT2202A        ; Debug       ; SCPI << 3.7722
+2024-05-23 18:42:28.865162 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [1.83 ms]
+2024-05-23 18:42:28.865162 ; BT2202A        ; Debug       ; SCPI << 0.3732
+2024-05-23 18:42:28.865162 ; BT2202A        ; Information ; Voltage at second 5: 3.7722
+2024-05-23 18:42:28.865162 ; BT2202A        ; Information ; Current at second 5: 0.3732
+2024-05-23 18:42:29.868780 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [1.81 ms]
+2024-05-23 18:42:29.868780 ; BT2202A        ; Debug       ; SCPI << 3.7964
+2024-05-23 18:42:29.870782 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [1.96 ms]
+2024-05-23 18:42:29.870782 ; BT2202A        ; Debug       ; SCPI << 0.3847
+2024-05-23 18:42:29.870782 ; BT2202A        ; Information ; Voltage at second 6: 3.7964
+2024-05-23 18:42:29.870782 ; BT2202A        ; Information ; Current at second 6: 0.3847
+2024-05-23 18:42:30.872407 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [1.91 ms]
+2024-05-23 18:42:30.872407 ; BT2202A        ; Debug       ; SCPI << 3.8189
+2024-05-23 18:42:30.875407 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [2.19 ms]
+2024-05-23 18:42:30.875407 ; BT2202A        ; Debug       ; SCPI << 0.3135
+2024-05-23 18:42:30.875407 ; BT2202A        ; Information ; Voltage at second 7: 3.8189
+2024-05-23 18:42:30.875407 ; BT2202A        ; Information ; Current at second 7: 0.3135
+2024-05-23 18:42:31.877983 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [1.91 ms]
+2024-05-23 18:42:31.877983 ; BT2202A        ; Debug       ; SCPI << 3.8131
+2024-05-23 18:42:31.879984 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [1.96 ms]
+2024-05-23 18:42:31.879984 ; BT2202A        ; Debug       ; SCPI << 0.2653
+2024-05-23 18:42:31.879984 ; BT2202A        ; Information ; Voltage at second 8: 3.8131
+2024-05-23 18:42:31.879984 ; BT2202A        ; Information ; Current at second 8: 0.2653
+2024-05-23 18:42:32.882846 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [2.06 ms]
+2024-05-23 18:42:32.882846 ; BT2202A        ; Debug       ; SCPI << 3.8098
+2024-05-23 18:42:32.886848 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [3.99 ms]
+2024-05-23 18:42:32.886848 ; BT2202A        ; Debug       ; SCPI << 0.2280
+2024-05-23 18:42:32.886848 ; BT2202A        ; Information ; Voltage at second 9: 3.8098
+2024-05-23 18:42:32.886848 ; BT2202A        ; Information ; Current at second 9: 0.2280
+2024-05-23 18:42:33.888831 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [1.81 ms]
+2024-05-23 18:42:33.888831 ; BT2202A        ; Debug       ; SCPI << 3.8039
+2024-05-23 18:42:33.891510 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [1.85 ms]
+2024-05-23 18:42:33.891510 ; BT2202A        ; Debug       ; SCPI << 0.2131
+2024-05-23 18:42:33.891510 ; BT2202A        ; Information ; Voltage at second 10: 3.8039
+2024-05-23 18:42:33.891510 ; BT2202A        ; Information ; Current at second 10: 0.2131
+2024-05-23 18:42:34.896778 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [1.86 ms]
+2024-05-23 18:42:34.896778 ; BT2202A        ; Debug       ; SCPI << 3.8022
+2024-05-23 18:42:34.898776 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [1.95 ms]
+2024-05-23 18:42:34.898776 ; BT2202A        ; Debug       ; SCPI << 0.2050
+2024-05-23 18:42:34.898776 ; BT2202A        ; Information ; Voltage at second 11: 3.8022
+2024-05-23 18:42:34.898776 ; BT2202A        ; Information ; Current at second 11: 0.2050
+2024-05-23 18:42:35.902011 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [2.13 ms]
+2024-05-23 18:42:35.902011 ; BT2202A        ; Debug       ; SCPI << 3.8012
+2024-05-23 18:42:35.904083 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [2.02 ms]
+2024-05-23 18:42:35.904083 ; BT2202A        ; Debug       ; SCPI << 0.2000
+2024-05-23 18:42:35.904083 ; BT2202A        ; Information ; Voltage at second 12: 3.8012
+2024-05-23 18:42:35.904083 ; BT2202A        ; Information ; Current at second 12: 0.2000
+2024-05-23 18:42:36.907026 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [1.88 ms]
+2024-05-23 18:42:36.907026 ; BT2202A        ; Debug       ; SCPI << 3.8010
+2024-05-23 18:42:36.909025 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [1.91 ms]
+2024-05-23 18:42:36.909025 ; BT2202A        ; Debug       ; SCPI << 0.1961
+2024-05-23 18:42:36.909025 ; BT2202A        ; Information ; Voltage at second 13: 3.8010
+2024-05-23 18:42:36.909025 ; BT2202A        ; Information ; Current at second 13: 0.1961
+2024-05-23 18:42:37.911324 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [1.97 ms]
+2024-05-23 18:42:37.911324 ; BT2202A        ; Debug       ; SCPI << 3.8016
+2024-05-23 18:42:37.913382 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [1.85 ms]
+2024-05-23 18:42:37.913382 ; BT2202A        ; Debug       ; SCPI << 0.1908
+2024-05-23 18:42:37.913382 ; BT2202A        ; Information ; Voltage at second 14: 3.8016
+2024-05-23 18:42:37.913382 ; BT2202A        ; Information ; Current at second 14: 0.1908
+2024-05-23 18:42:38.915888 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [1.98 ms]
+2024-05-23 18:42:38.915888 ; BT2202A        ; Debug       ; SCPI << 3.8014
+2024-05-23 18:42:38.917969 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [2.11 ms]
+2024-05-23 18:42:38.917969 ; BT2202A        ; Debug       ; SCPI << 0.1854
+2024-05-23 18:42:38.917969 ; BT2202A        ; Information ; Voltage at second 15: 3.8014
+2024-05-23 18:42:38.917969 ; BT2202A        ; Information ; Current at second 15: 0.1854
+2024-05-23 18:42:39.921553 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [2.31 ms]
+2024-05-23 18:42:39.921553 ; BT2202A        ; Debug       ; SCPI << 3.8010
+2024-05-23 18:42:39.923851 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [2.17 ms]
+2024-05-23 18:42:39.923851 ; BT2202A        ; Debug       ; SCPI << 0.1812
+2024-05-23 18:42:39.923851 ; BT2202A        ; Information ; Voltage at second 16: 3.8010
+2024-05-23 18:42:39.923851 ; BT2202A        ; Information ; Current at second 16: 0.1812
+2024-05-23 18:42:40.924970 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [1.82 ms]
+2024-05-23 18:42:40.924970 ; BT2202A        ; Debug       ; SCPI << 3.8012
+2024-05-23 18:42:40.927806 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [2.07 ms]
+2024-05-23 18:42:40.927806 ; BT2202A        ; Debug       ; SCPI << 0.1772
+2024-05-23 18:42:40.927806 ; BT2202A        ; Information ; Voltage at second 17: 3.8012
+2024-05-23 18:42:40.927806 ; BT2202A        ; Information ; Current at second 17: 0.1772
+2024-05-23 18:42:41.930551 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [2.21 ms]
+2024-05-23 18:42:41.930551 ; BT2202A        ; Debug       ; SCPI << 3.8010
+2024-05-23 18:42:41.932561 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [2.11 ms]
+2024-05-23 18:42:41.932561 ; BT2202A        ; Debug       ; SCPI << 0.1730
+2024-05-23 18:42:41.932561 ; BT2202A        ; Information ; Voltage at second 18: 3.8010
+2024-05-23 18:42:41.932561 ; BT2202A        ; Information ; Current at second 18: 0.1730
+2024-05-23 18:42:42.935337 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [2.05 ms]
+2024-05-23 18:42:42.935337 ; BT2202A        ; Debug       ; SCPI << 3.8008
+2024-05-23 18:42:42.937159 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [2.06 ms]
+2024-05-23 18:42:42.937159 ; BT2202A        ; Debug       ; SCPI << 0.1699
+2024-05-23 18:42:42.937159 ; BT2202A        ; Information ; Voltage at second 19: 3.8008
+2024-05-23 18:42:42.937159 ; BT2202A        ; Information ; Current at second 19: 0.1699
+2024-05-23 18:42:43.940253 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [1.92 ms]
+2024-05-23 18:42:43.940253 ; BT2202A        ; Debug       ; SCPI << 3.8010
+2024-05-23 18:42:43.942253 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [2.20 ms]
+2024-05-23 18:42:43.942253 ; BT2202A        ; Debug       ; SCPI << 0.1679
+2024-05-23 18:42:43.942253 ; BT2202A        ; Information ; Voltage at second 20: 3.8010
+2024-05-23 18:42:43.942253 ; BT2202A        ; Information ; Current at second 20: 0.1679
+2024-05-23 18:42:44.945038 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [1.79 ms]
+2024-05-23 18:42:44.945038 ; BT2202A        ; Debug       ; SCPI << 3.8008
+2024-05-23 18:42:44.946862 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [1.96 ms]
+2024-05-23 18:42:44.946862 ; BT2202A        ; Debug       ; SCPI << 0.1655
+2024-05-23 18:42:44.946862 ; BT2202A        ; Information ; Voltage at second 21: 3.8008
+2024-05-23 18:42:44.946862 ; BT2202A        ; Information ; Current at second 21: 0.1655
+2024-05-23 18:42:45.949585 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [1.79 ms]
+2024-05-23 18:42:45.949585 ; BT2202A        ; Debug       ; SCPI << 3.7666
+2024-05-23 18:42:45.951466 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [1.85 ms]
+2024-05-23 18:42:45.951466 ; BT2202A        ; Debug       ; SCPI << 0.1367
+2024-05-23 18:42:45.951466 ; BT2202A        ; Information ; Voltage at second 22: 3.7666
+2024-05-23 18:42:45.951466 ; BT2202A        ; Information ; Current at second 22: 0.1367
+2024-05-23 18:42:46.953218 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [1.83 ms]
+2024-05-23 18:42:46.953218 ; BT2202A        ; Debug       ; SCPI << 3.7389
+2024-05-23 18:42:46.955553 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [1.96 ms]
+2024-05-23 18:42:46.955553 ; BT2202A        ; Debug       ; SCPI << 0.1132
+2024-05-23 18:42:46.955553 ; BT2202A        ; Information ; Voltage at second 23: 3.7389
+2024-05-23 18:42:46.955553 ; BT2202A        ; Information ; Current at second 23: 0.1132
+2024-05-23 18:42:47.958496 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [1.94 ms]
+2024-05-23 18:42:47.958496 ; BT2202A        ; Debug       ; SCPI << 3.6258
+2024-05-23 18:42:47.960495 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [1.96 ms]
+2024-05-23 18:42:47.960495 ; BT2202A        ; Debug       ; SCPI << -0.0007
+2024-05-23 18:42:47.960495 ; BT2202A        ; Information ; Voltage at second 24: 3.6258
+2024-05-23 18:42:47.960495 ; BT2202A        ; Information ; Current at second 24: -0.0007
+2024-05-23 18:42:48.963788 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [2.20 ms]
+2024-05-23 18:42:48.963788 ; BT2202A        ; Debug       ; SCPI << 3.6231
+2024-05-23 18:42:48.965687 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [2.22 ms]
+2024-05-23 18:42:48.965687 ; BT2202A        ; Debug       ; SCPI << -0.0005
+2024-05-23 18:42:48.965687 ; BT2202A        ; Information ; Voltage at second 25: 3.6231
+2024-05-23 18:42:48.965687 ; BT2202A        ; Information ; Current at second 25: -0.0005
+2024-05-23 18:42:49.968666 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [2.06 ms]
+2024-05-23 18:42:49.968666 ; BT2202A        ; Debug       ; SCPI << 3.6227
+2024-05-23 18:42:49.970735 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [2.13 ms]
+2024-05-23 18:42:49.971787 ; BT2202A        ; Debug       ; SCPI << -0.0011
+2024-05-23 18:42:49.971787 ; BT2202A        ; Information ; Voltage at second 26: 3.6227
+2024-05-23 18:42:49.971787 ; BT2202A        ; Information ; Current at second 26: -0.0011
+2024-05-23 18:42:50.973366 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [1.92 ms]
+2024-05-23 18:42:50.974364 ; BT2202A        ; Debug       ; SCPI << 3.6225
+2024-05-23 18:42:50.976232 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [1.99 ms]
+2024-05-23 18:42:50.976232 ; BT2202A        ; Debug       ; SCPI << -0.0011
+2024-05-23 18:42:50.976232 ; BT2202A        ; Information ; Voltage at second 27: 3.6225
+2024-05-23 18:42:50.976232 ; BT2202A        ; Information ; Current at second 27: -0.0011
+2024-05-23 18:42:51.978645 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [1.94 ms]
+2024-05-23 18:42:51.978645 ; BT2202A        ; Debug       ; SCPI << 3.6225
+2024-05-23 18:42:51.980644 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [2.18 ms]
+2024-05-23 18:42:51.980644 ; BT2202A        ; Debug       ; SCPI << -0.0011
+2024-05-23 18:42:51.980644 ; BT2202A        ; Information ; Voltage at second 28: 3.6225
+2024-05-23 18:42:51.980644 ; BT2202A        ; Information ; Current at second 28: -0.0011
+2024-05-23 18:42:52.984439 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [1.98 ms]
+2024-05-23 18:42:52.984439 ; BT2202A        ; Debug       ; SCPI << 3.6223
+2024-05-23 18:42:52.986402 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [2.07 ms]
+2024-05-23 18:42:52.986402 ; BT2202A        ; Debug       ; SCPI << -0.0011
+2024-05-23 18:42:52.986402 ; BT2202A        ; Information ; Voltage at second 29: 3.6223
+2024-05-23 18:42:52.986402 ; BT2202A        ; Information ; Current at second 29: -0.0011
+2024-05-23 18:42:53.988923 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:VOLT? (@1001) [1.99 ms]
+2024-05-23 18:42:53.988923 ; BT2202A        ; Debug       ; SCPI << 3.6221
+2024-05-23 18:42:53.990874 ; BT2202A        ; Debug       ; SCPI >> MEAS:CELL:CURRent? (@1001) [1.90 ms]
+2024-05-23 18:42:53.990874 ; BT2202A        ; Debug       ; SCPI << -0.0011
+2024-05-23 18:42:53.990874 ; BT2202A        ; Information ; Voltage at second 30: 3.6221
+2024-05-23 18:42:53.990874 ; BT2202A        ; Information ; Current at second 30: -0.0011
+2024-05-23 18:42:53.990874 ; BT2202A        ; Debug       ; SCPI >> SEQ:ABORT [137 us]
+2024-05-23 18:42:53.996977 ; TestPlan       ; Information ; "Carga" completed. [47.1 s]
+2024-05-23 18:42:53.997973 ; TestPlan       ; Debug       ; Test step runs finished. [47.1 s]
+2024-05-23 18:42:54.013702 ; Summary        ; Information ; ----- Summary of test plan started 05/23/2024 18:42:05 -----
+2024-05-23 18:42:54.015692 ; Summary        ; Information ;  Carga                                            47.1 s          
+2024-05-23 18:42:54.015692 ; Summary        ; Information ; ------------------------------------------------------------
+2024-05-23 18:42:54.016692 ; Summary        ; Information ; -------- Test plan completed successfully in 48.9 s --------
+2024-05-23 18:42:54.031429 ; BT2202A        ; Information ; Resource "BT2202A (USB0::0x008D::0x3602::MY59002216::0::INSTR)" closed. [3.87 ms]
+2024-05-23 18:42:57.907340 ; Settings       ; Debug       ; Saved GuiControlsSettings to C:\Users\yuxia\source\repos\BT2202A\bin\Debug\Settings\GUI Controls.xml [7.45 ms]
+2024-05-23 18:42:57.916628 ; Settings       ; Debug       ; Saved PanelSettings to C:\Users\yuxia\source\repos\BT2202A\bin\Debug\Settings\GUI Panels.xml [838 us]
+2024-05-23 18:42:57.918057 ; Settings       ; Debug       ; Saved EditorSettings to C:\Users\yuxia\source\repos\BT2202A\bin\Debug\Settings\Editor.xml [1.44 ms]

@@ -1,0 +1,70 @@
+﻿2024-05-07 18:34:15.879358 ; Session        ; Debug       ; Session log loaded as 'C:\Users\yuxia\source\repos\BT2202A\bin\Debug\SessionLogs\editor 2024-05-07 18-34-15.txt'. [14.9 ms]
+2024-05-07 18:34:15.892488 ; Session        ; Debug       ; Running '"C:\Users\yuxia\source\repos\BT2202A\bin\Debug\editor.exe" ' in 'C:\Users\yuxia\source\repos\BT2202A\bin\Debug'.
+2024-05-07 18:34:15.982178 ; Session        ; Debug       ; Microsoft Windows 10.0.22631 X64
+2024-05-07 18:34:15.982178 ; Session        ; Debug       ; .NET Framework 4.8.9232.0
+2024-05-07 18:34:15.996183 ; Session        ; Debug       ; OpenTAP Engine 9.17.4+ea67c63a X64
+2024-05-07 18:34:16.000163 ; AssemblyFinder ; Debug       ; Found 25/80 assembly files. [10.7 ms]
+2024-05-07 18:34:16.023150 ; Resolver       ; Debug       ; Found match for System.Reflection.Metadata, Version=1.4.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a in C:\Users\yuxia\source\repos\BT2202A\bin\Debug\Dependencies\System.Reflection.Metadata.1.4.3.0\System.Reflection.Metadata.dll
+2024-05-07 18:34:16.028163 ; Resolver       ; Debug       ; Found match for Keysight.OpenTap.Wpf, Version=9.5.0.0, Culture=neutral, PublicKeyToken=null in C:\Users\yuxia\source\repos\BT2202A\bin\Debug\Packages\WPF Controls\Keysight.OpenTap.Wpf.dll
+2024-05-07 18:34:16.055149 ; Resolver       ; Debug       ; Found match for System.Collections.Immutable, Version=1.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a in C:\Users\yuxia\source\repos\BT2202A\bin\Debug\Dependencies\System.Collections.Immutable.1.2.3.0\System.Collections.Immutable.dll
+2024-05-07 18:34:16.183804 ; Searcher       ; Debug       ; Ordered 23 assemblies according to references. [180 ms]
+2024-05-07 18:34:16.201556 ; Settings       ; Debug       ; No settings file exists for EditorSettings. A new instance with default values has been created. [1.63 ms]
+2024-05-07 18:34:16.254555 ; PluginManager  ; Debug       ; Found 18 plugin assemblies containing 265 plugin types. [251 ms]
+2024-05-07 18:34:16.254555 ; PluginManager  ; Debug       ; Found version 9.17.4+ea67c63a  of OpenTap.dll
+2024-05-07 18:34:16.254555 ; PluginManager  ; Debug       ; Found version 0.1.0-Development of BT2202A.dll
+2024-05-07 18:34:16.254555 ; PluginManager  ; Debug       ; Found version 9.17.4+ea67c63a  of OpenTap.Package.dll
+2024-05-07 18:34:16.254555 ; PluginManager  ; Debug       ; Found version 1.1.1.0          of Keysight.OpenTap.Licensing.dll
+2024-05-07 18:34:16.254555 ; PluginManager  ; Debug       ; Found version 9.17.4+ea67c63a  of OpenTap.Plugins.BasicSteps.dll
+2024-05-07 18:34:16.254555 ; PluginManager  ; Debug       ; Found version 9.17.4+5e508f08  of Keysight.OpenTap.Wpf.dll
+2024-05-07 18:34:16.254555 ; PluginManager  ; Debug       ; Found version 9.17.4+5e508f08  of PackageManager.exe
+2024-05-07 18:34:16.254555 ; PluginManager  ; Debug       ; Found version 9.17.4+5e508f08  of Editor.exe
+2024-05-07 18:34:16.254555 ; PluginManager  ; Debug       ; Found version 9.11.0+98498e58  of Csv.dll
+2024-05-07 18:34:16.254555 ; PluginManager  ; Debug       ; Found version 9.17.4+5e508f08  of ResultsViewer.exe
+2024-05-07 18:34:16.254555 ; PluginManager  ; Debug       ; Found version 9.17.4+5e508f08  of RunExplorer.exe
+2024-05-07 18:34:16.254555 ; PluginManager  ; Debug       ; Found version 9.17.4+5e508f08  of Keysight.OpenTap.CommunityEditionPopup.exe
+2024-05-07 18:34:16.254555 ; PluginManager  ; Debug       ; Found version 1.0.0            of OpenTap.OSIntegration.Windows.dll
+2024-05-07 18:34:16.254555 ; PluginManager  ; Debug       ; Found version 9.17.4+ea67c63a  of OpenTap.Sdk.New.dll
+2024-05-07 18:34:16.254555 ; PluginManager  ; Debug       ; Found version 9.4.2+3009aace   of Keysight.OpenTap.Plugins.ResultListener.SqlDatabase.dll
+2024-05-07 18:34:16.254555 ; PluginManager  ; Debug       ; Found version 9.4.2+3009aace   of Keysight.OpenTap.Plugins.ResultListener.PostgreSQL.dll
+2024-05-07 18:34:16.254555 ; PluginManager  ; Debug       ; Found version 9.4.2+3009aace   of Keysight.OpenTap.Plugins.ResultListener.SQLite.dll
+2024-05-07 18:34:16.254555 ; PluginManager  ; Debug       ; Found version 1.2.6+ef0ad804   of OpenTap.VSSdk.Installer.dll
+2024-05-07 18:34:16.254555 ; PluginManager  ; Debug       ; Searched 25 Assemblies. [251 ms]
+2024-05-07 18:34:16.256555 ; Resolver       ; Debug       ; Found match for Keysight.Ccl.Wsl, Version=4.0.1.9, Culture=neutral, PublicKeyToken=55333af07c70062e in C:\Users\yuxia\source\repos\BT2202A\bin\Debug\Dependencies\Keysight.Ccl.Wsl.4.0.1.9\Keysight.Ccl.Wsl.dll
+2024-05-07 18:34:16.268560 ; PluginManager  ; Debug       ; Loaded OpenTap. [315 us]
+2024-05-07 18:34:16.274565 ; PluginManager  ; Debug       ; Loaded Keysight.OpenTap.Wpf. [118 us]
+2024-05-07 18:34:16.383841 ; Resolver       ; Debug       ; Found match for MahApps.Metro, Version=1.3.0.0, Culture=neutral, PublicKeyToken=f4fb5a3c4d1e5b4f in C:\Users\yuxia\source\repos\BT2202A\bin\Debug\Dependencies\MahApps.Metro.1.3.0.0\MahApps.Metro.dll
+2024-05-07 18:34:16.509268 ; GUI            ; Debug       ; Loaded Light Theme. [19.3 ms]
+2024-05-07 18:34:16.681624 ; Resolver       ; Debug       ; Found match for AvalonDock, Version=4.60.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4 in C:\Users\yuxia\source\repos\BT2202A\bin\Debug\Dependencies\AvalonDock.4.60.0.0\AvalonDock.dll
+2024-05-07 18:34:16.763483 ; Settings       ; Debug       ; No settings file exists for GuiControlsSettings. A new instance with default values has been created. [1.88 ms]
+2024-05-07 18:34:16.763483 ; Main           ; Debug       ; Window initial dimensions: 1024px, 768px.
+2024-05-07 18:34:16.781191 ; Settings       ; Debug       ; No settings file exists for EngineSettings. A new instance with default values has been created. [16.5 ms]
+2024-05-07 18:34:16.812410 ; Resolver       ; Debug       ; Found match for Keysight.OpenTap.Licensing, Version=1.1.1.0, Culture=neutral, PublicKeyToken=null in C:\Users\yuxia\source\repos\BT2202A\bin\Debug\Packages\Keysight Licensing\Keysight.OpenTap.Licensing.dll
+2024-05-07 18:34:16.815417 ; Session        ; Debug       ; Session log loaded as 'SessionLogs\SessionLog 2024-05-07 18-34-16.txt'. [20.8 ms]
+2024-05-07 18:34:16.891188 ; PluginManager  ; Debug       ; Loaded OpenTap.Package. [37.4 ms]
+2024-05-07 18:34:16.900527 ; PluginManager  ; Debug       ; Loaded OpenTap.Plugins.BasicSteps. [11.5 ms]
+2024-05-07 18:34:16.933525 ; PluginManager  ; Debug       ; Loaded OpenTap.OSIntegration.Windows. [11.4 ms]
+2024-05-07 18:34:16.985930 ; PluginManager  ; Debug       ; Loaded mscorlib. [500 ns]
+2024-05-07 18:34:17.189616 ; Settings       ; Debug       ; No settings file exists for PackageManagerSettings. A new instance with default values has been created. [667 us]
+2024-05-07 18:34:17.236665 ; Settings       ; Debug       ; No settings file exists for PanelSettings. A new instance with default values has been created. [82.3 us]
+2024-05-07 18:34:17.452204 ; PluginManager  ; Debug       ; Loaded PackageManager. [189 us]
+2024-05-07 18:34:17.453207 ; PluginManager  ; Debug       ; Loaded Editor. [19.8 us]
+2024-05-07 18:34:17.462202 ; PluginManager  ; Debug       ; Loaded ResultsViewer. [9.52 ms]
+2024-05-07 18:34:17.470208 ; PluginManager  ; Debug       ; Loaded RunExplorer. [6.99 ms]
+2024-05-07 18:34:17.528801 ; Main           ; Debug       ; GUI initialized. [764 ms]
+2024-05-07 18:34:17.528801 ; Main           ; Debug       ; Docking manager initialized. [43.7 us]
+2024-05-07 18:34:17.532803 ; OpenTAP        ; Information ; OpenTAP version '9.17.4+ea67c63a' 64-bit initialized 05/07/2024 [2.29 s]
+2024-05-07 18:34:17.558800 ; Settings       ; Debug       ; No settings file exists for ConnectionSettings. A new instance with default values has been created. [748 us]
+2024-05-07 18:34:17.558800 ; Settings       ; Debug       ; No settings file exists for DutSettings. A new instance with default values has been created. [191 us]
+2024-05-07 18:34:17.558800 ; Settings       ; Debug       ; No settings file exists for InstrumentSettings. A new instance with default values has been created. [148 us]
+2024-05-07 18:34:17.559817 ; Settings       ; Debug       ; No settings file exists for ResultSettings. A new instance with default values has been created. [328 us]
+2024-05-07 18:34:18.595035 ; Resolver       ; Debug       ; Found match for Keysight.Kal.Licensing.Api, Version=4.0.0.0, Culture=neutral, PublicKeyToken=55333af07c70062e in C:\Users\yuxia\source\repos\BT2202A\bin\Debug\Dependencies\Keysight.Kal.Licensing.Api.4.0.0\Keysight.Kal.Licensing.Api.dll
+2024-05-07 18:34:18.631447 ; Resolver       ; Debug       ; Found match for Keysight.Ccl.Licensing.Api, Version=5.3.2.19, Culture=neutral, PublicKeyToken=55333af07c70062e in C:\Users\yuxia\source\repos\BT2202A\bin\Debug\Dependencies\Keysight.Ccl.Licensing.Api.5.3.2.19\Keysight.Ccl.Licensing.Api.dll
+2024-05-07 18:34:18.668686 ; Main           ; Debug       ; Application startup finished. [3.42 s]
+2024-05-07 18:34:18.677689 ; KAL            ; Debug       ; KAL signature verified. [53.2 ms]
+2024-05-07 18:34:18.688200 ; KAL Process    ; Debug       ; Initialized [63.4 ms]
+2024-05-07 18:34:18.691199 ; KAL            ; Debug       ; Initialized [68.2 ms]
+2024-05-07 18:34:18.772984 ; CCL            ; Debug       ; Initialized [191 ms]
+2024-05-07 18:34:19.379433 ; Main           ; Debug       ; Update check complete. [1.84 s]
+2024-05-07 18:34:40.992276 ; Settings       ; Debug       ; Saved GuiControlsSettings to C:\Users\yuxia\source\repos\BT2202A\bin\Debug\Settings\GUI Controls.xml [50.2 ms]
+2024-05-07 18:34:40.997281 ; Settings       ; Debug       ; Saved PanelSettings to C:\Users\yuxia\source\repos\BT2202A\bin\Debug\Settings\GUI Panels.xml [4.07 ms]
+2024-05-07 18:34:41.002285 ; Settings       ; Debug       ; Saved EditorSettings to C:\Users\yuxia\source\repos\BT2202A\bin\Debug\Settings\Editor.xml [4.99 ms]
