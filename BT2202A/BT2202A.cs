@@ -6,7 +6,6 @@
 ////////**************************** Leyde Carderon *** leydecs17@outlook.com ****************************/////
 ////////**************************** Luis alonso *** luisalgonf@outlook.com ****************************/////
 
-
 using OpenTap;
 using System;
 using System.Collections.Generic;
@@ -19,13 +18,13 @@ using System.IO;
 namespace OpenTap.Plugins.Carga
     //Aqui empezamos a declarar los instrumentos que vamos a ustilizar
 {
-    [Display("DAQ970A", Group: "OpenTap.Plugins.Carga", Description: "DAQ para sensar temperaturas")]
-    public class DAQ970A : ScpiInstrument
+    /*[Display("//daq970A", Group: "OpenTap.Plugins.Carga", Description: "//daq para sensar temperaturas")]
+    public class //daq970A : ScpiInstrument
     {
-        public DAQ970A()
+        public //daq970A()
         {
-            Name = "DAQ970A";
-            VisaAddress = "TCPIP0::10.10.10.10::inst0::INSTR";  // Aqui va la visa del DAQ
+            Name = "//daq970A";
+            VisaAddress = "TCPIP0::10.10.10.10::inst0::INSTR";  // Aqui va la visa del //daq
         }
         //primero que nada que se identifique. 
         public override void Open()
@@ -42,7 +41,7 @@ namespace OpenTap.Plugins.Carga
             string temperature = ScpiQuery(command);
             return temperature; //nos regresa valor de la temperautra
         }
-    }
+    }*/
     
     // lo mismo, declaramos el uso de instrumenot BT
     [Display("BT2202A", Group: "OpenTap.Plugins.Carga", Description: "Equipo para carga y descarga")]
@@ -65,14 +64,15 @@ namespace OpenTap.Plugins.Carga
         private int chargeCommandCounter = 0;
         private int dischargeCommandCounter = 0;
 
-        private DAQ970A daq970a;
+        // private //daq970A //daq970a;
 
         private bool abortAllProcesses = false;
 
         public BT2202A()
         {
             Name = "BT2202A";
-            VisaAddress = "USB0::0x008D::0x3602::MY59002216::0::INSTR";
+            VisaAddress = "TCPIP0::192.168.1.100::inst0::INSTR";
+            
             // Inicializa las matrices que se usarán para almacenar los datos del archivo CSV.
             numberOfChannelsMatrix = new List<string[]>();
             actionMatrix = new List<string[]>();
@@ -88,7 +88,7 @@ namespace OpenTap.Plugins.Carga
             // Inicializa el diccionario que rastreará el número de iteraciones para cada comando SCPI.
             commandIterationCount = new Dictionary<string, int>();
 
-            daq970a = new DAQ970A();
+             // //daq970a = new //daq970A();
         }
 
        
@@ -98,10 +98,11 @@ namespace OpenTap.Plugins.Carga
             string Identifier = ScpiQuery("*IDN?");
             Log.Info(Identifier);
 
-            daq970a.Open();
+            // //daq970a.Open();
 
             // Load and parse the CSV file desde un dispositivo local
-            string filePath = @"C:\Users\yuxia\source\repos\Yushipoo.csv";
+            string filePath =  @"C:\Users\Admin\Desktop\Repos\Rickypoo.csv"; // @"C:\Users\yuxia\source\repos\Yushipoo.csv";
+            
             ParseCsvFile(filePath);
             GenerateScpiCommands();
         }
@@ -191,7 +192,7 @@ namespace OpenTap.Plugins.Carga
             }
         }
 
-        public void Carga(double Overvoltage, double CCurrent, double CTemperature, double Seconds)
+        public void Carga(double Overvoltage, double CCurrent, double Seconds)
         {
             if (abortAllProcesses)
             {
@@ -202,6 +203,8 @@ namespace OpenTap.Plugins.Carga
             ScpiCommand("*IDN?");
             ScpiCommand("*RST");
             ScpiCommand("SYST:PROB:LIM 1,0");
+
+            log.info($"Hewo")
 
             foreach (var command in moduleCommands) // Ejecuta cada comando en la lista de comandos de módulo que fue generado previamente.
             {
@@ -231,7 +234,7 @@ namespace OpenTap.Plugins.Carga
             string csvPath = "Measurements_Charge.csv";  // Ruta del archivo CSV para almacenar las mediciones
             using (StreamWriter writer = new StreamWriter(csvPath))
             {
-                writer.WriteLine("Time (s), Voltage (V), Current(A), Temperature (C)"); // encabezados de CSV
+                writer.WriteLine("Time (s), Voltage (V), Current(A)"); // encabezados de CSV
 
                 int iterations = commandIterationCount[chargeCommands.First()]; // Obtiene el número de iteraciones para el comando actual
                 for (int i = 0; i < iterations; i++)
@@ -247,8 +250,8 @@ namespace OpenTap.Plugins.Carga
                     Log.Info($"Voltage at second {i + 1}: {voltage}");// Registra el voltaje
                     string current = ScpiQuery("MEAS:CELL:CURRent? (@1001)");
                     Log.Info($"Current at second {i + 1}: {current}");
-                    string temperature = daq970a.MeasureTemperature(102); // Cambia el canal según sea necesario
-                    Log.Info($"Temperature at second {i + 1}: {temperature}");
+                    /*string temperature = //daq970a.MeasureTemperature(102); // Cambia el canal según sea necesario
+                    //Log.Info($"Temperature at second {i + 1}: {temperature}");
                     writer.WriteLine($"{i + 1}, {voltage}, {current}, {temperature}");  // Escribe las mediciones en el CSV
 
                     // Verifica la temperatura y aborta si es necesario
@@ -259,7 +262,7 @@ namespace OpenTap.Plugins.Carga
                         ScpiCommand("SEQ:ABORT");
                         Log.Info("SEQ:ABORT");
                         break;
-                    }
+                    }*/
                 }
             }
 
@@ -273,7 +276,7 @@ namespace OpenTap.Plugins.Carga
 
 
         // Se utiliza comandos similares que la de la carga y sigue la misma logica.
-        public void Descarga(double CVoltage, double CCurrent, double CTemperature, double Seconds)
+        public void Descarga(double CVoltage, double CCurrent, double Seconds)
         {
             if (abortAllProcesses)
             {
@@ -313,7 +316,7 @@ namespace OpenTap.Plugins.Carga
             string csvPath = "Measurements_Discharge.csv";
             using (StreamWriter writer = new StreamWriter(csvPath))
             {
-                writer.WriteLine("Time (s), Voltage (V), Current(A), Temperature (C)");
+                writer.WriteLine("Time (s), Voltage (V), Current(A)");
 
                 int iterations = commandIterationCount[dischargeCommands.First()];
                 for (int i = 0; i < iterations; i++)
@@ -329,8 +332,8 @@ namespace OpenTap.Plugins.Carga
                     Log.Info($"Voltage at second {i + 1}: {voltage}");
                     string current = ScpiQuery("MEAS:CELL:CURRent? (@1001)");
                     Log.Info($"Current at second {i + 1}: {current}");
-                    string temperature = daq970a.MeasureTemperature(102); // Cambia el canal según sea necesario
-                    Log.Info($"Temperature at second {i + 1}: {temperature}");
+                    //string temperature = daq970a.MeasureTemperature(102); // Cambia el canal según sea necesario
+                    /*Log.Info($"Temperature at second {i + 1}: {temperature}");
                     writer.WriteLine($"{i + 1}, {voltage}, {current}, {temperature}");
 
                     // Verifica la temperatura y aborta si es necesario
@@ -341,7 +344,7 @@ namespace OpenTap.Plugins.Carga
                         ScpiCommand("SEQ:ABORT");
                         Log.Info("SEQ:ABORT");
                         break;
-                    }
+                    }*/
                 }
             }
 
