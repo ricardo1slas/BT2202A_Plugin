@@ -21,9 +21,10 @@ namespace OpenTap.Plugins.Carga
         [Display("Charge Current", Group: "Connections", Order: 1.2)]
         public double CCurrent { get; set; } = 0;
 
-        [Display("Cutoff Temperature", Group: "Connections", Order: 1.3)]
+        /* [Display("Cutoff Temperature", Group: "Connections", Order: 1.3)]
         public double CTemperature { get; set; } = 0;
 
+        */
         [Display("Time (seconds)", Group: "Connections", Order: 1.4)]
         public double Seconds { get; set; } = 0;
 
@@ -39,7 +40,7 @@ namespace OpenTap.Plugins.Carga
 
         public override void Run()
         {
-            BT2202A.Carga(Overvoltage, CCurrent, CTemperature, Seconds);
+            BT2202A.Carga(Overvoltage, CCurrent, Seconds);
             Log.Info(Carga.GlobalCounter.ToString());
             GlobalCounter += 3;
             Log.Info(Carga.GlobalCounter.ToString());

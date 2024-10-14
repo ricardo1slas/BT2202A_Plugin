@@ -8,16 +8,6 @@
   <Files>
     <File Path="Packages/BT2202A/BT2202A.dll">
       <Plugins>
-        <Plugin Type="OpenTap.Plugins.Carga.DAQ970A" BaseType="Instrument">
-          <Name>DAQ970A</Name>
-          <Order>-10000</Order>
-          <Browsable>true</Browsable>
-          <Description>DAQ para sensar temperaturas</Description>
-          <Collapsed>false</Collapsed>
-          <Groups>
-            <String>OpenTap.Plugins.Carga</String>
-          </Groups>
-        </Plugin>
         <Plugin Type="OpenTap.Plugins.Carga.BT2202A" BaseType="Instrument">
           <Name>BT2202A</Name>
           <Order>-10000</Order>
