@@ -1,4 +1,13 @@
-﻿using OpenTap;
+﻿////////**************************** Autores****************************////////
+////////**************************** Ricardo Islas Guerra *** rislas837@gmail.com ****************************/////
+////////**************************** German Alvarado *** mail ****************************/////
+////////**************************** Rigel De Jesus *** mail ****************************/////
+////////**************************** Yuxian Li *** Yuxian.li520@gmail.com ****************************/////
+////////**************************** Leyde Carderon *** leydecs17@outlook.com ****************************/////
+////////**************************** Luis alonso *** luisalgonf@outlook.com ****************************/////
+
+
+using OpenTap;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -345,7 +354,3 @@ namespace OpenTap.Plugins.Carga
     }
 }
 
-//Autores
-// Yuxian Li Yuxian.li520@gmail.com
-// Leyde Carderon leydecs17@outlook.com
-// Luis alonso luisalgonf@outlook.com
