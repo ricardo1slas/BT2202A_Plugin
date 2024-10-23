@@ -1,0 +1,46 @@
+2024-10-23 12:16:14.573657 ; Session        ; Debug       ; Session log loaded as '/Users/ricky/Documents/GitHub/BT2202A_Plugin/BT2202A/bin/Debug/SessionLogs/MSBuild.3373 2024-10-23 12-16-14.txt'. [45.1 ms]
+2024-10-23 12:16:14.598634 ; Session        ; Debug       ; Running '/usr/local/share/dotnet/sdk/8.0.403/MSBuild.dll /nologo /nodemode:1 /nodeReuse:true /low:false' in '/Users/ricky/Documents/GitHub/BT2202A_Plugin/BT2202A'.
+2024-10-23 12:16:14.614821 ; AssemblyFinder ; Debug       ; Found 5/26 assembly files. [2.20 ms]
+2024-10-23 12:16:14.623913 ; Searcher       ; Debug       ; Ordered 5 assemblies according to references. [8.23 ms]
+2024-10-23 12:16:14.638077 ; PluginManager  ; Debug       ; Found 3 plugin assemblies containing 175 plugin types. [22.5 ms]
+2024-10-23 12:16:14.638386 ; PluginManager  ; Debug       ; Found version 9.23.2+5a906a86  of OpenTap.dll from /Users/ricky/.nuget/packages/opentap/9.23.2/build/payload/OpenTap.dll
+2024-10-23 12:16:14.638399 ; PluginManager  ; Debug       ; Found version 9.23.2+5a906a86  of OpenTap.Package.dll from /Users/ricky/.nuget/packages/opentap/9.23.2/build/payload/OpenTap.Package.dll
+2024-10-23 12:16:14.638402 ; PluginManager  ; Debug       ; Found version 9.23.2+5a906a86  of OpenTap.Plugins.BasicSteps.dll from /Users/ricky/.nuget/packages/opentap/9.23.2/build/payload/Packages/OpenTAP/OpenTap.Plugins.BasicSteps.dll
+2024-10-23 12:16:14.638407 ; PluginManager  ; Debug       ; Searched 5 Assemblies. [23.1 ms]
+2024-10-23 12:16:14.642581 ; AssemblyData   ; Debug       ; Loaded OpenTap.Package. [158 us]
+2024-10-23 12:16:14.642585 ; AssemblyData   ; Debug       ; Loaded OpenTap. [140 us]
+2024-10-23 12:16:14.642586 ; AssemblyData   ; Debug       ; Loaded OpenTap.Plugins.BasicSteps. [288 us]
+2024-10-23 12:16:14.664879 ; AssemblyData   ; Debug       ; Loaded System.Private.CoreLib. [200 ns]
+2024-10-23 12:16:14.761805 ; Resolver       ; Debug       ; Found match for OpenTap.Repository.Client, Version=4.17.0.0, Culture=neutral, PublicKeyToken=null in /Users/ricky/.nuget/packages/opentap/9.23.2/build/payload/Dependencies/OpenTap.Repository.Client.4.17.0.0/OpenTap.Repository.Client.dll
+2024-10-23 12:16:14.767582 ; Settings       ; Debug       ; No settings file exists for AuthenticationSettings. A new instance with default values has been created. [103 us]
+2024-10-23 12:16:14.768986 ; Settings       ; Debug       ; No settings file exists for PackageManagerSettings. A new instance with default values has been created. [303 us]
+2024-10-23 12:16:14.782963 ; FilePackageRepository ; Debug       ; Rebuilding cache: .PackageCache.CF935F3D.0.xml [6.60 ms]
+2024-10-23 12:16:14.783595 ; Package Query  ; Debug       ; Read 0 packages from [FilePackageRepository: file:///Users/ricky/Library/Application%20Support/OpenTap/PackageCache] [9.11 ms]
+2024-10-23 12:16:14.803459 ; SystemInfo     ; Debug       ; Darwin 23.0.0 Darwin Kernel Version 23.0.0: Fri Sep 15 14:42:57 PDT 2023; root:xnu-10002.1.13~1/RELEASE_ARM64_T8112Arm64
+2024-10-23 12:16:14.803485 ; SystemInfo     ; Debug       ; .NET 8.0.10
+2024-10-23 12:16:14.803571 ; SystemInfo     ; Debug       ; OpenTAP Engine 9.23.2+5a906a86 Arm64
+2024-10-23 12:16:14.804205 ; Installation   ; Debug       ; Editor CE             - 9.17.4+5e508f08
+2024-10-23 12:16:14.804206 ; Installation   ; Debug       ; SQLite and PostgreSQL - 9.4.2+3009aace
+2024-10-23 12:16:14.804206 ; Installation   ; Debug       ; Results Viewer CE     - 9.17.4+5e508f08
+2024-10-23 12:16:14.804207 ; Installation   ; Debug       ; OSIntegration         - 1.4.2+15f32a31
+2024-10-23 12:16:14.804207 ; Installation   ; Debug       ; TUI                   - 1.1.1+507fd903
+2024-10-23 12:16:14.804208 ; Installation   ; Debug       ; WPF Controls          - 9.17.4+5e508f08
+2024-10-23 12:16:14.804208 ; Installation   ; Debug       ; Developer's System CE - 9.17.4+5e508f08
+2024-10-23 12:16:14.804209 ; Installation   ; Debug       ; SDK                   - 9.17.4+ea67c63a
+2024-10-23 12:16:14.804210 ; Installation   ; Debug       ; CSV                   - 9.11.0+98498e58
+2024-10-23 12:16:14.804210 ; Installation   ; Debug       ; OpenTAP               - 9.23.2+5a906a86
+2024-10-23 12:16:14.804211 ; Installation   ; Debug       ; Visual Studio SDK CE  - 1.2.6+ef0ad804
+2024-10-23 12:16:14.804211 ; Installation   ; Debug       ; Keysight Licensing    - 1.1.1+7a2a1fe3
+2024-10-23 12:16:18.050169 ; GraphQL        ; Debug       ; {"type":"TapPackage","directory":"/Packages/","version":"","architecture":"x64","os":"MacOS"} -> found 184 packages. [3.27 s]
+2024-10-23 12:16:19.455972 ; GraphQL        ; Debug       ; {"type":"TapPackage","directory":"/Packages/","name":"OSIntegration","version":"alpha","architecture":"x64","os":"MacOS"} -> found 0 packages. [1.39 s]
+2024-10-23 12:16:20.451815 ; GraphQL        ; Debug       ; {"type":"TapPackage","directory":"/Packages/","name":"OpenTAP","version":"alpha","architecture":"x64","os":"MacOS"} -> found 19 packages. [995 ms]
+2024-10-23 12:16:21.337914 ; GraphQL        ; Debug       ; {"type":"TapPackage","directory":"/Packages/","name":"Keysight Licensing","version":"alpha","architecture":"x64","os":"MacOS"} -> found 19 packages. [885 ms]
+2024-10-23 12:16:22.230285 ; GraphQL        ; Debug       ; {"type":"TapPackage","directory":"/Packages/","name":"WPF Controls","version":"alpha","architecture":"x64","os":"MacOS"} -> found 0 packages. [892 ms]
+2024-10-23 12:16:23.119378 ; GraphQL        ; Debug       ; {"type":"TapPackage","directory":"/Packages/","name":"CSV","version":"alpha","architecture":"x64","os":"MacOS"} -> found 0 packages. [888 ms]
+2024-10-23 12:16:24.060594 ; GraphQL        ; Debug       ; {"type":"TapPackage","directory":"/Packages/","name":"Editor CE","version":"alpha","architecture":"x64","os":"MacOS"} -> found 0 packages. [941 ms]
+2024-10-23 12:16:24.956793 ; GraphQL        ; Debug       ; {"type":"TapPackage","directory":"/Packages/","name":"Results Viewer CE","version":"alpha","architecture":"x64","os":"MacOS"} -> found 0 packages. [896 ms]
+2024-10-23 12:16:25.825633 ; GraphQL        ; Debug       ; {"type":"TapPackage","directory":"/Packages/","name":"SQLite and PostgreSQL","version":"alpha","architecture":"x64","os":"MacOS"} -> found 0 packages. [868 ms]
+2024-10-23 12:16:27.443613 ; GraphQL        ; Debug       ; {"type":"TapPackage","directory":"/Packages/","name":"SDK","version":"alpha","architecture":"x64","os":"MacOS"} -> found 14 packages. [1.61 s]
+2024-10-23 12:16:28.315789 ; GraphQL        ; Debug       ; {"type":"TapPackage","directory":"/Packages/","name":"Visual Studio SDK CE","version":"alpha","architecture":"x64","os":"MacOS"} -> found 0 packages. [871 ms]
+2024-10-23 12:16:28.327568 ; image          ; Debug       ; Resolved image: TUI:1, OpenTAP:9.23.2+5a906a86, Editor CE:^9.17.4+5e508f08, SQLite and PostgreSQL:^9.4.2+3009aace, Results Viewer CE:^9.17.4+5e508f08, OSIntegration:^1.4.2+15f32a31, WPF Controls:^9.17.4+5e508f08, Developer's System CE:^9.17.4+5e508f08, SDK:^9.17.4+ea67c63a, CSV:^9.11.0+98498e58, Visual Studio SDK CE:^1.2.6+ef0ad804, Keysight Licensing:^1.1.1+7a2a1fe3 [10.2 s]
+2024-10-23 12:16:31.039381 ; OpenTAP        ; Information ; Target installation is already up to date.
