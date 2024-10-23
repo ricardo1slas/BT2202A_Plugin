@@ -53,7 +53,7 @@
             <summary> Annotated available values. </summary>
         </member>
         <member name="P:OpenTap.IAvailableValuesAnnotationProxy.SelectedValue">
-            <summary> Annotated selected value. Not this should belong to the set of AvailableValues as well.</summary>
+            <summary> Annotated selected value. Note this should belong to the set of AvailableValues as well.</summary>
         </member>
         <member name="T:OpenTap.ISuggestedValuesAnnotationProxy">
             <summary> Specifies how suggested value proxies are implemented. This class should rarely be implemented. Consider implementing just ISuggestedValuesAnnotation instead.</summary>
@@ -256,6 +256,15 @@
             one example is MacroString.
             </summary>
         </member>
+        <member name="T:OpenTap.IAnnotationStringer">
+            <summary>
+            This is interface is used for generating something from a string.
+            Currently it is used only for PluginTypeSelectorAttribute
+            </summary>
+        </member>
+        <member name="M:OpenTap.IAnnotationStringer.GetString(OpenTap.AnnotationCollection)">
+            <summary> Gets the string value of an object.  </summary>
+        </member>
         <member name="T:OpenTap.DefaultDataAnnotator">
             <summary> The default data annotator plugin. This normally forms the basis for annotation. </summary>
         </member>
@@ -266,6 +275,9 @@
             This is also why Read needs to be called even if invalidate gets set.
             </summary>
         </member>
+        <member name="M:OpenTap.DefaultDataAnnotator.PluginTypeSelectAnnotation.GetString(OpenTap.AnnotationCollection)">
+            <summary> This is used for generating strings for available and selected values. </summary>
+        </member>
         <member name="T:OpenTap.DefaultDataAnnotator.MetaDataPromptAnnotation">
             <summary>
             For annotating MetaDataPromptObjects. This is only used when running the test plan with AllowPromptMetaData enabled.
@@ -273,6 +285,14 @@
         </member>
         <member name="T:OpenTap.ProxyAnnotation">
             <summary> Proxy annotation for wrapping simpler annotation types. For example IAvailableValuesAnnotation is wrapped in a IAvailableValuesAnnotationProxy.</summary>
+        </member>
+        <member name="T:OpenTap.ProxyAnnotation.AvailableValuesAnnotationProxy.ConstStringAnnotation">
+            <summary>  This is just a constant string shown in the UI. </summary>
+        </member>
+        <member name="T:OpenTap.ProxyAnnotation.MultiSelectProxy">
+            <summary>
+            For things that can be multi-selected, for example flag enum.
+            </summary>
         </member>
         <member name="T:OpenTap.MultiObjectAnnotator">
             <summary>
@@ -478,16 +498,173 @@
             The name of the setting being referenced
             </summary>
         </member>
+        <member name="T:OpenTap.IStringOverlayAnnotation">
+            <summary> Annotation added when a setting has a string overlay (Expression). </summary>
+        </member>
+        <member name="P:OpenTap.IStringOverlayAnnotation.OverlayString">
+            <summary>  The current overlay value. </summary>
+        </member>
+        <member name="P:OpenTap.IStringOverlayAnnotation.Error">
+            <summary> Gets the current overlay error. </summary>
+        </member>
         <member name="P:OpenTap.ParameterizedIconAnnotation.IsEnabled">
             <summary> Parameterized properties are disabled is controlled by the parent parameter </summary>
         </member>
         <member name="P:OpenTap.InputIconAnnotation.IsEnabled">
             <summary> Inputs are disabled in the GUI and is controlled by the output parameter </summary>
         </member>
+        <member name="T:OpenTap.AssemblyData">
+            <summary>
+            Representation of an assembly including its dependencies. Part of the object model used in the PluginManager
+            </summary>
+        </member>
+        <member name="P:OpenTap.AssemblyData.Name">
+            <summary>
+            The name of the assembly. This is the same as the filename without extension
+            </summary>
+        </member>
+        <member name="P:OpenTap.AssemblyData.Location">
+            <summary>
+            The file from which this assembly can be loaded. The information contained in this AssemblyData object comes from this file.
+            </summary>
+        </member>
+        <member name="P:OpenTap.AssemblyData.Attributes">
+            <summary> Gets the attributes of this .net assembly. </summary>
+        </member>
+        <member name="P:OpenTap.AssemblyData.PluginAssemblyAttribute">
+            <summary>
+            <see cref="P:OpenTap.AssemblyData.PluginAssemblyAttribute"/> decorating assembly, if included
+            </summary>
+        </member>
+        <member name="P:OpenTap.AssemblyData.References">
+            <summary>
+            A list of Assemblies that this Assembly references.
+            </summary>
+        </member>
+        <member name="P:OpenTap.AssemblyData.PluginTypes">
+            <summary>
+            Gets a list of plugin types that this Assembly defines
+            </summary>
+        </member>
+        <member name="P:OpenTap.AssemblyData.Status">
+            <summary> The loaded state of the assembly. </summary>
+        </member>
+        <member name="P:OpenTap.AssemblyData.Version">
+            <summary>
+            Gets the version of this Assembly. This will return null if the version cannot be parsed.
+            </summary>
+        </member>
+        <member name="P:OpenTap.AssemblyData.SemanticVersion">
+            <summary>
+            Gets the version of this Assembly as a <see cref="P:OpenTap.AssemblyData.SemanticVersion"/>. Will return null if the version is not well formatted.
+            </summary>
+        </member>
+        <member name="P:OpenTap.AssemblyData.RawVersion">
+            <summary> Raw version as set by the assembly. </summary>
+        </member>
+        <member name="F:OpenTap.AssemblyData.preloadedAssembly">
+            <summary>  Optionally set for preloaded assemblies.  </summary>
+        </member>
+        <member name="M:OpenTap.AssemblyData.GetCached">
+            <summary> Gets the assembly without loading it.</summary>
+        </member>
+        <member name="M:OpenTap.AssemblyData.Load">
+            <summary>
+            Returns the System.Reflection.Assembly corresponding to this. 
+            If the assembly has not yet been loaded, this call will load it.
+            </summary>
+        </member>
+        <member name="M:OpenTap.AssemblyData.ToString">
+            <summary> Returns name and version as a string. </summary>
+        </member>
         <member name="M:OpenTap.AssemblyFinder.SyncFiles">
             <summary>
             Updates the dll file cache
             </summary>
+        </member>
+        <member name="T:OpenTap.Authentication.AuthenticationSettings">
+            <summary>  This class stores information about the logged in client. </summary>
+        </member>
+        <member name="P:OpenTap.Authentication.AuthenticationSettings.Tokens">
+            <summary>
+            Token store containing access and refresh tokens.
+            These tokens are used in the HttpClients returned by <see cref="M:OpenTap.Authentication.AuthenticationSettings.GetClient(System.String,System.Boolean,System.String)"/> to authenticate requests.
+            </summary>
+        </member>
+        <member name="P:OpenTap.Authentication.AuthenticationSettings.BaseAddress">
+            <summary> 
+            A well formed absolute URL used as as BaseAddress in HttpClients returned by <see cref="M:OpenTap.Authentication.AuthenticationSettings.GetClient(System.String,System.Boolean,System.String)"/>. 
+            This setting determines what relative URLs (e.g. a package repository URL) are relative to.
+            Can be null.
+            </summary>
+        </member>
+        <member name="M:OpenTap.Authentication.AuthenticationSettings.GetClient(System.String,System.Boolean,System.String)">
+            <summary>
+            Get a HttpClient with a preconfigued BaseAddress and preconfigured authentication using a Bearer token from <see cref="P:OpenTap.Authentication.AuthenticationSettings.Tokens"/>.
+            It is up to the caller of this method to control the lifetime of the HttpClient
+            </summary>
+            <param name="domain">This value is compared to <see cref="P:OpenTap.Authentication.TokenInfo.Domain"/> to find the token from <see cref="P:OpenTap.Authentication.AuthenticationSettings.Tokens"/> to use as Bearer token for requests. If unspecified, the host part of the request URI is used.</param>
+            <param name="withRetryPolicy">If the request should be retried in case of transient errors.</param>
+            <param name="baseAddress">The base address used in the returned client. A relative URL given here will be relative to <see cref="P:OpenTap.Authentication.AuthenticationSettings.BaseAddress"/>. Default is <see cref="P:OpenTap.Authentication.AuthenticationSettings.BaseAddress"/>.</param>
+            <returns>A preconfigued HttpClient object</returns>
+        </member>
+        <member name="T:OpenTap.Authentication.TokenInfo">
+            <summary> 
+            Represents a set of Oauth2/OpenID Connect tokens (access and possibly refresh token) that grants access to a given domain.
+            </summary>
+        </member>
+        <member name="T:OpenTap.Authentication.TokenInfo.TokenKind">
+            <summary>
+            An enumeration of known token kinds
+            </summary>
+        </member>
+        <member name="P:OpenTap.Authentication.TokenInfo.Kind">
+            <summary>
+            The kind of token this instance contains
+            </summary>
+        </member>
+        <member name="P:OpenTap.Authentication.TokenInfo.AccessToken">
+            <summary>
+            Raw access token string. This value can be used as a Bearer token. The HttpClient 
+            returned from <see cref="M:OpenTap.Authentication.AuthenticationSettings.GetClient(System.String,System.Boolean,System.String)"/> will automatically do 
+            this for requests that go to domains that match <see cref="P:OpenTap.Authentication.TokenInfo.Domain"/>.
+            </summary>
+        </member>
+        <member name="P:OpenTap.Authentication.TokenInfo.RefreshToken">
+            <summary>
+            Raw refresh token string. May be null if no refresh token is available.
+            </summary>
+        </member>
+        <member name="P:OpenTap.Authentication.TokenInfo.Domain">
+            <summary> 
+            The hostname or IP address this token is intended for. Used by the HttpClient 
+            returned from <see cref="M:OpenTap.Authentication.AuthenticationSettings.GetClient(System.String,System.Boolean,System.String)"/> to determine which TokenInfo
+            in the <see cref="P:OpenTap.Authentication.AuthenticationSettings.Tokens"/> list to use for a given request.
+            </summary>
+        </member>
+        <member name="P:OpenTap.Authentication.TokenInfo.Claims">
+            <summary>
+            Claims contained in the <see cref="P:OpenTap.Authentication.TokenInfo.AccessToken"/>.
+            </summary>
+        </member>
+        <member name="P:OpenTap.Authentication.TokenInfo.Expiration">
+            <summary> Expiration date of the <see cref="P:OpenTap.Authentication.TokenInfo.AccessToken"/>. </summary>
+        </member>
+        <member name="M:OpenTap.Authentication.TokenInfo.#ctor">
+            <summary>
+            Constructor used by serializer, please use constructor with arguments from user code.
+            </summary>
+        </member>
+        <member name="M:OpenTap.Authentication.TokenInfo.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Default constructor from user code
+            </summary>
+            <param name="access_token">The raw token string for the access token</param>
+            <param name="refresh_token">Access, Refresh or ID type</param>
+            <param name="domain">Domain name for which this token is valid</param>
+        </member>
+        <member name="M:OpenTap.Authentication.TokenInfo.FromResponse(System.String,System.String)">
+            <summary> Creates a TokenInfo object based on the given OAuth response (json format). </summary>
         </member>
         <member name="T:OpenTap.AvailableValuesAttribute">
             <summary>
@@ -518,6 +695,32 @@
             Creates a new SuggestedValuesAttribute that points to a property by name.
             </summary>
             <param name="propertyName">The name of the property with the suggested values.</param>
+        </member>
+        <member name="T:OpenTap.BeforeAttribute">
+            <summary>
+            Ordering constraint for plugin types. This should be used 'before' something else.
+            This is currently only support by implementations of IStringConvertProvider.
+            If more than one of these attributes are used, it will try to find a type before all of them.
+            </summary>
+        </member>
+        <member name="M:OpenTap.BeforeAttribute.#ctor(System.Type)">
+            <summary>
+             Creates a BeforeAttribute from a type parameter. This is the safest way, but requires a public C# type.
+            </summary>
+        </member>
+        <member name="M:OpenTap.BeforeAttribute.#ctor(System.String)">
+            <summary>
+             Creates a BeforeAttribute from a string type name..
+            </summary>
+            <param name="typeName"></param>
+        </member>
+        <member name="M:OpenTap.BeforeAttribute.Before(OpenTap.ITypeData)">
+            <summary>
+            returns true if the marked type should come before the 'other' type.
+            This can method can be overridden for more custom 'before' behavior.
+            </summary>
+            <param name="other"></param>
+            <returns></returns>
         </member>
         <member name="T:OpenTap.BigFloat">
             <summary> Arbitrary precision floating point numbers for exact numeric computations for when performance is not an issue. </summary>
@@ -701,6 +904,27 @@
         <member name="F:OpenTap.BreakConditionsAnnotation.Values.BreakOnPass">
             <summary> If a step completes with verdict 'Pass' the step should break execution.</summary>
         </member>
+        <member name="T:OpenTap.ChildItemVisibility">
+            <summary>  Child item visibility implements the concept of showing or hiding a child item. This could for example be the child steps of a test step. </summary>
+        </member>
+        <member name="T:OpenTap.ChildItemVisibility.Visibility">
+            <summary> Child item visibility.</summary>
+        </member>
+        <member name="F:OpenTap.ChildItemVisibility.Visibility.Visible">
+            <summary> Child items are visible. This is the default state. </summary>
+        </member>
+        <member name="F:OpenTap.ChildItemVisibility.Visibility.Collapsed">
+            <summary> Child items are collapsed.</summary>
+        </member>
+        <member name="M:OpenTap.ChildItemVisibility.SetVisibility(System.Object,OpenTap.ChildItemVisibility.Visibility)">
+            <summary>  Set visibility to collapsed or Visible. </summary>
+            <param name="obj">The object for which to set visibility.</param>
+            <param name="visibility"> </param>
+        </member>
+        <member name="M:OpenTap.ChildItemVisibility.GetVisibility(System.Object)">
+            <summary>  Sets the current collapsed or visible state. If not previously set it will return Visible. </summary>
+            <param name="obj">The object from which to get visibility.</param>
+        </member>
         <member name="M:OpenTap.Cli.CliActionTree.GetMaxCommandTreeLength(System.Int32)">
             <summary>
             This method calculates the max length in a command tree. Consider the tree outputted by tap help:
@@ -852,6 +1076,11 @@
         <member name="F:OpenTap.Cli.ExitCodes.NetworkError">
             <summary>
             Network error occurred
+            </summary>
+        </member>
+        <member name="F:OpenTap.Cli.ExitCodes.PackageResolutionError">
+            <summary>
+            Package resolution Error
             </summary>
         </member>
         <member name="T:OpenTap.Cli.ICliAction">
@@ -1028,6 +1257,18 @@
             <param name="parameters">The parameters for the action.</param>
             <returns></returns>
         </member>
+        <member name="T:OpenTap.LoginAction">
+            <summary> Sets the authentication token for use with a given domain.  </summary>
+        </member>
+        <member name="P:OpenTap.LoginAction.Url">
+            <summary>  Gets or sets the domain. </summary>
+        </member>
+        <member name="P:OpenTap.LoginAction.Token">
+            <summary>  Gets or sets the token. </summary>
+        </member>
+        <member name="M:OpenTap.LoginAction.Execute(System.Threading.CancellationToken)">
+            <summary> Logs in to the url. </summary>
+        </member>
         <member name="T:OpenTap.ColumnDisplayNameAttribute">
             <summary>
             Indicates that a property on a <see cref="T:OpenTap.TestStep"/> (a step setting) should be visible within a Test Plan editor UI.
@@ -1084,6 +1325,10 @@
             <summary>
             Attribute that determines if the settings list should be fixed.
             </summary>
+        </member>
+        <member name="M:OpenTap.IComponentSettingsList.GetRemovedAliveResources">
+            <summary> Return the objects which have been removed but still alive (non-GC'd) resources.
+            This requires using a list of WeakReferences.</summary>
         </member>
         <member name="T:OpenTap.ComponentSettingsList">
             <summary>
@@ -1428,7 +1673,16 @@
             <summary>
             Sets current settings for a component setting based on a stream of the file contents of a ComponentSettings XML file.
             </summary>
+            <exception cref="T:System.IO.InvalidDataException">If the input stream is not valid XML</exception>
             <param name="xmlFileStream">The component settings stream to be set</param>
+            <returns></returns>
+        </member>
+        <member name="M:OpenTap.ComponentSettings.SetCurrent(System.IO.Stream,System.Collections.Generic.IEnumerable{OpenTap.XmlError}@)">
+            <summary>
+            Sets current settings for a component setting based on a stream of the file contents of a ComponentSettings XML file.
+            </summary>
+            <param name="xmlFileStream">The component settings stream to be set</param>
+            <param name="errors">Any XML errors that occurred during deserialization</param>
             <returns></returns>
         </member>
         <member name="M:OpenTap.ComponentSettings.GetCurrent(OpenTap.ITypeData)">
@@ -1663,6 +1917,9 @@
             <param name="parameterizedMember"> The parameterized member owned by the source. </param>
             <returns></returns>
         </member>
+        <member name="M:OpenTap.ParameterExtensions.IsParameterized(OpenTap.IMemberData,System.Object)">
+            <summary> Returns true if a member is parameters </summary>
+        </member>
         <member name="T:OpenTap.ParameterMemberData">
             <summary>
             A member that represents a parameter. The parameter controls the value of a set of parameterized members.
@@ -1679,6 +1936,9 @@
         <member name="P:OpenTap.ParameterMemberData.Target">
             <summary> The target object to which this member is added.
             This should always be the same as the argument to GetValue/SetValue. </summary>
+        </member>
+        <member name="T:OpenTap.ParameterMemberData.ParameterMembers">
+            <summary> Immutable data structure for managing parameter members. </summary>
         </member>
         <member name="M:OpenTap.ParameterMemberData.GetValue(System.Object)">
             <summary>  Gets the value of this member. </summary>
@@ -1716,13 +1976,60 @@
             <returns>True if the last member/source pair has been removed. If this happens the parameter should be removed
             from the target object.</returns>
         </member>
+        <member name="M:OpenTap.ParameterMemberData.Remove">
+            <summary>  Call on a ParameterMemberData to remove itself from its parent type. </summary>
+        </member>
+        <member name="T:OpenTap.DynamicMember">
+            <summary> Dynamic Member</summary>
+        </member>
+        <member name="P:OpenTap.DynamicMember.Attributes">
+            <summary> Attributes </summary>
+        </member>
+        <member name="P:OpenTap.DynamicMember.Name">
+            <summary> Name of the member </summary>
+        </member>
+        <member name="P:OpenTap.DynamicMember.DeclaringType">
+            <summary> Declaring type. This should be the type of the target object. </summary>
+        </member>
+        <member name="P:OpenTap.DynamicMember.TypeDescriptor">
+            <summary> Describes the value of the member. </summary>
+        </member>
+        <member name="P:OpenTap.DynamicMember.Writable">
+            <summary> If the member is writable. </summary>
+        </member>
+        <member name="P:OpenTap.DynamicMember.Readable">
+            <summary> If the member is readable. This should generally be true. </summary>
+        </member>
+        <member name="P:OpenTap.DynamicMember.DefaultValue">
+            <summary> The default value of the member. </summary>
+        </member>
+        <member name="M:OpenTap.DynamicMember.#ctor">
+            <summary>
+            Creates an instance of the dynamic member.
+            </summary>
+        </member>
         <member name="M:OpenTap.DynamicMember.#ctor(OpenTap.DynamicMember)">
             <summary> This overload allows two DynamicMembers to share the same Get/Set value backing field.</summary>
             <param name="base"></param>
         </member>
+        <member name="M:OpenTap.DynamicMember.SetValue(System.Object,System.Object)">
+            <summary> Sets the value of the member. </summary>
+        </member>
+        <member name="M:OpenTap.DynamicMember.GetValue(System.Object)">
+            <summary> Gets the value of the member. </summary>
+        </member>
+        <member name="M:OpenTap.DynamicMember.AddDynamicMember(System.Object,OpenTap.IMemberData)">
+            <summary> Adds a dynamic member to the object. </summary>
+        </member>
+        <member name="M:OpenTap.DynamicMember.RemoveDynamicMember(System.Object,OpenTap.IMemberData)">
+            <summary> Removes a dynamic member to the object. </summary>
+        </member>
+        <member name="M:OpenTap.DynamicMember.GetDynamicMembers(System.Object)">
+            <summary> Returns all members of an object. </summary>
+        </member>
         <member name="M:OpenTap.DynamicMember.GetPlanFor(System.Object)">
             <summary> the test plan stores a hashset of all current parameterizations, so this can be used
-            to check if something is allready parameterized.</summary>
+            to check if something is already parameterized.</summary>
         </member>
         <member name="M:OpenTap.DynamicMember.IsParameterized(OpenTap.IMemberData,System.Object)">
             <summary>
@@ -1834,6 +2141,12 @@
             </summary>
         </member>
         <member name="P:OpenTap.EnabledIfAttribute.PropertyValues">
+            <summary>
+            Value(s) the property must have for the item to be valid/enabled. If multiple values are specified, the item is enabled if just one value is equal. 
+            If no values are specified, 'true' is the assumed value.
+            </summary>
+        </member>
+        <member name="P:OpenTap.EnabledIfAttribute.Values">
             <summary>
             Value(s) the property must have for the item to be valid/enabled. If multiple values are specified, the item is enabled if just one value is equal. 
             If no values are specified, 'true' is the assumed value.
@@ -2183,6 +2496,16 @@
         <member name="M:OpenTap.HybridStream.#ctor">
             <summary> Create a new instance with default parameters. </summary>
         </member>
+        <member name="T:OpenTap.IArtifactListener">
+            <summary> Defines the interface for IArtifactListeners. Artifacts are generated by the test plan and may be any kind of file. The artifacts are published sequentially with the results.  </summary>
+        </member>
+        <member name="M:OpenTap.IArtifactListener.OnArtifactPublished(OpenTap.TestRun,System.IO.Stream,System.String)">
+            <summary> Invoked when an artifact is published. Note the artifactStream MUST be disposed after use.
+            The artifact may be a FileStream, in which case it can be used as such.</summary>
+            <param name="run">May be a TestPlanRun or TestStepRun depending on how the artifact is published. If it is published with a TestStepRun it means it belongs to that specific step. If its a TestStepRun, TestStepRunCompleted has not been called for that step run. </param>
+            <param name="artifactStream">The stream containing the artifact data. </param>
+            <param name="artifactName">The name of the artifact. e.g results.csv</param>
+        </member>
         <member name="T:OpenTap.DeviceAddressAttribute">
             <summary>
             Specifies the device address used to establish a connection. Use inheritance to define a custom device address. />. 
@@ -2216,6 +2539,12 @@
         </member>
         <member name="P:OpenTap.IDynamicMemberData.IsDisposed">
             <summary>  Returns true once the member can be safely ignored. </summary>
+        </member>
+        <member name="T:OpenTap.IDynamicMemberProvider">
+            <summary> Provides a list of dynamic member types. Use DynamicMember.DeclaringType to control which types the member applies to e.g ITestStep. </summary>
+        </member>
+        <member name="M:OpenTap.IDynamicMemberProvider.GetDynamicMembers">
+            <summary> Gets the list of dynamic members provided. </summary>
         </member>
         <member name="T:OpenTap.IDynamicStep">
             <summary>
@@ -2342,6 +2671,9 @@
             </summary>
             <param name="resources">This will contain the same resources as given to <see cref="M:OpenTap.ILockManager.BeforeOpen(System.Collections.Generic.IEnumerable{OpenTap.IResourceReferences},System.Threading.CancellationToken)"/>".</param>
             <param name="abortToken">A token that will be signalled if the locking action should be cancelled.</param>
+        </member>
+        <member name="T:OpenTap.IMergedTableResultListener">
+            <summary> This interface adds support for optimized/merged result tables. This can provide a performance boost in situations where many rows of the same kinds of results are published. </summary>
         </member>
         <member name="T:OpenTap.INotifyActivity">
             <summary>
@@ -2517,6 +2849,11 @@
         </member>
         <member name="T:OpenTap.Invokable`2">
             <summary> Action(T) IInvokable. </summary>
+        </member>
+        <member name="T:OpenTap.ISkippableInvokable`2">
+            <summary> Implements a check if an invocation can be skipped. This should only be implemented if it can be done very quickly. </summary>
+            <typeparam name="T"></typeparam>
+            <typeparam name="T2"></typeparam>
         </member>
         <member name="T:OpenTap.IParameterizedMembersCache">
             <summary>
@@ -3559,6 +3896,16 @@
             <param name="query">The SCPI query to send.</param>
             <returns>The response from the instrument.</returns>
         </member>
+        <member name="T:OpenTap.IStartupInfo">
+            <summary>
+            An IStartupInfo implementation logs some specific information about the current installation.
+            </summary>
+        </member>
+        <member name="M:OpenTap.IStartupInfo.LogStartupInfo">
+            <summary>
+            LogStartupInfo is called exactly once immediately after session logging has been initialized.
+            </summary>
+        </member>
         <member name="T:OpenTap.IStringConvertProvider">
             <summary>
             Plugin interface for string convert providers.
@@ -3579,7 +3926,7 @@
             <summary>
             Creates an object from stringdata. The returned object should be of type 'type'. Returns null if it cannot convert stringdata to type.
             </summary>
-            <param name="stringdata"></param>
+            <param name="stringData"></param>
             <param name="type"></param>
             <param name="contextObject">The object on which the value is set.</param>
             <param name="culture">The culture used for the conversion. This value can will default to InvariantCulture if nothing else is selected.</param>
@@ -3700,7 +4047,7 @@
             <summary>
             Gets a TestStep from a string value. This will be a step from the test plan context object.
             </summary>
-            <param name="stringdata"></param>
+            <param name="stringData"></param>
             <param name="type"></param>
             <param name="contextObject"></param>
             <param name="culture"></param>
@@ -3719,7 +4066,7 @@
         </member>
         <member name="M:OpenTap.Plugins.InputStringConvertProvider.FromString(System.String,OpenTap.ITypeData,System.Object,System.Globalization.CultureInfo)">
             <summary> Creates an Input from a string. contextObject must be an ITestStep.</summary>
-            <param name="stringdata"></param>
+            <param name="stringData"></param>
             <param name="type"></param>
             <param name="contextObject"></param>
             <param name="culture"></param>
@@ -3745,6 +4092,9 @@
         </member>
         <member name="P:OpenTap.Plugins.CollectionSerializer.Order">
             <summary> Order of this serializer.   </summary>
+        </member>
+        <member name="P:OpenTap.Plugins.CollectionSerializer.CurrentElementType">
+            <summary> Current serializing element type. </summary>
         </member>
         <member name="M:OpenTap.Plugins.CollectionSerializer.Deserialize(System.Xml.Linq.XElement,OpenTap.ITypeData,System.Action{System.Object})">
             <summary> Deserialization implementation. </summary>
@@ -3772,6 +4122,13 @@
         </member>
         <member name="P:OpenTap.Plugins.DefaultValueSerializer.Order">
             <summary> The order of this serializer. </summary>
+        </member>
+        <member name="M:OpenTap.Plugins.DefaultValueSerializer.RegisterDefaultValue(System.Xml.Linq.XElement,System.Object)">
+            <summary>
+            Registers a default value for an XML element.
+            </summary>
+            <param name="elem"></param>
+            <param name="value"></param>
         </member>
         <member name="M:OpenTap.Plugins.DefaultValueSerializer.Deserialize(System.Xml.Linq.XElement,OpenTap.ITypeData,System.Action{System.Object})">
             <summary> Deserialization implementation. </summary>
@@ -4323,6 +4680,114 @@
             Triggers the PropertyChanged event.
             </summary>
             <param name="propertyName">String name of which property has been changed.</param>
+        </member>
+        <member name="T:OpenTap.IVisa">
+            <summary>
+            Interface implemented by VISA libraries
+            </summary>
+        </member>
+        <member name="M:OpenTap.IVisa.viOpenDefaultRM(System.Int32@)">
+            <summary>Open default RM session</summary>
+        </member>
+        <member name="M:OpenTap.IVisa.viFindRsrc(System.Int32,System.String,System.Int32@,System.Int32@,System.Text.StringBuilder)">
+            <summary>Find device</summary>
+        </member>
+        <member name="M:OpenTap.IVisa.viFindNext(System.Int32,System.Text.StringBuilder)">
+            <summary>Find next device</summary>
+        </member>
+        <member name="M:OpenTap.IVisa.viParseRsrc(System.Int32,System.String,System.Int16@,System.Int16@)">
+            <summary>Parse resource string to get interface information</summary>
+        </member>
+        <member name="M:OpenTap.IVisa.viParseRsrcEx(System.Int32,System.String,System.Int16@,System.Int16@,System.Text.StringBuilder,System.Text.StringBuilder,System.Text.StringBuilder)">
+            <summary>Parse resource string to get extended interface information</summary>
+        </member>
+        <member name="M:OpenTap.IVisa.viOpen(System.Int32,System.String,System.Int32,System.Int32,System.Int32@)">
+            <summary>Open session</summary>
+        </member>
+        <member name="M:OpenTap.IVisa.viClose(System.Int32)">
+            <summary>Close session</summary>
+        </member>
+        <member name="M:OpenTap.IVisa.viGetAttribute1(System.Int32,System.Int32,System.Byte@)">
+            <summary>Get attribute, returning a byte</summary>
+        </member>
+        <member name="M:OpenTap.IVisa.viGetAttribute2(System.Int32,System.Int32,System.Text.StringBuilder)">
+            <summary>Get attribute, filling a pre-allocated StringBuilder buffer</summary>
+        </member>
+        <member name="M:OpenTap.IVisa.viGetAttribute3(System.Int32,System.Int32,System.Int32@)">
+            <summary>Get attribute, returning an int</summary>
+        </member>
+        <member name="M:OpenTap.IVisa.viSetAttribute1(System.Int32,System.Int32,System.Byte)">
+            <summary>Set attribute, providing a byte value</summary>
+        </member>
+        <member name="M:OpenTap.IVisa.viSetAttribute2(System.Int32,System.Int32,System.Int32)">
+            <summary>Set attribute, providing an int value</summary>
+        </member>
+        <member name="M:OpenTap.IVisa.viStatusDesc(System.Int32,System.Int32,System.Text.StringBuilder)">
+            <summary>Get status code description</summary>
+        </member>
+        <member name="M:OpenTap.IVisa.viEnableEvent(System.Int32,System.Int32,System.Int16,System.Int32)">
+            <summary>Enable event</summary>
+        </member>
+        <member name="M:OpenTap.IVisa.viDisableEvent(System.Int32,System.Int32,System.Int16)">
+            <summary>Disable event</summary>
+        </member>
+        <member name="M:OpenTap.IVisa.viInstallHandler(System.Int32,System.Int32,OpenTap.IVisa.viEventHandler,System.Int32)">
+            <summary>Install handler</summary>
+        </member>
+        <member name="M:OpenTap.IVisa.viUninstallHandler(System.Int32,System.Int32,OpenTap.IVisa.viEventHandler,System.Int32)">
+            <summary>Uninstall handler</summary>
+        </member>
+        <member name="M:OpenTap.IVisa.viRead(System.Int32,System.ArraySegment{System.Byte},System.Int32,System.Int32@)">
+            <summary>Read data from device</summary>
+        </member>
+        <member name="M:OpenTap.IVisa.viWrite(System.Int32,System.ArraySegment{System.Byte},System.Int32,System.Int32@)">
+            <summary>Write data to device</summary>
+        </member>
+        <member name="M:OpenTap.IVisa.viReadSTB(System.Int32,System.Int16@)">
+            <summary>Read status byte</summary>
+        </member>
+        <member name="M:OpenTap.IVisa.viClear(System.Int32)">
+            <summary>Clear a device</summary>
+        </member>
+        <member name="M:OpenTap.IVisa.viLock(System.Int32,System.Int32,System.Int32,System.String,System.Text.StringBuilder)">
+            <summary>Lock resource</summary>
+        </member>
+        <member name="M:OpenTap.IVisa.viUnlock(System.Int32)">
+            <summary>Unlock resource</summary>
+        </member>
+        <member name="T:OpenTap.IVisa.viEventHandler">
+            <summary>Event handler prototype</summary>
+        </member>
+        <member name="T:OpenTap.IVisaProvider">
+            <summary>
+            A mechanism for retrieving IVisa implementations.
+            </summary>
+        </member>
+        <member name="P:OpenTap.IVisaProvider.Order">
+            <summary>
+            The order in which IVisaProviders will be tested. Lower numbers go first
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:OpenTap.IVisaProvider.Visa">
+            <summary>
+            Retrieves the IVisa interface
+            </summary>
+            <value>IVisa implemenation or null</value>
+        </member>
+        <member name="T:OpenTap.LoadStatus">
+            <summary>
+            The status of the loading operation for TypeData and AssemblyData.
+            </summary>
+        </member>
+        <member name="F:OpenTap.LoadStatus.NotLoaded">
+            <summary> Loading has not been done yet. </summary>
+        </member>
+        <member name="F:OpenTap.LoadStatus.Loaded">
+            <summary> This has been loaded. </summary>
+        </member>
+        <member name="F:OpenTap.LoadStatus.FailedToLoad">
+            <summary> It failed to load. </summary>
         </member>
         <member name="T:OpenTap.LogEventType">
             <summary>
@@ -5030,56 +5495,34 @@
             </summary>
         </member>
         <member name="P:OpenTap.LogResultListener.FilePath">
-            <summary>
-            File path of log file.
-            </summary>
+            <summary> File path of log file. </summary>
         </member>
         <member name="T:OpenTap.LogResultListener.FilterOptionsType">
-            <summary>
-            FilterOptions for filtering on log message verbosity level.
-            </summary>
+            <summary> FilterOptions for filtering on log message verbosity level. </summary>
         </member>
         <member name="F:OpenTap.LogResultListener.FilterOptionsType.Verbose">
-            <summary>
-            Debug messages.
-            </summary>
+            <summary> Debug messages. </summary>
         </member>
         <member name="F:OpenTap.LogResultListener.FilterOptionsType.Info">
-            <summary>
-            Information messages.
-            </summary>
+            <summary> Information messages. </summary>
         </member>
         <member name="F:OpenTap.LogResultListener.FilterOptionsType.Warnings">
-            <summary>
-            Warning messages.
-            </summary>
+            <summary> Warning messages. </summary>
         </member>
         <member name="F:OpenTap.LogResultListener.FilterOptionsType.Errors">
-            <summary>
-            Error messages.
-            </summary>
+            <summary> Error messages. </summary>
         </member>
         <member name="F:OpenTap.LogResultListener.logFilterOptionsLUT">
-            <summary>
-            to string converter LUT for filter options.
-            </summary>
+            <summary> To string converter LUT for filter options. </summary>
         </member>
         <member name="P:OpenTap.LogResultListener.FilterOptions">
-            <summary>
-            Contains the FilterOptions flags. Any combination of the four flags is allowed.
-            </summary>
+            <summary> Contains the FilterOptions flags. Any combination of the four flags is allowed. </summary>
         </member>
         <member name="M:OpenTap.LogResultListener.#ctor">
-            <summary>
-            Sets default values.
-            </summary>
+            <summary> Sets default values. </summary>
         </member>
         <member name="M:OpenTap.LogResultListener.OnTestPlanRunCompleted(OpenTap.TestPlanRun,System.IO.Stream)">
-            <summary>
-            On test plan run completed the previously temporary file is moved to the location expanded by the macro path.
-            </summary>
-            <param name="planRun"></param>
-            <param name="logStream"></param>
+            <summary> On test plan run completed the previously temporary file is moved to the location expanded by the macro path. </summary>
         </member>
         <member name="T:OpenTap.MacroExpansion">
             <summary>
@@ -5191,12 +5634,23 @@
             AnnotationCollection. 
             </summary>
         </member>
-        <member name="M:OpenTap.MenuAnnotation.#ctor(OpenTap.IMemberData)">
-            <summary> Creates a new instance. </summary>
-            <param name="member"> Which member of an object should the menu be generated for</param>
+        <member name="M:OpenTap.MenuAnnotation.#ctor(OpenTap.IMemberData,OpenTap.ITypeData,OpenTap.AnnotationCollection)">
+            <summary> Creates a 'member' menu annotation. </summary>
+        </member>
+        <member name="M:OpenTap.MenuAnnotation.#ctor(OpenTap.IMemberData,OpenTap.ITypeData)">
+            <summary> Creates a 'member' menu annotation. </summary>
+            <param name="member"> Which member of an object should the menu be generated for.</param>
+            <param name="type"> Set this if menu items for the type should be generated. </param>
+        </member>
+        <member name="M:OpenTap.MenuAnnotation.#ctor(OpenTap.ITypeData)">
+            <summary> Create a 'type' menu annotation. </summary>
+            <param name="type"> The type for which the menu should be generated. </param>
         </member>
         <member name="F:OpenTap.MenuAnnotation.member">
-            <summary> The model used to construct menu items. </summary>
+            <summary> The member used to construct menu items. This maybe be null if 'type' has a value.</summary>
+        </member>
+        <member name="F:OpenTap.MenuAnnotation.type">
+            <summary> The type used to construct menu items. This maybe be null if 'model' has a value.</summary>
         </member>
         <member name="P:OpenTap.MenuAnnotation.MenuItems">
             <summary> Gets the menu items associated with this Menu. </summary>
@@ -5209,14 +5663,29 @@
             <param name="member">The member to show the menu for.</param>
             <returns>Shall return null if the model does not support the member.</returns>
         </member>
+        <member name="T:OpenTap.ITypeMenuModelFactory">
+            <summary> Factory class for build menus. This can be used to extend a type with additional menu annotations.</summary>
+        </member>
+        <member name="M:OpenTap.ITypeMenuModelFactory.CreateModel(OpenTap.ITypeData)">
+            <summary> Create model should create exactly one IMenuItemModel whose members will be used in the MenuAnnotation. </summary>
+            <param name="type">The member to show the menu for.</param>
+            <returns>Shall return null if the model does not support the member.</returns>
+        </member>
         <member name="T:OpenTap.IMenuModel">
-            <summary>
-            Base class for things in a menu item. 
-            </summary>
+            <summary> Base class for things in a menu item. </summary>
         </member>
         <member name="P:OpenTap.IMenuModel.Source">
             <summary> The source for the menu item. This may be more than one element.
             It is strongly recommended to explicitly implement this property. </summary>
+        </member>
+        <member name="T:OpenTap.IMemberMenuModel">
+            <summary> menu model for members </summary>
+        </member>
+        <member name="P:OpenTap.IMemberMenuModel.Member">
+            <summary> The member this menu model represents. </summary>
+        </member>
+        <member name="T:OpenTap.ITypeMenuModel">
+            <summary> menu model for types </summary>
         </member>
         <member name="T:OpenTap.IMenuModelState">
             <summary>
@@ -5225,6 +5694,15 @@
         </member>
         <member name="P:OpenTap.IMenuModelState.Enabled">
             <summary> Gets if the menu model is enabled or disabled. </summary>
+        </member>
+        <member name="T:OpenTap.ITestStepMenuModel">
+            <summary> Menu models for test step properties. </summary>
+        </member>
+        <member name="P:OpenTap.ITestStepMenuModel.Source">
+            <summary> The selected test steps. </summary>
+        </member>
+        <member name="P:OpenTap.ITestStepMenuModel.Member">
+            <summary> Selected Member </summary>
         </member>
         <member name="T:OpenTap.IconNames">
             <summary>
@@ -5266,6 +5744,147 @@
         </member>
         <member name="F:OpenTap.IconNames.Input">
             <summary> This is an input</summary>
+        </member>
+        <member name="F:OpenTap.IconNames.AddMixin">
+            <summary> Add a mixin. </summary>
+        </member>
+        <member name="F:OpenTap.IconNames.ModifyMixin">
+            <summary> Modifies a mixin. </summary>
+        </member>
+        <member name="F:OpenTap.IconNames.RemoveMixin">
+            <summary> Remove a mixin. </summary>
+        </member>
+        <member name="T:OpenTap.IAssignOutputMixin">
+            <summary> This type of mixin gives access to process an output just before it gets assigned. </summary>
+        </member>
+        <member name="M:OpenTap.IAssignOutputMixin.OnAssigningOutput(OpenTap.AssignOutputEventArgs)">
+            <summary>  Invoked just before the output is assigned. </summary>
+        </member>
+        <member name="T:OpenTap.AssignOutputEventArgs">
+            <summary> Event args for ITestStepPostRun mixin. </summary>
+        </member>
+        <member name="P:OpenTap.AssignOutputEventArgs.TestStep">
+            <summary> The step for which the event happens. </summary>
+        </member>
+        <member name="P:OpenTap.AssignOutputEventArgs.Member">
+            <summary> The member that the output is assigned to. </summary>
+        </member>
+        <member name="P:OpenTap.AssignOutputEventArgs.Value">
+            <summary> The value that is going to be assigned. This can be overwritten. </summary>
+        </member>
+        <member name="T:OpenTap.IMixin">
+            <summary>
+            Mixins can be used with EmbedPropertiesAttribute to give extra functionality to a test step.
+            </summary>
+        </member>
+        <member name="T:OpenTap.TestStepPreRunEventArgs">
+            <summary> Event args for ITestStepPreRun mixin. </summary>
+        </member>
+        <member name="P:OpenTap.TestStepPreRunEventArgs.TestStep">
+            <summary> The step for which the event happens. </summary>
+        </member>
+        <member name="P:OpenTap.TestStepPreRunEventArgs.SkipStep">
+            <summary> Can be set to true to skip the step</summary>
+        </member>
+        <member name="T:OpenTap.TestPlanPreRunEventArgs">
+            <summary> Event args for ITestStepPreRun mixin. </summary>
+        </member>
+        <member name="P:OpenTap.TestPlanPreRunEventArgs.TestPlan">
+            <summary> The step for which the event happens. </summary>
+        </member>
+        <member name="T:OpenTap.TestStepPostRunEventArgs">
+            <summary> Event args for ITestStepPostRun mixin. </summary>
+        </member>
+        <member name="P:OpenTap.TestStepPostRunEventArgs.TestStep">
+            <summary> The step for which the event happens. </summary>
+        </member>
+        <member name="T:OpenTap.ResourcePreOpenEventArgs">
+            <summary> Event args for IResourcePreOpenMixin mixin. </summary>
+        </member>
+        <member name="P:OpenTap.ResourcePreOpenEventArgs.Resource">
+            <summary> The resource for which the event happens. </summary>
+        </member>
+        <member name="T:OpenTap.ITestStepPostRunMixin">
+            <summary> This mixin is activated just after a step has been executed. It allows modifying the test step run. </summary>
+        </member>
+        <member name="M:OpenTap.ITestStepPostRunMixin.OnPostRun(OpenTap.TestStepPostRunEventArgs)">
+            <summary> Invoked after test step run.</summary>
+        </member>
+        <member name="T:OpenTap.ITestStepPreRunMixin">
+            <summary> This mixin is activated just before a step is executed. It allows modifying the test step run. </summary>
+        </member>
+        <member name="M:OpenTap.ITestStepPreRunMixin.OnPreRun(OpenTap.TestStepPreRunEventArgs)">
+            <summary> Invoked before test step run.</summary>
+        </member>
+        <member name="T:OpenTap.IResourcePreOpenMixin">
+            <summary> This mixin is activated just before a resource opens. </summary>
+        </member>
+        <member name="M:OpenTap.IResourcePreOpenMixin.OnPreOpen(OpenTap.ResourcePreOpenEventArgs)">
+            <summary> Invoked just before IResource.Open is called.</summary>
+        </member>
+        <member name="T:OpenTap.ITestPlanPreRunMixin">
+            <summary> This mixin is activated just before a step is executed. It allows modifying the test step run. </summary>
+        </member>
+        <member name="M:OpenTap.ITestPlanPreRunMixin.OnPreRun(OpenTap.TestPlanPreRunEventArgs)">
+            <summary> Invoked before test step run.</summary>
+        </member>
+        <member name="T:OpenTap.IMixinBuilder">
+            <summary>  A mixin builder defines how to create and apply the instance of a specific mixin. </summary>
+        </member>
+        <member name="M:OpenTap.IMixinBuilder.Initialize(OpenTap.ITypeData)">
+            <summary> Initializes the mixin, providing the type of object to provide a mixin for. </summary>
+        </member>
+        <member name="M:OpenTap.IMixinBuilder.ToDynamicMember(OpenTap.ITypeData)">
+            <summary> Creates the member for the mixin. </summary>
+        </member>
+        <member name="T:OpenTap.MixinBuilderAttribute">
+            <summary> This attribute marks a mixin builder with the types that it supports. </summary>
+        </member>
+        <member name="M:OpenTap.MixinBuilderAttribute.#ctor(System.Type[])">
+            <summary> Creates a new instance of MixinBuilderAttribute. </summary>
+            <param name="types">The types that the mixin builder supports.</param>
+        </member>
+        <member name="T:OpenTap.MixinFactory">
+            <summary> Helper class for producing mixin builders. </summary>
+        </member>
+        <member name="M:OpenTap.MixinFactory.GetMixinBuilders(OpenTap.ITypeData)">
+            <summary> Creates mixin builders for a type. </summary>
+        </member>
+        <member name="T:OpenTap.MixinMemberData">
+            <summary> Mixin member data </summary>
+        </member>
+        <member name="P:OpenTap.MixinMemberData.Attributes">
+            <summary> Attributes </summary>
+        </member>
+        <member name="P:OpenTap.MixinMemberData.Name">
+            <summary> Name of the member </summary>
+        </member>
+        <member name="P:OpenTap.MixinMemberData.DeclaringType">
+            <summary> Declaring type. This should be the type of the target object. </summary>
+        </member>
+        <member name="P:OpenTap.MixinMemberData.TypeDescriptor">
+            <summary> Describes the value of the member. </summary>
+        </member>
+        <member name="P:OpenTap.MixinMemberData.Writable">
+            <summary> If the member is writable. </summary>
+        </member>
+        <member name="P:OpenTap.MixinMemberData.Readable">
+            <summary> If the member is readable. This should generally be true. </summary>
+        </member>
+        <member name="M:OpenTap.MixinMemberData.SetValue(System.Object,System.Object)">
+            <summary> Sets the value of the member. </summary>
+        </member>
+        <member name="M:OpenTap.MixinMemberData.GetValue(System.Object)">
+            <summary> Gets the value of the member. </summary>
+        </member>
+        <member name="P:OpenTap.MixinMemberData.DefaultValue">
+            <summary> The default value of the member. </summary>
+        </member>
+        <member name="P:OpenTap.MixinMemberData.Source">
+            <summary> The object which was used to construct this. </summary>
+        </member>
+        <member name="M:OpenTap.MixinMemberData.#ctor(OpenTap.IMixinBuilder,System.Func{System.Object})">
+            <summary> Creates a new instance of mixin member data. </summary>
         </member>
         <member name="T:OpenTap.NonMetaDataAttribute">
             <summary>
@@ -5593,12 +6212,6 @@
         <member name="M:OpenTap.PluginManager.Search">
             <summary>Searches for plugins.</summary>
         </member>
-        <member name="M:OpenTap.PluginManager.RedirectAssembly(System.String,System.Version)">
-            <summary>
-            This method is required to redirect searches for certain assemblies, in case they are not the same version number.
-            Without this runtime errors can occur in strange circumstances, such as when running a program from a shortened path. E.g. C:\progra~1\Keysight\Tap\keysight.tap.gui.exe
-            </summary>
-        </member>
         <member name="M:OpenTap.PluginManager.Load">
             <summary> Sets up the PluginManager assembly resolution systems. Under normal circumstances it is not needed to call this method directly.</summary>
         </member>
@@ -5628,6 +6241,9 @@
             This will search for plugins if not done already (i.e. call and wait for <see cref="M:OpenTap.PluginManager.SearchAsync"/>)
             </summary>
         </member>
+        <member name="F:OpenTap.PluginManager.PluginsChanged">
+            <summary> This event is invoked when the types found by the plugin manager has changed. </summary>
+        </member>
         <member name="M:OpenTap.TapAssemblyResolver.Invalidate(System.Collections.Generic.IEnumerable{System.String})">
             <summary>
             Should be called before each search. Flushes the files found. Also sets up the directories to search.
@@ -5643,6 +6259,9 @@
             This is used instead of a tuple in the above function. Tuples should _not_ be used in the assembly resolving process
             as it sometimes requires assembly resolving to load System.ValueTyple.dll.
             </summary>
+        </member>
+        <member name="T:OpenTap.PluginsChangedEventArgs">
+            <summary> This event args expresses when plugins inside PluginManager has changed. This is generally used for cache invalidation purposes.</summary>
         </member>
         <member name="T:OpenTap.PluginAssemblyAttribute">
             <summary>
@@ -5707,6 +6326,11 @@
             The list is sorted such that a dependency is before the assembly/assemblies that depend on it.
             </summary>
         </member>
+        <member name="M:OpenTap.PluginSearcher.AssemblyDependencyGraph.FindAssemblyData(System.Reflection.Assembly)">
+            <summary>
+            Find the AssemblyData for a specific loaded Assembly. If not found, it will analyze it and cache it.
+            </summary>
+        </member>
         <member name="M:OpenTap.PluginSearcher.AssemblyDependencyGraph.AddAssemblyInfo(System.String,System.Reflection.Assembly)">
             <summary> Manually analyze and add an assembly file. </summary>
         </member>
@@ -5724,6 +6348,9 @@
             </summary>
         </member>
         <member name="M:OpenTap.PluginSearcher.AddAssembly(System.String,System.Reflection.Assembly)">
+            <summary> Adds an assembly outside the 'search' context. </summary>
+        </member>
+        <member name="M:OpenTap.PluginSearcher.AddAssembly(System.Reflection.Assembly)">
             <summary> Adds an assembly outside the 'search' context. </summary>
         </member>
         <member name="M:OpenTap.PluginSearcher.Search(System.Collections.Generic.IEnumerable{System.String})">
@@ -5751,226 +6378,14 @@
             Helper to get the full name (namespace + name) of the type referenced by a TypeDefinitionHandle or TypeReferenceHandle
             </summary>
         </member>
-        <member name="T:OpenTap.TypeData">
-            <summary>
-            Representation of a C#/dotnet type including its inheritance hierarchy. Part of the object model used in the PluginManager
-            </summary>
-            <summary> Represents a .NET type. </summary>
-            <summary>
-            Factories for ITypeData
-            </summary>
-        </member>
-        <member name="P:OpenTap.TypeData.Name">
-            <summary>
-            Gets the fully qualified name of the type, including its namespace but not its assembly.
-            </summary>
-        </member>
-        <member name="P:OpenTap.TypeData.TypeAttributes">
-            <summary>
-            Gets the TypeAttributes for this type. This can be used to check if the type is abstract, nested, an interface, etc.
-            </summary>
-        </member>
-        <member name="P:OpenTap.TypeData.Assembly">
-            <summary>
-            Gets the Assembly that defines this type.
-            </summary>
-        </member>
-        <member name="P:OpenTap.TypeData.Display">
-            <summary>
-            Gets.the DisplayAttribute for this type. Null if the type does not have a DisplayAttribute
-            </summary>
-        </member>
-        <member name="P:OpenTap.TypeData.BaseTypes">
-            <summary> Gets a list of base types (including interfaces) </summary>
-        </member>
-        <member name="P:OpenTap.TypeData.PluginTypes">
-            <summary>
-            Gets a list of plugin types (i.e. types that directly implement ITapPlugin) that this type inherits from/implements
-            </summary>
-        </member>
-        <member name="P:OpenTap.TypeData.DerivedTypes">
-            <summary>
-            Gets a list of types that has this type as a base type (including interfaces)
-            </summary>
-        </member>
-        <member name="P:OpenTap.TypeData.IsBrowsable">
-            <summary>
-            False if the type has a System.ComponentModel.BrowsableAttribute with Browsable = false.
-            </summary>
-        </member>
-        <member name="M:OpenTap.TypeData.Load">
-            <summary>
-            Returns the System.Type corresponding to this. 
-            If the assembly in which this type is defined has not yet been loaded, this call will load it.
-            </summary>
-        </member>
-        <member name="P:OpenTap.TypeData.Status">
-            <summary> The loaded state of the type. </summary>
-        </member>
-        <member name="M:OpenTap.TypeData.GetBestName">
-            <summary>
-            Returns the DisplayAttribute.Name if the type has a DisplayAttribute, otherwise the FullName without namespace
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:OpenTap.TypeData.ToString">
-            <summary> Creates a string value of this.</summary>
-        </member>
-        <member name="P:OpenTap.TypeData.Type">
-            <summary>
-            Gets the System.Type that this represents. Same as calling <see cref="M:OpenTap.TypeData.Load"/>.
-            Accessing this property causes the underlying Assembly to be loaded if it is not already.
-            </summary>
-        </member>
-        <member name="M:OpenTap.TypeData.FromType(System.Type)">
-            <summary> Creates a new TypeData object to represent a dotnet type. </summary>
-        </member>
-        <member name="P:OpenTap.TypeData.IsValueType">
-            <summary> gets if the type is a value-type. (see Type.IsValueType)</summary>
-        </member>
-        <member name="P:OpenTap.TypeData.Attributes">
-            <summary> 
-            The attributes of this type. 
-            Accessing this property causes the underlying Assembly to be loaded if it is not already.
-            </summary>
-        </member>
-        <member name="P:OpenTap.TypeData.BaseType">
-            <summary> The base type of this type. Will return null if there is no base type. If there is no direct base, but instead an interface, that will be returned.</summary>
-        </member>
-        <member name="P:OpenTap.TypeData.ElementType">
-            <summary> If this is a collection type, then this is the element type. Otherwise null. </summary>
-        </member>
-        <member name="P:OpenTap.TypeData.CanCreateInstance">
-            <summary> 
-            returns true if an instance possibly can be created. 
-            Accessing this property causes the underlying Assembly to be loaded if it is not already.
-            </summary>
-        </member>
-        <member name="M:OpenTap.TypeData.CreateInstance(System.Object[])">
-            <summary>
-            Creates a new object instance of this type.
-            Accessing this property causes the underlying Assembly to be loaded if it is not already.
-            </summary>
-        </member>
-        <member name="M:OpenTap.TypeData.GetMember(System.String)">
-            <summary>
-            Gets a member by name.
-            Causes the underlying Assembly to be loaded if it is not already.
-            </summary>
-        </member>
-        <member name="M:OpenTap.TypeData.GetMembers">
-            <summary>
-            Gets all the members of this type. 
-            Causes the underlying Assembly to be loaded if it is not already.
-            </summary>
-        </member>
-        <member name="M:OpenTap.TypeData.Equals(System.Object)">
-            <summary> Compares two TypeDatas by comparing their inner Type instances. </summary>
-            <param name="obj"> Should be a TypeData</param>
-            <returns>true if the two Type properties are equals.</returns>
-        </member>
-        <member name="M:OpenTap.TypeData.GetHashCode">
-            <summary> Calculates the hash code based on the .NET Type instance. </summary>
-            <returns></returns>
-        </member>
-        <member name="E:OpenTap.TypeData.TypeCacheInvalidated">
-            <summary>  Invoked when new types has been discovered in an asynchronous fashion. </summary>
-        </member>
-        <member name="M:OpenTap.TypeData.GetDerivedTypes``1">
-            <summary> Get all known types that derive from a given type.</summary>
-            <typeparam name="BaseType">Base type that all returned types descends to.</typeparam>
-            <returns>All known types that descends to the given base type.</returns>
-        </member>
-        <member name="M:OpenTap.TypeData.GetDerivedTypes(OpenTap.ITypeData)">
-            <summary> Get all known types that derive from a given type.</summary>
-            <param name="baseType">Base type that all returned types descends to.</param>
-            <returns>All known types that descends to the given base type.</returns>
-        </member>
-        <member name="M:OpenTap.TypeData.GetTypeData(System.Object)">
-            <summary> Get the type info of an object. </summary>
-        </member>
-        <member name="M:OpenTap.TypeData.WithTypeDataCache">
-            <summary>  Creates a type data cache. Note this should be used with 'using{}' so that it gets removed afterwards. </summary>
-            <returns> A disposable object removing the cache. </returns>
-        </member>
-        <member name="M:OpenTap.TypeData.GetTypeData(System.String)">
-            <summary> Gets the type info from a string. </summary>
-        </member>
-        <member name="M:OpenTap.TypeData.GetTypeData(System.Type)">
-            <summary>
-            This throws an exception due to the ambiguousness of TypeData.FromType vs TypeData.GetTypeData. To get TypeData representing a type use TypeData.FromType.
-            Otherwise cast 'type' to an 'object' first.
-            </summary>
-        </member>
-        <member name="T:OpenTap.LoadStatus">
-            <summary>
-            The status of the loading operation for TypeData and AssemblyData.
-            </summary>
-        </member>
-        <member name="F:OpenTap.LoadStatus.NotLoaded">
-            <summary> Loading has not been done yet. </summary>
-        </member>
-        <member name="F:OpenTap.LoadStatus.Loaded">
-            <summary> This has been loaded. </summary>
-        </member>
-        <member name="F:OpenTap.LoadStatus.FailedToLoad">
-            <summary> It failed to load. </summary>
-        </member>
-        <member name="T:OpenTap.AssemblyData">
-            <summary>
-            Representation of an assembly including its dependencies. Part of the object model used in the PluginManager
-            </summary>
-        </member>
-        <member name="P:OpenTap.AssemblyData.Name">
-            <summary>
-            The name of the assembly. This is the same as the filename without extension
-            </summary>
-        </member>
-        <member name="P:OpenTap.AssemblyData.Location">
-            <summary>
-            The file from which this assembly can be loaded. The information contained in this AssemblyData object comes from this file.
-            </summary>
-        </member>
-        <member name="P:OpenTap.AssemblyData.PluginAssemblyAttribute">
-            <summary>
-            <see cref="P:OpenTap.AssemblyData.PluginAssemblyAttribute"/> decorating assembly, if included
-            </summary>
-        </member>
-        <member name="P:OpenTap.AssemblyData.References">
-            <summary>
-            A list of Assemblies that this Assembly references.
-            </summary>
-        </member>
-        <member name="P:OpenTap.AssemblyData.PluginTypes">
-            <summary>
-            Gets a list of plugin types that this Assembly defines
-            </summary>
-        </member>
-        <member name="P:OpenTap.AssemblyData.Status">
-            <summary> The loaded state of the assembly. </summary>
-        </member>
-        <member name="P:OpenTap.AssemblyData.Version">
-            <summary>
-            Gets the version of this Assembly
-            </summary>
-        </member>
-        <member name="P:OpenTap.AssemblyData.SemanticVersion">
-            <summary>
-            Gets the version of this Assembly as a <see cref="P:OpenTap.AssemblyData.SemanticVersion"/>
-            </summary>
-        </member>
-        <member name="F:OpenTap.AssemblyData.preloadedAssembly">
-            <summary>  Optionally set for preloaded assemblies.  </summary>
-        </member>
-        <member name="M:OpenTap.AssemblyData.Load">
-            <summary>
-            Returns the System.Reflection.Assembly corresponding to this. 
-            If the assembly has not yet been loaded, this call will load it.
-            </summary>
-        </member>
         <member name="T:OpenTap.PluginTypeSelectorAttribute">
             <summary>
             Indicates that a property can select an instance of a plugin type deriving from the type of the property.
+            </summary>
+        </member>
+        <member name="P:OpenTap.PluginTypeSelectorAttribute.ObjectSourceProperty">
+            <summary>
+            Where to get the available objects. This may be null in this case any derived type will be used.
             </summary>
         </member>
         <member name="T:OpenTap.ComponentSettingsLayoutAttribute">
@@ -6122,9 +6537,6 @@
             <summary>
             Returns all IConstResourceProperty instances of a specific type defined on this resource.
             </summary>
-        </member>
-        <member name="F:OpenTap.IConstResourcePropertyHelpers.constPropertyCache">
-            <summary>  Const resources are not expected to change for a given resource, so we can optimize this by caching the result. </summary>
         </member>
         <member name="M:OpenTap.IConstResourcePropertyHelpers.GetConstProperties(OpenTap.IResource)">
             <summary>
@@ -6461,15 +6873,22 @@
         <member name="M:OpenTap.MemberData.ToString">
             <summary> Gets a string representation of this CSharpType. </summary>
         </member>
-        <member name="P:OpenTap.DotNetTypeDataSearcher.Types">
+        <member name="M:OpenTap.MemberData.Equals(System.Object)">
+            <summary> Equality for MemberData. Returns true if the other object is a MemberData and refers to same member object. </summary>
+        </member>
+        <member name="M:OpenTap.MemberData.GetHashCode">
+            <summary> GetHash for MemberData. </summary>
+        </member>
+        <member name="T:OpenTap.DotNetTypeDataSearcher">
+            <summary> Searches for .NET types. This is the default TypeData searcher. </summary>
+        </member>
+        <member name="P:OpenTap.DotNetTypeDataSearcher.OpenTap#ITypeDataSearcher#Types">
             <summary>
             Get all types found by the search. 
             </summary>
         </member>
-        <member name="M:OpenTap.DotNetTypeDataSearcher.Search">
-            <summary>
-            Performs an implementation specific search for types. Generates ITypeData objects for all types found Types property.
-            </summary>
+        <member name="M:OpenTap.DotNetTypeDataSearcher.OpenTap#ITypeDataSearcher#Search">
+            <summary> Performs an implementation specific search for types. Generates ITypeData objects for all types found Types property. </summary>
         </member>
         <member name="T:OpenTap.IMemberData">
             <summary> A member of an object type. </summary>
@@ -6609,8 +7028,66 @@
         <member name="E:OpenTap.ITypeDataSearcherCacheInvalidated.CacheInvalidated">
             <summary>  Should be invoked when the available type data for a given type data searcher has changed. </summary>
         </member>
+        <member name="T:OpenTap.ITypeDataSource">
+            <summary>  Specifies that an object is the source of types. </summary>
+        </member>
+        <member name="P:OpenTap.ITypeDataSource.Name">
+            <summary> The name of this assembly data source. Usually the same as the location name without extension.</summary>
+        </member>
+        <member name="P:OpenTap.ITypeDataSource.Location">
+            <summary> The location of the types. This can be a file location, URL or null. </summary>
+        </member>
+        <member name="P:OpenTap.ITypeDataSource.Types">
+            <summary> The types which this type data source provides. </summary>
+        </member>
+        <member name="P:OpenTap.ITypeDataSource.Attributes">
+            <summary> Attributes associated with this typed data source.</summary>
+        </member>
+        <member name="P:OpenTap.ITypeDataSource.References">
+            <summary> Which other type data sources this type data source references. </summary>
+        </member>
+        <member name="P:OpenTap.ITypeDataSource.Version">
+            <summary> The version of the type data source.</summary>
+        </member>
+        <member name="T:OpenTap.ITypeDataSourceProvider">
+            <summary> Used for a ITypeDataSearcher to identify a type as something that comes from it. </summary>
+        </member>
+        <member name="M:OpenTap.ITypeDataSourceProvider.GetSource(OpenTap.ITypeData)">
+            <summary>
+            Gets the ITypeDataSource corresponding to a type data if this ITypeDataSourceProvider supports it. Otherwise it returns null.
+            </summary>
+            <param name="typeData"></param>
+            <returns></returns>
+        </member>
         <member name="T:OpenTap.NullTypeData">
             <summary>  A type data representing null values. </summary>
+        </member>
+        <member name="T:OpenTap.PluginOrderAttribute">
+            <summary>
+            Determines the order of plugin activation related to other plugins.
+            </summary>
+        </member>
+        <member name="P:OpenTap.PluginOrderAttribute.Before">
+            <summary> The type marked with the PluginOrderAttribute should come before this type. </summary>
+        </member>
+        <member name="P:OpenTap.PluginOrderAttribute.After">
+            <summary> The type marked with the PluginOrderAttribute should come after this type. </summary>
+        </member>
+        <member name="P:OpenTap.PluginOrderAttribute.Order">
+            <summary> The type marked with the PluginOrderAttribute should be weighted by this order if everything else is the same. Sorting by smallest order first (default sort order for double) </summary>
+        </member>
+        <member name="M:OpenTap.PluginOrderAttribute.#ctor(System.Type,System.Type,System.Double)">
+            <summary>
+            Creates a new instance of this attribute. 
+            </summary>
+            <param name="before"> Order of this plugin is before another plugin.</param>
+            <param name="after"> Order of this plugin is after another plugin.</param>
+            <param name="order">Everything else being the same, use a number sort order.</param>
+        </member>
+        <member name="P:OpenTap.PluginOrderAttribute.Comparer">
+            <summary>
+            This comparer can be used for sorting a list of objects based on their plugin order attributes.
+            </summary>
         </member>
         <member name="T:OpenTap.ReflectionDataExtensions">
             <summary> Helpers for work with ITypeInfo objects. </summary>
@@ -6961,16 +7438,10 @@
         </member>
         <member name="M:OpenTap.ResourceTaskManager.ToString">
             <summary> Prints a friendly name. </summary>
-            <returns></returns>
         </member>
         <member name="E:OpenTap.ResourceTaskManager.ResourceOpened">
             <summary>
             This event is triggered when a resource is opened. The event may block in which case the resource will remain open for the entire call.
-            </summary>
-        </member>
-        <member name="M:OpenTap.ResourceTaskManager.#ctor">
-            <summary>
-            Instantiates a new ResourceOpenTaskManager.
             </summary>
         </member>
         <member name="M:OpenTap.ResourceTaskManager.WaitUntilResourcesOpened(System.Threading.CancellationToken,OpenTap.IResource[])">
@@ -6991,7 +7462,7 @@
         </member>
         <member name="P:OpenTap.ResourceTaskManager.StaticResources">
             <summary>
-            Sets the resources that should always be opened when the testplan is.
+            Sets the resources that should always be opened when the test plan is.
             </summary>
         </member>
         <member name="P:OpenTap.ResourceTaskManager.EnabledSteps">
@@ -7029,14 +7500,12 @@
             <summary> Prints a friendly name. </summary>
             <returns></returns>
         </member>
-        <member name="M:OpenTap.LazyResourceManager.#ctor">
-            <summary>
-            
-            </summary>
+        <member name="T:OpenTap.LazyResourceManager.ResourceInfo">
+            <summary> Manages the state for a single resource. For example an Instrument or Result Listener. </summary>
         </member>
         <member name="P:OpenTap.LazyResourceManager.EnabledSteps">
             <summary>
-            This property should be set to all teststeps that are enabled to be run.
+            This property should be set to all test steps that are enabled to be run.
             </summary>
         </member>
         <member name="E:OpenTap.LazyResourceManager.ResourceOpened">
@@ -7128,6 +7597,9 @@
             </summary>
             <param name="stepRunId"> Step run ID.</param>
             <param name="result">Result structure.</param>
+        </member>
+        <member name="M:OpenTap.ResultListener.ImplementsOnResultsPublished(OpenTap.ResultListener)">
+            <summary> Returns true if the result listener has implemented OnResultPublished. This is used to optimize performance in situations where they don't. </summary>
         </member>
         <member name="T:OpenTap.ResultListenerIgnoreAttribute">
             <summary>
@@ -7354,7 +7826,7 @@
         </member>
         <member name="T:OpenTap.ResultTable">
             <summary>
-            A vector containing a number of results with matching names, column name, and types. 
+            A result table containing rows of results with matching names, column name, and types. 
             </summary>
         </member>
         <member name="P:OpenTap.ResultTable.Name">
@@ -7367,7 +7839,7 @@
         </member>
         <member name="P:OpenTap.ResultTable.Rows">
             <summary>
-            Indicates how many rows of results this vector contains.
+            Indicates how many rows of results this table contains.
             </summary>
         </member>
         <member name="P:OpenTap.ResultTable.Parent">
@@ -7383,15 +7855,15 @@
         </member>
         <member name="M:OpenTap.ResultTable.#ctor">
             <summary>
-            Creates an empty vector.
+            Creates an empty results table.
             </summary>
         </member>
         <member name="M:OpenTap.ResultTable.#ctor(System.String,OpenTap.ResultColumn[])">
             <summary>
-            Creates a new vector.
+            Creates a new result table.
             </summary>
-            <param name="name">The name of the result vector.</param>
-            <param name="resultColumns">The columns of the vector.</param>
+            <param name="name">The name of the result table.</param>
+            <param name="resultColumns">The columns of the table.</param>
         </member>
         <member name="M:OpenTap.ResultTable.#ctor(System.String,OpenTap.ResultColumn[],OpenTap.IParameter[])">
             <summary>
@@ -7542,18 +8014,18 @@
              </summary>
              <returns>An optimized table or the original one if it is not possible to optimize.</returns>
         </member>
-        <member name="M:OpenTap.ResultSource.PublishResultTableInvokable.CanMerge(OpenTap.ResultTable,OpenTap.ResultTable)">
-            <summary>
-            Tables can be merged if they have the same name, and the same count, types and names of columns.
-            </summary>
-        </member>
-        <member name="M:OpenTap.ResultSource.PublishResultTableInvokable.MergeTables(System.Collections.Generic.IReadOnlyList{OpenTap.ResultTable})">
-            <summary> Merges a set of result tables. This assumes that CanMerge has been called and returned true for all elements in the list. </summary>
-        </member>
         <member name="T:OpenTap.ResultSettings">
             <summary>
             A class that collects and manages the different <see cref="T:OpenTap.ResultListener"/> objects.
             </summary>
+        </member>
+        <member name="M:OpenTap.ResultTableOptimizer.CanMerge(OpenTap.ResultTable,OpenTap.ResultTable)">
+            <summary>
+            Tables can be merged if they have the same name, and the same count, types and names of columns.
+            </summary>
+        </member>
+        <member name="M:OpenTap.ResultTableOptimizer.MergeTables(System.Collections.Generic.IReadOnlyList{OpenTap.ResultTable})">
+            <summary> Merges a set of result tables. This assumes that CanMerge has been called and returned true for all elements in the list. </summary>
         </member>
         <member name="T:OpenTap.Scpi">
             <summary>
@@ -7877,8 +8349,23 @@
         <member name="M:OpenTap.ScpiInstrument.Reset">
             <summary>
              Aborts the currently running measurement and makes the default measurement active. 
-             This gets the mode to a consistent state with all of the default couplings set.  
             </summary>
+        </member>
+        <member name="M:OpenTap.ScpiInstrument.QueryIdn">
+            <summary> *IDN / Queries the instrument for a IDN string. </summary>
+        </member>
+        <member name="M:OpenTap.ScpiInstrument.QueryOpc">
+            <summary> *OPC / Operation Complete Query </summary>
+        </member>
+        <member name="M:OpenTap.ScpiInstrument.CommandRst">
+            <summary> *RST / Reset Command </summary>
+        </member>
+        <member name="M:OpenTap.ScpiInstrument.CommandCls">
+            <summary> *CLS / Clear Status Command </summary>
+        </member>
+        <member name="M:OpenTap.ScpiInstrument.QueryErr(System.Boolean)">
+            <summary> SYST:ERR? / Queries the instrument for errors.
+            This will normally be in a format like '123,"Error message"'.  </summary>
         </member>
         <member name="T:OpenTap.ScpiInstrument.ScpiSRQDelegate">
             <summary>
@@ -8036,6 +8523,17 @@
             Priority of the serializer. Defines the order in which the serializers are used. Default is 0.  
             </summary>
         </member>
+        <member name="T:OpenTap.ITapSerializerPluginDependencyMarker">
+            <summary>
+            Allows a serializer plugin to specify if it is needed for deserialization.
+            This can affect the package dependencies of test plans as the serializers used by the test plan
+            are otherwise always dependencies of the test plan itself.
+            </summary>
+        </member>
+        <member name="P:OpenTap.ITapSerializerPluginDependencyMarker.NeededForDeserialization">
+            <summary> Gets if the serializer is needed to deserialize.
+            If set to false, the serializer will not mark it as having been used. </summary>
+        </member>
         <member name="T:OpenTap.TapSerializerPlugin">
             <summary>
             Base class for OpenTAP Serializer plugins. Implement this in a public class to extend the TapSerializer with additional functionality.
@@ -8122,6 +8620,17 @@
             Initializes the logging. 
             </summary>
         </member>
+        <member name="M:OpenTap.SessionLogs.Initialize(System.String,System.Boolean)">
+            <summary>
+            Initializes the logging.
+            </summary>
+            <param name="logFileName">The name of the log file</param>
+            <param name="noExclusiveWriteLock">
+            Controls whether or not the file should have an exclusive write lock.
+            If true, the log file may be deleted while it is in use, in which case
+            session logs will be written into the void.
+            </param>
+        </member>
         <member name="T:OpenTap.SessionLogs.RecentFilesList">
             <summary>
             Class for managing a hidden file containing a list of recent files. This can be accessed by multiple processes, so possible race conditions needs to be handled.
@@ -8155,7 +8664,7 @@
         <member name="F:OpenTap.SessionOptions.OverlayComponentSettings">
             <summary>
             Component settings are cloned for the sake of this session. Instrument, DUT etc instances are cloned.
-            When this is used, test plans should be reloaded in the new context.  
+            When this is used, test plans should be reloaded in the new context. This causes resources to be serialized.
             </summary>
         </member>
         <member name="F:OpenTap.SessionOptions.RedirectLogging">
@@ -8322,7 +8831,10 @@
             <param name="message"></param>
         </member>
         <member name="M:OpenTap.TapSerializer.PushError(System.Xml.Linq.XElement,System.String,System.Exception)">
-            <summary>  Pushes a message to the list of errors for things that happened during load. Includes optional Exception value. </summary>
+            <summary>  Pushes an error to the list of errors for things that happened during load. Includes optional Exception value. </summary>
+        </member>
+        <member name="M:OpenTap.TapSerializer.PushMessage(System.Xml.Linq.XElement,System.String)">
+            <summary> Pushes a message. </summary>
         </member>
         <member name="M:OpenTap.TapSerializer.Deserialize(System.Xml.Linq.XDocument,OpenTap.ITypeData,System.Boolean,System.String)">
             <summary>
@@ -8380,6 +8892,9 @@
             <summary>
             True if errors should be ignored.
             </summary>
+        </member>
+        <member name="P:OpenTap.TapSerializer.ThrowOnErrors">
+            <summary> The serializer will throw an exception if there are any errors. </summary>
         </member>
         <member name="M:OpenTap.TapSerializer.GetSerializer``1">
             <summary>
@@ -8440,6 +8955,9 @@
             <param name="stream"></param>
             <param name="obj"></param>
         </member>
+        <member name="P:OpenTap.TapSerializer.WriteFragments">
+            <summary> If set to true, Serialize will write a section of XML instead of an entire document. In other words, it will skip writing the start of the document. </summary>
+        </member>
         <member name="M:OpenTap.TapSerializer.Serialize(System.Xml.XmlWriter,System.Object)">
             <summary>
             Serializes an object to a XML writer.
@@ -8455,13 +8973,10 @@
             <returns>The serialized object as an XML string.</returns>
         </member>
         <member name="M:OpenTap.TapSerializer.Serialize(System.Xml.Linq.XElement,System.Object,OpenTap.ITypeData)">
-            <summary>
-            Serializes an object to XML.
-            </summary>
-            <param name="elem"></param>
-            <param name="obj"></param>
-            <param name="expectedType"></param>
-            <returns></returns>
+            <summary> Serializes an object to XML. </summary>
+        </member>
+        <member name="M:OpenTap.TapSerializer.Serialize(System.Xml.Linq.XElement,System.Object,OpenTap.ITypeData,System.Boolean)">
+            <summary> Serializes an object to XML. Includes an argument whether the serializer should be notified about the type being used.</summary>
         </member>
         <member name="M:OpenTap.TapSerializer.TypeToXmlString(System.Type)">
             <summary>
@@ -8483,6 +8998,10 @@
         <member name="M:OpenTap.TapSerializer.GetObjectDeserializer(System.Object)">
             <summary> Returns the serializer for a given object. null if the object is or has not been deserialized.</summary>
         </member>
+        <member name="M:OpenTap.TapSerializer.NotifyTypeUsed(OpenTap.ITypeData)">
+            <summary> This is used to keep track of which types has been used by the serializer. </summary>
+            <param name="type"></param>
+        </member>
         <member name="M:OpenTap.TapSerializer.GetUsedTypes">
             <summary> Gets the types this TapSerializer instance has encountered until now. </summary>
         </member>
@@ -8499,20 +9018,35 @@
         <member name="M:OpenTap.TapSerializer.PopActiveSerializer">
             <summary> Manually pop a serializer from the active serializers. </summary>
         </member>
+        <member name="T:OpenTap.TeeStream">
+            <summary> TeeStream allows many reader-streams to be created from one.
+            If one reader is slower than the others, it will block until the slowest catches up. </summary>
+        </member>
+        <member name="T:OpenTap.TeeStream.TeeStreamClient">
+            <summary> Represents a client stream that reads from a shared TeeStream. </summary>
+        </member>
+        <member name="F:OpenTap.TeeStream.TeeStreamClient.globalOffset">
+            <summary> Keeps track of the current position in the stream for this client. </summary>
+        </member>
+        <member name="F:OpenTap.TeeStream.TeeStreamClient.streamHost">
+            <summary>  Reference to the host TeeStream that this client reads from. </summary>
+        </member>
+        <member name="M:OpenTap.TeeStream.TeeStreamClient.Flush">
+            <summary> This stream is read-only. Flush does nothing. </summary>
+        </member>
+        <member name="M:OpenTap.TeeStream.TeeStreamClient.Read(System.Byte[],System.Int32,System.Int32)">
+            <summary> Reads a sequence of bytes from the current stream and advances the position within the stream. </summary>
+        </member>
         <member name="T:OpenTap.TestPlan">
             <summary>
             Class containing a test plan.
             </summary>
         </member>
         <member name="P:OpenTap.TestPlan.ExternalParameters">
-            <summary>
-            Field for external test plan parameters.
-            </summary>
+            <summary>  Field for external test plan parameters. </summary>
         </member>
         <member name="P:OpenTap.TestPlan.Steps">
-            <summary>
-            A collection of TestStepBase steps.
-            </summary>
+            <summary> A collection of TestStepBase steps. </summary>
         </member>
         <member name="P:OpenTap.TestPlan.ChildTestSteps">
             <summary>
@@ -8525,9 +9059,7 @@
             </summary>
         </member>
         <member name="P:OpenTap.TestPlan.EnabledSteps">
-            <summary>
-            Gets the subset of steps that are enabled.
-            </summary>
+            <summary> Gets the subset of steps that are enabled. </summary>
         </member>
         <member name="P:OpenTap.TestPlan.Name">
             <summary>
@@ -8542,9 +9074,7 @@
             </summary>
         </member>
         <member name="P:OpenTap.TestPlan.IsInBreak">
-            <summary>
-            True if the test plan is waiting in a break.
-            </summary>
+            <summary>  True if the test plan is waiting in a break. </summary>
         </member>
         <member name="M:OpenTap.TestPlan.OnBreakOffered(OpenTap.BreakOfferedEventArgs)">
             <summary>   Raises the <see cref="E:OpenTap.TestPlan.BreakOffered"/> event. </summary>
@@ -8660,9 +9190,7 @@
             <summary> The directory where the test plan is stored.</summary>
         </member>
         <member name="P:OpenTap.TestPlan.PrintTestPlanRunSummary">
-            <summary>
-            When true, prints the test plan run summary at the end of a run.  
-            </summary>
+            <summary> When true, prints the test plan run summary at the end of a run. </summary>
         </member>
         <member name="M:OpenTap.TestPlan.StartResourcePromptAsync(OpenTap.TestPlanRun,System.Collections.Generic.IEnumerable{OpenTap.IResource})">
             <summary>
@@ -8676,8 +9204,15 @@
             <returns>Result of test plan run as a TestPlanRun object.</returns>
         </member>
         <member name="M:OpenTap.TestPlan.ExecuteAsync">
-            <summary> </summary>
-            <returns></returns>
+            <summary>Executes the test plan asynchronously </summary>
+            <returns>A task returning the test plan run.</returns>
+        </member>
+        <member name="M:OpenTap.TestPlan.ExecuteAsync(System.Threading.CancellationToken)">
+            <summary>
+            Executes the test plan asynchronously.
+            </summary>
+            <param name="abortToken">This abort token can be used to abort the operation.</param>
+            <returns>A task returning the test plan run.</returns>
         </member>
         <member name="M:OpenTap.TestPlan.ExecuteAsync(System.Collections.Generic.IEnumerable{OpenTap.IResultListener},System.Collections.Generic.IEnumerable{OpenTap.ResultParameter},System.Collections.Generic.HashSet{OpenTap.ITestStep},System.Threading.CancellationToken)">
             <summary>
@@ -8859,10 +9394,27 @@
             <param name="isCompositeRun"></param>
             <param name="testPlanXml">Predefined test plan XML. Allowed to be null.</param>
         </member>
+        <member name="M:OpenTap.TestPlanRun.PublishArtifact(System.IO.Stream,System.String)">
+            <summary> Publishes an artifact for the test plan run. </summary>
+            <param name="stream"> The artifact data as a stream. When publishing an artifact stream, the stream will be disposed by the callee and does not have to be disposed by the caller.</param>
+            <param name="artifactName"> The name of the published artifact. </param>
+        </member>
+        <member name="M:OpenTap.TestPlanRun.PublishArtifactAsync(System.IO.Stream,System.String)">
+            <summary> Publishes an artifact for the test plan run asynchronously. </summary>
+            <param name="stream"> The artifact data as a stream. When publishing an artifact stream, the stream will be disposed by the callee and does not have to be disposed by the caller.</param>
+            <param name="artifactName"> The name of the published artifact. </param>
+        </member>
+        <member name="M:OpenTap.TestPlanRun.PublishArtifact(System.String)">
+            <summary> Publishes an artifact for the test plan run. </summary>
+        </member>
+        <member name="M:OpenTap.TestPlanRun.PublishArtifactAsync(System.String)">
+            <summary> Publishes an artifact for the test plan run asynchronously. </summary>
+        </member>
+        <member name="P:OpenTap.TestPlanRun.Artifacts">
+            <summary> Returns a list of all published artifacts. This list will get updated as the test plan progresses.</summary>
+        </member>
         <member name="T:OpenTap.TestPlanRunSummaryListener">
-            <summary>
-            Class for generating the summary for a test plan.
-            </summary>
+            <summary> Class for generating the summary for a test plan. </summary>
         </member>
         <member name="M:OpenTap.TestPlanRunSummaryListener.#ctor">
             <summary>Creates an instance and removes the ResultListener log from the TraceSources, so log messages from this listener wont go anywhere.</summary>
@@ -8875,10 +9427,11 @@
             <summary>Saves which steps are started.</summary>
             <param name="stepRun"></param>
         </member>
+        <member name="M:OpenTap.TestPlanRunSummaryListener.PrintArtifactsSummary">
+            <summary> Prints the artifact summary. </summary>
+        </member>
         <member name="M:OpenTap.TestPlanRunSummaryListener.PrintSummary">
-            <summary>
-            Prints the summary.
-            </summary>
+            <summary> Prints the summary. </summary>
         </member>
         <member name="T:OpenTap.TestStep">
             <summary>
@@ -9030,12 +9583,26 @@
             </summary>
             <param name="attachedParameters">Parameters that will be stored together with the actual parameters of the steps.</param>
         </member>
+        <member name="M:OpenTap.TestStep.RunChildSteps(System.Boolean)">
+            <summary>
+            Runs all enabled <see cref="P:OpenTap.TestStep.ChildTestSteps"/> of this TestStep. Upgrades parent verdict to the resulting verdict of the childrens run. Throws an exception if the child step does not belong or isn't enabled.
+            </summary>
+            <param name="throwOnBreak">Whether an exception will be thrown due to break conditions or if they will be caught. Exceptions are still available on child test steps TestStepRun.Exception. </param>
+        </member>
         <member name="M:OpenTap.TestStep.RunChildSteps(System.Collections.Generic.IEnumerable{OpenTap.ResultParameter},System.Threading.CancellationToken)">
             <summary>
             Runs all enabled <see cref="P:OpenTap.TestStep.ChildTestSteps"/> of this TestStep. Upgrades parent verdict to the resulting verdict of the childrens run. Throws an exception if the child step does not belong or isn't enabled.
             </summary>
             <param name="attachedParameters">Parameters that will be stored together with the actual parameters of the steps.</param>
             <param name="cancellationToken">Provides a way to cancel the execution of child steps before all steps are executed.</param>
+        </member>
+        <member name="M:OpenTap.TestStep.RunChildSteps(System.Collections.Generic.IEnumerable{OpenTap.ResultParameter},System.Threading.CancellationToken,System.Boolean)">
+            <summary>
+            Runs all enabled <see cref="P:OpenTap.TestStep.ChildTestSteps"/> of this TestStep. Upgrades parent verdict to the resulting verdict of the childrens run. Throws an exception if the child step does not belong or isn't enabled.
+            </summary>
+            <param name="attachedParameters">Parameters that will be stored together with the actual parameters of the steps.</param>
+            <param name="cancellationToken">Provides a way to cancel the execution of child steps before all steps are executed.</param>
+            <param name="throwOnBreak">Whether an exception will be thrown due to break conditions or if they will be caught. Exceptions are still available on child test steps TestStepRun.Exception. </param>
         </member>
         <member name="M:OpenTap.TestStep.RunChildStep(OpenTap.ITestStep,System.Collections.Generic.IEnumerable{OpenTap.ResultParameter})">
             <summary>
@@ -9049,7 +9616,7 @@
             Runs the specified child step if enabled. Upgrades parent verdict to the resulting verdict of the child run. Throws an exception if childStep does not belong or isn't enabled.
             </summary>
             <param name="childStep">The child step to run.</param>
-            <param name="throwOnError"></param>
+            <param name="throwOnBreak"></param>
             <param name="attachedParameters">Parameters that will be stored together with the actual parameters of the step.</param>
         </member>
         <member name="P:OpenTap.TestStep.PlanRun">
@@ -9121,7 +9688,7 @@
             <summary>
             Runs all enabled <see cref="P:OpenTap.TestStep.ChildTestSteps"/> of this TestStep. Upgrades parent verdict to the resulting verdict of the childrens run. Throws an exception if the child step does not belong or isn't enabled.
             </summary>
-            <param name="Step"></param>
+            <param name="step"></param>
             <param name="currentPlanRun">The current TestPlanRun.</param>
             <param name="currentStepRun">The current TestStepRun.</param>
             <param name="attachedParameters">Parameters that will be stored together with the actual parameters of the steps.</param>
@@ -9130,17 +9697,28 @@
             <summary>
             Runs all enabled <see cref="P:OpenTap.TestStep.ChildTestSteps"/> of this TestStep. Upgrades parent verdict to the resulting verdict of the childrens run. Throws an exception if the child step does not belong or isn't enabled.
             </summary>
-            <param name="Step"></param>
+            <param name="step"></param>
             <param name="currentPlanRun">The current TestPlanRun.</param>
             <param name="currentStepRun">The current TestStepRun.</param>
             <param name="attachedParameters">Parameters that will be stored together with the actual parameters of the steps.</param>
             <param name="cancellationToken">Provides a way to cancel the execution of child steps before all steps are executed.</param>
         </member>
+        <member name="M:OpenTap.TestStepExtensions.RunChildSteps(OpenTap.ITestStep,OpenTap.TestPlanRun,OpenTap.TestStepRun,System.Collections.Generic.IEnumerable{OpenTap.ResultParameter},System.Threading.CancellationToken,System.Boolean)">
+            <summary>
+            Runs all enabled <see cref="P:OpenTap.TestStep.ChildTestSteps"/> of this TestStep. Upgrades parent verdict to the resulting verdict of the childrens run. Throws an exception if the child step does not belong or isn't enabled.
+            </summary>
+            <param name="step"></param>
+            <param name="currentPlanRun">The current TestPlanRun.</param>
+            <param name="currentStepRun">The current TestStepRun.</param>
+            <param name="attachedParameters">Parameters that will be stored together with the actual parameters of the steps.</param>
+            <param name="cancellationToken">Provides a way to cancel the execution of child steps before all steps are executed.</param>
+            <param name="throwOnBreak">Whether an exception will be thrown due to break conditions or if they will be caught. Exceptions are still available on child test steps TestStepRun.Exception. </param>
+        </member>
         <member name="M:OpenTap.TestStepExtensions.RunChildStep(OpenTap.ITestStep,OpenTap.ITestStep,OpenTap.TestPlanRun,OpenTap.TestStepRun,System.Collections.Generic.IEnumerable{OpenTap.ResultParameter})">
             <summary>
             Runs the specified child step if enabled. Upgrades parent verdict to the resulting verdict of the child run. Throws an exception if childStep does not belong or isn't enabled.
             </summary>
-            <param name="Step"></param>
+            <param name="step"></param>
             <param name="childStep">The child step to run.</param>
             <param name="currentPlanRun">The current TestPlanRun.</param>
             <param name="currentStepRun">The current TestStepRun.</param>
@@ -9150,12 +9728,15 @@
             <summary>
             Runs the specified child step if enabled. Upgrades parent verdict to the resulting verdict of the child run. Throws an exception if childStep does not belong or isn't enabled.
             </summary>
-            <param name="Step"></param>
+            <param name="step"></param>
             <param name="childStep">The child step to run.</param>
-            <param name="throwOnError"></param>
+            <param name="throwOnBreak">Whether an exception will be thrown due to break conditions or if they will be caught. Exceptions are still available on child test steps TestStepRun.Exception. </param>
             <param name="currentPlanRun">The current TestPlanRun.</param>
             <param name="currentStepRun">The current TestStepRun.</param>
             <param name="attachedParameters">Parameters that will be stored together with the actual parameters of the step.</param>
+        </member>
+        <member name="F:OpenTap.TestStepExtensions.currentlyExecutingTestStep">
+            <summary> This is the currently executing test step or null, used to detect deadlock when a step is waiting for its parent. </summary>
         </member>
         <member name="M:OpenTap.TestStepExtensions.GetObjectSettings``3(``1,System.Boolean,System.Func{``0,OpenTap.IMemberData,``2},System.Collections.Generic.HashSet{``2},OpenTap.TypeData)">
             <summary>
@@ -9178,8 +9759,16 @@
             <param name="itemSet"> The set of elements being populated.  </param>
             <returns></returns>
         </member>
+        <member name="F:OpenTap.TestStepExtensions.formatterLutCache">
+            <summary> Cache for quickly getting the display names of members used to generate the formatted name. </summary>
+        </member>
         <member name="M:OpenTap.TestStepExtensions.GetFormattedName(OpenTap.ITestStep)">
             <summary> Takes the name of step and replaces {} tokens with the value of properties. </summary>
+        </member>
+        <member name="T:OpenTap.SettingsIgnoreAttribute">
+            <summary>
+            Marks a property as not a setting. This is a performance optimization for when finding resources throughout the test plan.
+            </summary>
         </member>
         <member name="T:OpenTap.AllowAnyChildAttribute">
             <summary>
@@ -9358,6 +9947,9 @@
             <see cref="T:OpenTap.Verdict"/> resulting from the run.
             </summary>
         </member>
+        <member name="P:OpenTap.TestRun.Exception">
+            <summary> Exception causing the Verdict to be 'Error'. </summary>
+        </member>
         <member name="P:OpenTap.TestRun.Duration">
             <summary> Length of time it took to run. </summary>
         </member>
@@ -9473,6 +10065,22 @@
             <summary> Will throw an exception when it times out. </summary>
             <exception cref="T:System.TimeoutException"></exception>
         </member>
+        <member name="M:OpenTap.TestStepRun.PublishArtifact(System.IO.Stream,System.String)">
+            <summary> Publishes an artifact for the test plan run. </summary>
+            <param name="stream"> The artifact data as a stream. When publishing an artifact stream, the stream will be disposed by the callee and does not have to be disposed by the caller.</param>
+            <param name="artifactName"> The name of the published artifact. </param>
+        </member>
+        <member name="M:OpenTap.TestStepRun.PublishArtifactAsync(System.IO.Stream,System.String)">
+            <summary> Publishes an artifact for the test plan run. </summary>
+            <param name="stream"> The artifact data as a stream. When publishing an artifact stream, the stream will be disposed by the callee and does not have to be disposed by the caller.</param>
+            <param name="artifactName"> The name of the published artifact. </param>
+        </member>
+        <member name="M:OpenTap.TestStepRun.PublishArtifact(System.String)">
+            <summary> Publishes an artifact file for the test plan run. </summary>
+        </member>
+        <member name="M:OpenTap.TestStepRun.PublishArtifactAsync(System.String)">
+            <summary> Publishes an artifact file for the test plan run. </summary>
+        </member>
         <member name="T:OpenTap.TapThreadStatus">
             <summary>
             Status of a <see cref="T:OpenTap.TapThread"/>.
@@ -9508,6 +10116,11 @@
             <summary>  Cached-mode ThreadFields are a bit faster as they dont need to iterate for finding commonly used values.
             A value found in the parent thread is upgraded to local cache. Changes in parent thread thread-field values has no effect after it has
             been cached the first time.</summary>
+        </member>
+        <member name="F:OpenTap.ThreadFieldMode.Flat">
+            <summary>
+            A flat is a kind of cache that is local to the current thread only. It never inherits to the parent thread value.
+            </summary>
         </member>
         <member name="T:OpenTap.ThreadField`1">
             <summary>
@@ -9845,6 +10458,162 @@
             Initializes a new instance of the TraceBar class.
             </summary>
         </member>
+        <member name="T:OpenTap.TypeData">
+            <summary>
+            Representation of a C#/dotnet type including its inheritance hierarchy. Part of the object model used in the PluginManager
+            </summary>
+        </member>
+        <member name="P:OpenTap.TypeData.Name">
+            <summary>
+            Gets the fully qualified name of the type, including its namespace but not its assembly.
+            </summary>
+        </member>
+        <member name="P:OpenTap.TypeData.TypeAttributes">
+            <summary>
+            Gets the TypeAttributes for this type. This can be used to check if the type is abstract, nested, an interface, etc.
+            </summary>
+        </member>
+        <member name="P:OpenTap.TypeData.Assembly">
+            <summary>
+            Gets the Assembly that defines this type.
+            </summary>
+        </member>
+        <member name="P:OpenTap.TypeData.Display">
+            <summary>
+            Gets.the DisplayAttribute for this type. Null if the type does not have a DisplayAttribute
+            </summary>
+        </member>
+        <member name="P:OpenTap.TypeData.BaseTypes">
+            <summary> Gets a list of base types (including interfaces) </summary>
+        </member>
+        <member name="P:OpenTap.TypeData.PluginTypes">
+            <summary>
+            Gets a list of plugin types (i.e. types that directly implement ITapPlugin) that this type inherits from/implements
+            </summary>
+        </member>
+        <member name="P:OpenTap.TypeData.DerivedTypes">
+            <summary>
+            Gets a list of types that has this type as a base type (including interfaces)
+            </summary>
+        </member>
+        <member name="P:OpenTap.TypeData.IsBrowsable">
+            <summary>
+            False if the type has a System.ComponentModel.BrowsableAttribute with Browsable = false.
+            </summary>
+        </member>
+        <member name="P:OpenTap.TypeData.Attributes">
+            <summary> 
+            The attributes of this type. 
+            Accessing this property causes the underlying Assembly to be loaded if it is not already.
+            </summary>
+        </member>
+        <member name="P:OpenTap.TypeData.Type">
+            <summary>
+            Gets the System.Type that this represents. Same as calling <see cref="M:OpenTap.TypeData.Load"/>.
+            Accessing this property causes the underlying Assembly to be loaded if it is not already.
+            </summary>
+        </member>
+        <member name="P:OpenTap.TypeData.IsValueType">
+            <summary> gets if the type is a value-type. (see Type.IsValueType)</summary>
+        </member>
+        <member name="P:OpenTap.TypeData.BaseType">
+            <summary> The base type of this type. Will return null if there is no base type. If there is no direct base, but instead an interface, that will be returned.</summary>
+        </member>
+        <member name="P:OpenTap.TypeData.ElementType">
+            <summary> If this is a collection type, then this is the element type. Otherwise null. </summary>
+        </member>
+        <member name="P:OpenTap.TypeData.CanCreateInstance">
+            <summary> 
+            returns true if an instance possibly can be created. 
+            Accessing this property causes the underlying Assembly to be loaded if it is not already.
+            </summary>
+        </member>
+        <member name="P:OpenTap.TypeData.Status">
+            <summary> The loaded state of the type. </summary>
+        </member>
+        <member name="E:OpenTap.TypeData.TypeCacheInvalidated">
+            <summary>  Invoked when new types has been discovered in an asynchronous fashion. </summary>
+        </member>
+        <member name="M:OpenTap.TypeData.Load">
+            <summary>
+            Returns the System.Type corresponding to this. 
+            If the assembly in which this type is defined has not yet been loaded, this call will load it.
+            </summary>
+        </member>
+        <member name="M:OpenTap.TypeData.GetBestName">
+            <summary>
+            Returns the DisplayAttribute.Name if the type has a DisplayAttribute, otherwise the FullName without namespace
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:OpenTap.TypeData.ToString">
+            <summary> Creates a string value of this.</summary>
+        </member>
+        <member name="M:OpenTap.TypeData.CreateInstance(System.Object[])">
+            <summary>
+            Creates a new object instance of this type.
+            Accessing this property causes the underlying Assembly to be loaded if it is not already.
+            </summary>
+        </member>
+        <member name="M:OpenTap.TypeData.GetMember(System.String)">
+            <summary>
+            Gets a member by name.
+            Causes the underlying Assembly to be loaded if it is not already.
+            </summary>
+        </member>
+        <member name="M:OpenTap.TypeData.GetMembers">
+            <summary>
+            Gets all the members of this type. 
+            Causes the underlying Assembly to be loaded if it is not already.
+            </summary>
+        </member>
+        <member name="M:OpenTap.TypeData.Equals(System.Object)">
+            <summary> Compares two TypeDatas by comparing their inner Type instances. </summary>
+            <param name="obj"> Should be a TypeData</param>
+            <returns>true if the two Type properties are equals.</returns>
+        </member>
+        <member name="M:OpenTap.TypeData.GetHashCode">
+            <summary> Calculates the hash code based on the .NET Type instance. </summary>
+            <returns></returns>
+        </member>
+        <member name="M:OpenTap.TypeData.GetTypeData(System.Object)">
+            <summary> Get the type info of an object. </summary>
+        </member>
+        <member name="M:OpenTap.TypeData.GetDerivedTypes(OpenTap.ITypeData)">
+            <summary> Get all known types that derive from a given type.</summary>
+            <param name="baseType">Base type that all returned types descends to.</param>
+            <returns>All known types that descends to the given base type.</returns>
+        </member>
+        <member name="M:OpenTap.TypeData.GetTypeDataSource(OpenTap.ITypeData)">
+            <summary>
+            Gets the type data source for an ITypeData. For most types this will return the AssemblyData, but for types for which
+            an ITypeDataSourceProvider exists it will return that instead. The base AssemblyData will often be associated to one
+            of the typedatas base classes.
+            </summary>
+            <param name="typeData"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OpenTap.TypeData.GetDerivedTypes``1">
+            <summary> Get all known types that derive from a given type.</summary>
+            <typeparam name="BaseType">Base type that all returned types descends to.</typeparam>
+            <returns>All known types that descends to the given base type.</returns>
+        </member>
+        <member name="M:OpenTap.TypeData.WithTypeDataCache">
+            <summary>  Creates a type data cache. Note this should be used with 'using{}' so that it gets removed afterwards. </summary>
+            <returns> A disposable object removing the cache. </returns>
+        </member>
+        <member name="M:OpenTap.TypeData.GetTypeData(System.String)">
+            <summary> Gets the type info from a string. </summary>
+        </member>
+        <member name="M:OpenTap.TypeData.GetTypeData(System.Type)">
+            <summary>
+            This throws an exception due to the ambiguousness of TypeData.FromType vs TypeData.GetTypeData. To get TypeData representing a type use TypeData.FromType.
+            Otherwise cast 'type' to an 'object' first.
+            </summary>
+        </member>
+        <member name="M:OpenTap.TypeData.FromType(System.Type)">
+            <summary> Creates a new TypeData object to represent a dotnet type. </summary>
+        </member>
         <member name="T:OpenTap.UnitAttribute">
             <summary>
             Identifies that units should be assigned to a property.
@@ -9979,11 +10748,12 @@
         <member name="T:OpenTap.CliUserInputInterface">
             <summary> Standard implementation of UserInputInterface for Command Line interfaces</summary>
         </member>
-        <member name="M:OpenTap.CliUserInputInterface.awaitReadLine(System.DateTime)">
+        <member name="M:OpenTap.CliUserInputInterface.awaitReadLine(System.DateTime,System.Boolean)">
             <summary>
             AwaitReadline reads the line asynchronously.  
             This has to be done in a thread, otherwise we cannot abort the test plan in the meantime. </summary>
-            <param name="TimeOut"></param>
+            <param name="timeOut"></param>
+            <param name="secure"></param>
             <returns></returns>
         </member>
         <member name="M:OpenTap.CliUserInputInterface.Load">
@@ -10208,6 +10978,88 @@
             <param name="DeviceAddress">. </param>
             <returns> </returns>
         </member>
+        <member name="T:OpenTap.VisaLibraryLoader">
+            <summary>
+            Attempt to load VISA libraries from the system
+            </summary>
+        </member>
+        <member name="T:OpenTap.VisaLibraryLoader.viEventHandler">
+            <summary>Event handler prototype</summary>
+        </member>
+        <member name="M:OpenTap.VisaLibraryLoader.#ctor">
+            <summary>
+            Attempt to load VISA libraries from the system
+            </summary>
+        </member>
+        <member name="M:OpenTap.VisaLibraryLoader.viOpenDefaultRM(System.Int32@)">
+            <summary>Open default RM session</summary>
+        </member>
+        <member name="M:OpenTap.VisaLibraryLoader.viFindRsrc(System.Int32,System.String,System.Int32@,System.Int32@,System.Text.StringBuilder)">
+            <summary>Find device</summary>
+        </member>
+        <member name="M:OpenTap.VisaLibraryLoader.viFindNext(System.Int32,System.Text.StringBuilder)">
+            <summary>Find next device</summary>
+        </member>
+        <member name="M:OpenTap.VisaLibraryLoader.viParseRsrc(System.Int32,System.String,System.Int16@,System.Int16@)">
+            <summary>Parse resource string to get interface information</summary>
+        </member>
+        <member name="M:OpenTap.VisaLibraryLoader.viParseRsrcEx(System.Int32,System.String,System.Int16@,System.Int16@,System.Text.StringBuilder,System.Text.StringBuilder,System.Text.StringBuilder)">
+            <summary>Parse resource string to get extended interface information</summary>
+        </member>
+        <member name="M:OpenTap.VisaLibraryLoader.viOpen(System.Int32,System.String,System.Int32,System.Int32,System.Int32@)">
+            <summary>Open session</summary>
+        </member>
+        <member name="M:OpenTap.VisaLibraryLoader.viClose(System.Int32)">
+            <summary>Close session</summary>
+        </member>
+        <member name="M:OpenTap.VisaLibraryLoader.viGetAttribute1(System.Int32,System.Int32,System.Byte@)">
+            <summary>Get attribute, returning a byte</summary>
+        </member>
+        <member name="M:OpenTap.VisaLibraryLoader.viGetAttribute2(System.Int32,System.Int32,System.Text.StringBuilder)">
+            <summary>Get attribute, filling a pre-allocated StringBuilder buffer</summary>
+        </member>
+        <member name="M:OpenTap.VisaLibraryLoader.viGetAttribute3(System.Int32,System.Int32,System.Int32@)">
+            <summary>Get attribute, returning an int</summary>
+        </member>
+        <member name="M:OpenTap.VisaLibraryLoader.viSetAttribute1(System.Int32,System.Int32,System.Byte)">
+            <summary>Set attribute, providing a byte value</summary>
+        </member>
+        <member name="M:OpenTap.VisaLibraryLoader.viSetAttribute2(System.Int32,System.Int32,System.Int32)">
+            <summary>Set attribute, providing an int value</summary>
+        </member>
+        <member name="M:OpenTap.VisaLibraryLoader.viStatusDesc(System.Int32,System.Int32,System.Text.StringBuilder)">
+            <summary>Get status code description</summary>
+        </member>
+        <member name="M:OpenTap.VisaLibraryLoader.viEnableEvent(System.Int32,System.Int32,System.Int16,System.Int32)">
+            <summary>Enable event</summary>
+        </member>
+        <member name="M:OpenTap.VisaLibraryLoader.viDisableEvent(System.Int32,System.Int32,System.Int16)">
+            <summary>Disable event</summary>
+        </member>
+        <member name="M:OpenTap.VisaLibraryLoader.viInstallHandler(System.Int32,System.Int32,OpenTap.IVisa.viEventHandler,System.Int32)">
+            <summary>Install handler</summary>
+        </member>
+        <member name="M:OpenTap.VisaLibraryLoader.viUninstallHandler(System.Int32,System.Int32,OpenTap.IVisa.viEventHandler,System.Int32)">
+            <summary>Uninstall handler</summary>
+        </member>
+        <member name="M:OpenTap.VisaLibraryLoader.viRead(System.Int32,System.ArraySegment{System.Byte},System.Int32,System.Int32@)">
+            <summary>Read data from device</summary>
+        </member>
+        <member name="M:OpenTap.VisaLibraryLoader.viWrite(System.Int32,System.ArraySegment{System.Byte},System.Int32,System.Int32@)">
+            <summary>Write data to device</summary>
+        </member>
+        <member name="M:OpenTap.VisaLibraryLoader.viReadSTB(System.Int32,System.Int16@)">
+            <summary>Read status byte</summary>
+        </member>
+        <member name="M:OpenTap.VisaLibraryLoader.viClear(System.Int32)">
+            <summary>Clear a device</summary>
+        </member>
+        <member name="M:OpenTap.VisaLibraryLoader.viLock(System.Int32,System.Int32,System.Int32,System.String,System.Text.StringBuilder)">
+            <summary>Lock resource</summary>
+        </member>
+        <member name="M:OpenTap.VisaLibraryLoader.viUnlock(System.Int32)">
+            <summary>Unlock resource</summary>
+        </member>
         <member name="T:OpenTap.WorkQueue">
             <summary> 
             Work Queue used for result processing in sequence but asynchronously. It uses the ThreadManager to automatically clean up threads that have been idle for a while.
@@ -10254,6 +11106,11 @@
         <member name="M:OpenTap.WorkQueue.EnqueueWork(System.Action)">
             <summary> Enqueue a new piece of work to be handled in the future. </summary>
         </member>
+        <member name="M:OpenTap.WorkQueue.WorkerFunction">
+            <summary>
+            This method in in charge of processing the work queue.
+            </summary>
+        </member>
         <member name="M:OpenTap.WorkQueue.EnqueueWork(OpenTap.IInvokable)">
             <summary> Enqueue a new piece of work to be handled in the future. </summary>
         </member>
@@ -10272,20 +11129,29 @@
         <member name="T:OpenTap.XmlError">
             <summary> Contains detailed information about what went wrong while loading or saving information to an XML file. </summary>
         </member>
-        <member name="P:OpenTap.XmlError.Element">
-            <summary> The XML element which caused the error. This may be null if no XML element could be associated with the error. </summary>
-        </member>
         <member name="P:OpenTap.XmlError.Exception">
             <summary> The exception that occured - if any.</summary>
-        </member>
-        <member name="P:OpenTap.XmlError.Message">
-            <summary> The message describing the error. </summary>
         </member>
         <member name="M:OpenTap.XmlError.#ctor(System.Xml.Linq.XElement,System.String,System.Exception)">
             <summary> Creates an instance of XmlError. xmlElement may be null. message may be null if exception is set. </summary>
         </member>
         <member name="M:OpenTap.XmlError.ToString">
             <summary> Prints this error in a readable fashion. </summary>
+        </member>
+        <member name="T:OpenTap.XmlMessage">
+            <summary> Contains detailed information about something that occured while loading or saving information to an XML file. </summary>
+        </member>
+        <member name="P:OpenTap.XmlMessage.Element">
+            <summary> The XML element which caused the message. This may be null if no XML element could be associated with the message. </summary>
+        </member>
+        <member name="P:OpenTap.XmlMessage.Message">
+            <summary> The message. </summary>
+        </member>
+        <member name="M:OpenTap.XmlMessage.#ctor(System.Xml.Linq.XElement,System.String)">
+            <summary> Creates an instance of XmlError. xmlElement may be null. message may be null if exception is set. </summary>
+        </member>
+        <member name="M:OpenTap.XmlMessage.ToString">
+            <summary> Prints this message in a readable fashion. </summary>
         </member>
         <member name="M:OpenTap.AnsiColorCodeFix.TryEnableForWin10">
             <summary>
@@ -10340,7 +11206,7 @@
             </summary>
             <param name="target_dir"></param>
         </member>
-        <member name="M:OpenTap.FileSystemHelper.EnsureDirectory(System.String)">
+        <member name="M:OpenTap.FileSystemHelper.EnsureDirectoryOf(System.String)">
             <summary>
             Creates a directory if it does not already exist.
             </summary>
@@ -10459,9 +11325,10 @@
             </summary>
         </member>
         <member name="M:OpenTap.ReflectionHelper.IsNumeric(OpenTap.ITypeData)">
-            <summary>
-            Returns true if a type is numeric.
-            </summary>
+            <summary> Returns true if a type is numeric. </summary>
+        </member>
+        <member name="M:OpenTap.ReflectionHelper.IsPrimitive(OpenTap.ITypeData)">
+            <summary> Returns true if a type is a C# primitive. </summary>
         </member>
         <member name="M:OpenTap.ReflectionHelper.CreateInstance(System.Type,System.Object[])">
             <summary> Creates an instance of t with no constructor arguments. </summary>
@@ -10551,23 +11418,22 @@
             </summary>
             <param name="predicate"></param>
         </member>
-        <member name="M:OpenTap.Utils.Clamp``1(``0,``0,``0)">
+        <member name="M:OpenTap.Utils.InterlockedSwap``1(``0@,System.Func{``0})">
             <summary>
-            Clamps val to be between min and max, returning the result.
+            Thread-safe and lock free value exchange. valueGen depends on the current value.
             </summary>
-            <typeparam name="T"></typeparam>
-            <param name="val"></param>
-            <param name="min"></param>
-            <param name="max"></param>
-            <returns></returns>
+            <param name="outPlace"> Where to place the value</param>
+            <param name="valueGen"> Function generating a value based on the current value. </param>
+            <typeparam name="T"> The type of object. </typeparam>
+        </member>
+        <member name="M:OpenTap.Utils.Swap``1(``0@,``0@)">
+            <summary> Swaps two variables </summary>
+        </member>
+        <member name="M:OpenTap.Utils.Clamp``1(``0,``0,``0)">
+            <summary> Clamps val to be between min and max, returning the result. </summary>
         </member>
         <member name="M:OpenTap.Utils.Identity``1(``0)">
-            <summary>
-            Returns arg.
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="id"></param>
-            <returns></returns>
+            <summary> Returns arg. </summary>
         </member>
         <member name="M:OpenTap.Utils.Noop">
             <summary> Do nothing. </summary>
@@ -10579,26 +11445,13 @@
             </summary>
         </member>
         <member name="M:OpenTap.Utils.FindMax``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})">
-            <summary>
-            Returns the element for which selector returns the max value.
-            if IEnumerable is empty, it returns default(T).
-            </summary>
-            <typeparam name="T"></typeparam>
-            <typeparam name="C"></typeparam>
-            <param name="ienumerable"></param>
-            <param name="selector"></param>
-            <returns></returns>
+            <summary> Returns the element for which selector returns the max value. if IEnumerable is empty, it returns default(T). </summary>
         </member>
         <member name="M:OpenTap.Utils.FindMin``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})">
             <summary>
             Returns the element for which selector returns the minimum value.
             if IEnumerable is empty, it returns default(T).
             </summary>
-            <typeparam name="T"></typeparam>
-            <typeparam name="C"></typeparam>
-            <param name="ienumerable"></param>
-            <param name="selector"></param>
-            <returns></returns>
         </member>
         <member name="M:OpenTap.Utils.SkipLastN``1(System.Collections.Generic.IEnumerable{``0},System.Int32)">
             <summary>
@@ -10644,13 +11497,7 @@
             <returns></returns>
         </member>
         <member name="M:OpenTap.Utils.IndexWhen``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})">
-            <summary>
-            First index where the result of predicate function is true.
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="source"></param>
-            <param name="pred"></param>
-            <returns></returns>
+            <summary>  First index where the result of predicate function is true. </summary>
         </member>
         <member name="M:OpenTap.Utils.IsLongerThan``1(System.Collections.Generic.IEnumerable{``0},System.Int64)">
             <summary>
@@ -10766,6 +11613,27 @@
         <member name="M:OpenTap.Utils.GetOrCreateValue``2(System.Collections.Generic.Dictionary{``0,``1},``0,System.Func{``0,``1})">
             <summary> Gets or creates a value based on the key. This is useful for caches. </summary>
         </member>
+        <member name="M:OpenTap.Utils.Backoff(System.Int32,System.Int32)">
+            <summary> Backoff strategy for Retry.  </summary>
+        </member>
+        <member name="M:OpenTap.Utils.Retry(System.Action,System.Type,System.Int32,System.Type[],System.Int32)">
+            <summary> Retries calling a function a number of times if calling it fails. </summary>
+            <param name="function">The function to call.</param>
+            <param name="retryOn">an exception type to retry on. By default this is typeof(Exception)</param>
+            <param name="maxRetries">default 5 times</param>
+            <param name="moreExceptions"> more exceptions to retry on</param>
+            <param name="sleepBaseMs"> The time to sleep at first iteration. Subsequent sleeps with be longer</param>
+        </member>
+        <member name="M:OpenTap.Utils.Retry``1(System.Func{``0},System.Type,System.Int32,System.Type[],System.Int32)">
+            <summary> Retries calling a function a number of times if calling it fails. </summary>
+            <param name="function">The function to call.</param>
+            <param name="retryOn">an exception type to retry on. By default this is typeof(Exception)</param>
+            <param name="maxRetries">default 5 times</param>
+            <param name="moreExceptions"> more exceptions to retry on</param>
+            <param name="sleepBaseMs"> The time to sleep at first iteration. Subsequent sleeps with be longer</param>
+            <typeparam name="T">the return type.</typeparam>
+            <returns>The return value </returns>
+        </member>
         <member name="M:OpenTap.Sequence.AsSingle``1(``0)">
             <summary> Turns item into a one element array, unless it is null.</summary>
         </member>
@@ -10795,9 +11663,14 @@
             iterates lists and generates pairs of each list. Once the end is reached for one of the lists, execution stops. 
             </summary>
         </member>
+        <member name="M:OpenTap.Sequence.Batch``1(System.Collections.Generic.IEnumerable{``0},System.Int32)">
+            <summary>
+             process the enumerable source N objects at a time.
+            </summary>
+        </member>
         <member name="M:OpenTap.Time.FromSeconds(System.Double)">
             <summary>
-            A TimeSpan from seconds that does not truncate at milliseconds.
+            A TimeSpan from seconds that does not round to nearest millisecond. (TimeSpan.FromSeconds does that).
             </summary>
             <param name="seconds"></param>
             <returns></returns>
@@ -10944,6 +11817,73 @@
         <member name="T:OpenTap.SudoHelper">
             <summary>
             This class contains some basic helpers to authenticate using the 'sudo' program
+            </summary>
+        </member>
+        <member name="T:OpenTap.Cache`2">
+            <summary> Cache class which clears when a certain criteria is met. </summary>
+        </member>
+        <member name="P:OpenTap.Cache`2.Count">
+            <summary> The current number of cached elements. </summary> 
+        </member>
+        <member name="M:OpenTap.Cache`2.TryGetValue(`0,`1@)">
+            <summary> tries getting a value for a key. </summary>
+        </member>
+        <member name="T:OpenTap.MacOSFileLock">
+            <summary>
+            Note that this implementation is not thread-safe, unlike the other implementations
+            </summary>
+        </member>
+        <member name="T:OpenTap.PosixFileLock">
+            <summary> Locks a file using flock on linux. This essentially works as a named mutex.  </summary>
+        </member>
+        <member name="M:OpenTap.PosixFileLock.Take">
+            <summary>
+            Request an exclusive lock on the open file handle
+            This call wil block until the lock is acquired
+            </summary>
+        </member>
+        <member name="F:OpenTap.PosixNative.LOCK_SH">
+            <summary>
+            Place a shared lock. More than one process may hold a shared lock for a given file at a given time. 
+            </summary>
+        </member>
+        <member name="F:OpenTap.PosixNative.LOCK_EX">
+            <summary>
+            Place an exclusive lock. Only one process may hold an exclusive lock for a given file at a given time. 
+            </summary>
+        </member>
+        <member name="F:OpenTap.PosixNative.LOCK_NB">
+            <summary>
+            Return an error instead of blocking when the lock is taken
+            </summary>
+        </member>
+        <member name="F:OpenTap.PosixNative.LOCK_UN">
+            <summary>
+            Release the lock
+            </summary>
+        </member>
+        <member name="T:LibDl">
+            <summary>
+             This class uses and resolves libdl, which dependning on the OS comes in a libdl.so or libdl.so.2 flavor.
+            </summary>
+        </member>
+        <member name="M:LibDl.GetError">
+            <summary> Gets most recent load error. </summary>
+        </member>
+        <member name="T:LibDl.libdl1">
+            <summary>
+            libc5 (shipped with Ubuntu 20.04 and older) and older contains this libdl version, but it is not shipped with libc6
+            </summary>
+        </member>
+        <member name="T:LibDl.libdl2">
+            <summary>
+            libc6 (shipped with Ubuntu 22.04) only ships libdl.so.2. This seems to be the only way to resolve it.
+            Trying "libdl" or just "dl" also does not seem to resolve to libdl.so.2. 
+            </summary>
+        </member>
+        <member name="T:LibDl.libdlMac">
+            <summary>
+            MacOS calls it libdl
             </summary>
         </member>
         <member name="T:ModuleInitializer">

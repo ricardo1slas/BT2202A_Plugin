@@ -1,3 +1,5 @@
 is_global = true
-build_property.RootNamespace = BT2202A
-build_property.ProjectDir = C:\Users\yuxia\source\repos\BT2202A\
+build_property.RootNamespace = BT2202a
+build_property.ProjectDir = C:\Users\rigel\Documents\reto\BT2202a\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 

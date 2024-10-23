@@ -4,6 +4,15 @@
         <name>OpenTap.Package</name>
     </assembly>
     <members>
+        <member name="M:OpenTap.Package.AutoCorrectPackageNames.Correct(System.String[],System.Collections.Generic.IEnumerable{OpenTap.Package.IPackageRepository})">
+            <summary>
+            Correct each name in the string array based on the available packages in the repositories.
+            If a package name does not exist, an exception is thrown.
+            </summary>
+            <param name="names"></param>
+            <param name="repositories"></param>
+            <returns></returns>
+        </member>
         <member name="T:OpenTap.Package.FileHashPackageAction">
             <summary> SHA1 hashes the files of a TapPackage and includes it in the package.xml file. </summary>
         </member>
@@ -41,7 +50,7 @@
         </member>
         <member name="P:OpenTap.Package.GitVersionAction.PrintLog">
             <summary>
-            Represents the --log command line argument which prints git log for the last n commits including version numbers for each commit.
+            Represents the --gitlog command line argument which prints git log for the last n commits including version numbers for each commit.
             </summary>
         </member>
         <member name="P:OpenTap.Package.GitVersionAction.Sha">
@@ -292,35 +301,19 @@
             <param name="tapInstallation">The tap installation containing installed packages.</param>
             <param name="repositories">The repositories to use for resolving dependencies</param>
         </member>
-        <member name="M:OpenTap.Package.DependencyResolver.GetDotNotation">
+        <member name="M:OpenTap.Package.FuzzyMatcher.preprocess(System.String)">
             <summary>
-            Returns the resolved dependency tree
+            Remove all punctuation and whitespace from the input, and lowercase it
             </summary>
-            <returns>Multi line dependency tree string</returns>
+            <param name="str"></param>
+            <returns></returns>
         </member>
-        <member name="M:OpenTap.Package.DependencyResolver.CategorizeResolvedPackages">
+        <member name="M:OpenTap.Package.FuzzyMatcher.Score(System.String)">
             <summary>
-            Populates Dependencies, UnknownDependencies and DependencyIssues based on resolved dependency tree
+            Calculate how similar a candidate is to the input
             </summary>
-        </member>
-        <member name="T:OpenTap.Package.DependencyGraph">
-            <summary>
-            Dependency Graph structure. PackageDefs are vertices and edges between vertices are defined as PackageDef references to both vertices along with a PackageSpecifer
-            defining the requirement of the 'From' vertex.
-            </summary>
-        </member>
-        <member name="M:OpenTap.Package.DependencyGraph.AddEdge(OpenTap.Package.PackageDef,OpenTap.Package.PackageDef,OpenTap.Package.PackageSpecifier)">
-            <summary>
-            Add an edge between vertices. If the vertices used in the edge is not null, they will be added as vertices.
-            </summary>
-            <param name="from"></param>
-            <param name="to"></param>
-            <param name="packageSpecifier"></param>
-        </member>
-        <member name="M:OpenTap.Package.PackageCompatibilityHelper.IsSatisfiedBy(OpenTap.Package.VersionSpecifier,OpenTap.Package.VersionSpecifier)">
-            <summary>
-            Returns true if this specifier can be satisfied by the given version. Really the same behavior as VersionSpecifier.IsCompatible, just with a better name.
-            </summary>
+            <param name="candidate"></param>
+            <returns></returns>
         </member>
         <member name="T:OpenTap.Package.PackageActionStage">
             <summary>
@@ -439,6 +432,18 @@
             Image that specifies a list of <see cref="T:OpenTap.Package.PackageSpecifier"/> to install and a list of repositories to get the packages from.
             </summary>
         </member>
+        <member name="T:OpenTap.Package.ImageIdentifier.ProgressUpdateDelegate">
+            <summary>
+            A delegate used by <see cref="E:OpenTap.Package.ImageIdentifier.ProgressUpdate"/>
+            </summary>
+            <param name="progressPercent">Indicates progress from 0 to 100.</param>
+            <param name="message"></param>
+        </member>
+        <member name="E:OpenTap.Package.ImageIdentifier.ProgressUpdate">
+            <summary>
+            Called by the action to indicate how far it has gotten. Will usually be called with a progressPercent of 100 to indicate that it is done.
+            </summary>
+        </member>
         <member name="P:OpenTap.Package.ImageIdentifier.Id">
             <summary>
             Image ID created by hashing the <see cref="P:OpenTap.Package.ImageIdentifier.Packages"/> list
@@ -475,6 +480,12 @@
             Download all packages to the PackageCache. This is an optional step that can speed up deploying later.
             </summary>
         </member>
+        <member name="T:OpenTap.Package.ImageResolver">
+            <summary>
+            Resolves packages dependencies for an image.This should be able to resolve any set of package dependencies, but
+            it may take a long time in some edge cases. In most cases however it seems to settle quite quickly.
+            </summary>
+        </member>
         <member name="T:OpenTap.Package.ImageSpecifier">
             <summary>
             An <see cref="T:OpenTap.Package.ImageSpecifier"/> defines an OpenTAP installation. The specifier can be resolved to an
@@ -491,10 +502,29 @@
             Desired packages in the installation
             </summary>
         </member>
+        <member name="P:OpenTap.Package.ImageSpecifier.FixedPackages">
+            <summary> Installed specifiers. </summary>
+        </member>
+        <member name="P:OpenTap.Package.ImageSpecifier.InstalledPackages">
+            <summary> The installed packages. </summary>
+        </member>
+        <member name="M:OpenTap.Package.ImageSpecifier.#ctor(System.Collections.Generic.List{OpenTap.Package.PackageSpecifier},System.String)">
+            <summary> Creates a new instance. </summary>
+        </member>
+        <member name="M:OpenTap.Package.ImageSpecifier.#ctor">
+            <summary> Creates a new instance. </summary>
+        </member>
         <member name="P:OpenTap.Package.ImageSpecifier.Repositories">
             <summary>
             OpenTAP repositories to fetch the desired packages from
+            These should be well formed URIs and will be interpreted relative to the BaseAddress set in AuthenticationSettings.
             </summary>
+        </member>
+        <member name="P:OpenTap.Package.ImageSpecifier.OS">
+            <summary> The OS this image specifier targets. </summary>
+        </member>
+        <member name="P:OpenTap.Package.ImageSpecifier.Architecture">
+            <summary> The CPU architecture that this image specifier targets. </summary>
         </member>
         <member name="M:OpenTap.Package.ImageSpecifier.Resolve(System.Threading.CancellationToken)">
             <summary>
@@ -511,6 +541,12 @@
             <param name="cancellationToken">A cancellation token to cancel the operation before time. This will cause an OperationCancelledException to be thrown.</param>
             <returns></returns>
             <exception cref="T:OpenTap.Package.ImageResolveException">The exception thrown if the image could not be resolved</exception>
+        </member>
+        <member name="M:OpenTap.Package.ImageSpecifier.MergeAndResolve(OpenTap.Package.Installation,System.Threading.CancellationToken)">
+            <summary>
+            Like Resolve, but includes the current installation as a base. In this case, packages can be upgraded and downgraded,
+            but not removed if they do not exist in the image specification.
+            </summary>
         </member>
         <member name="M:OpenTap.Package.ImageSpecifier.MergeAndDeploy(OpenTap.Package.Installation,System.Threading.CancellationToken)">
             <summary>
@@ -530,6 +566,10 @@
             <param name="value">JSON or XML formatted <see cref="T:OpenTap.Package.ImageSpecifier"/></param>
             <returns>An <see cref="T:OpenTap.Package.ImageSpecifier"/></returns>
         </member>
+        <member name="M:OpenTap.Package.ImageSpecifier.ToString">
+            <summary> Turns an image into a readable string.</summary>
+            <returns></returns>
+        </member>
         <member name="T:OpenTap.Package.ImageResolveException">
             <summary>
             Exception thrown when ImageSpecifier.Resolve fails. The exception contains a dependency graph specified Dot notation.
@@ -540,6 +580,75 @@
             Dependency graph specified in Dot notation
             </summary>
         </member>
+        <member name="T:OpenTap.Package.PackageDependencyGraph">
+            <summary>
+            This graph describes every version of every package in a memory-efficient way.
+            Each unique name version and version specifier is represented by one value, connections between them are some dictionaries.
+            The graph can be merged from multiple different sources - both file repositories and http repositories, but the source of each becomes lost when building the graph.
+            When the source is needed a new lookup will be needed from a different place, this code is not really concerned with that.
+            </summary>
+        </member>
+        <member name="F:OpenTap.Package.PackageDependencyGraph.UpdatePrerelease">
+            <summary>
+            Callback for when additional packages are needed. For example if only release packages of one specific
+            package name has been defined, this can be called to extend with e.g beta packages.
+            </summary>
+        </member>
+        <member name="P:OpenTap.Package.PackageDependencyGraph.Count">
+            <summary> The total number of packages contained in this graph. </summary>
+        </member>
+        <member name="M:OpenTap.Package.PackageDependencyGraph.LoadFromJson(System.Text.Json.JsonDocument)">
+            <summary>
+            This is only used in unittests. It works for respones from the 3.1/query API, but not the 4.0/query API.
+            </summary>
+            <param name="json"></param>
+        </member>
+        <member name="M:OpenTap.Package.PackageDependencyGraph.PackageSpecifiers">
+            <summary>
+            Turn all the data back into PackageDefs, note that these PackageDefs are severly limited and
+            should only be used for testing or for building another graph.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:OpenTap.Package.PackageDependencyGraph.GetAllDependencies(System.Collections.Generic.IEnumerable{System.ValueTuple{System.String,System.Collections.Generic.IEnumerable{OpenTap.SemanticVersion}}})">
+            <summary>
+            Gets all the dependencies for multiples versions of multiple packages.
+            Since many of them share specific dependencies, this makes certain queries faster.
+            </summary>
+        </member>
+        <member name="M:OpenTap.Package.PackageDependencyGraph.GetDependencies(System.String,OpenTap.SemanticVersion)">
+            <summary>
+            Gets the dependencies for a specific package version.
+            </summary>
+        </member>
+        <member name="M:OpenTap.Package.PackageDependencyGraph.Absorb(OpenTap.Package.PackageDependencyGraph)">
+            <summary> Absorbs another package dependency graph into the structure. </summary>
+        </member>
+        <member name="T:OpenTap.Package.PackageDependencyQuery">
+            <summary>
+            This class takes care of making the right package query queries to the repository server.
+            </summary>
+        </member>
+        <member name="M:OpenTap.Package.PackageDependencyQuery.QueryGraph(System.String,System.String,OpenTap.Package.CpuArchitecture,System.String,System.String)">
+            <summary>
+            Queries the repository for a package dependency graph. If neither version nor name is specified, it will query
+            for all release versions of all packages. 
+            </summary>
+            <param name="repoUrl"></param>
+            <param name="os"></param>
+            <param name="deploymentInstallationArchitecture"></param>
+            <param name="preRelease">If specified, it expands the versions to include that preRelease. E.g alpha (everything), beta(releases, RCs and betas), rc (releases and RCs). </param>
+            <param name="name">If specified, limits the query to only packages of that name.</param>
+            <returns></returns>
+        </member>
+        <member name="M:OpenTap.Package.PackageDependencyQuery.LoadGraph(System.IO.Stream,System.Boolean)">
+            <summary>
+            Only used by unit tests
+            </summary>
+            <param name="stream"></param>
+            <param name="compressed"></param>
+            <returns></returns>
+        </member>
         <member name="T:OpenTap.Package.Installation">
             <summary>
             Represents an OpenTAP installation in a specific directory.
@@ -548,6 +657,12 @@
         <member name="P:OpenTap.Package.Installation.Directory">
             <summary>
             Path to the installation
+            </summary>
+        </member>
+        <member name="P:OpenTap.Package.Installation.Id">
+            <summary>
+            Get a unique identifier for this OpenTAP installation.
+            The identifier is computed from hashing a uniquely generated machine ID combined with the hash of the installation directory.
             </summary>
         </member>
         <member name="M:OpenTap.Package.Installation.#ctor(System.String)">
@@ -620,6 +735,13 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:OpenTap.Package.Installation.IgnoreCyclicCallMemorizer`3">
+            <summary>
+            Memorizer which returns null when a cyclic memorizer call is detected.
+            This prevents ugly and misleading error messages from occurring during
+            calls to Installation.Current.GetPackages() from ITypeDataProvider implementations
+            </summary>
+        </member>
         <member name="T:OpenTap.Package.Installation.ChangeId">
             <summary>
             Maintains a running number that increments whenever a plugin is installed.
@@ -628,6 +750,16 @@
         <member name="E:OpenTap.Package.Installation.PackageChangedEvent">
             <summary>
             Event invoked when a package is installed/uninstalled from this installation.
+            </summary>
+        </member>
+        <member name="T:OpenTap.Package.InstallationLoggerStartupInfo">
+            <summary>
+            Log information about the current installation at startup.
+            </summary>
+        </member>
+        <member name="M:OpenTap.Package.InstallationLoggerStartupInfo.LogStartupInfo">
+            <summary>
+            Log information about the current installation at startup.
             </summary>
         </member>
         <member name="M:OpenTap.Package.Installer.OnError(System.Exception)">
@@ -756,6 +888,18 @@
             <summary>
             Compares this PackageVersion with another.
             </summary>
+        </member>
+        <member name="M:OpenTap.Package.PackageRepositoryHelpers.DetermineRepositoryType(System.String)">
+            <summary>
+            Returns FilePackageRepository if either of the following is true:
+            - Url is explicitly defined with file:/// 
+            - The url is relative and directory exists
+            - Starts with classic windows absolute path like 'C:/'
+            - Starts with '\\'
+            Otherwise returns HttpPackageRepository
+            </summary>
+            <param name="url">url to be determined to be file path or http path</param>
+            <returns>Determined repository type</returns>
         </member>
         <member name="T:OpenTap.Package.PackageAction">
             <summary>
@@ -902,7 +1046,7 @@
         </member>
         <member name="P:OpenTap.Package.ImageInstallAction.ImagePath">
             <summary>
-            Path to Image file containing XML or JSON formatted Image specification
+            Path to Image file containing XML or JSON formatted Image specification, or just the string itself, e.g "REST-API,TUI:beta".
             </summary>
         </member>
         <member name="P:OpenTap.Package.ImageInstallAction.Merge">
@@ -911,9 +1055,19 @@
             </summary>
         </member>
         <member name="P:OpenTap.Package.ImageInstallAction.NonInteractive">
-            <summary>
-            Never prompt for user input.
-            </summary>
+            <summary> Never prompt for user input. </summary>
+        </member>
+        <member name="P:OpenTap.Package.ImageInstallAction.Os">
+            <summary> Which operative system to resolve packages for. </summary>
+        </member>
+        <member name="P:OpenTap.Package.ImageInstallAction.Architecture">
+            <summary> Which CPU architecture to resolve packages for. </summary>
+        </member>
+        <member name="P:OpenTap.Package.ImageInstallAction.DryRun">
+            <summary> dry-run - resolve, but don't install the packages. </summary>
+        </member>
+        <member name="P:OpenTap.Package.ImageInstallAction.Repositories">
+            <summary> Which repositories to use. </summary>
         </member>
         <member name="P:OpenTap.Package.PackageInstallAction.Packages">
             <summary>
@@ -928,6 +1082,15 @@
         <member name="P:OpenTap.Package.PackageInstallAction.PackageReferences">
             <summary>
             This is used when specifying multiple packages with different version numbers. In that case <see cref="P:OpenTap.Package.PackageInstallAction.Packages"/> can be left null.
+            </summary>
+        </member>
+        <member name="P:OpenTap.Package.PackageInstallAction.AlreadyElevated">
+            <summary>
+            This will be set only if the install action was started by <see cref="T:OpenTap.Package.PackageInstallHelpers.PackageInstallStep"/>
+            This is supposed to solve an issue where OpenTAP fails to detect that the process was elevated.
+            If one level of elevation was already attempted, it is unlikely that further attempts will cause the check to succeed.
+            In this instance, it is better to just try the installation with the current privileges, and fail with whatever
+            error if those privileges are not sufficient.
             </summary>
         </member>
         <member name="M:OpenTap.Package.PackageInstallAction.ReorderPackages(System.Collections.Generic.List{System.String})">
@@ -945,6 +1108,11 @@
         <member name="P:OpenTap.Package.IsolatedPackageAction.Force">
             <summary>
             Try to force execution in spite of errors. When true the action will execute even when isolation cannot be achieved.
+            </summary>
+        </member>
+        <member name="P:OpenTap.Package.IsolatedPackageAction.NoIsolation">
+            <summary>
+            Avoid starting an isolated process. This can cause installations to fail if the DLLs that must be overwritten are loaded.
             </summary>
         </member>
         <member name="M:OpenTap.Package.IsolatedPackageAction.Execute(System.Threading.CancellationToken)">
@@ -1032,9 +1200,28 @@
             Error occurred while uninstalling package
             </summary>
         </member>
+        <member name="F:OpenTap.Package.PackageExitCodes.InvalidPackageArchive">
+            <summary>
+            Error occurred while creating package
+            </summary>
+        </member>
         <member name="P:OpenTap.Package.PackageUninstallAction.NonInteractive">
             <summary>
             Never prompt for user input.
+            </summary>
+        </member>
+        <member name="P:OpenTap.Package.PackageUninstallAction.AlreadyElevated">
+            <summary>
+            This will be set only if the install action was started by <see cref="T:OpenTap.Package.PackageInstallHelpers.PackageInstallStep"/>
+            This is supposed to solve an issue where OpenTAP fails to detect that the process was elevated.
+            If one level of elevation was already attempted, it is unlikely that further attempts will cause the check to succeed.
+            In this instance, it is better to just try the installation with the current privileges, and fail with whatever
+            error if those privileges are not sufficient.
+            </summary>
+        </member>
+        <member name="M:OpenTap.Package.PackageCompatibilityHelper.IsSatisfiedBy(OpenTap.Package.VersionSpecifier,OpenTap.Package.VersionSpecifier)">
+            <summary>
+            Returns true if this specifier can be satisfied by the given version. Really the same behavior as VersionSpecifier.IsCompatible, just with a better name.
             </summary>
         </member>
         <member name="T:OpenTap.Package.PackageDefinitionSerializerPlugin">
@@ -1049,7 +1236,9 @@
         </member>
         <member name="M:OpenTap.Package.PackageDefinitionSerializerPlugin.Serialize(System.Xml.Linq.XElement,System.Object,OpenTap.ITypeData)">
             <summary>
-            Called as part for the serialization chain. Returns false if it cannot serialize the XML element.  
+            Called as part for the serialization chain. Returns false if it cannot serialize the XML element.
+            Disables the 'WritePackageDependencies' feature of the <see cref="T:OpenTap.Package.TestPlanPackageDependencySerializer"/>
+            further up the chain when it runs.
             </summary>
         </member>
         <member name="T:OpenTap.Package.PackageDependencySerializerPlugin">
@@ -1151,6 +1340,9 @@
             Dependent assemblies.
             </summary>
         </member>
+        <member name="P:OpenTap.Package.PackageFile.DependentTypeDataSources">
+            <summary> Other type data dependency sources (e.g Python type data) </summary>
+        </member>
         <member name="P:OpenTap.Package.PackageFile.LicenseRequired">
             <summary>
             License required by the plugin file.
@@ -1211,6 +1403,18 @@
         <member name="P:OpenTap.Package.ActionStep.ExpectedExitCodes">
             <summary>
             A comma separated list of expected exit code integers. Default is "0".
+            </summary>
+        </member>
+        <member name="P:OpenTap.Package.ActionStep.Quiet">
+            <summary>
+            False; Action stdout and stderr will be forwarded
+            True; Action stdout and stderr will be suppressed
+            </summary>
+        </member>
+        <member name="P:OpenTap.Package.ActionStep.Optional">
+            <summary>
+            False; package installation should fail if the executable does not exist.
+            True; package installation should continue if the executable does not exist.
             </summary>
         </member>
         <member name="P:OpenTap.Package.ActionStep.Arguments">
@@ -1555,40 +1759,6 @@
             Compare this PackageIdentifier to another object.
             </summary>
         </member>
-        <member name="T:OpenTap.Package.PackageInstallHelpers.MacOSFileLock">
-            <summary>
-            Note that this implementation is not thread-safe, unlike the other implementations
-            </summary>
-        </member>
-        <member name="T:OpenTap.Package.PackageInstallHelpers.PosixFileLock">
-            <summary> Locks a file using flock on linux. This essentially works as a named mutex.  </summary>
-        </member>
-        <member name="M:OpenTap.Package.PackageInstallHelpers.PosixFileLock.Take">
-            <summary>
-            Request an exclusive lock on the open file handle
-            This call wil block until the lock is acquired
-            </summary>
-        </member>
-        <member name="F:OpenTap.Package.PackageInstallHelpers.PosixNative.LOCK_SH">
-            <summary>
-            Place a shared lock. More than one process may hold a shared lock for a given file at a given time. 
-            </summary>
-        </member>
-        <member name="F:OpenTap.Package.PackageInstallHelpers.PosixNative.LOCK_EX">
-            <summary>
-            Place an exclusive lock. Only one process may hold an exclusive lock for a given file at a given time. 
-            </summary>
-        </member>
-        <member name="F:OpenTap.Package.PackageInstallHelpers.PosixNative.LOCK_NB">
-            <summary>
-            Return an error instead of blocking when the lock is taken
-            </summary>
-        </member>
-        <member name="F:OpenTap.Package.PackageInstallHelpers.PosixNative.LOCK_UN">
-            <summary>
-            Release the lock
-            </summary>
-        </member>
         <member name="T:OpenTap.Package.PackageManagerSettings">
             <summary>
             Settings class containing plugin package manager settings
@@ -1753,6 +1923,9 @@
             Holds search parameters that specifies a range of packages in the OpenTAP package system.
             </summary>
         </member>
+        <member name="M:OpenTap.Package.PackageSpecifier.ToString">
+            <summary> Gets a readable string for this package specifier. </summary>
+        </member>
         <member name="M:OpenTap.Package.PackageSpecifier.#ctor(System.String,OpenTap.Package.VersionSpecifier,OpenTap.Package.CpuArchitecture,System.String)">
             <summary>
             Search for parameters that specifies a range of packages in the OpenTAP package system. Unset parameters will be treated as 'any'.
@@ -1790,6 +1963,11 @@
             </summary>
         </member>
         <member name="F:OpenTap.Package.VersionSpecifier.Any">
+            <summary>
+            The VersionSpecifier that will match any version. VersionSpecifier.Any.IsCompatible always returns true.
+            </summary>
+        </member>
+        <member name="F:OpenTap.Package.VersionSpecifier.AnyRelease">
             <summary>
             The VersionSpecifier that will match any version. VersionSpecifier.Any.IsCompatible always returns true.
             </summary>
@@ -1882,6 +2060,15 @@
             </summary>
             <param name="obj"></param>
             <returns></returns>
+        </member>
+        <member name="P:OpenTap.Package.VersionSpecifier.SortPartial">
+            <summary>
+            This sorts versions based on a partially defined version set. For example ^1 would sort based on major version only, but ignore the rest.
+            This is useful when using in connection with other stable sortings. 
+            </summary>
+        </member>
+        <member name="P:OpenTap.Package.VersionSpecifier.IsExact">
+            <summary> A version is exact if the match behavior is exact and all version fields are specified. </summary>
         </member>
         <member name="M:OpenTap.Package.VersionSpecifier.op_Equality(OpenTap.Package.VersionSpecifier,OpenTap.Package.VersionSpecifier)">
             <summary>
@@ -1984,6 +2171,16 @@
             Implements a IPackageRepository that queries a local directory for OpenTAP packages.
             </summary>
         </member>
+        <member name="M:OpenTap.Package.FilePackageRepository.#ctor(System.String)">
+            <summary>
+            Constructs a FilePackageRepository for a directory
+            </summary>
+            <param name="path">Relative or absolute path or URI to a directory or a file. If file, the repository will be the directory containing the file</param>
+            <exception cref="T:System.NotSupportedException">Path is not a valid file package repository</exception>
+        </member>
+        <member name="M:OpenTap.Package.FilePackageRepository.ToString">
+            <summary>  Creates a display friendly string of this. </summary>
+        </member>
         <member name="T:OpenTap.Package.HttpPackageRepository">
             <summary>
             Implements a IPackageRepository that queries a server for OpenTAP packages via http/https.
@@ -2020,7 +2217,7 @@
         </member>
         <member name="M:OpenTap.Package.HttpPackageRepository.GetPackageNames(System.Threading.CancellationToken,OpenTap.Package.IPackageIdentifier[])">
             <summary>
-            Get the names of the available packages in the repository
+            Get the names of the available packages in the repository. Unlisted packages are not included
             </summary>
             <param name="cancellationToken"></param>
             <param name="compatibleWith"></param>
@@ -2078,6 +2275,9 @@
             </summary>
             <param name="query">A GraphQL query string</param>
             <returns>A JSON string containing the GraphQL response</returns>
+        </member>
+        <member name="M:OpenTap.Package.HttpPackageRepository.ToString">
+            <summary>  Creates a display friendly string of this. </summary>
         </member>
         <member name="T:OpenTap.Package.SetAsmInfo.GacResolver">
             <summary>
@@ -2322,7 +2522,7 @@
             </summary>
             <param name="target_dir"></param>
         </member>
-        <member name="M:OpenTap.FileSystemHelper.EnsureDirectory(System.String)">
+        <member name="M:OpenTap.FileSystemHelper.EnsureDirectoryOf(System.String)">
             <summary>
             Creates a directory if it does not already exist.
             </summary>
@@ -2441,9 +2641,10 @@
             </summary>
         </member>
         <member name="M:OpenTap.ReflectionHelper.IsNumeric(OpenTap.ITypeData)">
-            <summary>
-            Returns true if a type is numeric.
-            </summary>
+            <summary> Returns true if a type is numeric. </summary>
+        </member>
+        <member name="M:OpenTap.ReflectionHelper.IsPrimitive(OpenTap.ITypeData)">
+            <summary> Returns true if a type is a C# primitive. </summary>
         </member>
         <member name="M:OpenTap.ReflectionHelper.CreateInstance(System.Type,System.Object[])">
             <summary> Creates an instance of t with no constructor arguments. </summary>
@@ -2533,23 +2734,22 @@
             </summary>
             <param name="predicate"></param>
         </member>
-        <member name="M:OpenTap.Utils.Clamp``1(``0,``0,``0)">
+        <member name="M:OpenTap.Utils.InterlockedSwap``1(``0@,System.Func{``0})">
             <summary>
-            Clamps val to be between min and max, returning the result.
+            Thread-safe and lock free value exchange. valueGen depends on the current value.
             </summary>
-            <typeparam name="T"></typeparam>
-            <param name="val"></param>
-            <param name="min"></param>
-            <param name="max"></param>
-            <returns></returns>
+            <param name="outPlace"> Where to place the value</param>
+            <param name="valueGen"> Function generating a value based on the current value. </param>
+            <typeparam name="T"> The type of object. </typeparam>
+        </member>
+        <member name="M:OpenTap.Utils.Swap``1(``0@,``0@)">
+            <summary> Swaps two variables </summary>
+        </member>
+        <member name="M:OpenTap.Utils.Clamp``1(``0,``0,``0)">
+            <summary> Clamps val to be between min and max, returning the result. </summary>
         </member>
         <member name="M:OpenTap.Utils.Identity``1(``0)">
-            <summary>
-            Returns arg.
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="id"></param>
-            <returns></returns>
+            <summary> Returns arg. </summary>
         </member>
         <member name="M:OpenTap.Utils.Noop">
             <summary> Do nothing. </summary>
@@ -2561,26 +2761,13 @@
             </summary>
         </member>
         <member name="M:OpenTap.Utils.FindMax``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})">
-            <summary>
-            Returns the element for which selector returns the max value.
-            if IEnumerable is empty, it returns default(T).
-            </summary>
-            <typeparam name="T"></typeparam>
-            <typeparam name="C"></typeparam>
-            <param name="ienumerable"></param>
-            <param name="selector"></param>
-            <returns></returns>
+            <summary> Returns the element for which selector returns the max value. if IEnumerable is empty, it returns default(T). </summary>
         </member>
         <member name="M:OpenTap.Utils.FindMin``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})">
             <summary>
             Returns the element for which selector returns the minimum value.
             if IEnumerable is empty, it returns default(T).
             </summary>
-            <typeparam name="T"></typeparam>
-            <typeparam name="C"></typeparam>
-            <param name="ienumerable"></param>
-            <param name="selector"></param>
-            <returns></returns>
         </member>
         <member name="M:OpenTap.Utils.SkipLastN``1(System.Collections.Generic.IEnumerable{``0},System.Int32)">
             <summary>
@@ -2626,13 +2813,7 @@
             <returns></returns>
         </member>
         <member name="M:OpenTap.Utils.IndexWhen``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})">
-            <summary>
-            First index where the result of predicate function is true.
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="source"></param>
-            <param name="pred"></param>
-            <returns></returns>
+            <summary>  First index where the result of predicate function is true. </summary>
         </member>
         <member name="M:OpenTap.Utils.IsLongerThan``1(System.Collections.Generic.IEnumerable{``0},System.Int64)">
             <summary>
@@ -2748,6 +2929,27 @@
         <member name="M:OpenTap.Utils.GetOrCreateValue``2(System.Collections.Generic.Dictionary{``0,``1},``0,System.Func{``0,``1})">
             <summary> Gets or creates a value based on the key. This is useful for caches. </summary>
         </member>
+        <member name="M:OpenTap.Utils.Backoff(System.Int32,System.Int32)">
+            <summary> Backoff strategy for Retry.  </summary>
+        </member>
+        <member name="M:OpenTap.Utils.Retry(System.Action,System.Type,System.Int32,System.Type[],System.Int32)">
+            <summary> Retries calling a function a number of times if calling it fails. </summary>
+            <param name="function">The function to call.</param>
+            <param name="retryOn">an exception type to retry on. By default this is typeof(Exception)</param>
+            <param name="maxRetries">default 5 times</param>
+            <param name="moreExceptions"> more exceptions to retry on</param>
+            <param name="sleepBaseMs"> The time to sleep at first iteration. Subsequent sleeps with be longer</param>
+        </member>
+        <member name="M:OpenTap.Utils.Retry``1(System.Func{``0},System.Type,System.Int32,System.Type[],System.Int32)">
+            <summary> Retries calling a function a number of times if calling it fails. </summary>
+            <param name="function">The function to call.</param>
+            <param name="retryOn">an exception type to retry on. By default this is typeof(Exception)</param>
+            <param name="maxRetries">default 5 times</param>
+            <param name="moreExceptions"> more exceptions to retry on</param>
+            <param name="sleepBaseMs"> The time to sleep at first iteration. Subsequent sleeps with be longer</param>
+            <typeparam name="T">the return type.</typeparam>
+            <returns>The return value </returns>
+        </member>
         <member name="M:OpenTap.Sequence.AsSingle``1(``0)">
             <summary> Turns item into a one element array, unless it is null.</summary>
         </member>
@@ -2777,9 +2979,14 @@
             iterates lists and generates pairs of each list. Once the end is reached for one of the lists, execution stops. 
             </summary>
         </member>
+        <member name="M:OpenTap.Sequence.Batch``1(System.Collections.Generic.IEnumerable{``0},System.Int32)">
+            <summary>
+             process the enumerable source N objects at a time.
+            </summary>
+        </member>
         <member name="M:OpenTap.Time.FromSeconds(System.Double)">
             <summary>
-            A TimeSpan from seconds that does not truncate at milliseconds.
+            A TimeSpan from seconds that does not round to nearest millisecond. (TimeSpan.FromSeconds does that).
             </summary>
             <param name="seconds"></param>
             <returns></returns>
@@ -2926,6 +3133,49 @@
         <member name="T:OpenTap.SudoHelper">
             <summary>
             This class contains some basic helpers to authenticate using the 'sudo' program
+            </summary>
+        </member>
+        <member name="T:OpenTap.Cache`2">
+            <summary> Cache class which clears when a certain criteria is met. </summary>
+        </member>
+        <member name="P:OpenTap.Cache`2.Count">
+            <summary> The current number of cached elements. </summary> 
+        </member>
+        <member name="M:OpenTap.Cache`2.TryGetValue(`0,`1@)">
+            <summary> tries getting a value for a key. </summary>
+        </member>
+        <member name="T:OpenTap.MacOSFileLock">
+            <summary>
+            Note that this implementation is not thread-safe, unlike the other implementations
+            </summary>
+        </member>
+        <member name="T:OpenTap.PosixFileLock">
+            <summary> Locks a file using flock on linux. This essentially works as a named mutex.  </summary>
+        </member>
+        <member name="M:OpenTap.PosixFileLock.Take">
+            <summary>
+            Request an exclusive lock on the open file handle
+            This call wil block until the lock is acquired
+            </summary>
+        </member>
+        <member name="F:OpenTap.PosixNative.LOCK_SH">
+            <summary>
+            Place a shared lock. More than one process may hold a shared lock for a given file at a given time. 
+            </summary>
+        </member>
+        <member name="F:OpenTap.PosixNative.LOCK_EX">
+            <summary>
+            Place an exclusive lock. Only one process may hold an exclusive lock for a given file at a given time. 
+            </summary>
+        </member>
+        <member name="F:OpenTap.PosixNative.LOCK_NB">
+            <summary>
+            Return an error instead of blocking when the lock is taken
+            </summary>
+        </member>
+        <member name="F:OpenTap.PosixNative.LOCK_UN">
+            <summary>
+            Release the lock
             </summary>
         </member>
         <member name="M:Tap.Shared.PathUtils.IterateDirectories(System.String,System.String,System.IO.SearchOption)">

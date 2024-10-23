@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Package InfoLink="http://www.keysight.com/find/TAP" Date="03/22/2022 08:35:10" Name="OpenTAP" Version="9.17.4+ea67c63a" Architecture="x64" OS="Windows" xmlns="http://opentap.io/schemas/package">
-  <Hash>DE1AC9A728386DBFF413B79D8CA1AA363225B342</Hash>
+<Package InfoLink="http://www.keysight.com/find/TAP" Date="02/26/2024 15:26:39" Name="OpenTAP" Version="9.23.2+5a906a86" Architecture="x64" OS="Windows" xmlns="http://opentap.io/schemas/package">
+  <Hash>WnWMjLezFPE9_rS6026AxAfSNUg</Hash>
   <Description>This is the OpenTAP package that contain the most common functionality used in test automation. It controls test plan (list of test steps) execution and provides access to functionality offered by plugins. This covers logging functionality, result handling (database) and instrument communication (user-developed hardware drivers, for example). OpenTAP also includes a CLI and a plugin manager that finds and handles plugins (test steps, DUT and Instrument interfaces, etc.).
         <Status>Released</Status><Organisation>Keysight Technologies</Organisation></Description>
   <Owner>OpenTAP</Owner>
@@ -90,6 +90,22 @@
             <String>Text</String>
           </Groups>
         </Plugin>
+        <Plugin Type="OpenTap.MixinMenuModelFactory" BaseType="ITypeMenuModelFactory | IMenuModelFactory">
+          <Name>MixinMenuModelFactory</Name>
+          <Order>-10000</Order>
+          <Browsable>true</Browsable>
+          <Description></Description>
+          <Collapsed>false</Collapsed>
+          <Groups />
+        </Plugin>
+        <Plugin Type="OpenTap.MixinTypeDataProvider" BaseType="TypeData Provider">
+          <Name>MixinTypeDataProvider</Name>
+          <Order>-10000</Order>
+          <Browsable>true</Browsable>
+          <Description></Description>
+          <Collapsed>false</Collapsed>
+          <Groups />
+        </Plugin>
         <Plugin Type="OpenTap.ParameterMemberAnnotator" BaseType="IAnnotator">
           <Name>ParameterMemberAnnotator</Name>
           <Order>-10000</Order>
@@ -174,6 +190,14 @@
           <Collapsed>false</Collapsed>
           <Groups />
         </Plugin>
+        <Plugin Type="OpenTap.SystemStartupInfo" BaseType="IStartupInfo">
+          <Name>SystemStartupInfo</Name>
+          <Order>-10000</Order>
+          <Browsable>true</Browsable>
+          <Description></Description>
+          <Collapsed>false</Collapsed>
+          <Groups />
+        </Plugin>
         <Plugin Type="OpenTap.TestPlanRunSummaryListener" BaseType="Result Listener">
           <Name>TestPlanRunSummaryListener</Name>
           <Order>-10000</Order>
@@ -184,6 +208,14 @@
         </Plugin>
         <Plugin Type="OpenTap.VisaDeviceDiscovery" BaseType="Device Discovery">
           <Name>VisaDeviceDiscovery</Name>
+          <Order>-10000</Order>
+          <Browsable>true</Browsable>
+          <Description></Description>
+          <Collapsed>false</Collapsed>
+          <Groups />
+        </Plugin>
+        <Plugin Type="OpenTap.VisaLibraryLoader" BaseType="IVisaProvider">
+          <Name>VisaLibraryLoader</Name>
           <Order>-10000</Order>
           <Browsable>true</Browsable>
           <Description></Description>
@@ -366,6 +398,14 @@
           <Collapsed>false</Collapsed>
           <Groups />
         </Plugin>
+        <Plugin Type="OpenTap.Plugins.MixinSerializer" BaseType="Serializer">
+          <Name>MixinSerializer</Name>
+          <Order>-10000</Order>
+          <Browsable>true</Browsable>
+          <Description></Description>
+          <Collapsed>false</Collapsed>
+          <Groups />
+        </Plugin>
         <Plugin Type="OpenTap.Plugins.ResourceSerializer" BaseType="Serializer">
           <Name>ResourceSerializer</Name>
           <Order>-10000</Order>
@@ -414,6 +454,14 @@
           <Collapsed>false</Collapsed>
           <Groups />
         </Plugin>
+        <Plugin Type="OpenTap.Authentication.AuthenticationSettings" BaseType="Component Settings">
+          <Name>AuthenticationSettings</Name>
+          <Order>-10000</Order>
+          <Browsable>false</Browsable>
+          <Description></Description>
+          <Collapsed>false</Collapsed>
+          <Groups />
+        </Plugin>
         <Plugin Type="OpenTap.StringConvertProvider+CachePopularity+Wrap" BaseType="String Converter">
           <Name>Wrap</Name>
           <Order>-10000</Order>
@@ -423,7 +471,7 @@
           <Groups />
         </Plugin>
       </Plugins>
-      <Hash>3813833D2F3490C6308B9FB4779727107C02BF62</Hash>
+      <Hash>F8FF052095BB579484A451AFED1CA9D2586BF312</Hash>
     </File>
     <File Path="OpenTap.Package.dll">
       <Plugins>
@@ -511,8 +559,8 @@
           <Collapsed>false</Collapsed>
           <Groups />
         </Plugin>
-        <Plugin Type="OpenTap.Package.PackageVersionSerializerPlugin" BaseType="Serializer">
-          <Name>PackageVersionSerializerPlugin</Name>
+        <Plugin Type="OpenTap.Package.InstallationLoggerStartupInfo" BaseType="IStartupInfo">
+          <Name>InstallationLoggerStartupInfo</Name>
           <Order>-10000</Order>
           <Browsable>true</Browsable>
           <Description></Description>
@@ -649,7 +697,15 @@
           <Collapsed>false</Collapsed>
           <Groups />
         </Plugin>
-        <Plugin Type="OpenTap.Package.TestPlanPackageDependency" BaseType="Serializer">
+        <Plugin Type="OpenTap.Package.PackageVersionSerializerPlugin" BaseType="Serializer">
+          <Name>PackageVersionSerializerPlugin</Name>
+          <Order>-10000</Order>
+          <Browsable>true</Browsable>
+          <Description></Description>
+          <Collapsed>false</Collapsed>
+          <Groups />
+        </Plugin>
+        <Plugin Type="OpenTap.Package.TestPlanPackageDependencySerializer" BaseType="Serializer">
           <Name>Test Plan Package Dependencies</Name>
           <Order>-10000</Order>
           <Browsable>true</Browsable>
@@ -674,6 +730,14 @@
           <Groups>
             <String>package</String>
           </Groups>
+        </Plugin>
+        <Plugin Type="OpenTap.Package.PackageInstallHelpers.PackageUninstallStep" BaseType="Test Step">
+          <Name>PackageUninstallStep</Name>
+          <Order>-10000</Order>
+          <Browsable>false</Browsable>
+          <Description></Description>
+          <Collapsed>false</Collapsed>
+          <Groups />
         </Plugin>
         <Plugin Type="OpenTap.Package.PackageInstallHelpers.PackageInstallStep" BaseType="Test Step">
           <Name>PackageInstallStep</Name>
@@ -708,7 +772,7 @@
           <Groups />
         </Plugin>
       </Plugins>
-      <Hash>7818856466AA652932EC22D25D1E419CE854CD9A</Hash>
+      <Hash>029C6C4E7DB579CC8E372D7CF670A8F7E1C82CDA</Hash>
     </File>
     <File Path="Packages/OpenTAP/OpenTap.Plugins.BasicSteps.dll">
       <Plugins>
@@ -923,37 +987,37 @@
           <Groups />
         </Plugin>
       </Plugins>
-      <Hash>A2FF2CE4D1A2EA6A8CFEB2415B2AF481A77A25A8</Hash>
+      <Hash>D0C11F81BD46E949728184D5175AF33AD6593B62</Hash>
     </File>
     <File Path="Packages/OpenTAP/OpenTap.Cli.dll">
-      <Hash>7065D19691A7E8F0B88319D75730C0575622A3B5</Hash>
+      <Hash>6883BC20D3B702F2ED775593D5E662A1C3A5580E</Hash>
     </File>
     <File Path="tap.exe">
-      <Hash>388C4DD84F91910B70A0A4F7DB3CBB3768244114</Hash>
+      <Hash>67EE407845D2802EF3415FFD02078FE9615CF439</Hash>
     </File>
-    <File Path="Packages/OpenTap/tap.exe.new">
-      <Hash>BEF951ECB1B88A8064E5F603653AF0A8D8480D56</Hash>
+    <File Path="Packages/OpenTAP/tap.exe.new">
+      <Hash>EF8C71FA87CC60A02F4525FFCD376F4F5A1413A4</Hash>
     </File>
-    <File Path="Packages/OpenTap/Tap.Upgrader.exe">
-      <Hash>078B784392E14C988C164CB6F2E421F937C200C5</Hash>
+    <File Path="Packages/OpenTAP/Tap.Upgrader.exe">
+      <Hash>E79B0CE8572C90368215ACE2DC5E65C19912CF6B</Hash>
+    </File>
+    <File Path="OpenTapApiReference.chm">
+      <Hash>E2B607FC7A144E81157D11AAC52B399959E11B1F</Hash>
     </File>
     <File Path="Dependencies/LibGit2Sharp.0.27.0.0/git2-b7bad55.dll.x64">
       <Hash>B80389A6368B85BA6C3015B2198C2A4F6AB7D262</Hash>
     </File>
-    <File Path="OpenTapApiReference.chm">
-      <Hash>7274C622D6ED39A75C3031E2C1DE32F06A61D0B9</Hash>
+    <File Path="Dependencies/LibGit2Sharp.0.27.0.0/git2-b7bad55.source">
+      <Hash>C9ED49F40FD8D6DAD67C5760F90ECC73C66C656D</Hash>
     </File>
     <File Path="LICENSE.txt">
-      <Hash>ECAB6B259276DEB966CD2DDA68552F593F44D4BD</Hash>
+      <Hash>7373CE89A423F52F144F5A290C072841E7B657A8</Hash>
     </File>
     <File Path="Dependencies/LibGit2Sharp.0.27.0.0/LICENSE.txt">
       <Hash>50C986EEA264F09A4C1CBF76ECCA1A596EB1D1BB</Hash>
     </File>
     <File Path="Dependencies/Mono.Cecil.0.10.1.0/LICENSE.txt">
       <Hash>BF2DB7A95CDEFAB002496C244374F4ED7518F3DB</Hash>
-    </File>
-    <File Path="Dependencies/netstandard.2.0.0.0/LICENSE.txt">
-      <Hash>26C7C096AC257154020A07532C5EDEBA91EE97E0</Hash>
     </File>
     <File Path="Dependencies/System.Reflection.Metadata.1.4.3.0/LICENSE.txt">
       <Hash>26C7C096AC257154020A07532C5EDEBA91EE97E0</Hash>
@@ -967,19 +1031,7 @@
     <File Path="Dependencies/System.ValueTuple.4.0.3.0/LICENSE.txt">
       <Hash>26C7C096AC257154020A07532C5EDEBA91EE97E0</Hash>
     </File>
-    <File Path="Dependencies/System.Runtime.4.1.2.0/LICENSE.txt">
-      <Hash>44482775E8845CAD0F4EF6EAE939DE8FD6E4924F</Hash>
-    </File>
-    <File Path="Dependencies/System.Collections.4.0.11.0/LICENSE.txt">
-      <Hash>44482775E8845CAD0F4EF6EAE939DE8FD6E4924F</Hash>
-    </File>
-    <File Path="Dependencies/System.IO.4.1.2.0/LICENSE.txt">
-      <Hash>44482775E8845CAD0F4EF6EAE939DE8FD6E4924F</Hash>
-    </File>
-    <File Path="Dependencies/System.Runtime.Extensions.4.1.2.0/LICENSE.txt">
-      <Hash>44482775E8845CAD0F4EF6EAE939DE8FD6E4924F</Hash>
-    </File>
-    <File Path="Dependencies/System.Linq.4.1.2.0/LICENSE.txt">
+    <File Path="Dependencies/System.Linq.4.1.0.0/LICENSE.txt">
       <Hash>44482775E8845CAD0F4EF6EAE939DE8FD6E4924F</Hash>
     </File>
     <File Path="Dependencies/DotNet.Glob.3.0.1.0/LICENSE.txt">
@@ -987,9 +1039,6 @@
     </File>
     <File Path="Dependencies/Newtonsoft.Json.12.0.0.0/LICENSE.txt">
       <Hash>277802B2810FF917E0D0FAB6F52A2E9485E1B9D0</Hash>
-    </File>
-    <File Path="Dependencies/netstandard.2.0.0.0/netstandard.dll">
-      <Hash>68E1AF02CDDD57B5581708984C2B4A35074982A3</Hash>
     </File>
     <File Path="Dependencies/System.Collections.Immutable.1.2.3.0/System.Collections.Immutable.dll">
       <Hash>EEF943E4369166A039DEE90F2D81504613D49CA0</Hash>
@@ -1000,8 +1049,14 @@
     <File Path="Dependencies/System.Security.Principal.Windows.5.0.0.0/System.Security.Principal.Windows.dll">
       <Hash>9A5BE1FCF410FE5934D720329D36A2377E83747E</Hash>
     </File>
+    <File Path="Dependencies/System.Text.Json.4.0.1.0/System.Text.Json.dll">
+      <Hash>E273DDADF02BFB4556BEB58ED46D191C55E8D770</Hash>
+    </File>
     <File Path="Dependencies/Microsoft.CSharp.4.0.4.0/Microsoft.CSharp.dll">
       <Hash>1B37061909C0053B8756A375426C499FF6457A7F</Hash>
+    </File>
+    <File Path="Dependencies/System.Memory.4.0.1.1/System.Memory.dll">
+      <Hash>F05CE2A5891B62C968D30FAD13D37FBEB42A4389</Hash>
     </File>
     <File Path="Dependencies/LibGit2Sharp.0.27.0.0/LibGit2Sharp.dll">
       <Hash>E85E292723AC5C8972502E6F3E5E4C76F300004F</Hash>
@@ -1010,7 +1065,10 @@
       <Hash>0065ACB4C9EA4C66DBE8CC63E04984DC69444407</Hash>
     </File>
     <File Path="Dependencies/Newtonsoft.Json.12.0.0.0/Newtonsoft.Json.dll">
-      <Hash>CBC510520FCD85DBC1C82B02E82040702ACA9B79</Hash>
+      <Hash>1248142EB45EED3BEB0D9A2D3B8BED5FE2569B10</Hash>
+    </File>
+    <File Path="Dependencies/OpenTap.Repository.Client.4.17.0.0/OpenTap.Repository.Client.dll">
+      <Hash>2043E203CD7FA647E5FC6201B8FADE258336F9A1</Hash>
     </File>
     <File Path="Dependencies/Mono.Cecil.0.10.1.0/Mono.Cecil.dll">
       <Hash>B438D49B858946441A6C63461E6A912B05416CDE</Hash>
@@ -1018,27 +1076,36 @@
     <File Path="Dependencies/System.4.0.0.0/System.dll">
       <Hash>6DBF901A8F271492CDDD59D699608D09CD58B138</Hash>
     </File>
-    <File Path="Dependencies/System.Runtime.4.1.2.0/System.Runtime.dll">
-      <Hash>FD622ADE5CAE26353A22B6FA50A83669B72B6C41</Hash>
+    <File Path="Dependencies/System.Text.Encodings.Web.4.0.5.0/System.Text.Encodings.Web.dll">
+      <Hash>0FC31E6E37CF747962088D7BD1357ADE2CF03524</Hash>
     </File>
-    <File Path="Dependencies/System.Collections.4.0.11.0/System.Collections.dll">
-      <Hash>4D923B100142AFA2E0A8B7ACDB3A6DE6FEB91148</Hash>
+    <File Path="Dependencies/System.ValueTuple.4.0.3.0/System.ValueTuple.dll">
+      <Hash>D1664731719E85AAD7A2273685D77FEB0204EC98</Hash>
     </File>
-    <File Path="Dependencies/System.IO.4.1.2.0/System.IO.dll">
-      <Hash>A6999C04B243B034F8EE7AD0D79F3CE24DF9A9D0</Hash>
+    <File Path="Dependencies/System.Numerics.Vectors.4.1.4.0/System.Numerics.Vectors.dll">
+      <Hash>3D216458740AD5CB05BC5F7C3491CDE44A1E5DF0</Hash>
     </File>
-    <File Path="Dependencies/System.Runtime.Extensions.4.1.2.0/System.Runtime.Extensions.dll">
-      <Hash>7D71B46BB9A28289384AA1EDF5CB03D64B3BCFF0</Hash>
+    <File Path="Dependencies/System.Threading.Tasks.Extensions.4.2.0.1/System.Threading.Tasks.Extensions.dll">
+      <Hash>850849AA6723733E661F3BFE6DA805F4657A2FCB</Hash>
     </File>
-    <File Path="Dependencies/System.Linq.4.1.2.0/System.Linq.dll">
-      <Hash>4D93C7D7E6315CA2195ED73716996ADE8E17FBB2</Hash>
+    <File Path="Dependencies/Microsoft.Bcl.AsyncInterfaces.1.0.0.0/Microsoft.Bcl.AsyncInterfaces.dll">
+      <Hash>7D8264BE4FCB17F81ACB8B1ADD980CD96A6FD856</Hash>
+    </File>
+    <File Path="Dependencies/System.Buffers.4.0.3.0/System.Buffers.dll">
+      <Hash>BAC34C8A68C12051C6F5395C5A759D7AB519A8BA</Hash>
+    </File>
+    <File Path="Dependencies/System.Runtime.CompilerServices.Unsafe.4.0.6.0/System.Runtime.CompilerServices.Unsafe.dll">
+      <Hash>4B12049E1B8A173B906B658836B5D8149E36542E</Hash>
+    </File>
+    <File Path="Dependencies/System.Linq.4.1.0.0/System.Linq.dll">
+      <Hash>4FC3733E7D41A66D3C6E42F43994D97F81D2411B</Hash>
     </File>
     <File Path="Dependencies/System.CodeDom.4.0.1.0/System.CodeDom.dll">
       <Hash>2A5DAB71359F6D6A38F44DE28A7C3AF9EA085E62</Hash>
     </File>
   </Files>
   <PackageActionExtensions>
-    <ActionStep ExeFile="Packages/OpenTap/Tap.Upgrader.exe" ExpectedExitCodes="0" Arguments="" ActionName="install"></ActionStep>
-    <ActionStep ExeFile="Packages/OpenTap/Tap.Upgrader.exe" ExpectedExitCodes="0" Arguments="" ActionName="uninstall"></ActionStep>
+    <ActionStep ExeFile="Packages/OpenTAP/Tap.Upgrader.exe" ExpectedExitCodes="0" Quiet="false" Optional="false" Arguments="" ActionName="install"></ActionStep>
+    <ActionStep ExeFile="Packages/OpenTAP/Tap.Upgrader.exe" ExpectedExitCodes="0" Quiet="false" Optional="false" Arguments="" ActionName="uninstall"></ActionStep>
   </PackageActionExtensions>
 </Package>

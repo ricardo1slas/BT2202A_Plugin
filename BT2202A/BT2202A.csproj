@@ -1,34 +1,46 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
+<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="Current">
   <PropertyGroup>
-    <OutputType>Library</OutputType>
-    <!-- We are debugging using NET Framework, but builds to Netstandard in release mode to ensure cross platform compatibility -->
-    <!-- If your plugin is Windows only and you use Windows specific API's, feel free to change "netstandard2.0" below to "net462" and everything will work as when you are debugging. In this case, remember to change "OS" in package.xml to only "windows" -->
-    <!-- If your plugin should be cross platform but does not build in release mode, please verify that all API's you used are available. You might need references or nuget packages for API's that are available in NET framework, but not in NetStandard -->
-    <TargetFramework>netstandard2.0</TargetFramework>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <TargetFrameworkIdentifier></TargetFrameworkIdentifier>
+    <TargetFrameworkVersion></TargetFrameworkVersion>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <DebugWith>TUI</DebugWith>
+  </PropertyGroup>
+    
+  <PropertyGroup>
     <OpenTapPackageDefinitionPath>package.xml</OpenTapPackageDefinitionPath>
+    <CreateOpenTapPackage>false</CreateOpenTapPackage>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)'=='Debug'">
-    <!-- We are setting TargetFramework in debug configuration, otherwise Visual Studio tries to attach a .NET Core debugger. That will not work, because the program we open is a .NET Framework executable -->
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <CreateOpenTapPackage>true</CreateOpenTapPackage>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(OS)' == 'WINDOWS_NT' AND '$(Configuration)' == 'Debug'">
+    <!--
+      We target .NET Framework in debug builds when debugging with the WPF Editor due to a bug in Visual Studio's debugger.
+      The debugger assumes that netstandard projects should be debugged as .NET Core apps, and thus launches a .NET Core debugger
+      which fails to attach because tap.exe is a .NET Framework application.
+
+      To ensure maximum compatibility, we recommend targetting netstandard2.0 in release builds, unless you need specific
+      APIs that are not available in netstandard2.0.
+    -->
     <TargetFramework>net472</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Properties\" />
+    <PackageReference Include="OpenTAP" Version="9.23.2" />
   </ItemGroup>
 
-  <ItemGroup>
-    <!-- Developer's System is needed to debug in 'Editor' -->
-    <!-- Even though OpenTAP is released in version +9.17.4, Developer's System CE development is paused after v9.17.4. -->
-    <AdditionalOpenTapPackage Include="Developer's System CE" Version="9.17.4" />
-    <!--<AdditionalOpenTapPackage Include="Developer's System" />-->
+  <ItemGroup Condition="'$(DebugWith)' == 'TUI' AND '$(Configuration)' == 'Debug'">
+    <OpenTapPackageReference Include="TUI" version="1" />
   </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="OpenTAP" Version="9.17.4" />
+  <ItemGroup Condition="'$(DebugWith)' == 'Editor' AND '$(Configuration)' == 'Debug'">
+    <OpenTapPackageReference Include="Editor" version="9" />
   </ItemGroup>
 
 </Project>

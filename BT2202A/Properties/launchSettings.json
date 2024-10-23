@@ -1,8 +1,16 @@
 {
   "profiles": {
-    "Editor": {
+    "Debug with editor (Windows)": {
       "commandName": "Executable",
-      "executablePath": "./editor.exe"
+      "commandLineArgs": "tui",
+      "executablePath": "tap.exe",
+      "dotnetRunMessages": true
+    },
+    "Debug with editor (Linux / Mac)": {
+      "commandName": "Executable",
+      "commandLineArgs": "tap.dll tui",
+      "executablePath": "dotnet",
+      "dotnetRunMessages": true
     }
   }
 }
