@@ -1,0 +1,30 @@
+2024-10-24 11:24:53.650442 ; Session        ; Debug       ; Session log loaded as 'C:\Users\Admin\Documents\GitHub\BT2202A_Plugin\YushiProject\bin\Debug\SessionLogs\MSBuild.14944 2024-10-24 11-15-44.txt'. [2.06 ms]
+2024-10-24 11:24:53.661413 ; Session        ; Debug       ; Running 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\MSBuild.exe /nologo /nodemode:1 /nodeReuse:true /low:false' in 'C:\Users\Admin\Documents\GitHub\BT2202A_Plugin\YushiProject'.
+2024-10-24 11:24:53.697316 ; AssemblyFinder ; Debug       ; Found 5/26 assembly files. [5.35 ms]
+2024-10-24 11:24:53.717262 ; Resolver       ; Debug       ; Found match for System.Reflection.Metadata, Version=1.4.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a in C:\Users\Admin\.nuget\packages\opentap\9.26.1\build\payload\Dependencies\System.Reflection.Metadata.1.4.3.0\System.Reflection.Metadata.dll
+2024-10-24 11:24:53.775130 ; Searcher       ; Debug       ; Ordered 5 assemblies according to references. [75.1 ms]
+2024-10-24 11:24:53.806056 ; PluginManager  ; Debug       ; Found 3 plugin assemblies containing 175 plugin types. [106 ms]
+2024-10-24 11:24:53.807054 ; PluginManager  ; Debug       ; Found version 9.26.1+3d268116  of OpenTap.dll from C:\Users\Admin\.nuget\packages\opentap\9.26.1\build\payload\OpenTap.dll
+2024-10-24 11:24:53.807054 ; PluginManager  ; Debug       ; Found version 9.26.1+3d268116  of OpenTap.Package.dll from C:\Users\Admin\.nuget\packages\opentap\9.26.1\build\payload\OpenTap.Package.dll
+2024-10-24 11:24:53.807054 ; PluginManager  ; Debug       ; Found version 9.26.1+3d268116  of OpenTap.Plugins.BasicSteps.dll from C:\Users\Admin\.nuget\packages\opentap\9.26.1\build\payload\Packages\OpenTAP\OpenTap.Plugins.BasicSteps.dll
+2024-10-24 11:24:53.807054 ; PluginManager  ; Debug       ; Searched 5 Assemblies. [108 ms]
+2024-10-24 11:24:53.818021 ; AssemblyData   ; Debug       ; Loaded OpenTap.Package. [461 us]
+2024-10-24 11:24:53.820019 ; AssemblyData   ; Debug       ; Loaded OpenTap. [225 us]
+2024-10-24 11:24:53.823008 ; AssemblyData   ; Debug       ; Loaded OpenTap.Plugins.BasicSteps. [3.12 ms]
+2024-10-24 11:24:53.869886 ; AssemblyData   ; Debug       ; Loaded mscorlib. [300 ns]
+2024-10-24 11:24:53.896784 ; SystemInfo     ; Debug       ; Microsoft Windows 10.0.19045 X64
+2024-10-24 11:24:53.896784 ; SystemInfo     ; Debug       ; .NET Framework 4.8.9277.0
+2024-10-24 11:24:53.897781 ; SystemInfo     ; Debug       ; OpenTAP Engine 9.26.1+3d268116 X86
+2024-10-24 11:24:53.954520 ; Installation   ; Debug       ; OpenTAP                  - 9.26.1+3d268116
+2024-10-24 11:24:53.955518 ; Installation   ; Debug       ; TUI                      - 1.1.1+507fd903
+2024-10-24 11:24:53.955518 ; Installation   ; Debug       ; PathWave License Manager - 7.4.1+efeba870
+2024-10-24 11:24:53.968484 ; Resolver       ; Debug       ; Found match for OpenTap.Repository.Client, Version=4.17.0.0, Culture=neutral, PublicKeyToken=null in C:\Users\Admin\.nuget\packages\opentap\9.26.1\build\payload\Dependencies\OpenTap.Repository.Client.4.17.0.0\OpenTap.Repository.Client.dll
+2024-10-24 11:24:53.991455 ; Settings       ; Debug       ; No settings file exists for AuthenticationSettings. A new instance with default values has been created. [228 us]
+2024-10-24 11:24:53.998494 ; Settings       ; Debug       ; No settings file exists for PackageManagerSettings. A new instance with default values has been created. [1.06 ms]
+2024-10-24 11:24:54.093172 ; FilePackageRepository ; Debug       ; Rebuilding cache: .PackageCache.7F6A6293.13.xml [85.1 ms]
+2024-10-24 11:24:54.099169 ; Package Query  ; Debug       ; Read 13 packages from [FilePackageRepository: file:///C:/Users/Admin/AppData/Local/OpenTap/PackageCache] [95.5 ms]
+2024-10-24 11:24:54.103128 ; Resolver       ; Debug       ; Found match for System.Text.Json, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51 in C:\Users\Admin\.nuget\packages\opentap\9.26.1\build\payload\Dependencies\System.Text.Json.4.0.1.2\System.Text.Json.dll
+2024-10-24 11:24:55.629606 ; GraphQL        ; Debug       ; {"type":"TapPackage","directory":"/Packages/","version":"","architecture":"x64","os":"Windows"} -> found 1496 packages. [1.52 s]
+2024-10-24 11:24:56.510020 ; GraphQL        ; Debug       ; {"type":"TapPackage","directory":"/Packages/","name":"OpenTAP","version":"alpha","architecture":"x64","os":"Windows"} -> found 24 packages. [854 ms]
+2024-10-24 11:24:56.517005 ; image          ; Debug       ; Resolved image: TUI:1, OpenTAP:9.26.1+3d268116, PathWave License Manager:^7.4.1+efeba870 [877 ms]
+2024-10-24 11:24:58.213358 ; OpenTAP        ; Information ; Target installation is already up to date.

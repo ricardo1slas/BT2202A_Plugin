@@ -1,0 +1,27 @@
+2024-10-24 10:59:08.528885 ; Session        ; Debug       ; Session log loaded as 'C:\Users\Admin\Documents\GitHub\BT2202A_Plugin\YushiProject\bin\Release\SessionLogs\Editor 2024-10-24 10-59-08.txt'. [1.44 ms]
+2024-10-24 10:59:08.548522 ; Session        ; Debug       ; Running '"C:\Users\Admin\Documents\GitHub\BT2202A_Plugin\YushiProject\bin\Release\Editor.exe" ' in 'C:\Users\Admin\Documents\GitHub\BT2202A_Plugin\YushiProject\bin\Release'.
+2024-10-24 10:59:08.578442 ; AssemblyFinder ; Debug       ; Found 9/30 assembly files. [6.70 ms]
+2024-10-24 10:59:08.585422 ; Resolver       ; Debug       ; Unable to find match for Keysight.OpenTap.Wpf, Version=9.5.0.0, Culture=neutral, PublicKeyToken=null
+2024-10-24 10:59:08.590438 ; Resolver       ; Debug       ; Found match for System.Collections.Immutable, Version=1.2.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a in C:\Users\Admin\Documents\GitHub\BT2202A_Plugin\YushiProject\bin\Release\Dependencies\System.Collections.Immutable.1.2.3.0\System.Collections.Immutable.dll
+2024-10-24 10:59:08.642272 ; Resolver       ; Debug       ; Found match for System.Reflection.Metadata, Version=1.4.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a in C:\Users\Admin\Documents\GitHub\BT2202A_Plugin\YushiProject\bin\Release\Dependencies\System.Reflection.Metadata.1.4.3.0\System.Reflection.Metadata.dll
+2024-10-24 10:59:08.723054 ; Searcher       ; Debug       ; Ordered 9 assemblies according to references. [91.3 ms]
+2024-10-24 10:59:08.768953 ; Searcher       ; Warning     ; Plugin with duplicate type name BT2202a.carga defined in 'BT2202a' and 'BT2202A'
+2024-10-24 10:59:08.768953 ; Searcher       ; Warning     ; Plugin with duplicate type name BT2202a.MyTestStep defined in 'BT2202a' and 'BT2202A'
+2024-10-24 10:59:08.768953 ; Searcher       ; Warning     ; Plugin with duplicate type name OpenTap.Plugins.PluginDevelopment.ScpiInstrumentExample defined in 'BT2202a' and 'BT2202A'
+2024-10-24 10:59:08.772921 ; PluginManager  ; Debug       ; Found 5 plugin assemblies containing 187 plugin types. [143 ms]
+2024-10-24 10:59:08.773918 ; PluginManager  ; Debug       ; Found version 9.26.1+3d268116  of OpenTap.dll
+2024-10-24 10:59:08.773918 ; PluginManager  ; Debug       ; Found version 0.0.0            of BT2202a.dll
+2024-10-24 10:59:08.773918 ; PluginManager  ; Debug       ; Found version 9.26.1+3d268116  of OpenTap.Package.dll
+2024-10-24 10:59:08.773918 ; PluginManager  ; Debug       ; Found version 9.17.4+5e508f08  of Editor.exe
+2024-10-24 10:59:08.773918 ; PluginManager  ; Debug       ; Found version 9.26.1+3d268116  of OpenTap.Plugins.BasicSteps.dll
+2024-10-24 10:59:08.773918 ; PluginManager  ; Debug       ; Searched 9 Assemblies. [145 ms]
+2024-10-24 10:59:08.844550 ; AssemblyData   ; Debug       ; Loaded OpenTap. [302 us]
+2024-10-24 10:59:08.858217 ; SystemInfo     ; Debug       ; Microsoft Windows 10.0.19045 X64
+2024-10-24 10:59:08.858217 ; SystemInfo     ; Debug       ; .NET Framework 4.8.9277.0
+2024-10-24 10:59:08.858217 ; SystemInfo     ; Debug       ; OpenTAP Engine 9.26.1+3d268116 X64
+2024-10-24 10:59:08.861214 ; AssemblyData   ; Debug       ; Loaded OpenTap.Package. [3.15 ms]
+2024-10-24 10:59:08.889112 ; AssemblyData   ; Debug       ; Loaded OpenTap.Plugins.BasicSteps. [2.93 ms]
+2024-10-24 10:59:08.939000 ; AssemblyData   ; Debug       ; Loaded mscorlib. [400 ns]
+2024-10-24 10:59:09.058659 ; Installation   ; Debug       ; BT2202a                  - 0.1.0-alpha
+2024-10-24 10:59:09.058659 ; Installation   ; Debug       ; OpenTAP                  - 9.26.1+3d268116
+2024-10-24 10:59:09.058659 ; Installation   ; Debug       ; PathWave License Manager - 7.4.1+efeba870

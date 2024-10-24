@@ -1,0 +1,28 @@
+2024-10-23 13:59:50.767276 ; Session        ; Debug       ; Session log loaded as 'C:\Users\Admin\Documents\GitHub\BT2202A_Plugin\YushiProject\bin\Debug\SessionLogs\MSBuild.21168 2024-10-23 13-59-49.txt'. [3.23 ms]
+2024-10-23 13:59:50.776249 ; Session        ; Debug       ; Running 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\MSBuild.exe /nologo /nodemode:1 /nodeReuse:true /low:false' in 'C:\Users\Admin\Documents\GitHub\BT2202A_Plugin\YushiProject'.
+2024-10-23 13:59:50.838083 ; AssemblyFinder ; Debug       ; Found 5/26 assembly files. [4.89 ms]
+2024-10-23 13:59:50.862021 ; Resolver       ; Debug       ; Found match for System.Reflection.Metadata, Version=1.4.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a in C:\Users\Admin\.nuget\packages\opentap\9.23.2\build\payload\Dependencies\System.Reflection.Metadata.1.4.3.0\System.Reflection.Metadata.dll
+2024-10-23 13:59:50.937816 ; Searcher       ; Debug       ; Ordered 5 assemblies according to references. [96.2 ms]
+2024-10-23 13:59:50.976713 ; PluginManager  ; Debug       ; Found 3 plugin assemblies containing 175 plugin types. [135 ms]
+2024-10-23 13:59:50.977709 ; PluginManager  ; Debug       ; Found version 9.23.2+5a906a86  of OpenTap.dll from C:\Users\Admin\.nuget\packages\opentap\9.23.2\build\payload\OpenTap.dll
+2024-10-23 13:59:50.977709 ; PluginManager  ; Debug       ; Found version 9.23.2+5a906a86  of OpenTap.Package.dll from C:\Users\Admin\.nuget\packages\opentap\9.23.2\build\payload\OpenTap.Package.dll
+2024-10-23 13:59:50.977709 ; PluginManager  ; Debug       ; Found version 9.23.2+5a906a86  of OpenTap.Plugins.BasicSteps.dll from C:\Users\Admin\.nuget\packages\opentap\9.23.2\build\payload\Packages\OpenTAP\OpenTap.Plugins.BasicSteps.dll
+2024-10-23 13:59:50.977709 ; PluginManager  ; Debug       ; Searched 5 Assemblies. [137 ms]
+2024-10-23 13:59:50.990675 ; AssemblyData   ; Debug       ; Loaded OpenTap.Package. [434 us]
+2024-10-23 13:59:50.994664 ; AssemblyData   ; Debug       ; Loaded OpenTap. [463 us]
+2024-10-23 13:59:50.995662 ; AssemblyData   ; Debug       ; Loaded OpenTap.Plugins.BasicSteps. [4.81 ms]
+2024-10-23 13:59:51.031565 ; SystemInfo     ; Debug       ; Microsoft Windows 10.0.19045 X64
+2024-10-23 13:59:51.031565 ; SystemInfo     ; Debug       ; .NET Framework 4.8.9277.0
+2024-10-23 13:59:51.031565 ; SystemInfo     ; Debug       ; OpenTAP Engine 9.23.2+5a906a86 X86
+2024-10-23 13:59:51.053507 ; AssemblyData   ; Debug       ; Loaded mscorlib. [300 ns]
+2024-10-23 13:59:51.207096 ; Installation   ; Debug       ; OpenTAP                  - 9.23.2+5a906a86
+2024-10-23 13:59:51.207096 ; Installation   ; Debug       ; TUI                      - 1.1.1+507fd903
+2024-10-23 13:59:51.207096 ; Installation   ; Debug       ; PathWave License Manager - 7.4.1+efeba870
+2024-10-23 13:59:51.225048 ; Resolver       ; Debug       ; Found match for OpenTap.Repository.Client, Version=4.17.0.0, Culture=neutral, PublicKeyToken=null in C:\Users\Admin\.nuget\packages\opentap\9.23.2\build\payload\Dependencies\OpenTap.Repository.Client.4.17.0.0\OpenTap.Repository.Client.dll
+2024-10-23 13:59:51.254968 ; Settings       ; Debug       ; No settings file exists for AuthenticationSettings. A new instance with default values has been created. [354 us]
+2024-10-23 13:59:51.263943 ; Settings       ; Debug       ; No settings file exists for PackageManagerSettings. A new instance with default values has been created. [924 us]
+2024-10-23 13:59:51.401574 ; FilePackageRepository ; Debug       ; Rebuilding cache: .PackageCache.7F6A6293.13.xml [103 ms]
+2024-10-23 13:59:51.416536 ; Package Query  ; Debug       ; Read 13 packages from [FilePackageRepository: file:///C:/Users/Admin/AppData/Local/OpenTap/PackageCache] [128 ms]
+2024-10-23 13:59:53.483660 ; GraphQL        ; Debug       ; {"type":"TapPackage","directory":"/Packages/","version":"","architecture":"x64","os":"Windows"} -> found 1496 packages. [2.19 s]
+2024-10-23 13:59:53.509621 ; image          ; Debug       ; Resolved image: TUI:1, OpenTAP:9.23.2+5a906a86, PathWave License Manager:^7.4.1+efeba870 [18.0 ms]
+2024-10-23 13:59:56.493817 ; OpenTAP        ; Information ; Target installation is already up to date.

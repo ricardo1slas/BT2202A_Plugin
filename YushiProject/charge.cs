@@ -8,7 +8,8 @@ using System.Threading;
 
 namespace BT2202a
 {
-    [Display("Charge", Group: "BT2202A", Description: "Charges a device with specified voltage and current for a set duration.")]
+    [Display("Charge", Group: "instrument", Description: "Charges a device with specified voltage and current for a set duration.")]
+   
     public class Charge : TestStep
     {
         #region Settings
@@ -22,9 +23,9 @@ namespace BT2202a
         [Display("Time (s)", Order: 3, Description: "The duration of the charge in seconds.")]
         public double Time { get; set; }
 
-        // Reference to the BT2202A Instrument
-        [Display("Instrument", Order: 4, Description: "The BT2202A instrument to use for charging.")]
-        public BT2202AInstrument MyInstrument { get; set; }
+        // Reference to the instrument Instrument
+        [Display("Instrument", Order: 4, Description: "The instrument instrument to use for charging.")]
+        public ScpiInstrument instrument { get; set; }
         #endregion
 
         // Additional fields used during the charging process.
@@ -33,6 +34,7 @@ namespace BT2202a
         private List<string> chargeCommands = new List<string>(); // Example placeholder; populate as needed.
         private int chargeCommandCounter = 0;
         private Dictionary<string, int> commandIterationCount = new Dictionary<string, int>(); // Example placeholder.
+
 
         public Charge()
         {
@@ -54,19 +56,19 @@ namespace BT2202a
                     return;
                 }
 
-                MyInstrument.ScpiCommand("*IDN?");
-                MyInstrument.ScpiCommand("*RST");
-                MyInstrument.ScpiCommand("SYST:PROB:LIM 1,0");
+                instrument.ScpiCommand("*IDN?");
+                instrument.ScpiCommand("*RST");
+                instrument.ScpiCommand("SYST:PROB:LIM 1,0");
 
                 foreach (var command in moduleCommands)
                 {
-                    MyInstrument.ScpiCommand(command);
+                    instrument.ScpiCommand(command);
                     Log.Info($"Executed: {command}");
                 }
 
                 if (chargeCommandCounter < chargeCommands.Count)
                 {
-                    MyInstrument.ScpiCommand(chargeCommands[chargeCommandCounter]);
+                    instrument.ScpiCommand(chargeCommands[chargeCommandCounter]);
                     Log.Info($"Executed Charge Command: {chargeCommands[chargeCommandCounter]}");
                     chargeCommandCounter++;
                 }
@@ -74,9 +76,9 @@ namespace BT2202a
                 {
                     Log.Info("All charge commands executed.");
                 }
-
-                MyInstrument.ScpiCommand("CELL:ENABLE (@1001),1");
-                MyInstrument.ScpiCommand("CELL:INIT (@1001)");
+                instrument.ScpiCommand("CELL:DEF:QUICk 4");
+                instrument.ScpiCommand("CELL:ENABLE (@1001:1005),1");
+                instrument.ScpiCommand("CELL:INIT (@1001,1005)");
 
                 Log.Info("Initializing Charge");
                 Thread.Sleep(15000); // Wait for 15 seconds
@@ -96,16 +98,16 @@ namespace BT2202a
                 Log.Info("Starting the charging process.");
 
                 // Reset the instrument to ensure it's in a known state.
-                MyInstrument.ScpiCommand("*RST");
-                Log.Info("Instrument reset.");
+                //instrument.ScpiCommand("*RST");
+                //Log.Info("Instrument reset.");
 
                 // Set the sequence step with the desired voltage, current, and duration.
-                // Adjust the command string according to the BT2202A's SCPI command set.
-                MyInstrument.ScpiCommand($"SEQ:STEP 1, CHARGE, {Voltage}, {Current}, {Time}");
+                // Adjust the command string according to the instrument's SCPI command set.
+                instrument.ScpiCommand($"SEQ:STEP 1, CHARGE, {Voltage}, {Current}, {Time}");
                 Log.Info($"Charge sequence step defined: Voltage = {Voltage} V, Current = {Current} A, Time = {Time} s");
 
                 // Enable the output to start the sequence.
-                MyInstrument.ScpiCommand("OUTP ON");
+                instrument.ScpiCommand("OUTP ON");
                 Log.Info("Output enabled.");
 
                 // Wait for the specified charging time to elapse.
@@ -115,20 +117,22 @@ namespace BT2202a
                 using (StreamWriter writer = new StreamWriter(csvPath))
                 {
                     writer.WriteLine("Time (s), Voltage (V), Current(A), Temperature (C)");
-
+                    
                     while ((DateTime.Now - startTime).TotalSeconds < Time)
                     {
                         // Query the instrument for voltage and current measurements.
-                        string measuredVoltage = MyInstrument.ScpiQuery("MEAS:VOLT?");
-                        string measuredCurrent = MyInstrument.ScpiQuery("MEAS:CURR?");
-                        string temperature = MyInstrument.ScpiQuery("MEAS:TEMP?"); // Replace with the actual command for temperature.
+                        string measuredVoltage = instrument.ScpiQuery("MEAS:CELL:VOLT? (@1001)");
+                        string measuredCurrent = instrument.ScpiQuery("MEAS:CELL:CURR? (@1001)");
+                        //string temperature = instrument.ScpiQuery("MEAS:CELL:TEMP? (@1001)"); // Replace with the actual command for temperature.
 
                         // Log the measurements.
                         double elapsedSeconds = (DateTime.Now - startTime).TotalSeconds;
-                        Log.Info($"Time: {elapsedSeconds:F2}s, Voltage: {measuredVoltage} V, Current: {measuredCurrent} A, Temperature: {temperature} C");
+                        //Log.Info($"Time: {elapsedSeconds:F2}s, Voltage: {measuredVoltage} V, Current: {measuredCurrent} A, Temperature: {temperature} C");
+                        Log.Info($"Time: {elapsedSeconds:F2}s, Voltage: {measuredVoltage} V, Current: {measuredCurrent} A");
 
                         // Write to the CSV file.
-                        writer.WriteLine($"{elapsedSeconds:F2}, {measuredVoltage}, {measuredCurrent}, {temperature}");
+                        //writer.WriteLine($"{elapsedSeconds:F2}, {measuredVoltage}, {measuredCurrent}, {temperature}");
+                        writer.WriteLine($"{elapsedSeconds:F2}, {measuredVoltage}, {measuredCurrent}");
 
                         // Check for any abort signal or abnormal conditions (e.g., overheating).
                         if (abortAllProcesses)
@@ -136,15 +140,15 @@ namespace BT2202a
                             Log.Warning("Charging process aborted by user.");
                             break;
                         }
-
+                        /*
                         if (double.TryParse(temperature, out double tempValue) && tempValue >= 30)
                         {
                             Log.Error($"Temperature exceeded 30°C: {tempValue}°C at second {elapsedSeconds:F2}. Aborting.");
                             abortAllProcesses = true;
-                            MyInstrument.ScpiCommand("SEQ:ABORT");
+                            instrument.ScpiCommand("SEQ:ABORT");
                             Log.Info("Sequence aborted due to high temperature.");
                             break;
-                        }
+                        }*/
 
                         // Sleep for 1 second before the next measurement.
                         Thread.Sleep(1000);
@@ -152,7 +156,7 @@ namespace BT2202a
                 }
 
                 // Turn off the output after the charging process is complete.
-                MyInstrument.ScpiCommand("OUTP OFF");
+                instrument.ScpiCommand("OUTP OFF");
                 Log.Info("Charging process completed and output disabled.");
 
                 // Update the test verdict to pass if everything went smoothly.
@@ -171,7 +175,7 @@ namespace BT2202a
             try
             {
                 // Any cleanup code that needs to run after the test plan finishes.
-                MyInstrument.ScpiCommand("*RST"); // Reset the instrument again after the test.
+                instrument.ScpiCommand("*RST"); // Reset the instrument again after the test.
                 Log.Info("Instrument reset after test completion.");
             }
             catch (Exception ex)

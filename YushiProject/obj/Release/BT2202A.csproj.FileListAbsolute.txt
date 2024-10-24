@@ -1,0 +1,10 @@
+C:\Users\Admin\Documents\GitHub\BT2202A_Plugin\YushiProject\bin\Release\BT2202a.deps.json
+C:\Users\Admin\Documents\GitHub\BT2202A_Plugin\YushiProject\bin\Release\BT2202a.dll
+C:\Users\Admin\Documents\GitHub\BT2202A_Plugin\YushiProject\bin\Release\BT2202a.pdb
+C:\Users\Admin\Documents\GitHub\BT2202A_Plugin\YushiProject\bin\Release\OpenTap.dll
+C:\Users\Admin\Documents\GitHub\BT2202A_Plugin\YushiProject\obj\Release\BT2202a.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Admin\Documents\GitHub\BT2202A_Plugin\YushiProject\obj\Release\BT2202a.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Documents\GitHub\BT2202A_Plugin\YushiProject\obj\Release\BT2202a.csproj.CopyComplete
+C:\Users\Admin\Documents\GitHub\BT2202A_Plugin\YushiProject\obj\Release\BT2202a.dll
+C:\Users\Admin\Documents\GitHub\BT2202A_Plugin\YushiProject\obj\Release\BT2202a.pdb
+C:\Users\Admin\Documents\GitHub\BT2202A_Plugin\YushiProject\obj\Release\BT2202a.csproj.AssemblyReference.cache

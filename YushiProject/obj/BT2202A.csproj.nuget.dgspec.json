@@ -1,25 +1,31 @@
 {
   "format": 1,
   "restore": {
-    "/Users/ricky/Documents/GitHub/BT2202A_Plugin/BT2202A/BT2202A.csproj": {}
+    "C:\\Users\\Admin\\Documents\\GitHub\\BT2202A_Plugin\\YushiProject\\BT2202a.csproj": {}
   },
   "projects": {
-    "/Users/ricky/Documents/GitHub/BT2202A_Plugin/BT2202A/BT2202A.csproj": {
+    "C:\\Users\\Admin\\Documents\\GitHub\\BT2202A_Plugin\\YushiProject\\BT2202a.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/ricky/Documents/GitHub/BT2202A_Plugin/BT2202A/BT2202A.csproj",
-        "projectName": "BT2202A",
-        "projectPath": "/Users/ricky/Documents/GitHub/BT2202A_Plugin/BT2202A/BT2202A.csproj",
-        "packagesPath": "/Users/ricky/.nuget/packages/",
-        "outputPath": "/Users/ricky/Documents/GitHub/BT2202A_Plugin/BT2202A/obj/",
+        "projectUniqueName": "C:\\Users\\Admin\\Documents\\GitHub\\BT2202A_Plugin\\YushiProject\\BT2202a.csproj",
+        "projectName": "BT2202a",
+        "projectPath": "C:\\Users\\Admin\\Documents\\GitHub\\BT2202A_Plugin\\YushiProject\\BT2202a.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Admin\\Documents\\GitHub\\BT2202A_Plugin\\YushiProject\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "/Users/ricky/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netstandard2.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -32,11 +38,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -44,14 +45,12 @@
           "targetAlias": "netstandard2.0",
           "dependencies": {
             "NETStandard.Library": {
-              "suppressParent": "All",
               "target": "Package",
-              "version": "[2.0.3, )",
-              "autoReferenced": true
+              "version": "[2.0.3, )"
             },
             "OpenTAP": {
               "target": "Package",
-              "version": "[9.23.2, )"
+              "version": "[9.26.1, )"
             }
           },
           "imports": [
@@ -60,12 +59,11 @@
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.403/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.416\\RuntimeIdentifierGraph.json"
         }
       }
     }

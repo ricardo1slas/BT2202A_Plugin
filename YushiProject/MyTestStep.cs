@@ -1,4 +1,5 @@
 using OpenTap;
+using System;
 
 namespace BT2202a
 {
@@ -9,6 +10,9 @@ namespace BT2202a
         #region Settings
         // ToDo: Add property here for each parameter the end user should be able to change
         #endregion
+
+        public ScpiInstrument BT2202 { get; set; } 
+        public double test { get; set; }
         public MyTestStep()
         {
             // ToDo: Set default values for properties / settings.
@@ -24,6 +28,7 @@ namespace BT2202a
         {
             // ToDo: Add test case code here
             RunChildSteps(); //If step has child steps.
+
             UpgradeVerdict(Verdict.Pass);
         }
 

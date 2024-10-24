@@ -480,6 +480,27 @@
             Download all packages to the PackageCache. This is an optional step that can speed up deploying later.
             </summary>
         </member>
+        <member name="T:OpenTap.Package.ImageResolveException">
+            <summary>
+            Exception thrown when ImageSpecifier.Resolve fails.
+            </summary>
+        </member>
+        <member name="P:OpenTap.Package.ImageResolveException.Message">
+            <summary>
+            The description of the resolution error.
+            </summary>
+        </member>
+        <member name="M:OpenTap.Package.ImageResolveException.ToString">
+            <summary>
+            Convert the resolution error to a string
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:OpenTap.Package.ImageResolveException.DotGraph">
+            <summary>
+            Dependency graph specified in Dot notation
+            </summary>
+        </member>
         <member name="T:OpenTap.Package.ImageResolver">
             <summary>
             Resolves packages dependencies for an image.This should be able to resolve any set of package dependencies, but
@@ -570,16 +591,6 @@
             <summary> Turns an image into a readable string.</summary>
             <returns></returns>
         </member>
-        <member name="T:OpenTap.Package.ImageResolveException">
-            <summary>
-            Exception thrown when ImageSpecifier.Resolve fails. The exception contains a dependency graph specified Dot notation.
-            </summary>
-        </member>
-        <member name="P:OpenTap.Package.ImageResolveException.DotGraph">
-            <summary>
-            Dependency graph specified in Dot notation
-            </summary>
-        </member>
         <member name="T:OpenTap.Package.PackageDependencyGraph">
             <summary>
             This graph describes every version of every package in a memory-efficient way.
@@ -597,11 +608,10 @@
         <member name="P:OpenTap.Package.PackageDependencyGraph.Count">
             <summary> The total number of packages contained in this graph. </summary>
         </member>
-        <member name="M:OpenTap.Package.PackageDependencyGraph.LoadFromJson(System.Text.Json.JsonDocument)">
+        <member name="M:OpenTap.Package.PackageDependencyGraph.LoadFromJson(System.Text.Json.JsonElement)">
             <summary>
             This is only used in unittests. It works for respones from the 3.1/query API, but not the 4.0/query API.
             </summary>
-            <param name="json"></param>
         </member>
         <member name="M:OpenTap.Package.PackageDependencyGraph.PackageSpecifiers">
             <summary>
@@ -1029,6 +1039,11 @@
             Obsolete. Do not use.
             </summary>
         </member>
+        <member name="P:OpenTap.Package.PackageDownloadAction.NonInteractive">
+            <summary>
+            Never prompt for user input.
+            </summary>
+        </member>
         <member name="P:OpenTap.Package.PackageDownloadAction.OutputPath">
             <summary>
             Represents the --out command line argument which specifies the path to the output file.
@@ -1064,7 +1079,7 @@
             <summary> Which CPU architecture to resolve packages for. </summary>
         </member>
         <member name="P:OpenTap.Package.ImageInstallAction.DryRun">
-            <summary> dry-run - resolve, but don't install the packages. </summary>
+            <summary> Resolve and print a summary of the changes that would be applied, but don't apply them. </summary>
         </member>
         <member name="P:OpenTap.Package.ImageInstallAction.Repositories">
             <summary> Which repositories to use. </summary>
@@ -2284,6 +2299,11 @@
             Resolver for assemblies in the GAC.
             </summary>
         </member>
+        <member name="T:OpenTap.Package.Ipc.SharedState">
+            <summary>
+            Used for sharing state information between processes. The data generated here is cleaned up automatically when all the processes uses it stops.
+            </summary>
+        </member>
         <member name="T:OpenTap.Package.UpdateCheck">
             <summary>
             Checks packages for updates
@@ -2377,23 +2397,44 @@
             </summary>
             <param name="ele"></param>
         </member>
-        <member name="T:OpenTap.Package.Ipc.SharedState">
+        <member name="T:OpenTap.MacOSFileLock">
             <summary>
-            Used for sharing state information between processes. The data generated here is cleaned up automatically when all the processes uses it stops.
+            Note that this implementation is not thread-safe, unlike the other implementations
+            </summary>
+        </member>
+        <member name="T:OpenTap.PosixFileLock">
+            <summary> Locks a file using flock on linux. This essentially works as a named mutex.  </summary>
+        </member>
+        <member name="M:OpenTap.PosixFileLock.Take">
+            <summary>
+            Request an exclusive lock on the open file handle
+            This call wil block until the lock is acquired
+            </summary>
+        </member>
+        <member name="F:OpenTap.PosixNative.LOCK_SH">
+            <summary>
+            Place a shared lock. More than one process may hold a shared lock for a given file at a given time. 
+            </summary>
+        </member>
+        <member name="F:OpenTap.PosixNative.LOCK_EX">
+            <summary>
+            Place an exclusive lock. Only one process may hold an exclusive lock for a given file at a given time. 
+            </summary>
+        </member>
+        <member name="F:OpenTap.PosixNative.LOCK_NB">
+            <summary>
+            Return an error instead of blocking when the lock is taken
+            </summary>
+        </member>
+        <member name="F:OpenTap.PosixNative.LOCK_UN">
+            <summary>
+            Release the lock
             </summary>
         </member>
         <member name="T:OpenTap.NonInteractiveUserInputInterface">
             <summary>
             UserInputInterface implementation which returns immediately. Intended for non-interactive use.
             </summary>
-        </member>
-        <member name="M:OpenTap.AnsiColorCodeFix.TryEnableForWin10">
-            <summary>
-            This should work for win10 version 1511 or later
-            </summary>
-        </member>
-        <member name="T:OpenTap.OperatingSystem">
-            <summary> Detects which operating system is used. </summary>
         </member>
         <member name="T:OpenTap.Cli.ArgumentsParser">
             <summary>
@@ -2463,6 +2504,12 @@
             <param name="from"></param>
             <returns></returns>
         </member>
+        <member name="T:OpenTap.Cli.ArgumentCollection.OptionWrapper">
+            <summary>
+            This is a simple abstraction over unnamed and named arguments to simplify output formatting.
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:OpenTap.Cli.ArgumentCollection.ToString">
             <summary>
             Converts the ArgumentCollection to a help-string.
@@ -2481,17 +2528,6 @@
             <param name="action">The action to be executed.</param>
             <param name="parameters">The parameters for the action.</param>
             <returns></returns>
-        </member>
-        <member name="T:OpenTap.CountedHashSet`1">
-            <summary> This set contains the N most recently used and most used elements for type T. The capacity is set upon initialization and cannot be changed. </summary>
-            <typeparam name="T"></typeparam>
-        </member>
-        <member name="M:OpenTap.CountedHashSet`1.#ctor(System.Int32,System.Int32)">
-            <summary>
-            Creates a new counted hash set. Items will be removed based on use count, oldest first, when the number of items reaches the <paramref name="threshold"/> until there are only <paramref name="desiredCapacity"/> items left.
-            </summary>
-            <param name="desiredCapacity">This is the capacity the set should at most have when trimmed.</param>
-            <param name="threshold">This is the capacity the set will have when a trimming operation will start.</param>
         </member>
         <member name="P:OpenTap.ExecutorClient.IsRunningIsolated">
             <summary>
@@ -2542,6 +2578,9 @@
             <param name="endDirectory"></param>
             <returns></returns>
         </member>
+        <member name="T:OpenTap.OperatingSystem">
+            <summary> Detects which operating system is used. </summary>
+        </member>
         <member name="T:OpenTap.ReflectionHelper">
             <summary>
             Class to ease the use of reflection.
@@ -2563,13 +2602,6 @@
             </summary>
             <param name="displayName"></param>
             <param name="group"></param>
-            <returns></returns>
-        </member>
-        <member name="M:OpenTap.ReflectionHelper.GetHelpLink(System.Reflection.MemberInfo)">
-            <summary>
-            Gets the HelpLinkAttribute text of a type or member. If no HelpLinkAttribute exists, it looks for a class level help link. Also looks at parent classes. Finally, it returns null if no help link was found.
-             </summary>
-            <param name="member"></param>
             <returns></returns>
         </member>
         <member name="M:OpenTap.ReflectionHelper.GetCustomAttributes``1(System.Reflection.MemberInfo)">
@@ -2659,16 +2691,6 @@
             <param name="enumType"></param>
             <returns></returns>
         </member>
-        <member name="F:OpenTap.ReflectionHelper.tapMutex">
-            <summary>
-            Custom mutex to check if an instance of any Tap application is running.
-            </summary>
-        </member>
-        <member name="M:OpenTap.ReflectionHelper.SetTapMutex">
-            <summary>
-            Set the custom Tap mutex.
-            </summary>
-        </member>
         <member name="M:OpenTap.ReflectionHelper.GetPropertiesTap(System.Type)">
             <summary> Extracts properties from a Type that are public and not static. Default GetProperties() also returns static properties. </summary>
         </member>
@@ -2745,12 +2767,6 @@
         <member name="M:OpenTap.Utils.Swap``1(``0@,``0@)">
             <summary> Swaps two variables </summary>
         </member>
-        <member name="M:OpenTap.Utils.Clamp``1(``0,``0,``0)">
-            <summary> Clamps val to be between min and max, returning the result. </summary>
-        </member>
-        <member name="M:OpenTap.Utils.Identity``1(``0)">
-            <summary> Returns arg. </summary>
-        </member>
         <member name="M:OpenTap.Utils.Noop">
             <summary> Do nothing. </summary>
         </member>
@@ -2824,14 +2840,6 @@
             <param name="count"></param>
             <returns></returns>
         </member>
-        <member name="M:OpenTap.Utils.AddRange``1(System.Collections.Generic.IList{``0},System.Collections.Generic.IEnumerable{``0})">
-            <summary>
-            Adds a range of values to a list.
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="lst"></param>
-            <param name="values"></param>
-        </member>
         <member name="M:OpenTap.Utils.ToHashSet``1(System.Collections.Generic.IEnumerable{``0})">
             <summary>
             Creates a HashSet from an IEnumerable.
@@ -2865,13 +2873,6 @@
             Short hand for/more efficient version of 'Select(f).Where(x => x != null).FirstOrDefault()'
             </summary>
         </member>
-        <member name="M:OpenTap.Utils.Delay(System.Int32,System.Action)">
-            <summary>
-            Calls function after a delay.
-            </summary>
-            <param name="ms"></param>
-            <param name="function"></param>
-        </member>
         <member name="M:OpenTap.Utils.MergeInto``2(System.Collections.Generic.Dictionary{``0,``1},System.Collections.Generic.Dictionary{``0,``1})">
             <summary>
             Merged a dictionary into another, overwriting colliding keys.
@@ -2881,27 +2882,12 @@
             <param name="srcDict"></param>
             <param name="dstDict"></param>
         </member>
-        <member name="M:OpenTap.Utils.SplitPreserve(System.String,System.Char[])">
-            <summary>
-            Almost the same as string.Split, except it preserves split chars as 1 length strings. The process can always be reversed by String.Join("", result).
-            </summary>
-            <param name="str"></param>
-            <param name="splitValues"></param>
-            <returns></returns>
-        </member>
         <member name="M:OpenTap.Utils.ErrorOnce(OpenTap.TraceSource,System.Object,System.String,System.Object[])">
             <summary>
             Avoids spamming the log with errors that 
             should only be shown once by memorizing token and TraceSource. 
             </summary>
             <returns>True if an error was logged.</returns>
-        </member>
-        <member name="M:OpenTap.Utils.ReadFileLines(System.String)">
-            <summary>
-            Lazily reads all the lines of a file. Should only be read once.
-            </summary>
-            <param name="filePath"></param>
-            <returns></returns>
         </member>
         <member name="M:OpenTap.Utils.SetFlag``1(``0,``0,System.Boolean)">
             <summary>
@@ -2912,19 +2898,6 @@
             <param name="flag"></param>
             <param name="enabled"></param>
             <returns></returns>
-        </member>
-        <member name="M:OpenTap.Utils.NaturalCompare(System.String,System.String)">
-            <summary>
-            Natural compare takes numbers into account in comparison of strings. Normal sorted: [1,10,100,11,2,23,3] Natural sorted: [1,2,3,10,11,23,100]
-            </summary>
-            <param name="A"></param>
-            <param name="B"></param>
-            <returns></returns>
-        </member>
-        <member name="M:OpenTap.Utils.Shuffle``1(System.Collections.Generic.IList{``0})">
-            <summary> Shuffle a list in place. </summary>
-            <typeparam name="T"></typeparam>
-            <param name="col"></param>
         </member>
         <member name="M:OpenTap.Utils.GetOrCreateValue``2(System.Collections.Generic.Dictionary{``0,``1},``0,System.Func{``0,``1})">
             <summary> Gets or creates a value based on the key. This is useful for caches. </summary>
@@ -2952,11 +2925,6 @@
         </member>
         <member name="M:OpenTap.Sequence.AsSingle``1(``0)">
             <summary> Turns item into a one element array, unless it is null.</summary>
-        </member>
-        <member name="M:OpenTap.Sequence.FirstOrNull``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})">
-            <summary>
-            First or null, which for struct types returns a null value instead of a default(T) that FirstOrDefault does.
-            </summary>
         </member>
         <member name="M:OpenTap.Sequence.DistinctLast``1(System.Collections.Generic.IEnumerable{``0})">
             <summary>
@@ -2991,87 +2959,6 @@
             <param name="seconds"></param>
             <returns></returns>
         </member>
-        <member name="T:OpenTap.MemoryMappedApi">
-            <summary>
-            for sharing data between processes.
-            </summary>
-        </member>
-        <member name="F:OpenTap.MemoryMappedApi.Name">
-            <summary>
-            The name of the API, e.g the file where the data is shared.
-            </summary>
-        </member>
-        <member name="M:OpenTap.MemoryMappedApi.#ctor(System.String)">
-            <summary>
-            Creates a memory mapped API.
-            </summary>
-            <param name="name"></param>
-        </member>
-        <member name="M:OpenTap.MemoryMappedApi.#ctor">
-            <summary>
-            Creates a MemoryMappedApi with a globally unique name.
-            </summary>
-        </member>
-        <member name="M:OpenTap.MemoryMappedApi.Persist">
-            <summary>
-            Writes the data to the memory mapped file. 
-            </summary>
-        </member>
-        <member name="M:OpenTap.MemoryMappedApi.WaitForHandover">
-            <summary>
-            Wait for the user id written in the file to increment, which means that it has been opened by another process.
-            </summary>
-        </member>
-        <member name="M:OpenTap.MemoryMappedApi.WaitForHandoverAsync">
-            <summary>
-            Same as WaitForHandover but async.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:OpenTap.MemoryMappedApi.Write``1(``0)">
-            <summary>
-            Write a dataobject to the stream.
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="data"></param>
-        </member>
-        <member name="M:OpenTap.MemoryMappedApi.Write``1(``0[])">
-            <summary>
-            Writes an array to the stream. The element type must be one of the supported ones.
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="data"></param>
-        </member>
-        <member name="M:OpenTap.MemoryMappedApi.Write(System.String)">
-            <summary>
-            Write a string to the stream.
-            </summary>
-            <param name="data"></param>
-        </member>
-        <member name="M:OpenTap.MemoryMappedApi.ReadRewind">
-            <summary>
-            Start reading from the beginning.
-            </summary>
-        </member>
-        <member name="M:OpenTap.MemoryMappedApi.ReadStream">
-            <summary>
-            Get a stream pointing to the next object.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:OpenTap.MemoryMappedApi.Read``1">
-            <summary>
-            Reads an object from the stream.
-            </summary>
-            <typeparam name="T"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:OpenTap.MemoryMappedApi.Read">
-            <summary>
-            Read an object from the mapped file. It will then increment the read offset, so next time read is called the next item will be retrived.
-            </summary>
-            <returns></returns>
-        </member>
         <member name="T:OpenTap.TimeoutOperation">
             <summary> Invoke an action after a timeout, unless canceled. </summary>
         </member>
@@ -3094,35 +2981,6 @@
             Cancel invoking the action after the timeout.
             </summary>
         </member>
-        <member name="M:OpenTap.ResultStoreExtensions.EnsurePositiveAverageDurationForStep(OpenTap.IResultStore,OpenTap.TraceSource,OpenTap.TestStepRun,System.Int32)">
-            <summary>
-            Ensures that we get a valid expected duration, which is a positive double number. Otherwise is null.
-            </summary>
-            <param name="store">The Result Store to be extended.</param>
-            <param name="log">The Log where to write details in case of exceptions.</param>
-            <param name="testStepRun">The Test Step Run to measure the average on.</param>
-            <param name="estimatedWindowLength">The estimated window lenght.</param>
-            <returns>Returs a nullable double, which whether is null in case no average is retrieved or a positive average duration.</returns>
-        </member>
-        <member name="M:OpenTap.ResultStoreExtensions.EnsurePositiveAverageDurationForPlan(OpenTap.IResultStore,OpenTap.TraceSource,OpenTap.TestPlanRun,System.Int32)">
-            <summary>
-            Ensures that we get a valid expected duration, which is a positive double number. Otherwise is null.
-            </summary>
-            <param name="store">The Result Store to be extended.</param>
-            <param name="log">The Log where to write details in case of exceptions.</param>
-            <param name="testPlanRun">The Test Plan Run to measure the average on.</param>
-            <param name="estimatedWindowLength">The estimated window lenght.</param>
-            <returns>Returs a nullable double, which whether is null in case no average is retrieved or a positive average duration.</returns>
-        </member>
-        <member name="T:OpenTap.ShortTimeSpan">
-            <summary>
-            Takes care of printing and parsing time spans like '1 s' or '15.3 ms'. Supports seconds, milliseconds, microseconds and nanoseconds.
-            </summary>
-        </member>
-        <member name="M:OpenTap.ShortTimeSpan.ToString(System.Text.StringBuilder)">
-            <summary> To avoid generating extra garbage during formatting, this can be used with StringBuilder. </summary>
-            <param name="output"></param>
-        </member>
         <member name="T:OpenTap.SubProcessHost">
             <summary>
             This is an abstraction for running child processes with support for elevation.
@@ -3133,49 +2991,6 @@
         <member name="T:OpenTap.SudoHelper">
             <summary>
             This class contains some basic helpers to authenticate using the 'sudo' program
-            </summary>
-        </member>
-        <member name="T:OpenTap.Cache`2">
-            <summary> Cache class which clears when a certain criteria is met. </summary>
-        </member>
-        <member name="P:OpenTap.Cache`2.Count">
-            <summary> The current number of cached elements. </summary> 
-        </member>
-        <member name="M:OpenTap.Cache`2.TryGetValue(`0,`1@)">
-            <summary> tries getting a value for a key. </summary>
-        </member>
-        <member name="T:OpenTap.MacOSFileLock">
-            <summary>
-            Note that this implementation is not thread-safe, unlike the other implementations
-            </summary>
-        </member>
-        <member name="T:OpenTap.PosixFileLock">
-            <summary> Locks a file using flock on linux. This essentially works as a named mutex.  </summary>
-        </member>
-        <member name="M:OpenTap.PosixFileLock.Take">
-            <summary>
-            Request an exclusive lock on the open file handle
-            This call wil block until the lock is acquired
-            </summary>
-        </member>
-        <member name="F:OpenTap.PosixNative.LOCK_SH">
-            <summary>
-            Place a shared lock. More than one process may hold a shared lock for a given file at a given time. 
-            </summary>
-        </member>
-        <member name="F:OpenTap.PosixNative.LOCK_EX">
-            <summary>
-            Place an exclusive lock. Only one process may hold an exclusive lock for a given file at a given time. 
-            </summary>
-        </member>
-        <member name="F:OpenTap.PosixNative.LOCK_NB">
-            <summary>
-            Return an error instead of blocking when the lock is taken
-            </summary>
-        </member>
-        <member name="F:OpenTap.PosixNative.LOCK_UN">
-            <summary>
-            Release the lock
             </summary>
         </member>
         <member name="M:Tap.Shared.PathUtils.IterateDirectories(System.String,System.String,System.IO.SearchOption)">

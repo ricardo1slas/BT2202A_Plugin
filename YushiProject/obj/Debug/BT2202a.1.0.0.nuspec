@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>BT2202a</id>
+    <version>1.0.0</version>
+    <authors>BT2202a</authors>
+    <description>Package Description</description>
+    <dependencies>
+      <group targetFramework=".NETFramework4.7.2">
+        <dependency id="NETStandard.Library" version="2.0.3" exclude="Build,Analyzers" />
+        <dependency id="OpenTAP" version="9.26.1" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="C:\Users\Admin\Documents\GitHub\BT2202A_Plugin\YushiProject\bin\Debug\BT2202a.dll" target="lib\net472\BT2202a.dll" />
+  </files>
+</package>

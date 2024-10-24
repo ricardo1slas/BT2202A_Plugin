@@ -1,0 +1,50 @@
+﻿2024-10-24 11:27:02.121573 ; Session        ; Debug       ; Session log loaded as 'C:\Users\Admin\Documents\GitHub\BT2202A_Plugin\YushiProject\bin\Debug\SessionLogs\tap 2024-10-24 11-27-01.txt'. [1.38 ms]
+2024-10-24 11:27:02.151646 ; Session        ; Debug       ; Running '"C:\Users\Admin\Documents\GitHub\BT2202A_Plugin\YushiProject\bin\Debug\tap.exe" ' in 'C:\Users\Admin\Documents\GitHub\BT2202A_Plugin\YushiProject\bin\Debug'.
+2024-10-24 11:27:02.176609 ; AssemblyFinder ; Debug       ; Found 10/37 assembly files. [7.07 ms]
+2024-10-24 11:27:02.197553 ; Resolver       ; Debug       ; Found match for System.Collections.Immutable, Version=1.2.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a in C:\Users\Admin\Documents\GitHub\BT2202A_Plugin\YushiProject\bin\Debug\Dependencies\System.Collections.Immutable.1.2.3.0\System.Collections.Immutable.dll
+2024-10-24 11:27:02.265687 ; Searcher       ; Warning     ; Multiple assemblies of different versions named tap exists 
+2024-10-24 11:27:02.266685 ; Searcher       ; Debug       ; Assembly 1: C:\Users\Admin\Documents\GitHub\BT2202A_Plugin\YushiProject\bin\Debug\tap.dll version: 8
+2024-10-24 11:27:02.266685 ; Searcher       ; Debug       ; Assembly 2: C:\Users\Admin\Documents\GitHub\BT2202A_Plugin\YushiProject\bin\Debug\tap.exe version: 9.26.1
+2024-10-24 11:27:02.271644 ; Resolver       ; Debug       ; Found match for System.Reflection.Metadata, Version=1.4.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a in C:\Users\Admin\Documents\GitHub\BT2202A_Plugin\YushiProject\bin\Debug\Dependencies\System.Reflection.Metadata.1.4.3.0\System.Reflection.Metadata.dll
+2024-10-24 11:27:02.847583 ; Searcher       ; Debug       ; Ordered 10 assemblies according to references. [638 ms]
+2024-10-24 11:27:02.897455 ; PluginManager  ; Debug       ; Found 5 plugin assemblies containing 186 plugin types. [691 ms]
+2024-10-24 11:27:02.898446 ; PluginManager  ; Debug       ; Found version 9.26.1+3d268116  of OpenTap.dll
+2024-10-24 11:27:02.898446 ; PluginManager  ; Debug       ; Found version 0.0.0            of BT2202a.dll
+2024-10-24 11:27:02.898446 ; PluginManager  ; Debug       ; Found version 9.26.1+3d268116  of OpenTap.Package.dll
+2024-10-24 11:27:02.898446 ; PluginManager  ; Debug       ; Found version 9.26.1+3d268116  of OpenTap.Plugins.BasicSteps.dll
+2024-10-24 11:27:02.898446 ; PluginManager  ; Debug       ; Found version 1.1.1+507fd903   of OpenTap.Tui.dll
+2024-10-24 11:27:02.898446 ; PluginManager  ; Debug       ; Searched 10 Assemblies. [693 ms]
+2024-10-24 11:27:02.905401 ; AssemblyData   ; Debug       ; Loaded OpenTap. [434 us]
+2024-10-24 11:27:02.915454 ; SystemInfo     ; Debug       ; Microsoft Windows 10.0.19045 X64
+2024-10-24 11:27:02.915454 ; SystemInfo     ; Debug       ; .NET Framework 4.8.9277.0
+2024-10-24 11:27:02.915454 ; SystemInfo     ; Debug       ; OpenTAP Engine 9.26.1+3d268116 X64
+2024-10-24 11:27:02.919381 ; AssemblyData   ; Debug       ; Loaded OpenTap.Package. [3.14 ms]
+2024-10-24 11:27:02.927372 ; Settings       ; Debug       ; No settings file exists for EngineSettings. A new instance with default values has been created. [6.77 ms]
+2024-10-24 11:27:02.957261 ; Session        ; Debug       ; Session log loaded as 'C:\Users\Admin\Documents\GitHub\BT2202A_Plugin\YushiProject\bin\Debug\SessionLogs\SessionLog 2024-10-24 11-27-01.txt'. [9.11 ms]
+2024-10-24 11:27:02.965241 ; AssemblyData   ; Debug       ; Loaded OpenTap.Tui. [4.71 ms]
+2024-10-24 11:27:02.965241 ; AssemblyData   ; Debug       ; Loaded OpenTap.Plugins.BasicSteps. [4.75 ms]
+2024-10-24 11:27:02.970228 ; tap            ; Information ; OpenTAP Command Line Interface (9.26.1+3d268116)
+2024-10-24 11:27:02.970228 ; tap            ; Information ; Usage: "tap.exe <command> [<subcommand(s)>] [<args>]"
+2024-10-24 11:27:02.970228 ; tap            ; Information ; Valid commands are:
+2024-10-24 11:27:02.972223 ; tap            ; Information ; image              
+2024-10-24 11:27:02.972223 ; tap            ; Information ;    install         Install the specified image, overwriting the existing installation.
+2024-10-24 11:27:02.972223 ; tap            ; Information ; package            
+2024-10-24 11:27:02.972223 ; tap            ; Information ;    create          Create a package based on an XML description file.
+2024-10-24 11:27:02.972223 ; tap            ; Information ;    download        Download one or more packages.
+2024-10-24 11:27:02.972223 ; tap            ; Information ;    install         Install one or more packages.
+2024-10-24 11:27:02.972223 ; tap            ; Information ;    list            List locally installed packages and browse the online package repository.
+2024-10-24 11:27:02.972223 ; tap            ; Information ;    show            Show information about a package.
+2024-10-24 11:27:02.972223 ; tap            ; Information ;    test            Run tests on one or more packages.
+2024-10-24 11:27:02.972223 ; tap            ; Information ;    uninstall       Uninstall one or more packages.
+2024-10-24 11:27:02.972223 ; tap            ; Information ;    verify          Verify the integrity of one or all installed packages by checking their fingerprints.
+2024-10-24 11:27:02.972223 ; tap            ; Information ; run                Run a test plan.
+2024-10-24 11:27:02.972223 ; tap            ; Information ; sdk                
+2024-10-24 11:27:02.972223 ; tap            ; Information ;    gitversion      Calculate the semantic version number for a specific git commit.
+2024-10-24 11:27:02.972223 ; tap            ; Information ; tui                View, edit and run test plans using TUI.
+2024-10-24 11:27:02.972223 ; tap            ; Information ; tui-pm             Open package manager using TUI. (Experimental)
+2024-10-24 11:27:02.972223 ; tap            ; Information ; tui-results        Open TUI results viewer. (Experimental)
+2024-10-24 11:27:02.972223 ; tap            ; Information ; Run "tap.exe <command> [<subcommand(s)>] -h" to get additional help for a specific command.
+2024-10-24 11:27:03.018121 ; AssemblyData   ; Debug       ; Loaded mscorlib. [400 ns]
+2024-10-24 11:27:03.151893 ; Installation   ; Debug       ; OpenTAP                  - 9.26.1+3d268116
+2024-10-24 11:27:03.151893 ; Installation   ; Debug       ; TUI                      - 1.1.1+507fd903
+2024-10-24 11:27:03.151893 ; Installation   ; Debug       ; PathWave License Manager - 7.4.1+efeba870
