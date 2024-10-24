@@ -99,16 +99,16 @@ namespace BT2202a
                 MyInstrument.ScpiCommand("*RST");
                 Log.Info("Instrument reset.");
 
-                // Set the voltage and current levels.
-                MyInstrument.ScpiCommand($"VOLT {Voltage}");
-                MyInstrument.ScpiCommand($"CURR {Current}");
-                Log.Info($"Voltage set to {Voltage} V and Current set to {Current} A.");
+                // Set the sequence step with the desired voltage, current, and duration.
+                // Adjust the command string according to the BT2202A's SCPI command set.
+                MyInstrument.ScpiCommand($"SEQ:STEP 1, CHARGE, {Voltage}, {Current}, {Time}");
+                Log.Info($"Charge sequence step defined: Voltage = {Voltage} V, Current = {Current} A, Time = {Time} s");
 
-                // Enable the output for charging.
+                // Enable the output to start the sequence.
                 MyInstrument.ScpiCommand("OUTP ON");
                 Log.Info("Output enabled.");
 
-                // Start the charging process and monitor for the specified duration.
+                // Wait for the specified charging time to elapse.
                 DateTime startTime = DateTime.Now;
                 string csvPath = "Measurements_Charge.csv";  // Path for the CSV file
 
