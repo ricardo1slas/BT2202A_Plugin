@@ -77,6 +77,10 @@ namespace BT2202a
                     Log.Info("All charge commands executed.");
                 }
                 instrument.ScpiCommand("CELL:DEF:QUICk 4");
+
+                instrument.ScpiCommand($"SEQ:STEP:DEF 1,1, CHARGE, {Time}, {Current}, {Voltage}");
+                Log.Info($"Charge sequence step defined: Voltage = {Voltage} V, Current = {Current} A, Time = {Time} s");
+
                 instrument.ScpiCommand("CELL:ENABLE (@1001:1005),1");
                 instrument.ScpiCommand("CELL:INIT (@1001,1005)");
 
@@ -103,8 +107,6 @@ namespace BT2202a
 
                 // Set the sequence step with the desired voltage, current, and duration.
                 // Adjust the command string according to the instrument's SCPI command set.
-                instrument.ScpiCommand($"SEQ:STEP 1, CHARGE, {Voltage}, {Current}, {Time}");
-                Log.Info($"Charge sequence step defined: Voltage = {Voltage} V, Current = {Current} A, Time = {Time} s");
 
                 // Enable the output to start the sequence.
                 instrument.ScpiCommand("OUTP ON");
