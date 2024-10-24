@@ -1,9 +1,0 @@
-C:\Users\yuxia\source\repos\BT2202A\bin\Debug\BT2202A.dll
-C:\Users\yuxia\source\repos\BT2202A\bin\Debug\BT2202A.pdb
-C:\Users\yuxia\source\repos\BT2202A\bin\Debug\OpenTap.dll
-C:\Users\yuxia\source\repos\BT2202A\obj\Debug\BT2202A.csproj.AssemblyReference.cache
-C:\Users\yuxia\source\repos\BT2202A\obj\Debug\BT2202A.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\yuxia\source\repos\BT2202A\obj\Debug\BT2202A.csproj.CoreCompileInputs.cache
-C:\Users\yuxia\source\repos\BT2202A\obj\Debug\BT2202A.csproj.CopyComplete
-C:\Users\yuxia\source\repos\BT2202A\obj\Debug\BT2202A.dll
-C:\Users\yuxia\source\repos\BT2202A\obj\Debug\BT2202A.pdb

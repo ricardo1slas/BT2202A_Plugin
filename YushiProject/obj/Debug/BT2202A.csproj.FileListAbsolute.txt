@@ -1,0 +1,10 @@
+C:\Users\Admin\Documents\GitHub\BT2202A_Plugin\YushiProject\bin\Debug\BT2202a.dll
+C:\Users\Admin\Documents\GitHub\BT2202A_Plugin\YushiProject\bin\Debug\BT2202a.pdb
+C:\Users\Admin\Documents\GitHub\BT2202A_Plugin\YushiProject\bin\Debug\OpenTap.dll
+C:\Users\Admin\Documents\GitHub\BT2202A_Plugin\YushiProject\bin\Debug\OpenTap.Tui.dll
+C:\Users\Admin\Documents\GitHub\BT2202A_Plugin\YushiProject\bin\Debug\Terminal.Gui.dll
+C:\Users\Admin\Documents\GitHub\BT2202A_Plugin\YushiProject\obj\Debug\BT2202a.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Admin\Documents\GitHub\BT2202A_Plugin\YushiProject\obj\Debug\BT2202a.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Documents\GitHub\BT2202A_Plugin\YushiProject\obj\Debug\BT2202a.csproj.CopyComplete
+C:\Users\Admin\Documents\GitHub\BT2202A_Plugin\YushiProject\obj\Debug\BT2202a.dll
+C:\Users\Admin\Documents\GitHub\BT2202A_Plugin\YushiProject\obj\Debug\BT2202a.pdb

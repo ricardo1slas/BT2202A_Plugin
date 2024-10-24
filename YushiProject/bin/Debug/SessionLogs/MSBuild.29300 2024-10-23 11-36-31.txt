@@ -1,0 +1,20 @@
+﻿2024-10-23 11:41:06.528959 ; Session        ; Debug       ; Session log loaded as 'C:\Users\rigel\Documents\reto\BT2202a\bin\Debug\SessionLogs\MSBuild.29300 2024-10-23 11-36-31.txt'. [1.81 ms]
+2024-10-23 11:41:06.533574 ; Session        ; Debug       ; Running '"C:\Program Files\dotnet\sdk\8.0.402\MSBuild.dll" /nologo /nodemode:1 /nodeReuse:true /low:false' in 'C:\Users\rigel\Documents\reto\BT2202a'.
+2024-10-23 11:41:06.655106 ; FilePackageRepository ; Debug       ; Rebuilding cache: .PackageCache.0F5338E3.3.xml [84.4 ms]
+2024-10-23 11:41:06.656476 ; Package Query  ; Debug       ; Read 3 packages from [FilePackageRepository: file:///C:/Users/rigel/AppData/Local/OpenTap/PackageCache] [86.5 ms]
+2024-10-23 11:41:07.952549 ; GraphQL        ; Debug       ; {"type":"TapPackage","directory":"/Packages/","version":"","architecture":"x64","os":"Windows"} -> found 1496 packages. [1.29 s]
+2024-10-23 11:41:07.966615 ; image          ; Debug       ; Resolved image: TUI:1, OpenTAP:9.23.2+5a906a86, PathWave License Manager:^7.4.1+efeba870 [1.11 ms]
+2024-10-23 11:41:09.506924 ; OpenTAP        ; Information ; Modifying installation in bin\Debug\:
+2024-10-23 11:41:09.506981 ; OpenTAP        ; Information ; - Skipping OpenTAP version 9.23.2+5a906a86 (x64-Windows) - Already installed.
+2024-10-23 11:41:09.506985 ; OpenTAP        ; Information ; - Skipping PathWave License Manager version 7.4.1+efeba870 (x64-Windows) - Already installed.
+2024-10-23 11:41:09.507000 ; OpenTAP        ; Information ; - Installing TUI version 1.1.1+507fd903
+2024-10-23 11:41:09.508683 ; Installer      ; Information ; Installing C:\Users\rigel\AppData\Local\OpenTap\PackageCache\TUI.1.1.1+507fd903.Windows,Linux,Macos.TapPackage
+2024-10-23 11:41:09.534683 ; package        ; Debug       ; Decompressed bin/Debug/Packages/TUI/OpenTap.Tui.dll [22.7 ms]
+2024-10-23 11:41:09.567034 ; package        ; Debug       ; Decompressed bin/Debug/Packages/TUI/Terminal.Gui.dll [32.1 ms]
+2024-10-23 11:41:09.568804 ; package        ; Debug       ; Decompressed bin/Debug/Packages/TUI/icon.png [1.69 ms]
+2024-10-23 11:41:09.578126 ; package        ; Debug       ; Decompressed bin/Debug/Dependencies/NStack.1.0.7.0/NStack.dll [9.23 ms]
+2024-10-23 11:41:09.584437 ; package        ; Debug       ; Decompressed bin/Debug/Dependencies/System.Management.4.0.0.0/System.Management.dll [6.24 ms]
+2024-10-23 11:41:09.591536 ; package        ; Debug       ; Decompressed bin/Debug/Dependencies/System.CodeDom.7.0.0.0/System.CodeDom.dll [7.02 ms]
+2024-10-23 11:41:09.593386 ; package        ; Debug       ; Decompressed bin/Debug/Packages/TUI/package.xml [1.72 ms]
+2024-10-23 11:41:09.594383 ; Package        ; Debug       ; Found no custom actions to run at 'install' stage.
+2024-10-23 11:41:09.594417 ; Installer      ; Information ; Installed TUI version 1.1.1+507fd903 [85.7 ms]

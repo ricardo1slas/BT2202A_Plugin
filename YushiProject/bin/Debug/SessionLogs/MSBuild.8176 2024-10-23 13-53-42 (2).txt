@@ -1,0 +1,14 @@
+﻿2024-10-23 13:54:04.487110 ; Session        ; Debug       ; Session log loaded as 'C:\Users\Admin\Documents\GitHub\BT2202A_Plugin\YushiProject\bin\Debug\SessionLogs\MSBuild.8176 2024-10-23 13-53-42 (1).txt'. [822 us]
+2024-10-23 13:54:04.488081 ; Session        ; Debug       ; Running 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\MSBuild.exe /nologo /nodemode:1 /nodeReuse:true /low:false' in 'C:\Users\Admin\Documents\GitHub\BT2202A_Plugin\YushiProject'.
+2024-10-23 13:54:04.518933 ; FilePackageRepository ; Debug       ; Rebuilding cache: .PackageCache.7F6A6293.13.xml [28.4 ms]
+2024-10-23 13:54:04.519901 ; Package Query  ; Debug       ; Read 13 packages from [FilePackageRepository: file:///C:/Users/Admin/AppData/Local/OpenTap/PackageCache] [29.6 ms]
+2024-10-23 13:54:14.807347 ; GraphQL        ; Debug       ; {"type":"TapPackage","directory":"/Packages/","version":"","architecture":"x64","os":"Windows"} -> found 1496 packages. [10.3 s]
+2024-10-23 13:54:14.814356 ; image          ; Debug       ; Resolved image: TUI:1, OpenTAP:9.23.2+5a906a86, PathWave License Manager:^7.4.1+efeba870 [207 us]
+2024-10-23 13:54:18.194654 ; OpenTAP        ; Information ; Target installation is already up to date.
+2024-10-23 13:54:46.984316 ; Session        ; Debug       ; Session log loaded as 'C:\Users\Admin\Documents\GitHub\BT2202A_Plugin\YushiProject\bin\Debug\SessionLogs\MSBuild.8176 2024-10-23 13-53-42 (2).txt'. [2.22 ms]
+2024-10-23 13:54:46.985314 ; Session        ; Debug       ; Running 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\MSBuild.exe /nologo /nodemode:1 /nodeReuse:true /low:false' in 'C:\Users\Admin\Documents\GitHub\BT2202A_Plugin\YushiProject'.
+2024-10-23 13:54:47.018226 ; FilePackageRepository ; Debug       ; Rebuilding cache: .PackageCache.7F6A6293.13.xml [30.4 ms]
+2024-10-23 13:54:47.019225 ; Package Query  ; Debug       ; Read 13 packages from [FilePackageRepository: file:///C:/Users/Admin/AppData/Local/OpenTap/PackageCache] [31.7 ms]
+2024-10-23 13:54:51.692064 ; GraphQL        ; Debug       ; {"type":"TapPackage","directory":"/Packages/","version":"","architecture":"x64","os":"Windows"} -> found 1496 packages. [4.70 s]
+2024-10-23 13:54:51.698069 ; image          ; Debug       ; Resolved image: TUI:1, OpenTAP:9.23.2+5a906a86, PathWave License Manager:^7.4.1+efeba870 [261 us]
+2024-10-23 13:54:54.274164 ; OpenTAP        ; Information ; Target installation is already up to date.

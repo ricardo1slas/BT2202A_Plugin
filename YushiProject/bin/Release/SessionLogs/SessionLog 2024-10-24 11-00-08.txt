@@ -1,0 +1,63 @@
+﻿2024-10-24 11:00:08.650300 ; Session        ; Debug       ; Session log loaded as 'C:\Users\Admin\Documents\GitHub\BT2202A_Plugin\YushiProject\bin\Release\SessionLogs\tap 2024-10-24 11-00-08.txt'. [1.24 ms]
+2024-10-24 11:00:08.671374 ; Session        ; Debug       ; Running '.\tap  package create "C:\Users\Admin\Documents\GitHub\BT2202A_Plugin\YushiProject\\package.xml" --install' in 'C:\Users\Admin\Documents\GitHub\BT2202A_Plugin\YushiProject\bin\Release'.
+2024-10-24 11:00:08.695339 ; AssemblyFinder ; Debug       ; Found 9/30 assembly files. [6.40 ms]
+2024-10-24 11:00:08.714288 ; Resolver       ; Debug       ; Found match for System.Collections.Immutable, Version=1.2.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a in C:\Users\Admin\Documents\GitHub\BT2202A_Plugin\YushiProject\bin\Release\Dependencies\System.Collections.Immutable.1.2.3.0\System.Collections.Immutable.dll
+2024-10-24 11:00:08.735519 ; Resolver       ; Debug       ; Found match for System.Reflection.Metadata, Version=1.4.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a in C:\Users\Admin\Documents\GitHub\BT2202A_Plugin\YushiProject\bin\Release\Dependencies\System.Reflection.Metadata.1.4.3.0\System.Reflection.Metadata.dll
+2024-10-24 11:00:08.818237 ; Searcher       ; Debug       ; Ordered 9 assemblies according to references. [93.0 ms]
+2024-10-24 11:00:08.862120 ; Searcher       ; Warning     ; Plugin with duplicate type name BT2202a.carga defined in 'BT2202a' and 'BT2202A'
+2024-10-24 11:00:08.862120 ; Searcher       ; Warning     ; Plugin with duplicate type name BT2202a.MyTestStep defined in 'BT2202a' and 'BT2202A'
+2024-10-24 11:00:08.862120 ; Searcher       ; Warning     ; Plugin with duplicate type name OpenTap.Plugins.PluginDevelopment.ScpiInstrumentExample defined in 'BT2202a' and 'BT2202A'
+2024-10-24 11:00:08.868104 ; PluginManager  ; Debug       ; Found 5 plugin assemblies containing 187 plugin types. [145 ms]
+2024-10-24 11:00:08.869101 ; PluginManager  ; Debug       ; Found version 9.26.1+3d268116  of OpenTap.dll
+2024-10-24 11:00:08.869101 ; PluginManager  ; Debug       ; Found version 0.0.0            of BT2202a.dll
+2024-10-24 11:00:08.869101 ; PluginManager  ; Debug       ; Found version 9.26.1+3d268116  of OpenTap.Package.dll
+2024-10-24 11:00:08.869101 ; PluginManager  ; Debug       ; Found version 9.17.4+5e508f08  of Editor.exe
+2024-10-24 11:00:08.869101 ; PluginManager  ; Debug       ; Found version 9.26.1+3d268116  of OpenTap.Plugins.BasicSteps.dll
+2024-10-24 11:00:08.869101 ; PluginManager  ; Debug       ; Searched 9 Assemblies. [147 ms]
+2024-10-24 11:00:08.885061 ; AssemblyData   ; Debug       ; Loaded OpenTap. [277 us]
+2024-10-24 11:00:08.905006 ; Settings       ; Debug       ; No settings file exists for EngineSettings. A new instance with default values has been created. [5.77 ms]
+2024-10-24 11:00:08.924976 ; SystemInfo     ; Debug       ; Microsoft Windows 10.0.19045 X64
+2024-10-24 11:00:08.924976 ; SystemInfo     ; Debug       ; .NET Framework 4.8.9277.0
+2024-10-24 11:00:08.925973 ; SystemInfo     ; Debug       ; OpenTAP Engine 9.26.1+3d268116 X64
+2024-10-24 11:00:08.928970 ; AssemblyData   ; Debug       ; Loaded OpenTap.Package. [2.97 ms]
+2024-10-24 11:00:08.931933 ; Session        ; Debug       ; Session log loaded as 'C:\Users\Admin\Documents\GitHub\BT2202A_Plugin\YushiProject\bin\Release\SessionLogs\SessionLog 2024-10-24 11-00-08.txt'. [9.62 ms]
+2024-10-24 11:00:08.955943 ; AssemblyData   ; Debug       ; Loaded OpenTap.Plugins.BasicSteps. [3.40 ms]
+2024-10-24 11:00:08.992771 ; AssemblyData   ; Debug       ; Loaded mscorlib. [300 ns]
+2024-10-24 11:00:09.022719 ; CLI            ; Debug       ; Executing CLI action: package \ create
+2024-10-24 11:00:09.032693 ; VariableExpander ; Debug       ; Initialized variable expander:
+2024-10-24 11:00:09.042637 ; Package        ; Debug       ; Package preprocessing completed. [12.9 ms]
+2024-10-24 11:00:09.049648 ; Resolver       ; Debug       ; Found match for DotNet.Glob, Version=3.0.1.0, Culture=neutral, PublicKeyToken=b68cc888b4f632d1 in C:\Users\Admin\Documents\GitHub\BT2202A_Plugin\YushiProject\bin\Release\Dependencies\DotNet.Glob.3.0.1.0\DotNet.Glob.dll
+2024-10-24 11:00:09.066573 ; Installation   ; Debug       ; BT2202a                  - 0.1.0-alpha
+2024-10-24 11:00:09.066573 ; Installation   ; Debug       ; OpenTAP                  - 9.26.1+3d268116
+2024-10-24 11:00:09.066573 ; Installation   ; Debug       ; PathWave License Manager - 7.4.1+efeba870
+2024-10-24 11:00:09.068568 ; Searcher       ; Debug       ; Ordered 30 assemblies according to references. [5.25 ms]
+2024-10-24 11:00:09.092504 ; AssemblyData   ; Debug       ; Loaded Editor. [2.46 ms]
+2024-10-24 11:00:09.093501 ; Resolver       ; Debug       ; Unable to find match for Keysight.OpenTap.Wpf, Version=9.5.0.0, Culture=neutral, PublicKeyToken=null
+2024-10-24 11:00:09.093501 ; PluginManager  ; Error       ; Unable to load type 'Keysight.OpenTap.Gui.ToolMenuEntry' from 'C:\Users\Admin\Documents\GitHub\BT2202A_Plugin\YushiProject\bin\Release\Editor.exe'. Reason: 'Could not load file or assembly 'Keysight.OpenTap.Wpf, Version=9.5.0.0, Culture=neutral, PublicKeyToken=null' or one of its dependencies. The system cannot find the file specified.'.
+2024-10-24 11:00:09.094498 ; PluginManager  ; Debug       ; FileNotFoundException: Could not load file or assembly 'Keysight.OpenTap.Wpf, Version=9.5.0.0, Culture=neutral, PublicKeyToken=null' or one of its dependencies. The system cannot find the file specified.
+2024-10-24 11:00:09.101480 ; PluginManager  ; Debug       ;     at System.Reflection.RuntimeAssembly.GetType(RuntimeAssembly assembly, String name, Boolean throwOnError, Boolean ignoreCase, ObjectHandleOnStack type)
+2024-10-24 11:00:09.101480 ; PluginManager  ; Debug       ;     at System.Reflection.RuntimeAssembly.GetType(String name, Boolean throwOnError, Boolean ignoreCase)
+2024-10-24 11:00:09.101480 ; PluginManager  ; Debug       ;     at OpenTap.TypeData.Load()
+2024-10-24 11:00:09.102477 ; PluginManager  ; Debug       ; Exception caught at:
+2024-10-24 11:00:09.104472 ; PluginManager  ; Debug       ;     at Boolean get_CanCreateInstance()
+2024-10-24 11:00:09.104472 ; PluginManager  ; Debug       ;     at Boolean MoveNext()
+2024-10-24 11:00:09.104472 ; PluginManager  ; Debug       ;     at Boolean MoveNext()
+2024-10-24 11:00:09.104472 ; PluginManager  ; Debug       ;     at System.Linq.Lookup`2[TKey,TElement] Create[TSource](System.Collections.Generic.IEnumerable`1[TSource], System.Func`2[TSource,TKey], System.Func`2[TSource,TElement], System.Collections.Generic.IEqualityComparer`1[TKey])
+2024-10-24 11:00:09.104472 ; PluginManager  ; Debug       ;     ...
+2024-10-24 11:00:09.130403 ; Package        ; Information ; Satisfying assembly reference to OpenTap by adding dependency on package OpenTAP
+2024-10-24 11:00:09.130403 ; Package        ; Information ; Adding dependency on package 'OpenTAP' version 9.26.1+3d268116
+2024-10-24 11:00:09.138403 ; Package        ; Debug       ; Using temporary folder at 'C:\Users\Admin\AppData\Local\Temp\4ddjt0kp.b4v'
+2024-10-24 11:00:09.141403 ; Package        ; Debug       ; Updating version info for 'BT2202a.dll' [949 us]
+2024-10-24 11:00:09.144365 ; Resolver       ; Debug       ; Found match for Mono.Cecil, Version=0.10.1.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e in C:\Users\Admin\Documents\GitHub\BT2202A_Plugin\YushiProject\bin\Release\Dependencies\Mono.Cecil.0.10.1.0\Mono.Cecil.dll
+2024-10-24 11:00:09.412194 ; Package        ; Information ; Updated assembly version info using Mono method. [271 ms]
+2024-10-24 11:00:09.421169 ; Package        ; Debug       ; Available custom actions for 'create' stage. (2 actions: OpenTap.Package.IncludePackageDependencies, OpenTap.Package.FileHashPackageAction)
+2024-10-24 11:00:09.425158 ; Package        ; Information ; Package action IncludePackageDependencies completed [3.51 ms]
+2024-10-24 11:00:09.433136 ; Package        ; Information ; Package action FileHashPackageAction completed [8.89 ms]
+2024-10-24 11:00:09.434133 ; Package        ; Information ; Creating OpenTAP package.
+2024-10-24 11:00:09.448096 ; Package        ; Debug       ; Compressed 'C:\Users\Admin\AppData\Local\Temp\4ddjt0kp.b4v\Versioned\BT2202a.dll' [9.42 ms]
+2024-10-24 11:00:09.498960 ; Package        ; Debug       ; Verifying package integrity...
+2024-10-24 11:00:09.515936 ; Package        ; Debug       ; Verified metadata integrity. [16.8 ms]
+2024-10-24 11:00:09.515936 ; Package        ; Debug       ; Verified archive integrity. [17.0 ms]
+2024-10-24 11:00:09.518907 ; PackageAction  ; Information ; OpenTAP plugin package 'BT2202a.0.1.0-alpha.TapPackage' containing 'BT2202a' successfully created.
+2024-10-24 11:00:09.519904 ; PackageAction  ; Information ; Installed 'BT2202a' (C:\Users\Admin\Documents\GitHub\BT2202A_Plugin\YushiProject\bin\Release\Packages\BT2202a\package.xml)
+2024-10-24 11:00:09.519904 ; CLI            ; Debug       ; CLI action returned exit code: 0 [497 ms]
