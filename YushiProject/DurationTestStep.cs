@@ -2,7 +2,7 @@ using OpenTap;
 using System;
 using System.Collections.Generic;
 
-namespace Test
+namespace childStep
 {
     [Display("Test", Group: "instrument", Description: "Enables Pass/Fail.")]
     public class DurationTestStep : TestStep
