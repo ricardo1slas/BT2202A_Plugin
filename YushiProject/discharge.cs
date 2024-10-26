@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading;
 
@@ -13,20 +14,28 @@ namespace BT2202a
     public class discharge : TestStep
     {
         #region Settings
-        // Properties for voltage, current, and time
-        [Display("Voltage (V)", Order: 1, Description: "The voltage level to set during charging.")]
-        public double Voltage { get; set; }
-
-        [Display("Current (A)", Order: 2, Description: "The current level to set during charging.")]
-        public double Current { get; set; }
-
-        [Display("Time (s)", Order: 3, Description: "The duration of the discharge in seconds.")]
-        public double Time { get; set; }
 
         // Reference to the instrument Instrument
-        [Display("Instrument", Order: 4, Description: "The instrument instrument to use for charging.")]
+        [Display("Instrument", Order: 1, Description: "The instrument instrument to use for charging.")]
         public ScpiInstrument instrument { get; set; }
+        // Properties for voltage, current, and time
+        [Display("Voltage (V)", Order: 2, Description: "The voltage level to set during charging.")]
+        public double Voltage { get; set; }
+
+        [Display("Current (A)", Order: 3, Description: "The current level to set during charging.")]
+        public double Current { get; set; }
+
+        [Display("Time (s)", Order: 4, Description: "The duration of the discharge in seconds.")]
+        public double Time { get; set; }
+
+        [Display("Cell size", Order: 5, Description:"Number of channels per cell")]
+        public double Channels {get; set;}
+
+        [Display("Cell group", Order: 6, Description:"Number of cells per cell group, asign as lowest:highest or comma separated list")]
+        public string cell_group;
         #endregion
+
+        public string[] cell_list;
 
         // Additional fields used during the charging process.
         private bool abortAllProcesses = false;
@@ -37,34 +46,14 @@ namespace BT2202a
             Voltage = 0; // Default voltage, adjust as needed.
             Current = 0; // Default current, adjust as needed.
             Time = 0;   // Default duration, adjust as needed.
+            Channels = 4;
+            cell_group = "1001:1005";
         }
+
 
         public override void PrePlanRun()
         {   // pre run
             base.PrePlanRun();
-            /*
-            try
-            {
-                instrument.ScpiCommand("*IDN?");
-                instrument.ScpiCommand("*RST");
-                instrument.ScpiCommand("SYST:PROB:LIM 1,0");
-
-                instrument.ScpiCommand("CELL:DEF:QUICk 4");
-
-               
-                Log.Info($"discharge sequence step defined: Voltage = {Voltage} V, Current = {Current} A, Time = {Time} s");
-
-                //instrument.ScpiCommand("CELL:ENABLE (@1001:1005),1");
-                //instrument.ScpiCommand("CELL:INIT (@1001,1005)");
-
-                Log.Info("Initializing discharge");
-                Thread.Sleep(15000); // Wait for 15 seconds
-                Log.Info("discharge Process Started");
-            }
-            catch (Exception ex)
-            {
-                Log.Error($"Error during PrePlanRun: {ex.Message}");
-            }*/
         }
 
         public override void Run()
@@ -76,16 +65,12 @@ namespace BT2202a
                 instrument.ScpiCommand("*RST");
                 instrument.ScpiCommand("SYST:PROB:LIM 1,0");
 
-                instrument.ScpiCommand("CELL:DEF:QUICk 4");
-
+                instrument.ScpiCommand($"CELL:DEF:QUICk {Channels}");
+                Log.Info($"Assigned {Channels} per cell");
 
                 Log.Info($"discharge sequence step defined: Voltage = {Voltage} V, Current = {Current} A, Time = {Time} s");
 
-                //instrument.ScpiCommand("CELL:ENABLE (@1001:1005),1");
-                //instrument.ScpiCommand("CELL:INIT (@1001,1005)");
-
                 Log.Info("Initializing discharge");
-                Thread.Sleep(15000); // Wait for 15 seconds
                 Log.Info("discharge Process Started");
             }
             catch (Exception ex)
@@ -97,9 +82,13 @@ namespace BT2202a
             {
                 instrument.ScpiCommand($"SEQ:STEP:DEF 1,1, DISCHARGE, {Time}, {Current}, {Voltage}");
 
+                char[] delimiterChars = {',', ':'};
+                cell_group = cell_group.Replace(" ","");
+                cell_list = cell_group.Split(delimiterChars);
+
                 // Enable and Initialize Cells
-                instrument.ScpiCommand("CELL:ENABLE (@1001:1005),1");
-                instrument.ScpiCommand("CELL:INIT (@1001,1005)");
+                instrument.ScpiCommand($"CELL:ENABLE (@{cell_group}),1");
+                instrument.ScpiCommand($"CELL:INIT (@{cell_group})");
 
                 // Log the start of the charging process.
                 Log.Info("Starting the charging process.");
@@ -119,8 +108,8 @@ namespace BT2202a
                     while ((DateTime.Now - startTime).TotalSeconds < Time)
                     {
                         // Query the instrument for voltage and current measurements.
-                        string measuredVoltage = instrument.ScpiQuery("MEAS:CELL:VOLT? (@1001)");
-                        string measuredCurrent = instrument.ScpiQuery("MEAS:CELL:CURR? (@1001)");
+                        string measuredVoltage = instrument.ScpiQuery($"MEAS:CELL:VOLT? (@{cell_list[0]})");
+                        string measuredCurrent = instrument.ScpiQuery($"MEAS:CELL:CURR? (@{cell_list[0]})");
 
                         double elapsedSeconds = (DateTime.Now - startTime).TotalSeconds;
                         Log.Info($"Time: {elapsedSeconds:F2}s, Voltage: {measuredVoltage} V, Current: {measuredCurrent} A");
