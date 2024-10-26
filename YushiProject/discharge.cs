@@ -40,8 +40,9 @@ namespace BT2202a
         }
 
         public override void PrePlanRun()
-        {
+        {   // pre run
             base.PrePlanRun();
+            /*
             try
             {
                 instrument.ScpiCommand("*IDN?");
@@ -50,11 +51,38 @@ namespace BT2202a
 
                 instrument.ScpiCommand("CELL:DEF:QUICk 4");
 
-                instrument.ScpiCommand($"SEQ:STEP:DEF 1,1, discharge, {Time}, {Current}, {Voltage}");
+               
                 Log.Info($"discharge sequence step defined: Voltage = {Voltage} V, Current = {Current} A, Time = {Time} s");
 
-                instrument.ScpiCommand("CELL:ENABLE (@1001:1005),1");
-                instrument.ScpiCommand("CELL:INIT (@1001,1005)");
+                //instrument.ScpiCommand("CELL:ENABLE (@1001:1005),1");
+                //instrument.ScpiCommand("CELL:INIT (@1001,1005)");
+
+                Log.Info("Initializing discharge");
+                Thread.Sleep(15000); // Wait for 15 seconds
+                Log.Info("discharge Process Started");
+            }
+            catch (Exception ex)
+            {
+                Log.Error($"Error during PrePlanRun: {ex.Message}");
+            }*/
+        }
+
+        public override void Run()
+        {
+            // pre run
+            try
+            {
+                instrument.ScpiCommand("*IDN?");
+                instrument.ScpiCommand("*RST");
+                instrument.ScpiCommand("SYST:PROB:LIM 1,0");
+
+                instrument.ScpiCommand("CELL:DEF:QUICk 4");
+
+
+                Log.Info($"discharge sequence step defined: Voltage = {Voltage} V, Current = {Current} A, Time = {Time} s");
+
+                //instrument.ScpiCommand("CELL:ENABLE (@1001:1005),1");
+                //instrument.ScpiCommand("CELL:INIT (@1001,1005)");
 
                 Log.Info("Initializing discharge");
                 Thread.Sleep(15000); // Wait for 15 seconds
@@ -64,12 +92,15 @@ namespace BT2202a
             {
                 Log.Error($"Error during PrePlanRun: {ex.Message}");
             }
-        }
-
-        public override void Run()
-        {
+            // run
             try
             {
+                instrument.ScpiCommand($"SEQ:STEP:DEF 1,1, DISCHARGE, {Time}, {Current}, {Voltage}");
+
+                // Enable and Initialize Cells
+                instrument.ScpiCommand("CELL:ENABLE (@1001:1005),1");
+                instrument.ScpiCommand("CELL:INIT (@1001,1005)");
+
                 // Log the start of the charging process.
                 Log.Info("Starting the charging process.");
 
@@ -121,10 +152,8 @@ namespace BT2202a
                 Log.Error($"An error occurred during the charging process: {ex.Message}");
                 UpgradeVerdict(Verdict.Fail);
             }
-        }
 
-        public override void PostPlanRun()
-        {
+            // post run
             try
             {
                 // Any cleanup code that needs to run after the test plan finishes.
@@ -135,6 +164,21 @@ namespace BT2202a
             {
                 Log.Error($"Error during PostPlanRun: {ex.Message}");
             }
+
+        }
+
+        public override void PostPlanRun()
+        {
+            /*try
+            {
+                // Any cleanup code that needs to run after the test plan finishes.
+                instrument.ScpiCommand("*RST"); // Reset the instrument again after the test.
+                Log.Info("Instrument reset after test completion.");
+            }
+            catch (Exception ex)
+            {
+                Log.Error($"Error during PostPlanRun: {ex.Message}");
+            }*/
             base.PostPlanRun();
         }
     }
