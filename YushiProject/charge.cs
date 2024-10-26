@@ -9,7 +9,7 @@ using System.Threading;
 namespace BT2202a
 {
     [Display("Charge", Group: "instrument", Description: "Charges a device with specified voltage and current for a set duration.")]
-   
+    [AllowAnyChild]
     public class Charge : TestStep
     {
         #region Settings
@@ -147,6 +147,19 @@ namespace BT2202a
             try
             {   
                 instrument.ScpiCommand($"SEQ:STEP:DEF 1,1, CHARGE, {Time}, {Current}, {Voltage}");
+
+                // child step
+                foreach (var childStep in EnabledChildSteps)
+                {
+                    Result childResult = RunChildStep(childStep);
+                    // Check the result of each child step to handle pass/fail conditions
+                    if (childResult.IsFailure())
+                    {
+                        Log.Error($"Child step '{childStep.Test}' failed.");
+                        UpgradeVerdict(Verdict.Fail);
+                        return;
+                    }
+                }
 
                 // Enable and Initialize Cells
                 instrument.ScpiCommand("CELL:ENABLE (@1001:1005),1");

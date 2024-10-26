@@ -8,9 +8,9 @@ using System.Threading;
 
 namespace BT2202a
 {
-    [Display("discharge", Group: "instrument", Description: "discharges a device with specified voltage and current for a set duration.")]
+    [Display("Discharge", Group: "instrument", Description: "Discharges a device with specified voltage and current for a set duration.")]
    
-    public class discharge : TestStep
+    public class Discharge : TestStep
     {
         #region Settings
         // Properties for voltage, current, and time
@@ -20,7 +20,7 @@ namespace BT2202a
         [Display("Current (A)", Order: 2, Description: "The current level to set during charging.")]
         public double Current { get; set; }
 
-        [Display("Time (s)", Order: 3, Description: "The duration of the discharge in seconds.")]
+        [Display("Time (s)", Order: 3, Description: "The duration of the Discharge in seconds.")]
         public double Time { get; set; }
 
         // Reference to the instrument Instrument
@@ -31,7 +31,7 @@ namespace BT2202a
         // Additional fields used during the charging process.
         private bool abortAllProcesses = false;
        
-        public discharge()
+        public Discharge()
         {
             // Set default values for the properties.
             Voltage = 0; // Default voltage, adjust as needed.
@@ -52,14 +52,14 @@ namespace BT2202a
                 instrument.ScpiCommand("CELL:DEF:QUICk 4");
 
                
-                Log.Info($"discharge sequence step defined: Voltage = {Voltage} V, Current = {Current} A, Time = {Time} s");
+                Log.Info($"Discharge sequence step defined: Voltage = {Voltage} V, Current = {Current} A, Time = {Time} s");
 
                 //instrument.ScpiCommand("CELL:ENABLE (@1001:1005),1");
                 //instrument.ScpiCommand("CELL:INIT (@1001,1005)");
 
-                Log.Info("Initializing discharge");
+                Log.Info("Initializing Discharge");
                 Thread.Sleep(15000); // Wait for 15 seconds
-                Log.Info("discharge Process Started");
+                Log.Info("Discharge Process Started");
             }
             catch (Exception ex)
             {
@@ -79,14 +79,14 @@ namespace BT2202a
                 instrument.ScpiCommand("CELL:DEF:QUICk 4");
 
 
-                Log.Info($"discharge sequence step defined: Voltage = {Voltage} V, Current = {Current} A, Time = {Time} s");
+                Log.Info($"Discharge sequence step defined: Voltage = {Voltage} V, Current = {Current} A, Time = {Time} s");
 
                 //instrument.ScpiCommand("CELL:ENABLE (@1001:1005),1");
                 //instrument.ScpiCommand("CELL:INIT (@1001,1005)");
 
-                Log.Info("Initializing discharge");
+                Log.Info("Initializing Discharge");
                 Thread.Sleep(15000); // Wait for 15 seconds
-                Log.Info("discharge Process Started");
+                Log.Info("Discharge Process Started");
             }
             catch (Exception ex)
             {
@@ -95,7 +95,7 @@ namespace BT2202a
             // run
             try
             {
-                instrument.ScpiCommand($"SEQ:STEP:DEF 1,1, DISCHARGE, {Time}, {Current}, {Voltage}");
+                instrument.ScpiCommand($"SEQ:STEP:DEF 1,1, Discharge, {Time}, {Current}, {Voltage}");
 
                 // Enable and Initialize Cells
                 instrument.ScpiCommand("CELL:ENABLE (@1001:1005),1");
@@ -110,7 +110,7 @@ namespace BT2202a
 
                 // Wait for the specified charging time to elapse.
                 DateTime startTime = DateTime.Now;
-                string csvPath = "Measurements_discharge.csv";  // Path for the CSV file
+                string csvPath = "Measurements_Discharge.csv";  // Path for the CSV file
 
                 using (StreamWriter writer = new StreamWriter(csvPath))
                 {
