@@ -1,84 +1,135 @@
 using OpenTap;
 using System;
+using System.Collections.Generic;
 
-namespace BT2202a
+namespace Test
 {
-    [Display("MyTestStep", Description: "Insert a description here", Group: "BT2202a")]
-    public class MyTestStep : TestStep
+    [Display("Test", Group: "instrument", Description: "Enables Pass/Fail.")]
+    public class DurationTestStep : TestStep
     {
         #region Settings
-        // ToDo: Add property here for each parameter the end user should be able to change
-        #endregion
-
-        public ScpiInstrument BT2202 { get; set; } 
-        public double test { get; set; }
-        public MyTestStep()
+        public enum TestType
         {
-            // ToDo: Set default values for properties / settings.
+            Voltage,
+            Current
         }
 
-        public override void PrePlanRun()
+        public enum Compare
         {
-            base.PrePlanRun();
-            // ToDo: Optionally add any setup code this step needs to run before the testplan starts
+            GreaterThanOrEqual,
+            LessThanOrEqual
+        }
+
+        public enum When
+        {
+            Before,
+            After,
+            At
+        }
+
+        public enum Result
+        {
+            FailAndRemove,
+            AdvanceToNextStep
+        }
+
+        // Mappings for SCPI-friendly strings
+        private static readonly Dictionary<Compare, string> CompareMapping = new Dictionary<Compare, string>
+        {
+            { Compare.GreaterThanOrEqual, "GE" },
+            { Compare.LessThanOrEqual, "LE" }
+        };
+
+        private static readonly Dictionary<When, string> WhenMapping = new Dictionary<When, string>
+        {
+            { When.Before, "BEFORE" },
+            { When.After, "AFTER" },
+            { When.At, "AT" }
+        };
+
+        private static readonly Dictionary<TestType, string> TestTypeMapping = new Dictionary<TestType, string>
+        {
+            { TestType.Voltage, "VOLT" },
+            { TestType.Current, "CURR" }
+        };
+
+        // Reference to the instrument
+        [Display("Instrument", Order: 4, Description: "The instrument to use for charging.")]
+        public ScpiInstrument Instrument { get; set; }
+        #endregion
+
+        [Display("Test Type", Order: 1, Description: "Parameter to test.")]
+        public TestType SelectedTestType { get; set; }
+
+        [Display("Voltage (V)", Order: 2, Description: "The voltage level to set during charging.")]
+        [EnabledIf("SelectedTestType", TestType.Voltage, HideIfDisabled = true)]
+        public double Voltage { get; set; }
+
+        [Display("Current (A)", Order: 3, Description: "The current level to set during charging.")]
+        [EnabledIf("SelectedTestType", TestType.Current, HideIfDisabled = true)]
+        public double Current { get; set; }
+
+        [Display("Compare", Order: 4, Description: "Comparison with the parameter.")]
+        public Compare ComparisonOperator { get; set; }
+
+        [Display("When", Order: 5, Description: "When?")]
+        public When WhenCondition { get; set; }
+
+        [Display("Time (s)", Order: 6, Description: "The duration of the charge in seconds.")]
+        public double Time { get; set; }
+
+        [Display("Result", Order: 7, Description: "Action to take based on result.")]
+        public Result ActionResult { get; set; }
+
+        // Constructor to set default values
+        public DurationTestStep()
+        {
+            Voltage = 0;
+            Current = 0;
+            Time = 10.0;  // Default duration
+            SelectedTestType = TestType.Voltage;
+            ComparisonOperator = Compare.GreaterThanOrEqual;
+            WhenCondition = When.At;
+            ActionResult = Result.AdvanceToNextStep;
         }
 
         public override void Run()
         {
-            // run
-            if (abortAllProcesses)
-                {
-                    Log.Error("Process aborted. Exiting PrePlanRun.");
-                    return;
-                }
+            if (Instrument == null)
+            {
+                Log.Error("Instrument is not configured.");
+                UpgradeVerdict(Verdict.Error);
+                return;
+            }
 
-                instrument.ScpiCommand("*IDN?");
-                instrument.ScpiCommand("*RST");
-                instrument.ScpiCommand("SYST:PROB:LIM 1,0");
+            // Fixed initial values as specified in your example
+            string fixedValues = "1,1,1";
 
-                foreach (var command in moduleCommands)
-                {
-                    instrument.ScpiCommand(command);
-                    Log.Info($"Executed: {command}");
-                }
+            // Combine TestType and ComparisonOperator
+            string parameterComparison = string.Format("{0}_{1}", TestTypeMapping[SelectedTestType], CompareMapping[ComparisonOperator]);
 
-                if (chargeCommandCounter < chargeCommands.Count)
-                {
-                    instrument.ScpiCommand(chargeCommands[chargeCommandCounter]);
-                    Log.Info($"Executed Charge Command: {chargeCommands[chargeCommandCounter]}");
-                    chargeCommandCounter++;
-                }
-                else
-                {
-                    Log.Info("All charge commands executed.");
-                }
-                instrument.ScpiCommand("CELL:DEF:QUICk 4");
+            // Get the parameter value (Voltage or Current) based on TestType
+            double parameterValue = SelectedTestType == TestType.Voltage ? Voltage : Current;
 
+            // Retrieve the WhenCondition and ActionResult as SCPI-compatible strings
+            string whenCondition = WhenMapping[WhenCondition];
+            string resultAction = ActionResult == Result.FailAndRemove ? "FAIL" : "NEXT";
 
-                Log.Info($"Charge sequence step defined: Voltage = {Voltage} V, Current = {Current} A, Time = {Time} s");
+            // Construct the SCPI command
+            string scpiCommand = string.Format("SEQ:TEST:DEF {0},{1},{2},{3},{4},{5}", fixedValues, parameterComparison, parameterValue, whenCondition, Time, resultAction);
 
-                //instrument.ScpiCommand("CELL:ENABLE (@1001:1005),1");
-                //instrument.ScpiCommand("CELL:INIT (@1001,1005)");
-
-                Log.Info("Initializing Charge");
-                Thread.Sleep(15000); // Wait for 15 seconds
-                Log.Info("Charge Process Started");
+            // Send the SCPI command
+            try
+            {
+                Instrument.ScpiCommand(scpiCommand);
+                Log.Info($"Sent SCPI command: {scpiCommand}");
+                UpgradeVerdict(Verdict.Pass);
             }
             catch (Exception ex)
             {
-                Log.Error($"Error during PrePlanRun: {ex.Message}");
+                Log.Error($"Failed to send SCPI command: {ex.Message}");
+                UpgradeVerdict(Verdict.Fail);
             }
-            
-            // ToDo: Add test case code here
-            RunChildSteps(); //If step has child steps.
-
-            UpgradeVerdict(Verdict.Pass);
-        }
-
-        public override void PostPlanRun()
-        {
-            // ToDo: Optionally add any cleanup code this step needs to run after the entire testplan has finished
-            base.PostPlanRun();
         }
     }
 }
