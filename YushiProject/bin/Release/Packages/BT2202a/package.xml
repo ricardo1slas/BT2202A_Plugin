@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Package InfoLink="" Date="10/24/2024 18:06:16" Name="BT2202a" Version="0.1.0-alpha" Architecture="AnyCPU" OS="Windows,Linux" xmlns="http://opentap.io/schemas/package">
-  <Hash>HhIB5tOBrNBoCTpYH--T35gRUZk</Hash>
+<Package InfoLink="" Date="10/26/2024 17:51:06" Name="BT2202a" Version="0.2.0-alpha" Architecture="AnyCPU" OS="Windows,Linux" xmlns="http://opentap.io/schemas/package">
+  <Hash>mEC7GyXKl_w4FKinWvInEFH3Phw</Hash>
   <Description>This is my OpenTAP plugin package.</Description>
   <Dependencies>
     <PackageDependency Package="OpenTAP" Version="^9.26.1+3d268116" />
@@ -13,6 +13,16 @@
           <Order>-10000</Order>
           <Browsable>true</Browsable>
           <Description>Charges a device with specified voltage and current for a set duration.</Description>
+          <Collapsed>false</Collapsed>
+          <Groups>
+            <String>instrument</String>
+          </Groups>
+        </Plugin>
+        <Plugin Type="BT2202a.discharge" BaseType="Test Step">
+          <Name>discharge</Name>
+          <Order>-10000</Order>
+          <Browsable>true</Browsable>
+          <Description>discharges a device with specified voltage and current for a set duration.</Description>
           <Collapsed>false</Collapsed>
           <Groups>
             <String>instrument</String>
@@ -39,7 +49,7 @@
           </Groups>
         </Plugin>
       </Plugins>
-      <Hash>8208890F0D3D9B0A6BAB4F3B0963453BCA9A3B2A</Hash>
+      <Hash>BAE7745D4AC1F6F29EA70B68502F566506AB4A98</Hash>
     </File>
   </Files>
 </Package>
