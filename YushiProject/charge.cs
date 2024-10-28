@@ -44,21 +44,35 @@ namespace BT2202a
 
             try
             {
+                // Check if the instrument I/O supports setting a timeout
+                if (Instrument.IO is ITransport transport)
+                {
+                    transport.Timeout = TimeSpan.FromSeconds(10);  // Set timeout to 10 seconds for this operation
+                }
+                else
+                {
+                    Log.Warning("Instrument I/O does not support setting a timeout. Proceeding with default settings.");
+                }
+
                 // Instrument setup
                 Instrument.ScpiCommand("*IDN?");
                 Instrument.ScpiCommand("*RST");
                 Instrument.ScpiCommand("SYST:PROB:LIM 1,0");
 
+                // Define the charge sequence step
                 Instrument.ScpiCommand($"SEQ:STEP:DEF 1,1, CHARGE, {Time}, {Current}, {Voltage}");
 
+                // Run all child steps and manage verdict based on the most severe verdict among them
                 RunChildSteps();
 
+                // Enable and initialize cells for charging
                 Instrument.ScpiCommand("CELL:ENABLE (@1001:1005),1");
                 Instrument.ScpiCommand("CELL:INIT (@1001,1005)");
                 Instrument.ScpiCommand("OUTP ON");
                 Log.Info("Output enabled, starting charge.");
 
-                TapThread.Sleep(2000);  // Wait 2 seconds to stabilize
+                // Stabilize the instrument before measurements
+                TapThread.Sleep(2000);
 
                 DateTime startTime = DateTime.Now;
                 string csvPath = "Measurements_Charge.csv";
@@ -69,17 +83,13 @@ namespace BT2202a
 
                     while ((DateTime.Now - startTime).TotalSeconds < Time)
                     {
-                        int originalTimeout = Instrument.Timeout;
-                        Instrument.Timeout = 10000;  // Temporarily increase timeout for measurement
+                        string measuredVoltage = "";
+                        string measuredCurrent = "";
 
                         try
                         {
-                            string measuredVoltage = Instrument.ScpiQuery("MEAS:CELL:VOLT? (@1001)");
-                            string measuredCurrent = Instrument.ScpiQuery("MEAS:CELL:CURR? (@1001)");
-                            double elapsedSeconds = (DateTime.Now - startTime).TotalSeconds;
-
-                            Log.Info($"Time: {elapsedSeconds:F2}s, Voltage: {measuredVoltage} V, Current: {measuredCurrent} A");
-                            writer.WriteLine($"{elapsedSeconds:F2}, {measuredVoltage}, {measuredCurrent}");
+                            measuredVoltage = Instrument.ScpiQuery("MEAS:CELL:VOLT? (@1001)");
+                            measuredCurrent = Instrument.ScpiQuery("MEAS:CELL:CURR? (@1001)");
                         }
                         catch (TimeoutException)
                         {
@@ -87,10 +97,10 @@ namespace BT2202a
                             UpgradeVerdict(Verdict.Error);
                             return;
                         }
-                        finally
-                        {
-                            Instrument.Timeout = originalTimeout;  // Restore original timeout
-                        }
+
+                        double elapsedSeconds = (DateTime.Now - startTime).TotalSeconds;
+                        Log.Info($"Time: {elapsedSeconds:F2}s, Voltage: {measuredVoltage} V, Current: {measuredCurrent} A");
+                        writer.WriteLine($"{elapsedSeconds:F2}, {measuredVoltage}, {measuredCurrent}");
 
                         if (abortAllProcesses)
                         {
@@ -103,12 +113,15 @@ namespace BT2202a
                     }
                 }
 
+                // Complete the charging process
                 Instrument.ScpiCommand("OUTP OFF");
                 Log.Info("Charging process completed and output disabled.");
 
+                // Reset the instrument
                 Instrument.ScpiCommand("*RST");
                 Log.Info("Instrument reset after test completion.");
 
+                // Set the verdict to Pass if no issues were encountered
                 UpgradeVerdict(Verdict.Pass);
             }
             catch (Exception ex)
