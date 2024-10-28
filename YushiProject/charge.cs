@@ -1,121 +1,84 @@
-using OpenTap;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Threading;
-
-namespace BT2202a
+public override void Run()
 {
-    [Display("Charge", Group: "instrument", Description: "Charges a device with specified voltage and current for a set duration.")]
-    [AllowAnyChild]
-    public class Charge : TestStep
+    if (Instrument == null)
     {
-        #region Settings
-        [Display("Voltage (V)", Order: 1, Description: "The voltage level to set during charging.")]
-        public double Voltage { get; set; }
+        Log.Error("Instrument is not configured.");
+        UpgradeVerdict(Verdict.Error);
+        return;
+    }
 
-        [Display("Current (A)", Order: 2, Description: "The current level to set during charging.")]
-        public double Current { get; set; }
+    try
+    {
+        // Instrument setup
+        Instrument.ScpiCommand("*IDN?");
+        Instrument.ScpiCommand("*RST");
+        Instrument.ScpiCommand("SYST:PROB:LIM 1,0");
 
-        [Display("Time (s)", Order: 3, Description: "The duration of the charge in seconds.")]
-        public double Time { get; set; }
+        Instrument.ScpiCommand($"SEQ:STEP:DEF 1,1, CHARGE, {Time}, {Current}, {Voltage}");
 
-        [Display("Instrument", Order: 4, Description: "The instrument to use for charging.")]
-        public ScpiInstrument Instrument { get; set; }
-        #endregion
+        RunChildSteps();
 
-        private bool abortAllProcesses = false;
+        Instrument.ScpiCommand("CELL:ENABLE (@1001:1005),1");
+        Instrument.ScpiCommand("CELL:INIT (@1001,1005)");
+        Instrument.ScpiCommand("OUTP ON");
+        Log.Info("Output enabled, starting charge.");
 
-        public Charge()
+        TapThread.Sleep(2000);  // Wait 2 seconds to stabilize
+
+        DateTime startTime = DateTime.Now;
+        string csvPath = "Measurements_Charge.csv";
+
+        using (StreamWriter writer = new StreamWriter(csvPath))
         {
-            Voltage = 0;
-            Current = 0;
-            Time = 0;
-        }
+            writer.WriteLine("Time (s), Voltage (V), Current (A), Temperature (C)");
 
-        public override void Run()
-        {
-            if (Instrument == null)
+            while ((DateTime.Now - startTime).TotalSeconds < Time)
             {
-                Log.Error("Instrument is not configured.");
-                UpgradeVerdict(Verdict.Error);
-                return;
-            }
+                int originalTimeout = Instrument.Timeout;
+                Instrument.Timeout = 10000;  // Temporarily increase timeout for measurement
 
-            try
-            {
-                // Set up the instrument for the charging sequence
-                Instrument.ScpiCommand("*IDN?");
-                Instrument.ScpiCommand("*RST");
-                Instrument.ScpiCommand("SYST:PROB:LIM 1,0");
-
-                // Define the charge sequence step
-                Instrument.ScpiCommand($"SEQ:STEP:DEF 1,1, CHARGE, {Time}, {Current}, {Voltage}");
-
-                // Run all child steps and manage verdict based on the most severe verdict among them
-                RunChildSteps();
-
-                // Enable and initialize cells for charging
-                Instrument.ScpiCommand("CELL:ENABLE (@1001:1005),1");
-                Instrument.ScpiCommand("CELL:INIT (@1001,1005)");
-                Instrument.ScpiCommand("OUTP ON");
-                Log.Info("Output enabled, starting charge.");
-
-                DateTime startTime = DateTime.Now;
-                string csvPath = "Measurements_Charge.csv";
-
-                using (StreamWriter writer = new StreamWriter(csvPath))
+                try
                 {
-                    writer.WriteLine("Time (s), Voltage (V), Current (A), Temperature (C)");
+                    string measuredVoltage = Instrument.ScpiQuery("MEAS:CELL:VOLT? (@1001)");
+                    string measuredCurrent = Instrument.ScpiQuery("MEAS:CELL:CURR? (@1001)");
+                    double elapsedSeconds = (DateTime.Now - startTime).TotalSeconds;
 
-                    while ((DateTime.Now - startTime).TotalSeconds < Time)
-                    {
-                        string measuredVoltage = "";
-                        string measuredCurrent = "";
-
-                        try
-                        {
-                            measuredVoltage = Instrument.ScpiQuery("MEAS:CELL:VOLT? (@1001)");
-                            measuredCurrent = Instrument.ScpiQuery("MEAS:CELL:CURR? (@1001)");
-                        }
-                        catch (TimeoutException)
-                        {
-                            Log.Error("Measurement timeout. Aborting.");
-                            UpgradeVerdict(Verdict.Error);
-                            return;
-                        }
-
-                        double elapsedSeconds = (DateTime.Now - startTime).TotalSeconds;
-                        Log.Info($"Time: {elapsedSeconds:F2}s, Voltage: {measuredVoltage} V, Current: {measuredCurrent} A");
-                        writer.WriteLine($"{elapsedSeconds:F2}, {measuredVoltage}, {measuredCurrent}");
-
-                        if (abortAllProcesses)
-                        {
-                            Log.Warning("Charging process aborted by user.");
-                            Instrument.ScpiCommand("OUTP OFF");
-                            return;
-                        }
-
-                        TapThread.Sleep(1000);  // Use TapThread.Sleep for OpenTAP responsiveness
-                    }
+                    Log.Info($"Time: {elapsedSeconds:F2}s, Voltage: {measuredVoltage} V, Current: {measuredCurrent} A");
+                    writer.WriteLine($"{elapsedSeconds:F2}, {measuredVoltage}, {measuredCurrent}");
+                }
+                catch (TimeoutException)
+                {
+                    Log.Error("Measurement timeout. Aborting.");
+                    UpgradeVerdict(Verdict.Error);
+                    return;
+                }
+                finally
+                {
+                    Instrument.Timeout = originalTimeout;  // Restore original timeout
                 }
 
-                // Complete the charging process
-                Instrument.ScpiCommand("OUTP OFF");
-                Log.Info("Charging process completed and output disabled.");
+                if (abortAllProcesses)
+                {
+                    Log.Warning("Charging process aborted by user.");
+                    Instrument.ScpiCommand("OUTP OFF");
+                    return;
+                }
 
-                // Reset the instrument
-                Instrument.ScpiCommand("*RST");
-                Log.Info("Instrument reset after test completion.");
-
-                // Set the verdict to Pass if no issues were encountered
-                UpgradeVerdict(Verdict.Pass);
-            }
-            catch (Exception ex)
-            {
-                Log.Error($"An error occurred during the charging process: {ex.Message}");
-                UpgradeVerdict(Verdict.Fail);
+                TapThread.Sleep(1000);
             }
         }
+
+        Instrument.ScpiCommand("OUTP OFF");
+        Log.Info("Charging process completed and output disabled.");
+
+        Instrument.ScpiCommand("*RST");
+        Log.Info("Instrument reset after test completion.");
+
+        UpgradeVerdict(Verdict.Pass);
+    }
+    catch (Exception ex)
+    {
+        Log.Error($"An error occurred during the charging process: {ex.Message}");
+        UpgradeVerdict(Verdict.Fail);
     }
 }
