@@ -35,7 +35,6 @@ namespace BT2202a
 
         public override void Run()
         {
-            // Verify that the instrument is properly configured
             if (Instrument == null)
             {
                 Log.Error("Instrument is not configured.");
@@ -45,7 +44,7 @@ namespace BT2202a
 
             try
             {
-                // Initialize the instrument setup
+                // Set up the instrument for the charging sequence
                 Instrument.ScpiCommand("*IDN?");
                 Instrument.ScpiCommand("*RST");
                 Instrument.ScpiCommand("SYST:PROB:LIM 1,0");
@@ -53,20 +52,8 @@ namespace BT2202a
                 // Define the charge sequence step
                 Instrument.ScpiCommand($"SEQ:STEP:DEF 1,1, CHARGE, {Time}, {Current}, {Voltage}");
 
-                // Execute child steps in sequence
-                foreach (var childStep in EnabledChildSteps)
-                {
-                    // Run each child step
-                    RunChildStep(childStep);
-
-                    // Check the verdict of the child step
-                    if (childStep.Verdict == Verdict.Fail)
-                    {
-                        Log.Error($"Child step '{childStep.Name}' failed.");
-                        UpgradeVerdict(Verdict.Fail);
-                        return;
-                    }
-                }
+                // Run all child steps and manage verdict based on the most severe verdict among them
+                RunChildSteps();
 
                 // Enable and initialize cells for charging
                 Instrument.ScpiCommand("CELL:ENABLE (@1001:1005),1");
@@ -74,7 +61,6 @@ namespace BT2202a
                 Instrument.ScpiCommand("OUTP ON");
                 Log.Info("Output enabled, starting charge.");
 
-                // Log and record measurements during the charging process
                 DateTime startTime = DateTime.Now;
                 string csvPath = "Measurements_Charge.csv";
 
@@ -84,17 +70,25 @@ namespace BT2202a
 
                     while ((DateTime.Now - startTime).TotalSeconds < Time)
                     {
-                        // Get measurements from the instrument
-                        string measuredVoltage = Instrument.ScpiQuery("MEAS:CELL:VOLT? (@1001)");
-                        string measuredCurrent = Instrument.ScpiQuery("MEAS:CELL:CURR? (@1001)");
+                        string measuredVoltage = "";
+                        string measuredCurrent = "";
+
+                        try
+                        {
+                            measuredVoltage = Instrument.ScpiQuery("MEAS:CELL:VOLT? (@1001)");
+                            measuredCurrent = Instrument.ScpiQuery("MEAS:CELL:CURR? (@1001)");
+                        }
+                        catch (TimeoutException)
+                        {
+                            Log.Error("Measurement timeout. Aborting.");
+                            UpgradeVerdict(Verdict.Error);
+                            return;
+                        }
+
                         double elapsedSeconds = (DateTime.Now - startTime).TotalSeconds;
-
                         Log.Info($"Time: {elapsedSeconds:F2}s, Voltage: {measuredVoltage} V, Current: {measuredCurrent} A");
-
-                        // Write measurements to the CSV file
                         writer.WriteLine($"{elapsedSeconds:F2}, {measuredVoltage}, {measuredCurrent}");
 
-                        // Check for an abort signal
                         if (abortAllProcesses)
                         {
                             Log.Warning("Charging process aborted by user.");
@@ -102,19 +96,19 @@ namespace BT2202a
                             return;
                         }
 
-                        Thread.Sleep(1000);  // Sleep for 1 second between measurements
+                        TapThread.Sleep(1000);  // Use TapThread.Sleep for OpenTAP responsiveness
                     }
                 }
 
-                // Complete the charging process by turning off the output
+                // Complete the charging process
                 Instrument.ScpiCommand("OUTP OFF");
                 Log.Info("Charging process completed and output disabled.");
 
-                // Reset the instrument after the test
+                // Reset the instrument
                 Instrument.ScpiCommand("*RST");
                 Log.Info("Instrument reset after test completion.");
 
-                // Set verdict to Pass if everything completed without errors
+                // Set the verdict to Pass if no issues were encountered
                 UpgradeVerdict(Verdict.Pass);
             }
             catch (Exception ex)
