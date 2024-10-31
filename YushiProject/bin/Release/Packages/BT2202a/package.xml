@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Package InfoLink="" Date="10/26/2024 17:51:06" Name="BT2202a" Version="0.2.0-alpha" Architecture="AnyCPU" OS="Windows,Linux" xmlns="http://opentap.io/schemas/package">
-  <Hash>mEC7GyXKl_w4FKinWvInEFH3Phw</Hash>
+<Package InfoLink="" Date="10/28/2024 17:45:14" Name="BT2202a" Version="0.2.0-alpha" Architecture="AnyCPU" OS="Windows,Linux" xmlns="http://opentap.io/schemas/package">
+  <Hash>S_HaRF6_RwiwM73uM9bpmxreYfQ</Hash>
   <Description>This is my OpenTAP plugin package.</Description>
   <Dependencies>
     <PackageDependency Package="OpenTAP" Version="^9.26.1+3d268116" />
@@ -8,6 +8,16 @@
   <Files>
     <File Path="Packages/BT2202a/BT2202a.dll">
       <Plugins>
+        <Plugin Type="childStep.DurationTestStep" BaseType="Test Step">
+          <Name>Test</Name>
+          <Order>-10000</Order>
+          <Browsable>true</Browsable>
+          <Description>Enables Pass/Fail.</Description>
+          <Collapsed>false</Collapsed>
+          <Groups>
+            <String>instrument</String>
+          </Groups>
+        </Plugin>
         <Plugin Type="BT2202a.Charge" BaseType="Test Step">
           <Name>Charge</Name>
           <Order>-10000</Order>
@@ -18,24 +28,14 @@
             <String>instrument</String>
           </Groups>
         </Plugin>
-        <Plugin Type="BT2202a.discharge" BaseType="Test Step">
-          <Name>discharge</Name>
+        <Plugin Type="BT2202a.Discharge" BaseType="Test Step">
+          <Name>Discharge</Name>
           <Order>-10000</Order>
           <Browsable>true</Browsable>
-          <Description>discharges a device with specified voltage and current for a set duration.</Description>
+          <Description>Discharges a device with specified voltage and current for a set duration.</Description>
           <Collapsed>false</Collapsed>
           <Groups>
             <String>instrument</String>
-          </Groups>
-        </Plugin>
-        <Plugin Type="BT2202a.MyTestStep" BaseType="Test Step">
-          <Name>MyTestStep</Name>
-          <Order>-10000</Order>
-          <Browsable>true</Browsable>
-          <Description>Insert a description here</Description>
-          <Collapsed>false</Collapsed>
-          <Groups>
-            <String>BT2202a</String>
           </Groups>
         </Plugin>
         <Plugin Type="OpenTap.Plugins.PluginDevelopment.ScpiInstrumentExample" BaseType="Instrument">
@@ -49,7 +49,7 @@
           </Groups>
         </Plugin>
       </Plugins>
-      <Hash>BAE7745D4AC1F6F29EA70B68502F566506AB4A98</Hash>
+      <Hash>E9784442B6A860EDF1D019C0896602F427392E8B</Hash>
     </File>
   </Files>
 </Package>
