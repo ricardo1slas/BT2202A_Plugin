@@ -114,21 +114,37 @@ namespace BT2202a
                 {
                 while ((DateTime.Now - startTime).TotalSeconds < Time)
                 {
-                    // Query the instrument for voltage and current measurements.
-                    instrument.ScpiQuery("STAT:CELL:REP? (@1001)");
-                    Thread.Sleep(1000);
-                    string measuredVoltage = instrument.ScpiQuery("MEAS:CELL:VOLT? (@1001)");
-                    string measuredCurrent = instrument.ScpiQuery("MEAS:CELL:CURR? (@1001)");
+                    try {
+                        // Query the instrument for voltage and current measurements.
+                        string statusResponse = instrument.ScpiQuery("STATus:CELL:REPort? (@1001)");
+                        int statusValue = int.Parse(statusResponse);
+                        Log.Info($"Status Value: {statusValue}");
+                        
+                        if (statusValue == 2) {
+                            UpgradeVerdict(Verdict.Fail);
+                            instrument.ScpiCommand("OUTP OFF"); // Turn off output
+                            return;
+                        }
 
-                    // Log the measurements.
-                    double elapsedSeconds = (DateTime.Now - startTime).TotalSeconds;
-                    //Log.Info($"Time: {elapsedSeconds:F2}s, Voltage: {measuredVoltage} V, Current: {measuredCurrent} A, Temperature: {temperature} C");
-                    Log.Info($"Time: {elapsedSeconds:F2}s, Voltage: {measuredVoltage} V, Current: {measuredCurrent} A");
+                        string measuredVoltage = instrument.ScpiQuery("MEAS:CELL:VOLT? (@1001)");
+                        string measuredCurrent = instrument.ScpiQuery("MEAS:CELL:CURR? (@1001)");
 
-                    if (abortAllProcesses)
-                    {
-                        Log.Warning("Charging process aborted by user.");
-                        break;
+                        // Log the measurements.
+                        double elapsedSeconds = (DateTime.Now - startTime).TotalSeconds;
+                        //Log.Info($"Time: {elapsedSeconds:F2}s, Voltage: {measuredVoltage} V, Current: {measuredCurrent} A, Temperature: {temperature} C");
+                        Log.Info($"Time: {elapsedSeconds:F2}s, Voltage: {measuredVoltage} V, Current: {measuredCurrent} A");
+
+                        if (abortAllProcesses)
+                        {
+                            Log.Warning("Charging process aborted by user.");
+                            break;
+                        }
+                    }
+                    catch {
+                        Log.Error($"Error during measurement: {ex.Message}");
+                        UpgradeVerdict(Verdict.Fail);
+                        instrument.ScpiCommand("OUTP OFF"); // Turn off output
+                        return;
                     }
                     }
                 }
@@ -150,6 +166,7 @@ namespace BT2202a
             // post run
             try
             {
+                UpgradeVerdict(Verdict.Pass);
                 // Any cleanup code that needs to run after the test plan finishes.
                 instrument.ScpiCommand("*RST"); // Reset the instrument again after the test.
                 Log.Info("Instrument reset after test completion.");
