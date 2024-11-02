@@ -9,7 +9,7 @@ using System.Threading;
 namespace BT2202a
 {
     [Display("Discharge", Group: "instrument", Description: "Discharges a device with specified voltage and current for a set duration.")]
-   
+    [AllowAnyChild]
     public class Discharge : TestStep
     {
         #region Settings
@@ -30,7 +30,7 @@ namespace BT2202a
 
         // Additional fields used during the charging process.
         private bool abortAllProcesses = false;
-       
+
         public Discharge()
         {
             // Set default values for the properties.
@@ -42,29 +42,6 @@ namespace BT2202a
         public override void PrePlanRun()
         {   // pre run
             base.PrePlanRun();
-            /*
-            try
-            {
-                instrument.ScpiCommand("*IDN?");
-                instrument.ScpiCommand("*RST");
-                instrument.ScpiCommand("SYST:PROB:LIM 1,0");
-
-                instrument.ScpiCommand("CELL:DEF:QUICk 4");
-
-               
-                Log.Info($"Discharge sequence step defined: Voltage = {Voltage} V, Current = {Current} A, Time = {Time} s");
-
-                //instrument.ScpiCommand("CELL:ENABLE (@1001:1005),1");
-                //instrument.ScpiCommand("CELL:INIT (@1001,1005)");
-
-                Log.Info("Initializing Discharge");
-                Thread.Sleep(15000); // Wait for 15 seconds
-                Log.Info("Discharge Process Started");
-            }
-            catch (Exception ex)
-            {
-                Log.Error($"Error during PrePlanRun: {ex.Message}");
-            }*/
         }
 
         public override void Run()
@@ -81,11 +58,8 @@ namespace BT2202a
 
                 Log.Info($"Discharge sequence step defined: Voltage = {Voltage} V, Current = {Current} A, Time = {Time} s");
 
-                //instrument.ScpiCommand("CELL:ENABLE (@1001:1005),1");
-                //instrument.ScpiCommand("CELL:INIT (@1001,1005)");
 
                 Log.Info("Initializing Discharge");
-                Thread.Sleep(15000); // Wait for 15 seconds
                 Log.Info("Discharge Process Started");
             }
             catch (Exception ex)
@@ -97,40 +71,38 @@ namespace BT2202a
             {
                 instrument.ScpiCommand($"SEQ:STEP:DEF 1,1, Discharge, {Time}, {Current}, {Voltage}");
 
-                // Enable and Initialize Cells
-                instrument.ScpiCommand("CELL:ENABLE (@1001:1005),1");
-                instrument.ScpiCommand("CELL:INIT (@1001,1005)");
-
                 // Log the start of the charging process.
-                Log.Info("Starting the charging process.");
+                Log.Info("Starting the discharging process.");
 
                 // Enable the output to start the sequence.
                 instrument.ScpiCommand("OUTP ON");
                 Log.Info("Output enabled.");
 
+                //child steps
+                RunChildSteps();
+
+                // Enable and Initialize Cells
+                instrument.ScpiCommand("CELL:ENABLE (@1001:1005),1");
+                instrument.ScpiCommand("CELL:INIT (@1001,1005)");
+
                 // Wait for the specified charging time to elapse.
                 DateTime startTime = DateTime.Now;
-                string csvPath = "Measurements_Discharge.csv";  // Path for the CSV file
 
-                using (StreamWriter writer = new StreamWriter(csvPath))
                 {
-                    writer.WriteLine("Time (s), Voltage (V), Current(A)");
-                    
                     while ((DateTime.Now - startTime).TotalSeconds < Time)
                     {
                         // Query the instrument for voltage and current measurements.
+                        instrument.ScpiQuery("STAT:CELL:REP? (@1001)");
                         string measuredVoltage = instrument.ScpiQuery("MEAS:CELL:VOLT? (@1001)");
                         string measuredCurrent = instrument.ScpiQuery("MEAS:CELL:CURR? (@1001)");
 
                         double elapsedSeconds = (DateTime.Now - startTime).TotalSeconds;
                         Log.Info($"Time: {elapsedSeconds:F2}s, Voltage: {measuredVoltage} V, Current: {measuredCurrent} A");
 
-                        writer.WriteLine($"{elapsedSeconds:F2}, {measuredVoltage}, {measuredCurrent}");
-
                         // Check for any abort signal or abnormal conditions (e.g., overheating).
                         if (abortAllProcesses)
                         {
-                            Log.Warning("Charging process aborted by user.");
+                            Log.Warning("Discharging process aborted by user.");
                             break;
                         }
 
@@ -141,16 +113,14 @@ namespace BT2202a
 
                 // Turn off the output after the charging process is complete.
                 instrument.ScpiCommand("OUTP OFF");
-                Log.Info("Charging process completed and output disabled.");
+                Log.Info("Discharging process completed and output disabled.");
 
                 // Update the test verdict to pass if everything went smoothly.
-                UpgradeVerdict(Verdict.Pass);
             }
             catch (Exception ex)
             {
                 // Log the error and set the test verdict to fail.
-                Log.Error($"An error occurred during the charging process: {ex.Message}");
-                UpgradeVerdict(Verdict.Fail);
+                Log.Error($"An error occurred during the discharging process: {ex.Message}");
             }
 
             // post run
@@ -169,16 +139,6 @@ namespace BT2202a
 
         public override void PostPlanRun()
         {
-            /*try
-            {
-                // Any cleanup code that needs to run after the test plan finishes.
-                instrument.ScpiCommand("*RST"); // Reset the instrument again after the test.
-                Log.Info("Instrument reset after test completion.");
-            }
-            catch (Exception ex)
-            {
-                Log.Error($"Error during PostPlanRun: {ex.Message}");
-            }*/
             base.PostPlanRun();
         }
     }

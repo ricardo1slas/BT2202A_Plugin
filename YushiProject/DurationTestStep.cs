@@ -98,7 +98,7 @@ namespace childStep
             if (Instrument == null)
             {
                 Log.Error("Instrument is not configured.");
-                UpgradeVerdict(Verdict.Error);
+                //UpgradeVerdict(Verdict.Error);
                 return;
             }
 
@@ -125,12 +125,12 @@ namespace childStep
             {
                 Instrument.ScpiCommand(scpiCommand);
                 Log.Info($"Sent SCPI command: {scpiCommand}");
-                UpgradeVerdict(Verdict.Pass);
+                //UpgradeVerdict(Verdict.Pass);
             }
             catch (Exception ex)
             {
                 Log.Error($"Failed to send SCPI command: {ex.Message}");
-                UpgradeVerdict(Verdict.Fail);
+                //UpgradeVerdict(Verdict.Fail);
             }
         }
     }

@@ -141,12 +141,12 @@ namespace BT2202a
                         }
                     }
                     catch {
-                        Log.Error($"Error during measurement: {ex.Message}");
                         UpgradeVerdict(Verdict.Fail);
                         instrument.ScpiCommand("OUTP OFF"); // Turn off output
                         return;
                     }
                     }
+                    Thread.Sleep(1000);
                 }
 
                 // Turn off the output after the charging process is complete.
