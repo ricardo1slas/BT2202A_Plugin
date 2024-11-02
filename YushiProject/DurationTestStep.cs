@@ -117,6 +117,8 @@ namespace childStep
 
             // Construct the SCPI command
             string scpiCommand = string.Format("SEQ:TEST:DEF {0},{1},{2},{3},{4},{5}", fixedValues, parameterComparison, parameterValue, whenCondition, Time, resultAction);
+            /*Instrument.ScpiCommand("CELL:ENABLE (@1001:1005),1");
+            Instrument.ScpiCommand("CELL:INIT (@1001,1005)");*/
 
             // Send the SCPI command
             try

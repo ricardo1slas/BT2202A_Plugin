@@ -134,7 +134,6 @@ namespace BT2202a
                 //instrument.ScpiCommand("CELL:INIT (@1001,1005)");
 
                 Log.Info("Initializing Charge");
-                Thread.Sleep(15000); // Wait for 15 seconds
                 Log.Info("Charge Process Started");
             }
             catch (Exception ex)
@@ -147,10 +146,6 @@ namespace BT2202a
             try
             {
                 instrument.ScpiCommand($"SEQ:STEP:DEF 1,1, CHARGE, {Time}, {Current}, {Voltage}");
-
-                // Enable and Initialize Cells
-                instrument.ScpiCommand("CELL:ENABLE (@1001:1005),1");
-                instrument.ScpiCommand("CELL:INIT (@1001,1005)");
 
                 // Log the start of the charging process.
                 Log.Info("Starting the charging process.");
@@ -166,38 +161,47 @@ namespace BT2202a
                 instrument.ScpiCommand("OUTP ON");
                 Log.Info("Output enabled.");
 
+                //child steps
                 RunChildSteps();
+
+                // Enable and Initialize Cells
+                instrument.ScpiCommand("CELL:ENABLE (@1001:1005),1");
+                instrument.ScpiCommand("CELL:INIT (@1001,1005)");
 
                 // Wait for the specified charging time to elapse.
                 DateTime startTime = DateTime.Now;
-                string csvPath = "Measurements_Charge.csv";  // Path for the CSV file
+                // string csvPath = "Measurements_Charge.csv";  // Path for the CSV file
 
-                using (StreamWriter writer = new StreamWriter(csvPath))
+                /* using (StreamWriter writer = new StreamWriter(csvPath))
+
+                     writer.WriteLine("Time (s), Voltage (V), Current(A), Temperature (C)");*/
                 {
-                    writer.WriteLine("Time (s), Voltage (V), Current(A), Temperature (C)");
+                while ((DateTime.Now - startTime).TotalSeconds < Time)
+                {
+                    // Query the instrument for voltage and current measurements.
+                    instrument.ScpiQuery("STAT:CELL:REP? (@1001)");
+                    Thread.Sleep(1000);
+                    string measuredVoltage = instrument.ScpiQuery("MEAS:CELL:VOLT? (@1001)");
+                    string measuredCurrent = instrument.ScpiQuery("MEAS:CELL:CURR? (@1001)");
+                    //string temperature = instrument.ScpiQuery("MEAS:CELL:TEMP? (@1001)"); // Replace with the actual command for temperature.
 
-                    while ((DateTime.Now - startTime).TotalSeconds < Time)
+               
+                       
+
+                    // Log the measurements.
+                    double elapsedSeconds = (DateTime.Now - startTime).TotalSeconds;
+                    //Log.Info($"Time: {elapsedSeconds:F2}s, Voltage: {measuredVoltage} V, Current: {measuredCurrent} A, Temperature: {temperature} C");
+                    Log.Info($"Time: {elapsedSeconds:F2}s, Voltage: {measuredVoltage} V, Current: {measuredCurrent} A");
+                    // Write to the CSV file.
+                    //writer.WriteLine($"{elapsedSeconds:F2}, {measuredVoltage}, {measuredCurrent}, {temperature}");
+                    // writer.WriteLine($"{elapsedSeconds:F2}, {measuredVoltage}, {measuredCurrent}");
+
+                    // Check for any abort signal or abnormal conditions (e.g., overheating).
+                    if (abortAllProcesses)
                     {
-                        // Query the instrument for voltage and current measurements.
-                        string measuredVoltage = instrument.ScpiQuery("MEAS:CELL:VOLT? (@1001)");
-                        string measuredCurrent = instrument.ScpiQuery("MEAS:CELL:CURR? (@1001)");
-                        //string temperature = instrument.ScpiQuery("MEAS:CELL:TEMP? (@1001)"); // Replace with the actual command for temperature.
-
-                        // Log the measurements.
-                        double elapsedSeconds = (DateTime.Now - startTime).TotalSeconds;
-                        //Log.Info($"Time: {elapsedSeconds:F2}s, Voltage: {measuredVoltage} V, Current: {measuredCurrent} A, Temperature: {temperature} C");
-                        Log.Info($"Time: {elapsedSeconds:F2}s, Voltage: {measuredVoltage} V, Current: {measuredCurrent} A");
-
-                        // Write to the CSV file.
-                        //writer.WriteLine($"{elapsedSeconds:F2}, {measuredVoltage}, {measuredCurrent}, {temperature}");
-                        writer.WriteLine($"{elapsedSeconds:F2}, {measuredVoltage}, {measuredCurrent}");
-
-                        // Check for any abort signal or abnormal conditions (e.g., overheating).
-                        if (abortAllProcesses)
-                        {
-                            Log.Warning("Charging process aborted by user.");
-                            break;
-                        }
+                        Log.Warning("Charging process aborted by user.");
+                        break;
+                    }
                         /*
                         if (double.TryParse(temperature, out double tempValue) && tempValue >= 30)
                         {
@@ -209,7 +213,7 @@ namespace BT2202a
                         }*/
 
                         // Sleep for 1 second before the next measurement.
-                        Thread.Sleep(1000);
+                        
                     }
                 }
 
