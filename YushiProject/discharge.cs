@@ -14,23 +14,24 @@ namespace BT2202a
     {
         #region Settings
         // Properties for voltage, current, and time
-        [Display("Voltage (V)", Order: 1, Description: "The voltage level to set during charging.")]
+        [Display("Instrument", Order: 1, Description: "The instrument instrument to use for charging.")]
+        public ScpiInstrument instrument { get; set; }
+        // Properties for voltage, current, and time
+        [Display("Voltage (V)", Order: 2, Description: "The voltage level to set during charging.")]
         public double Voltage { get; set; }
 
-        [Display("Current (A)", Order: 2, Description: "The current level to set during charging.")]
+        [Display("Current (A)", Order: 3, Description: "The current level to set during charging.")]
         public double Current { get; set; }
 
-        [Display("Time (s)", Order: 3, Description: "The duration of the Discharge in seconds.")]
+        [Display("Time (s)", Order: 4, Description: "The duration of the charge in seconds.")]
         public double Time { get; set; }
 
         // Reference to the instrument Instrument
-        [Display("Instrument", Order: 4, Description: "The instrument instrument to use for charging.")]
+        [Display("Cell size", Order: 5, Description: "Number of channels per cell")]
+        public double Channels { get; set; }
 
-        [Display("Cell size", Order: 5, Description:"Number of channels per cell")]
-        public double Channels {get; set;}
-
-        [Display("Cell group", Order: 6, Description:"Number of cells per cell group, asign as lowest:highest or comma separated list")]
-        public string cell_group;
+        [Display("Cell group", Order: 6, Description: "Number of cells per cell group, asign as lowest:highest or comma separated list")]
+        public string cell_group { get; set; }
         #endregion
 
         public string[] cell_list;
@@ -60,7 +61,7 @@ namespace BT2202a
                 instrument.ScpiCommand("*RST");
                 instrument.ScpiCommand("SYST:PROB:LIM 1,0");
 
-                instrument.ScpiCommand("CELL:DEF:QUICk 4");
+                instrument.ScpiCommand($"CELL:DEF:QUICk {Channels}");
 
 
                 Log.Info($"Discharge sequence step defined: Voltage = {Voltage} V, Current = {Current} A, Time = {Time} s");
@@ -77,6 +78,9 @@ namespace BT2202a
             try
             {
                 instrument.ScpiCommand($"SEQ:STEP:DEF 1,1, Discharge, {Time}, {Current}, {Voltage}");
+                char[] delimiterChars = { ',', ':' };
+                cell_group = cell_group.Replace(" ", "");
+                cell_list = cell_group.Split(delimiterChars);
 
                 // Log the start of the charging process.
                 Log.Info("Starting the discharging process.");
@@ -85,8 +89,8 @@ namespace BT2202a
                 RunChildSteps();
 
                 // Enable and Initialize Cells
-                instrument.ScpiCommand("CELL:ENABLE (@1001:1005),1");
-                instrument.ScpiCommand("CELL:INIT (@1001,1005)");
+                instrument.ScpiCommand($"CELL:ENABLE (@{cell_group}),1");
+                instrument.ScpiCommand($"CELL:INIT (@{cell_group})");
 
                 // Enable the output to start the sequence.
                 instrument.ScpiCommand("OUTP ON");
@@ -96,44 +100,43 @@ namespace BT2202a
                 // Wait for the specified charging time to elapse.
                 DateTime startTime = DateTime.Now;
 
+            while ((DateTime.Now - startTime).TotalSeconds < Time)
                 {
-                    while ((DateTime.Now - startTime).TotalSeconds < Time)
-                    {
-                        try {
-                        // Query the instrument for voltage and current measurements.
-                        string statusResponse = instrument.ScpiQuery($"STATus:CELL:REPort? (@{cell_list[0] })");
-                        int statusValue = int.Parse(statusResponse);
-                        Log.Info($"Status Value: {statusValue}");
-                        
-                        if (statusValue == 2) {
-                            UpgradeVerdict(Verdict.Fail);
-                            instrument.ScpiCommand("OUTP OFF"); // Turn off output
-                            return;
-                        }
-
-                        string measuredVoltage = instrument.ScpiQuery($"MEAS:CELL:VOLT? (@{cell_list[0] })");
-                        string measuredCurrent = instrument.ScpiQuery($"MEAS:CELL:CURR? (@{cell_list[0] })");
-
-                        // Log the measurements.
-                        double elapsedSeconds = (DateTime.Now - startTime).TotalSeconds;
-                        //Log.Info($"Time: {elapsedSeconds:F2}s, Voltage: {measuredVoltage} V, Current: {measuredCurrent} A, Temperature: {temperature} C");
-                        Log.Info($"Time: {elapsedSeconds:F2}s, Voltage: {measuredVoltage} V, Current: {measuredCurrent} A");
-
-                        if (abortAllProcesses)
-                        {
-                            Log.Warning("Charging process aborted by user.");
-                            break;
-                        }
-                    }
-                    catch {
+                    try {
+                    // Query the instrument for voltage and current measurements.
+                    string statusResponse = instrument.ScpiQuery($"STATus:CELL:REPort? (@{cell_list[0] })");
+                    int statusValue = int.Parse(statusResponse);
+                    Log.Info($"Status Value: {statusValue}");
+                    Thread.Sleep(1000);
+                    if (statusValue == 2) {
                         UpgradeVerdict(Verdict.Fail);
                         instrument.ScpiCommand("OUTP OFF"); // Turn off output
                         return;
                     }
-                    }
-                    Thread.Sleep(1000);
+
+                    string measuredVoltage = instrument.ScpiQuery($"MEAS:CELL:VOLT? (@{cell_list[0] })");
+                    string measuredCurrent = instrument.ScpiQuery($"MEAS:CELL:CURR? (@{cell_list[0] })");
+
+                    // Log the measurements.
+                    double elapsedSeconds = (DateTime.Now - startTime).TotalSeconds;
+                    //Log.Info($"Time: {elapsedSeconds:F2}s, Voltage: {measuredVoltage} V, Current: {measuredCurrent} A, Temperature: {temperature} C");
+                    Log.Info($"Time: {elapsedSeconds:F2}s, Voltage: {measuredVoltage} V, Current: {measuredCurrent} A");
+
+                    if (abortAllProcesses)
+                    {
+                        Log.Warning("Charging process aborted by user.");
+                        break;
                     }
                 }
+                catch {
+                    UpgradeVerdict(Verdict.Fail);
+                    instrument.ScpiCommand("OUTP OFF"); // Turn off output
+                    return;
+                }
+             }
+               
+                    
+               
                 // Turn off the output after the charging process is complete.
                 instrument.ScpiCommand("OUTP OFF");
                 Log.Info("Charging process completed and output disabled.");

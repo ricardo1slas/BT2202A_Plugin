@@ -13,28 +13,28 @@ namespace BT2202a
     public class Charge : TestStep
     {
         #region Settings
+
+        [Display("Instrument", Order: 1, Description: "The instrument instrument to use for charging.")]
+        public ScpiInstrument instrument { get; set; }
         // Properties for voltage, current, and time
-        [Display("Voltage (V)", Order: 1, Description: "The voltage level to set during charging.")]
+        [Display("Voltage (V)", Order: 2, Description: "The voltage level to set during charging.")]
         public double Voltage { get; set; }
 
-        [Display("Current (A)", Order: 2, Description: "The current level to set during charging.")]
+        [Display("Current (A)", Order: 3, Description: "The current level to set during charging.")]
         public double Current { get; set; }
 
-        [Display("Time (s)", Order: 3, Description: "The duration of the charge in seconds.")]
+        [Display("Time (s)", Order: 4, Description: "The duration of the charge in seconds.")]
         public double Time { get; set; }
 
         // Reference to the instrument Instrument
-        [Display("Instrument", Order: 4, Description: "The instrument instrument to use for charging.")]
-        public ScpiInstrument instrument { get; set; }
+        [Display("Cell size", Order: 5, Description: "Number of channels per cell")]
+        public double Channels { get; set; }
+
+        [Display("Cell group", Order: 6, Description: "Number of cells per cell group, asign as lowest:highest or comma separated list")]
+        public string cell_group { get; set; }
         #endregion
 
-        // Additional fields used during the charging process.
-        private bool abortAllProcesses = false;
-        private List<string> moduleCommands = new List<string>(); // Example placeholder; populate as needed.
-        private List<string> chargeCommands = new List<string>(); // Example placeholder; populate as needed.
-        private int chargeCommandCounter = 0;
-        private Dictionary<string, int> commandIterationCount = new Dictionary<string, int>(); // Example placeholder.
-
+        public string[] cell_list;
         public Charge()
         {
             // Set default values for the properties.
@@ -52,34 +52,12 @@ namespace BT2202a
         {   // pre run
             try
             {
-                // Custom setup logic for the Charge test step.
-                if (abortAllProcesses)
-                {
-                    Log.Error("Process aborted. Exiting PrePlanRun.");
-                    return;
-                }
 
                 instrument.ScpiCommand("*IDN?");
                 instrument.ScpiCommand("*RST");
                 instrument.ScpiCommand("SYST:PROB:LIM 1,0");
 
-                foreach (var command in moduleCommands)
-                {
-                    instrument.ScpiCommand(command);
-                    Log.Info($"Executed: {command}");
-                }
-
-                if (chargeCommandCounter < chargeCommands.Count)
-                {
-                    instrument.ScpiCommand(chargeCommands[chargeCommandCounter]);
-                    Log.Info($"Executed Charge Command: {chargeCommands[chargeCommandCounter]}");
-                    chargeCommandCounter++;
-                }
-                else
-                {
-                    Log.Info("All charge commands executed.");
-                }
-                instrument.ScpiCommand("CELL:DEF:QUICk 4");
+                instrument.ScpiCommand($"CELL:DEF:QUICk {Channels}");
 
                 Log.Info($"Charge sequence step defined: Voltage = {Voltage} V, Current = {Current} A, Time = {Time} s");
 
@@ -96,6 +74,9 @@ namespace BT2202a
             try
             {
                 instrument.ScpiCommand($"SEQ:STEP:DEF 1,1, CHARGE, {Time}, {Current}, {Voltage}");
+                char[] delimiterChars = { ',', ':' };
+                cell_group = cell_group.Replace(" ", "");
+                cell_list = cell_group.Split(delimiterChars);
 
                 // Log the start of the charging process.
                 Log.Info("Starting the charging process.");
@@ -107,8 +88,9 @@ namespace BT2202a
                 RunChildSteps();
 
                 // Enable and Initialize Cells
-                instrument.ScpiCommand("CELL:ENABLE (@1001:1005),1");
-                instrument.ScpiCommand("CELL:INIT (@1001,1005)");
+                instrument.ScpiCommand($"CELL:ENABLE (@{cell_group}),1");
+                instrument.ScpiCommand($"CELL:INIT (@{cell_group})");
+
                 DateTime startTime = DateTime.Now;
 
                 {
@@ -119,26 +101,21 @@ namespace BT2202a
                         string statusResponse = instrument.ScpiQuery("STATus:CELL:REPort? (@1001)");
                         int statusValue = int.Parse(statusResponse);
                         Log.Info($"Status Value: {statusValue}");
-                        
-                        if (statusValue == 2) {
+                        Thread.Sleep(1000);
+                            if (statusValue == 2) {
                             UpgradeVerdict(Verdict.Fail);
                             instrument.ScpiCommand("OUTP OFF"); // Turn off output
                             return;
                         }
 
-                        string measuredVoltage = instrument.ScpiQuery("MEAS:CELL:VOLT? (@1001)");
-                        string measuredCurrent = instrument.ScpiQuery("MEAS:CELL:CURR? (@1001)");
+                            string measuredVoltage = instrument.ScpiQuery($"MEAS:CELL:VOLT? (@{cell_list[0] })");
+                            string measuredCurrent = instrument.ScpiQuery($"MEAS:CELL:CURR? (@{cell_list[0] })");
 
-                        // Log the measurements.
-                        double elapsedSeconds = (DateTime.Now - startTime).TotalSeconds;
+                            // Log the measurements.
+                            double elapsedSeconds = (DateTime.Now - startTime).TotalSeconds;
                         //Log.Info($"Time: {elapsedSeconds:F2}s, Voltage: {measuredVoltage} V, Current: {measuredCurrent} A, Temperature: {temperature} C");
                         Log.Info($"Time: {elapsedSeconds:F2}s, Voltage: {measuredVoltage} V, Current: {measuredCurrent} A");
 
-                        if (abortAllProcesses)
-                        {
-                            Log.Warning("Charging process aborted by user.");
-                            break;
-                        }
                     }
                     catch {
                         UpgradeVerdict(Verdict.Fail);
@@ -146,7 +123,7 @@ namespace BT2202a
                         return;
                     }
                     }
-                    Thread.Sleep(1000);
+              
                 }
 
                 // Turn off the output after the charging process is complete.
