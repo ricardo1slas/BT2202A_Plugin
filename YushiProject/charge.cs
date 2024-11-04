@@ -9,33 +9,32 @@ using System.Threading;
 namespace BT2202a
 {
     [Display("Charge", Group: "instrument", Description: "Charges a device with specified voltage and current for a set duration.")]
-   
+    [AllowAnyChild]
     public class Charge : TestStep
     {
         #region Settings
+
+        [Display("Instrument", Order: 1, Description: "The instrument instrument to use for charging.")]
+        public ScpiInstrument instrument { get; set; }
         // Properties for voltage, current, and time
-        [Display("Voltage (V)", Order: 1, Description: "The voltage level to set during charging.")]
+        [Display("Voltage (V)", Order: 2, Description: "The voltage level to set during charging.")]
         public double Voltage { get; set; }
 
-        [Display("Current (A)", Order: 2, Description: "The current level to set during charging.")]
+        [Display("Current (A)", Order: 3, Description: "The current level to set during charging.")]
         public double Current { get; set; }
 
-        [Display("Time (s)", Order: 3, Description: "The duration of the charge in seconds.")]
+        [Display("Time (s)", Order: 4, Description: "The duration of the charge in seconds.")]
         public double Time { get; set; }
 
         // Reference to the instrument Instrument
-        [Display("Instrument", Order: 4, Description: "The instrument instrument to use for charging.")]
-        public ScpiInstrument instrument { get; set; }
+        [Display("Cell size", Order: 5, Description: "Number of channels per cell")]
+        public double Channels { get; set; }
+
+        [Display("Cell group", Order: 6, Description: "Number of cells per cell group, asign as lowest:highest or comma separated list")]
+        public string cell_group { get; set; }
         #endregion
 
-        // Additional fields used during the charging process.
-        private bool abortAllProcesses = false;
-        private List<string> moduleCommands = new List<string>(); // Example placeholder; populate as needed.
-        private List<string> chargeCommands = new List<string>(); // Example placeholder; populate as needed.
-        private int chargeCommandCounter = 0;
-        private Dictionary<string, int> commandIterationCount = new Dictionary<string, int>(); // Example placeholder.
-
-
+        public string[] cell_list;
         public Charge()
         {
             // Set default values for the properties.
@@ -47,94 +46,22 @@ namespace BT2202a
         public override void PrePlanRun()
         {
             base.PrePlanRun();
-            /*try
-            {
-                // Custom setup logic for the Charge test step.
-                if (abortAllProcesses)
-                {
-                    Log.Error("Process aborted. Exiting PrePlanRun.");
-                    return;
-                }
-
-                instrument.ScpiCommand("*IDN?");
-                instrument.ScpiCommand("*RST");
-                instrument.ScpiCommand("SYST:PROB:LIM 1,0");
-
-                foreach (var command in moduleCommands)
-                {
-                    instrument.ScpiCommand(command);
-                    Log.Info($"Executed: {command}");
-                }
-
-                if (chargeCommandCounter < chargeCommands.Count)
-                {
-                    instrument.ScpiCommand(chargeCommands[chargeCommandCounter]);
-                    Log.Info($"Executed Charge Command: {chargeCommands[chargeCommandCounter]}");
-                    chargeCommandCounter++;
-                }
-                else
-                {
-                    Log.Info("All charge commands executed.");
-                }
-                instrument.ScpiCommand("CELL:DEF:QUICk 4");
-
-                
-                Log.Info($"Charge sequence step defined: Voltage = {Voltage} V, Current = {Current} A, Time = {Time} s");
-
-                //instrument.ScpiCommand("CELL:ENABLE (@1001:1005),1");
-                //instrument.ScpiCommand("CELL:INIT (@1001,1005)");
-
-                Log.Info("Initializing Charge");
-                Thread.Sleep(15000); // Wait for 15 seconds
-                Log.Info("Charge Process Started");
-            }
-            catch (Exception ex)
-            {
-                Log.Error($"Error during PrePlanRun: {ex.Message}");
-            }*/
         }
 
         public override void Run()
         {   // pre run
             try
             {
-                // Custom setup logic for the Charge test step.
-                if (abortAllProcesses)
-                {
-                    Log.Error("Process aborted. Exiting PrePlanRun.");
-                    return;
-                }
 
                 instrument.ScpiCommand("*IDN?");
                 instrument.ScpiCommand("*RST");
                 instrument.ScpiCommand("SYST:PROB:LIM 1,0");
 
-                foreach (var command in moduleCommands)
-                {
-                    instrument.ScpiCommand(command);
-                    Log.Info($"Executed: {command}");
-                }
-
-                if (chargeCommandCounter < chargeCommands.Count)
-                {
-                    instrument.ScpiCommand(chargeCommands[chargeCommandCounter]);
-                    Log.Info($"Executed Charge Command: {chargeCommands[chargeCommandCounter]}");
-                    chargeCommandCounter++;
-                }
-                else
-                {
-                    Log.Info("All charge commands executed.");
-                }
-                instrument.ScpiCommand("CELL:DEF:QUICk 4");
-
+                instrument.ScpiCommand($"CELL:DEF:QUICk {Channels}");
 
                 Log.Info($"Charge sequence step defined: Voltage = {Voltage} V, Current = {Current} A, Time = {Time} s");
 
-                //instrument.ScpiCommand("CELL:ENABLE (@1001:1005),1");
-                //instrument.ScpiCommand("CELL:INIT (@1001,1005)");
-
                 Log.Info("Initializing Charge");
-                Thread.Sleep(15000); // Wait for 15 seconds
                 Log.Info("Charge Process Started");
             }
             catch (Exception ex)
@@ -145,70 +72,58 @@ namespace BT2202a
             // run
 
             try
-            {   
+            {
                 instrument.ScpiCommand($"SEQ:STEP:DEF 1,1, CHARGE, {Time}, {Current}, {Voltage}");
-
-                // Enable and Initialize Cells
-                instrument.ScpiCommand("CELL:ENABLE (@1001:1005),1");
-                instrument.ScpiCommand("CELL:INIT (@1001,1005)");
+                char[] delimiterChars = { ',', ':' };
+                cell_group = cell_group.Replace(" ", "");
+                cell_list = cell_group.Split(delimiterChars);
 
                 // Log the start of the charging process.
                 Log.Info("Starting the charging process.");
 
-                // Reset the instrument to ensure it's in a known state.
-                //instrument.ScpiCommand("*RST");
-                //Log.Info("Instrument reset.");
-
-                // Set the sequence step with the desired voltage, current, and duration.
-                // Adjust the command string according to the instrument's SCPI command set.
-
-                // Enable the output to start the sequence.
                 instrument.ScpiCommand("OUTP ON");
                 Log.Info("Output enabled.");
 
-                // Wait for the specified charging time to elapse.
+                //child steps
+                RunChildSteps();
+
+                // Enable and Initialize Cells
+                instrument.ScpiCommand($"CELL:ENABLE (@{cell_group}),1");
+                instrument.ScpiCommand($"CELL:INIT (@{cell_group})");
+
                 DateTime startTime = DateTime.Now;
-                string csvPath = "Measurements_Charge.csv";  // Path for the CSV file
 
-                using (StreamWriter writer = new StreamWriter(csvPath))
                 {
-                    writer.WriteLine("Time (s), Voltage (V), Current(A), Temperature (C)");
-                    
-                    while ((DateTime.Now - startTime).TotalSeconds < Time)
-                    {
+                while ((DateTime.Now - startTime).TotalSeconds < Time)
+                {
+                    try {
                         // Query the instrument for voltage and current measurements.
-                        string measuredVoltage = instrument.ScpiQuery("MEAS:CELL:VOLT? (@1001)");
-                        string measuredCurrent = instrument.ScpiQuery("MEAS:CELL:CURR? (@1001)");
-                        //string temperature = instrument.ScpiQuery("MEAS:CELL:TEMP? (@1001)"); // Replace with the actual command for temperature.
+                        string statusResponse = instrument.ScpiQuery("STATus:CELL:REPort? (@1001)");
+                        int statusValue = int.Parse(statusResponse);
+                        Log.Info($"Status Value: {statusValue}");
+                        Thread.Sleep(1000);
+                            if (statusValue == 2) {
+                            UpgradeVerdict(Verdict.Fail);
+                            instrument.ScpiCommand("OUTP OFF"); // Turn off output
+                            return;
+                        }
 
-                        // Log the measurements.
-                        double elapsedSeconds = (DateTime.Now - startTime).TotalSeconds;
+                            string measuredVoltage = instrument.ScpiQuery($"MEAS:CELL:VOLT? (@{cell_list[0] })");
+                            string measuredCurrent = instrument.ScpiQuery($"MEAS:CELL:CURR? (@{cell_list[0] })");
+
+                            // Log the measurements.
+                            double elapsedSeconds = (DateTime.Now - startTime).TotalSeconds;
                         //Log.Info($"Time: {elapsedSeconds:F2}s, Voltage: {measuredVoltage} V, Current: {measuredCurrent} A, Temperature: {temperature} C");
                         Log.Info($"Time: {elapsedSeconds:F2}s, Voltage: {measuredVoltage} V, Current: {measuredCurrent} A");
 
-                        // Write to the CSV file.
-                        //writer.WriteLine($"{elapsedSeconds:F2}, {measuredVoltage}, {measuredCurrent}, {temperature}");
-                        writer.WriteLine($"{elapsedSeconds:F2}, {measuredVoltage}, {measuredCurrent}");
-
-                        // Check for any abort signal or abnormal conditions (e.g., overheating).
-                        if (abortAllProcesses)
-                        {
-                            Log.Warning("Charging process aborted by user.");
-                            break;
-                        }
-                        /*
-                        if (double.TryParse(temperature, out double tempValue) && tempValue >= 30)
-                        {
-                            Log.Error($"Temperature exceeded 30°C: {tempValue}°C at second {elapsedSeconds:F2}. Aborting.");
-                            abortAllProcesses = true;
-                            instrument.ScpiCommand("SEQ:ABORT");
-                            Log.Info("Sequence aborted due to high temperature.");
-                            break;
-                        }*/
-
-                        // Sleep for 1 second before the next measurement.
-                        Thread.Sleep(1000);
                     }
+                    catch {
+                        UpgradeVerdict(Verdict.Fail);
+                        instrument.ScpiCommand("OUTP OFF"); // Turn off output
+                        return;
+                    }
+                    }
+              
                 }
 
                 // Turn off the output after the charging process is complete.
@@ -228,6 +143,7 @@ namespace BT2202a
             // post run
             try
             {
+                UpgradeVerdict(Verdict.Pass);
                 // Any cleanup code that needs to run after the test plan finishes.
                 instrument.ScpiCommand("*RST"); // Reset the instrument again after the test.
                 Log.Info("Instrument reset after test completion.");
@@ -236,22 +152,11 @@ namespace BT2202a
             {
                 Log.Error($"Error during PostPlanRun: {ex.Message}");
             }
-
 
         }
 
         public override void PostPlanRun()
         {
-            /*try
-            {
-                // Any cleanup code that needs to run after the test plan finishes.
-                instrument.ScpiCommand("*RST"); // Reset the instrument again after the test.
-                Log.Info("Instrument reset after test completion.");
-            }
-            catch (Exception ex)
-            {
-                Log.Error($"Error during PostPlanRun: {ex.Message}");
-            }*/
             base.PostPlanRun();
         }
     }

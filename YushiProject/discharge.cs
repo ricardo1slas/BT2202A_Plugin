@@ -8,30 +8,38 @@ using System.Threading;
 
 namespace BT2202a
 {
-    [Display("discharge", Group: "instrument", Description: "discharges a device with specified voltage and current for a set duration.")]
-   
-    public class discharge : TestStep
+    [Display("Discharge", Group: "instrument", Description: "Discharges a device with specified voltage and current for a set duration.")]
+    [AllowAnyChild]
+    public class Discharge : TestStep
     {
         #region Settings
         // Properties for voltage, current, and time
-        [Display("Voltage (V)", Order: 1, Description: "The voltage level to set during charging.")]
+        [Display("Instrument", Order: 1, Description: "The instrument instrument to use for charging.")]
+        public ScpiInstrument instrument { get; set; }
+        // Properties for voltage, current, and time
+        [Display("Voltage (V)", Order: 2, Description: "The voltage level to set during charging.")]
         public double Voltage { get; set; }
 
-        [Display("Current (A)", Order: 2, Description: "The current level to set during charging.")]
+        [Display("Current (A)", Order: 3, Description: "The current level to set during charging.")]
         public double Current { get; set; }
 
-        [Display("Time (s)", Order: 3, Description: "The duration of the discharge in seconds.")]
+        [Display("Time (s)", Order: 4, Description: "The duration of the charge in seconds.")]
         public double Time { get; set; }
 
         // Reference to the instrument Instrument
-        [Display("Instrument", Order: 4, Description: "The instrument instrument to use for charging.")]
-        public ScpiInstrument instrument { get; set; }
+        [Display("Cell size", Order: 5, Description: "Number of channels per cell")]
+        public double Channels { get; set; }
+
+        [Display("Cell group", Order: 6, Description: "Number of cells per cell group, asign as lowest:highest or comma separated list")]
+        public string cell_group { get; set; }
         #endregion
+
+        public string[] cell_list;
 
         // Additional fields used during the charging process.
         private bool abortAllProcesses = false;
-       
-        public discharge()
+
+        public Discharge()
         {
             // Set default values for the properties.
             Voltage = 0; // Default voltage, adjust as needed.
@@ -42,29 +50,6 @@ namespace BT2202a
         public override void PrePlanRun()
         {   // pre run
             base.PrePlanRun();
-            /*
-            try
-            {
-                instrument.ScpiCommand("*IDN?");
-                instrument.ScpiCommand("*RST");
-                instrument.ScpiCommand("SYST:PROB:LIM 1,0");
-
-                instrument.ScpiCommand("CELL:DEF:QUICk 4");
-
-               
-                Log.Info($"discharge sequence step defined: Voltage = {Voltage} V, Current = {Current} A, Time = {Time} s");
-
-                //instrument.ScpiCommand("CELL:ENABLE (@1001:1005),1");
-                //instrument.ScpiCommand("CELL:INIT (@1001,1005)");
-
-                Log.Info("Initializing discharge");
-                Thread.Sleep(15000); // Wait for 15 seconds
-                Log.Info("discharge Process Started");
-            }
-            catch (Exception ex)
-            {
-                Log.Error($"Error during PrePlanRun: {ex.Message}");
-            }*/
         }
 
         public override void Run()
@@ -76,17 +61,14 @@ namespace BT2202a
                 instrument.ScpiCommand("*RST");
                 instrument.ScpiCommand("SYST:PROB:LIM 1,0");
 
-                instrument.ScpiCommand("CELL:DEF:QUICk 4");
+                instrument.ScpiCommand($"CELL:DEF:QUICk {Channels}");
 
 
-                Log.Info($"discharge sequence step defined: Voltage = {Voltage} V, Current = {Current} A, Time = {Time} s");
+                Log.Info($"Discharge sequence step defined: Voltage = {Voltage} V, Current = {Current} A, Time = {Time} s");
 
-                //instrument.ScpiCommand("CELL:ENABLE (@1001:1005),1");
-                //instrument.ScpiCommand("CELL:INIT (@1001,1005)");
 
-                Log.Info("Initializing discharge");
-                Thread.Sleep(15000); // Wait for 15 seconds
-                Log.Info("discharge Process Started");
+                Log.Info("Initializing Discharge");
+                Log.Info("Discharge Process Started");
             }
             catch (Exception ex)
             {
@@ -95,50 +77,66 @@ namespace BT2202a
             // run
             try
             {
-                instrument.ScpiCommand($"SEQ:STEP:DEF 1,1, DISCHARGE, {Time}, {Current}, {Voltage}");
-
-                // Enable and Initialize Cells
-                instrument.ScpiCommand("CELL:ENABLE (@1001:1005),1");
-                instrument.ScpiCommand("CELL:INIT (@1001,1005)");
+                instrument.ScpiCommand($"SEQ:STEP:DEF 1,1, Discharge, {Time}, {Current}, {Voltage}");
+                char[] delimiterChars = { ',', ':' };
+                cell_group = cell_group.Replace(" ", "");
+                cell_list = cell_group.Split(delimiterChars);
 
                 // Log the start of the charging process.
-                Log.Info("Starting the charging process.");
+                Log.Info("Starting the discharging process.");
+
+                //child steps
+                RunChildSteps();
+
+                // Enable and Initialize Cells
+                instrument.ScpiCommand($"CELL:ENABLE (@{cell_group}),1");
+                instrument.ScpiCommand($"CELL:INIT (@{cell_group})");
 
                 // Enable the output to start the sequence.
                 instrument.ScpiCommand("OUTP ON");
                 Log.Info("Output enabled.");
 
+
                 // Wait for the specified charging time to elapse.
                 DateTime startTime = DateTime.Now;
-                string csvPath = "Measurements_discharge.csv";  // Path for the CSV file
 
-                using (StreamWriter writer = new StreamWriter(csvPath))
+            while ((DateTime.Now - startTime).TotalSeconds < Time)
                 {
-                    writer.WriteLine("Time (s), Voltage (V), Current(A)");
-                    
-                    while ((DateTime.Now - startTime).TotalSeconds < Time)
+                    try {
+                    // Query the instrument for voltage and current measurements.
+                    string statusResponse = instrument.ScpiQuery($"STATus:CELL:REPort? (@{cell_list[0] })");
+                    int statusValue = int.Parse(statusResponse);
+                    Log.Info($"Status Value: {statusValue}");
+                    Thread.Sleep(1000);
+                    if (statusValue == 2) {
+                        UpgradeVerdict(Verdict.Fail);
+                        instrument.ScpiCommand("OUTP OFF"); // Turn off output
+                        return;
+                    }
+
+                    string measuredVoltage = instrument.ScpiQuery($"MEAS:CELL:VOLT? (@{cell_list[0] })");
+                    string measuredCurrent = instrument.ScpiQuery($"MEAS:CELL:CURR? (@{cell_list[0] })");
+
+                    // Log the measurements.
+                    double elapsedSeconds = (DateTime.Now - startTime).TotalSeconds;
+                    //Log.Info($"Time: {elapsedSeconds:F2}s, Voltage: {measuredVoltage} V, Current: {measuredCurrent} A, Temperature: {temperature} C");
+                    Log.Info($"Time: {elapsedSeconds:F2}s, Voltage: {measuredVoltage} V, Current: {measuredCurrent} A");
+
+                    if (abortAllProcesses)
                     {
-                        // Query the instrument for voltage and current measurements.
-                        string measuredVoltage = instrument.ScpiQuery("MEAS:CELL:VOLT? (@1001)");
-                        string measuredCurrent = instrument.ScpiQuery("MEAS:CELL:CURR? (@1001)");
-
-                        double elapsedSeconds = (DateTime.Now - startTime).TotalSeconds;
-                        Log.Info($"Time: {elapsedSeconds:F2}s, Voltage: {measuredVoltage} V, Current: {measuredCurrent} A");
-
-                        writer.WriteLine($"{elapsedSeconds:F2}, {measuredVoltage}, {measuredCurrent}");
-
-                        // Check for any abort signal or abnormal conditions (e.g., overheating).
-                        if (abortAllProcesses)
-                        {
-                            Log.Warning("Charging process aborted by user.");
-                            break;
-                        }
-
-                        // Sleep for 1 second before the next measurement.
-                        Thread.Sleep(1000);
+                        Log.Warning("Charging process aborted by user.");
+                        break;
                     }
                 }
-
+                catch {
+                    UpgradeVerdict(Verdict.Fail);
+                    instrument.ScpiCommand("OUTP OFF"); // Turn off output
+                    return;
+                }
+             }
+               
+                    
+               
                 // Turn off the output after the charging process is complete.
                 instrument.ScpiCommand("OUTP OFF");
                 Log.Info("Charging process completed and output disabled.");
@@ -156,6 +154,7 @@ namespace BT2202a
             // post run
             try
             {
+                UpgradeVerdict(Verdict.Pass);
                 // Any cleanup code that needs to run after the test plan finishes.
                 instrument.ScpiCommand("*RST"); // Reset the instrument again after the test.
                 Log.Info("Instrument reset after test completion.");
@@ -164,21 +163,10 @@ namespace BT2202a
             {
                 Log.Error($"Error during PostPlanRun: {ex.Message}");
             }
-
         }
 
         public override void PostPlanRun()
         {
-            /*try
-            {
-                // Any cleanup code that needs to run after the test plan finishes.
-                instrument.ScpiCommand("*RST"); // Reset the instrument again after the test.
-                Log.Info("Instrument reset after test completion.");
-            }
-            catch (Exception ex)
-            {
-                Log.Error($"Error during PostPlanRun: {ex.Message}");
-            }*/
             base.PostPlanRun();
         }
     }
