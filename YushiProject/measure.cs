@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading;
 
@@ -10,41 +11,21 @@ namespace BT2202a
 {
     [Display("Charge", Group: "instrument", Description: "Charges a device with specified voltage and current for a set duration.")]
     [AllowAnyChild]
-    public class Charge : TestStep
+    public class Measure : TestStep
     {
         #region Settings
-
         [Display("Instrument", Order: 1, Description: "The instrument instrument to use for charging.")]
         public ScpiInstrument instrument { get; set; }
-        // Properties for voltage, current, and time
-        [Display("Voltage (V)", Order: 2, Description: "The voltage level to set during charging.")]
-        public double Voltage { get; set; }
-
-        [Display("Current (A)", Order: 3, Description: "The current level to set during charging.")]
-        public double Current { get; set; }
-
-        [Display("Time (s)", Order: 4, Description: "The duration of the charge in seconds.")]
-        public double Time { get; set; }
-
-        // Reference to the instrument Instrument
-        [Display("Cell size", Order: 5, Description: "Number of channels per cell")]
-        public double Channels { get; set; }
-
-        [Display("Cell group", Order: 6, Description: "Number of cells per cell group, asign as lowest:highest or comma separated list")]
-        public string cell_group { get; set; }
         #endregion
 
         public string[] cell_list;
-        public Charge()
-        {
-            // Set default values for the properties.
-            Voltage = 0; // Default voltage, adjust as needed.
-            Current = 0; // Default current, adjust as needed.
-            Time = 0;   // Default duration, adjust as needed.
+        public int meas = 1; 
+
+        public Measure(){
+
         }
 
-        public override void PrePlanRun()
-        {
+        public override void PrePlanRun(){
             base.PrePlanRun();
         }
 
@@ -56,9 +37,6 @@ namespace BT2202a
                 instrument.ScpiCommand("*RST");
                 instrument.ScpiCommand("SYST:PROB:LIM 1,0");
 
-                instrument.ScpiCommand($"CELL:DEF:QUICk {Channels}");
-
-                Log.Info($"Charge sequence step defined: Voltage = {Voltage} V, Current = {Current} A, Time = {Time} s");
 
                 Log.Info("Initializing Charge");
                 Log.Info("Charge Process Started");
@@ -67,12 +45,9 @@ namespace BT2202a
                 Log.Error($"Error during PrePlanRun: {ex.Message}");
             }
 
-            try{
-                instrument.ScpiCommand($"SEQ:STEP:DEF 1,1, CHARGE, {Time}, {Current}, {Voltage}");
-                char[] delimiterChars = { ',', ':' };
-                cell_group = cell_group.Replace(" ", "");
-                cell_list = cell_group.Split(delimiterChars);
+            // run
 
+            try{
                 // Log the start of the charging process.
                 Log.Info("Starting the charging process.");
 
@@ -82,21 +57,51 @@ namespace BT2202a
                 //child steps
                 RunChildSteps();
 
-                // Enable and Initialize Cells
-                instrument.ScpiCommand($"CELL:ENABLE (@{cell_group}),1");
-                instrument.ScpiCommand($"CELL:INIT (@{cell_group})");
+
+                DateTime startTime = DateTime.Now;
+
+                while (meas == 1){
+                    try{
+                        // Query the instrument for voltage and current measurements.
+                        string statusResponse = instrument.ScpiQuery("STATus:CELL:REPort?");
+                        int statusValue = int.Parse(statusResponse);
+                        Log.Info($"Status Value: {statusValue}");
+                        Thread.Sleep(1000);
+                            if (statusValue == 2) {
+                            UpgradeVerdict(Verdict.Fail);
+                            instrument.ScpiCommand("OUTP OFF"); // Turn off output
+                            return;
+                        }
+
+                        string measuredVoltage = instrument.ScpiQuery("MEAS:CELL:VOLT?");
+                        string measuredCurrent = instrument.ScpiQuery("MEAS:CELL:CURR?");
+
+                        // Log the measurements.
+                        double elapsedSeconds = (DateTime.Now - startTime).TotalSeconds;
+                        Log.Info($"Time: {elapsedSeconds:F2}s, Voltage: {measuredVoltage} V, Current: {measuredCurrent} A");
+
+                    }
+                    catch {
+                        UpgradeVerdict(Verdict.Fail);
+                        instrument.ScpiCommand("OUTP OFF"); // Turn off output
+                        return;
+                    }
+                }
+
+                // Turn off the output after the charging process is complete.
+                instrument.ScpiCommand("OUTP OFF");
+                Log.Info("Charging process completed and output disabled.");
 
                 // Update the test verdict to pass if everything went smoothly.
                 UpgradeVerdict(Verdict.Pass);
             }
-            catch (Exception ex)
-            {
+
+            catch (Exception ex){
                 // Log the error and set the test verdict to fail.
                 Log.Error($"An error occurred during the charging process: {ex.Message}");
                 UpgradeVerdict(Verdict.Fail);
             }
 
-            // post run
             try{
                 UpgradeVerdict(Verdict.Pass);
                 // Any cleanup code that needs to run after the test plan finishes.
@@ -109,8 +114,7 @@ namespace BT2202a
 
         }
 
-        public override void PostPlanRun()
-        {
+        public override void PostPlanRun(){
             base.PostPlanRun();
         }
     }
