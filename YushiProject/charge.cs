@@ -26,11 +26,17 @@ namespace BT2202a
         [Display("Time (s)", Order: 4, Description: "The duration of the charge in seconds.")]
         public double Time { get; set; }
 
+        [Display("Sequence Number", Order: 5, Description: "The # of the sequence")]
+        public double Sequence { get; set; }
+
+        [Display("Step Number", Order: 6, Description: "The # of the step inside a sequence")]
+        public double Step { get; set; }
+
         // Reference to the instrument Instrument
-        [Display("Cell size", Order: 5, Description: "Number of channels per cell")]
+        [Display("Cell size", Order: 7, Description: "Number of channels per cell")]
         public double Channels { get; set; }
 
-        [Display("Cell group", Order: 6, Description: "Number of cells per cell group, asign as lowest:highest or comma separated list")]
+        [Display("Cell group", Order: 8, Description: "Number of cells per cell group, asign as lowest:highest or comma separated list")]
         public string cell_group { get; set; }
         #endregion
 
@@ -53,12 +59,11 @@ namespace BT2202a
             try{
 
                 instrument.ScpiCommand("*IDN?");
-                instrument.ScpiCommand("*RST");
                 instrument.ScpiCommand("SYST:PROB:LIM 1,0");
 
                 instrument.ScpiCommand($"CELL:DEF:QUICk {Channels}");
 
-                Log.Info($"Charge sequence step defined: Voltage = {Voltage} V, Current = {Current} A, Time = {Time} s");
+                Log.Info($"Charge sequence step {Sequence},{Step} defined: Voltage = {Voltage} V, Current = {Current} A, Time = {Time} s");
 
                 Log.Info("Initializing Charge");
                 Log.Info("Charge Process Started");
@@ -68,7 +73,7 @@ namespace BT2202a
             }
 
             try{
-                instrument.ScpiCommand($"SEQ:STEP:DEF 1,1, CHARGE, {Time}, {Current}, {Voltage}");
+                instrument.ScpiCommand($"SEQ:STEP:DEF {Sequence},{Step}, CHARGE, {Time}, {Current}, {Voltage}");
                 char[] delimiterChars = { ',', ':' };
                 cell_group = cell_group.Replace(" ", "");
                 cell_list = cell_group.Split(delimiterChars);
@@ -83,7 +88,7 @@ namespace BT2202a
                 RunChildSteps();
 
                 // Enable and Initialize Cells
-                instrument.ScpiCommand($"CELL:ENABLE (@{cell_group}),1");
+                instrument.ScpiCommand($"CELL:ENABLE (@{cell_group}),{Sequence}");
                 instrument.ScpiCommand($"CELL:INIT (@{cell_group})");
 
                 // Update the test verdict to pass if everything went smoothly.
@@ -100,7 +105,6 @@ namespace BT2202a
             try{
                 UpgradeVerdict(Verdict.Pass);
                 // Any cleanup code that needs to run after the test plan finishes.
-                instrument.ScpiCommand("*RST"); // Reset the instrument again after the test.
                 Log.Info("Instrument reset after test completion.");
             }
             catch (Exception ex){

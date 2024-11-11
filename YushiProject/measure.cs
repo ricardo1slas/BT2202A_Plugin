@@ -9,7 +9,7 @@ using System.Threading;
 
 namespace BT2202a
 {
-    [Display("Charge", Group: "instrument", Description: "Charges a device with specified voltage and current for a set duration.")]
+    [Display("Measure", Group: "instrument", Description: "Measures voltage and current for step duration.")]
     [AllowAnyChild]
     public class Measure : TestStep
     {
@@ -18,7 +18,6 @@ namespace BT2202a
         public ScpiInstrument instrument { get; set; }
         #endregion
 
-        public string[] cell_list;
         public int meas = 1; 
 
         public Measure(){
@@ -33,13 +32,8 @@ namespace BT2202a
         {   // pre run
             try{
 
-                instrument.ScpiCommand("*IDN?");
-                instrument.ScpiCommand("*RST");
-                instrument.ScpiCommand("SYST:PROB:LIM 1,0");
+                Log.Info("Initializing Measure");
 
-
-                Log.Info("Initializing Charge");
-                Log.Info("Charge Process Started");
             }
             catch (Exception ex){
                 Log.Error($"Error during PrePlanRun: {ex.Message}");
@@ -49,7 +43,7 @@ namespace BT2202a
 
             try{
                 // Log the start of the charging process.
-                Log.Info("Starting the charging process.");
+                Log.Info("Starting the measure process.");
 
                 instrument.ScpiCommand("OUTP ON");
                 Log.Info("Output enabled.");
@@ -57,28 +51,25 @@ namespace BT2202a
                 //child steps
                 RunChildSteps();
 
-
-                DateTime startTime = DateTime.Now;
-
                 while (meas == 1){
                     try{
                         // Query the instrument for voltage and current measurements.
-                        string statusResponse = instrument.ScpiQuery("STATus:CELL:REPort?");
+                        string statusResponse = instrument.ScpiQuery("STATus:CELL:REPort? (@1001)");
                         int statusValue = int.Parse(statusResponse);
                         Log.Info($"Status Value: {statusValue}");
-                        Thread.Sleep(1000);
                             if (statusValue == 2) {
                             UpgradeVerdict(Verdict.Fail);
                             instrument.ScpiCommand("OUTP OFF"); // Turn off output
                             return;
                         }
 
-                        string measuredVoltage = instrument.ScpiQuery("MEAS:CELL:VOLT?");
-                        string measuredCurrent = instrument.ScpiQuery("MEAS:CELL:CURR?");
+                        Thread.Sleep(1000);
+
+                        string measuredVoltage = instrument.ScpiQuery("MEAS:CELL:VOLT? (@1001)");
+                        string measuredCurrent = instrument.ScpiQuery("MEAS:CELL:CURR? (@1001)");
 
                         // Log the measurements.
-                        double elapsedSeconds = (DateTime.Now - startTime).TotalSeconds;
-                        Log.Info($"Time: {elapsedSeconds:F2}s, Voltage: {measuredVoltage} V, Current: {measuredCurrent} A");
+                        Log.Info($" Voltage: {measuredVoltage} V, Current: {measuredCurrent} A");
 
                     }
                     catch {
@@ -90,7 +81,7 @@ namespace BT2202a
 
                 // Turn off the output after the charging process is complete.
                 instrument.ScpiCommand("OUTP OFF");
-                Log.Info("Charging process completed and output disabled.");
+                Log.Info("Measure process completed and output disabled.");
 
                 // Update the test verdict to pass if everything went smoothly.
                 UpgradeVerdict(Verdict.Pass);
@@ -98,14 +89,13 @@ namespace BT2202a
 
             catch (Exception ex){
                 // Log the error and set the test verdict to fail.
-                Log.Error($"An error occurred during the charging process: {ex.Message}");
+                Log.Error($"An error occurred during the measure process: {ex.Message}");
                 UpgradeVerdict(Verdict.Fail);
             }
 
             try{
                 UpgradeVerdict(Verdict.Pass);
                 // Any cleanup code that needs to run after the test plan finishes.
-                instrument.ScpiCommand("*RST"); // Reset the instrument again after the test.
                 Log.Info("Instrument reset after test completion.");
             }
             catch (Exception ex){
