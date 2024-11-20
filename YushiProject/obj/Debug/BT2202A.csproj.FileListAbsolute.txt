@@ -14,3 +14,4 @@ C:\Users\rigel\OneDrive\Documentos\GitHub\BT2202A_Plugin\YushiProject\obj\Debug\
 C:\Users\rigel\OneDrive\Documentos\GitHub\BT2202A_Plugin\YushiProject\obj\Debug\BT2202a.sourcelink.json
 C:\Users\rigel\OneDrive\Documentos\GitHub\BT2202A_Plugin\YushiProject\obj\Debug\BT2202a.dll
 C:\Users\rigel\OneDrive\Documentos\GitHub\BT2202A_Plugin\YushiProject\obj\Debug\BT2202a.pdb
+C:\Users\Admin\Documents\GitHub\BT2202A_Plugin\YushiProject\obj\Debug\BT2202a.csproj.AssemblyReference.cache

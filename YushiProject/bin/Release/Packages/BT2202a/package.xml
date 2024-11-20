@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Package InfoLink="" Date="11/11/2024 18:18:29" Name="BT2202a" Version="0.2.0-alpha" Architecture="AnyCPU" OS="Windows,Linux" xmlns="http://opentap.io/schemas/package">
-  <Hash>Tc-qve_SsvyxHkDC70qBYe7LHxg</Hash>
+<Package InfoLink="" Date="11/16/2024 21:23:28" Name="BT2202a" Version="0.2.0-alpha" Architecture="AnyCPU" OS="Windows,Linux" xmlns="http://opentap.io/schemas/package">
+  <Hash>gof39-vfx0nHeO8Xk1LUbXsL-VU</Hash>
   <Description>This is my OpenTAP plugin package.</Description>
   <Dependencies>
     <PackageDependency Package="OpenTAP" Version="^9.26.1+3d268116" />
@@ -48,6 +48,16 @@
             <String>instrument</String>
           </Groups>
         </Plugin>
+        <Plugin Type="BT2202a.Reset" BaseType="Test Step">
+          <Name>Reset</Name>
+          <Order>-10000</Order>
+          <Browsable>true</Browsable>
+          <Description>resets</Description>
+          <Collapsed>false</Collapsed>
+          <Groups>
+            <String>instrument</String>
+          </Groups>
+        </Plugin>
         <Plugin Type="OpenTap.Plugins.PluginDevelopment.ScpiInstrumentExample" BaseType="Instrument">
           <Name>BT2202A</Name>
           <Order>-10000</Order>
@@ -59,7 +69,7 @@
           </Groups>
         </Plugin>
       </Plugins>
-      <Hash>E7F35979A7AC67E928B143FBF4C4EFE98604222E</Hash>
+      <Hash>591D90E4EB7654D1C7AB58D11E6E5DF40F6B68B4</Hash>
     </File>
   </Files>
 </Package>
