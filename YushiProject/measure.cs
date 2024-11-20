@@ -1,10 +1,11 @@
 using OpenTap;
 using System;
-using System.Collections.Generic;
+/*using System.Collections.Generic;
+using System.Dynamic;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
-using System.Text;
+using System.Text;*/
 using System.Threading;
 
 namespace BT2202a
@@ -19,6 +20,9 @@ namespace BT2202a
 
         [Display("Cell group", Order: 8, Description: "Cells to measure, asign as lowest:highest or comma separated list")]
         public string cell_group { get; set; }
+
+        [Display("Seconds", Order:2, Description:"How many seconds measure will run, 0 is infinite")]
+        public double seconds {get; set;}
 
         #endregion
 
@@ -35,23 +39,12 @@ namespace BT2202a
         public override void Run()
         {   // pre run
             meas = 1;
-            try
-            {
-
-                Log.Info("Initializing Measure");
-
-            }
-            catch (Exception ex){
-                Log.Error($"Error during PrePlanRun: {ex.Message}");
+            if (seconds == 0){
+                meas = -1;
             }
 
-            char[] delimiterChars = { ',', ':' };
-            cell_group = cell_group.Replace(" ", "");
 
-            // run
-
-            try
-            {
+            try{
                 // Log the start of the charging process.
                 Log.Info("Starting the measure process.");
 
@@ -61,23 +54,27 @@ namespace BT2202a
                 //child steps
                 RunChildSteps();
                 Log.Info(meas.ToString());
-                while (meas <= 30) {
+                while (meas <= seconds) {
                     Log.Info(meas.ToString());
                     try{
 
 
                         //// Query the instrument for voltage and current measurements.
                         string statusResponse = instrument.ScpiQuery($"STATus:CELL:REPort? (@{cell_group})");
-                        /*int statusValue = int.Parse(statusResponse);
+                        int statusValue = int.Parse(statusResponse);
                         Log.Info($"Status Value: {statusValue}");
                             if (statusValue == 2) {
-                            UpgradeVerdict(Verdict. );
+                            UpgradeVerdict(Verdict.Pass);
                             instrument.ScpiCommand("OUTP OFF"); // Turn off output
                             return;
-                        }*/
+                        }
 
                         Thread.Sleep(1000);
-                        meas = meas + 1; // BORRAR DESPUES
+                        
+                        if (seconds != 0){
+                            meas = meas + 1;
+                        }
+                         // BORRAR DESPUES
                         string measuredVoltage = instrument.ScpiQuery($"MEAS:CELL:VOLT? (@{cell_group})");
                         string measuredCurrent = instrument.ScpiQuery($"MEAS:CELL:CURR? (@{cell_group})");
 
