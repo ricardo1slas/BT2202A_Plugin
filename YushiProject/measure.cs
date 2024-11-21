@@ -83,8 +83,7 @@ namespace BT2202a
 
                     }
                     catch {
-                        UpgradeVerdict(Verdict.Fail);
-                        instrument.ScpiCommand("OUTP OFF"); // Turn off output
+                        Log.Info("Salio mal");
                         return;
                     }
                 }

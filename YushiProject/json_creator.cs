@@ -1,30 +1,15 @@
 using System.Text.Json;
+using System.IO;
 
-namespace SerializeToFileAsync
+namespace SerializeToFile
 {
-    public class WeatherForecast
+    public static class jsonWriter
     {
-        public int Date { get; set; }
-        public int TemperatureCelsius { get; set; }
-        public string Summary { get; set; }
-    }
-
-    public class Program
-    {
-        public static async Task Main()
+        public static void write_json(string data)
         {
-            var weatherForecast = new WeatherForecast
-            {
-                Date = 21,
-                TemperatureCelsius = 25,
-                Summary = "Hot"
-            };
-
-            string fileName = "WeatherForecast.json";
-            await using FileStream createStream = File.Create(fileName);
-            await JsonSerializer.SerializeAsync(createStream, weatherForecast);
-
-            Console.WriteLine(File.ReadAllText(fileName));
+            string fileName = "flags.json";
+            string json_string = JsonSerializer.Serialize(data);
+            File.WriteAllText(fileName, json_string);
         }
     }
 }
