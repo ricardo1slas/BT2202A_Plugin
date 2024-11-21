@@ -7,6 +7,7 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;*/
 using System.Threading;
+using jsonHelper;
 
 namespace BT2202a
 {
@@ -43,8 +44,9 @@ namespace BT2202a
                 meas = -1;
             }
 
-
             try{
+                
+
                 // Log the start of the charging process.
                 Log.Info("Starting the measure process.");
 
@@ -56,35 +58,46 @@ namespace BT2202a
                 Log.Info(meas.ToString());
                 while (meas <= seconds) {
                     Log.Info(meas.ToString());
-                    try{
+                    try
+                    {
+                        int sleep = jsonHelper.jsonAider.ReadJson(flags => flags.sleep);
+                        Log.Info($"sleep:{sleep.ToString()}");
 
+                        if (sleep == 0) {
 
-                        //// Query the instrument for voltage and current measurements.
-                        string statusResponse = instrument.ScpiQuery($"STATus:CELL:REPort? (@{cell_group})");
-                        int statusValue = int.Parse(statusResponse);
-                        Log.Info($"Status Value: {statusValue}");
-                            if (statusValue == 2) {
-                            UpgradeVerdict(Verdict.Pass);
-                            instrument.ScpiCommand("OUTP OFF"); // Turn off output
-                            return;
+                            //// Query the instrument for voltage and current measurements.
+                            /*string statusResponse = instrument.ScpiQuery($"STATus:CELL:REPort? (@{cell_group})");
+                            int statusValue = int.Parse(statusResponse);
+                            Log.Info($"Status Value: {statusValue}");
+                            if (statusValue == 2)
+                            {
+                                Log.Info($"Status 2, failed cell group {cell_group}");
+                            }*/
+
+                            // BORRAR DESPUES
+                            string measuredVoltage = instrument.ScpiQuery($"MEAS:CELL:VOLT? (@{cell_group})");
+                            string measuredCurrent = instrument.ScpiQuery($"MEAS:CELL:CURR? (@{cell_group})");
+
+                            // Log the measurements.
+                            Log.Info($" Voltage: {measuredVoltage} V, Current: {measuredCurrent} A");
+
+                        } else if (sleep==1){
+                            Log.Info("Sleeping");
                         }
 
                         Thread.Sleep(1000);
-                        
                         if (seconds != 0){
                             meas = meas + 1;
                         }
-                         // BORRAR DESPUES
-                        string measuredVoltage = instrument.ScpiQuery($"MEAS:CELL:VOLT? (@{cell_group})");
-                        string measuredCurrent = instrument.ScpiQuery($"MEAS:CELL:CURR? (@{cell_group})");
-
-                        // Log the measurements.
-                        Log.Info($" Voltage: {measuredVoltage} V, Current: {measuredCurrent} A");
 
                     }
-                    catch {
-                        Log.Info("Salio mal");
-                        return;
+                    catch (Exception ex){
+                        if (seconds != 0){
+                            meas = meas + 1;
+                        }
+                        // Log the error and set the test verdict to fail.
+                        Log.Error($"error: {ex.Message}");
+                        Thread.Sleep(1000);
                     }
                 }
 

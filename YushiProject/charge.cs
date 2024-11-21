@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using jsonHelper;
 
 namespace BT2202a
 {
@@ -51,12 +52,16 @@ namespace BT2202a
 
         public override void PrePlanRun()
         {
+            var data = new { sleep = 1 };
+            jsonHelper.jsonAider.write_json(data);
             base.PrePlanRun();
         }
 
         public override void Run()
         {   // pre run
             try{
+                var data = new {sleep = 1 };
+                jsonHelper.jsonAider.write_json(data);
 
                 instrument.ScpiCommand("*IDN?");
                 instrument.ScpiCommand("SYST:PROB:LIM 1,0");
@@ -67,9 +72,11 @@ namespace BT2202a
 
                 Log.Info("Initializing Charge");
                 Log.Info("Charge Process Started");
+
             }
             catch (Exception ex){
                 Log.Error($"Error during PrePlanRun: {ex.Message}");
+
             }
 
             try{
@@ -91,11 +98,17 @@ namespace BT2202a
                 instrument.ScpiCommand($"CELL:ENABLE (@{cell_group}),{Sequence}");
                 instrument.ScpiCommand($"CELL:INIT (@{cell_group})");
 
+                var data = new { sleep = 0 };
+                jsonHelper.jsonAider.write_json(data);
+
                 // Update the test verdict to pass if everything went smoothly.
                 UpgradeVerdict(Verdict.Pass);
             }
             catch (Exception ex)
             {
+                var data = new { sleep = 0 };
+                jsonHelper.jsonAider.write_json(data);
+
                 // Log the error and set the test verdict to fail.
                 Log.Error($"An error occurred during the charging process: {ex.Message}");
                 UpgradeVerdict(Verdict.Fail);

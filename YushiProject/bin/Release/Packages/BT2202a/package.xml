@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Package InfoLink="" Date="11/21/2024 15:39:26" Name="BT2202a" Version="0.2.0-alpha" Architecture="AnyCPU" OS="Windows,Linux" xmlns="http://opentap.io/schemas/package">
-  <Hash>gkd0Uvb_ZmZ8Zrtq6KOdWO-vOa0</Hash>
+<Package InfoLink="" Date="11/21/2024 19:37:56" Name="BT2202a" Version="0.2.0-alpha" Architecture="AnyCPU" OS="Windows,Linux" xmlns="http://opentap.io/schemas/package">
+  <Hash>A9Qw0CUti_1tW9e7Czp5hy0nuvs</Hash>
   <Description>This is my OpenTAP plugin package.</Description>
   <Dependencies>
     <PackageDependency Package="OpenTAP" Version="^9.26.1+3d268116" />
@@ -69,7 +69,7 @@
           </Groups>
         </Plugin>
       </Plugins>
-      <Hash>C211C427BD28E614DDF1962A236595D29DC8D77A</Hash>
+      <Hash>793146B211EA4499DD9B74F1A07E8C440B17C81D</Hash>
     </File>
   </Files>
 </Package>

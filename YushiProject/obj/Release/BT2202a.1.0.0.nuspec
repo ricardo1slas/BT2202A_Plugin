@@ -9,6 +9,8 @@
       <group targetFramework=".NETStandard2.0">
         <dependency id="NETStandard.Library" version="2.0.3" exclude="Build,Analyzers" />
         <dependency id="OpenTAP" version="9.26.1" exclude="Build,Analyzers" />
+        <dependency id="System.IO.FileSystem" version="4.3.0" exclude="Build,Analyzers" />
+        <dependency id="System.Text.Json" version="4.6.0" exclude="Build,Analyzers" />
       </group>
     </dependencies>
   </metadata>

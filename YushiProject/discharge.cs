@@ -55,27 +55,28 @@ namespace BT2202a
 
         public override void PrePlanRun()
         {   // pre run
+            var data = new { sleep = 1 };
+            jsonHelper.jsonAider.write_json(data);
             base.PrePlanRun();
         }
 
         public override void Run()
         {
             // pre run
-            try
-            {
+            var data = new { sleep = 1 };
+            jsonHelper.jsonAider.write_json(data);
+
+            try { 
                 instrument.ScpiCommand("*IDN?");
                 instrument.ScpiCommand("SYST:PROB:LIM 1,0");
                 instrument.ScpiCommand($"CELL:DEF:QUICk {Channels}");
 
-
                 Log.Info($"Discharge sequence step {Sequence},{Step} defined: Voltage = {Voltage} V, Current = {Current} A, Time = {Time} s");
-
 
                 Log.Info("Initializing Discharge");
                 Log.Info("Discharge Process Started");
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex) {
                 Log.Error($"Error during PrePlanRun: {ex.Message}");
             }
             // run
@@ -102,9 +103,13 @@ namespace BT2202a
 
                 // Update the test verdict to pass if everything went smoothly.
                 UpgradeVerdict(Verdict.Pass);
+                data = new { sleep = 0 };
+                jsonHelper.jsonAider.write_json(data);
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex){
+                data = new { sleep = 0 };
+                jsonHelper.jsonAider.write_json(data);
+
                 // Log the error and set the test verdict to fail.
                 Log.Error($"An error occurred during the charging process: {ex.Message}");
                 UpgradeVerdict(Verdict.Fail);
