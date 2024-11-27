@@ -4,6 +4,10 @@
 
 This project focuses on the development of a plugin for Keysight’s BT2202A Charge-Discharge, Li-ion Cell Formation, and Test Solution, using the OpenTAP framework. The plugin enables users to design and execute test sequences for energy storage cells, enhancing the BT2202A’s usability for testing and research purposes. The development includes basic functionalities, advanced features for running parallel tests, and solutions to overcome hardware limitations.
 
+### Video Demonstration
+- https://youtu.be/3TpPh6u8YSQ
+
+
 ## Features
 
 ### Basic Plugin (Branch: main)
